@@ -1541,10 +1541,8 @@ KeyRing = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_KEYRING,
         __module__="google.cloud.kms_v1.proto.resources_pb2",
-        __doc__="""A [KeyRing][google.cloud.kms.v1.KeyRing] is a toplevel
-  logical grouping of [CryptoKeys][google.cloud.kms.v1.CryptoKey].
-  
-  
+        __doc__="""A [KeyRing][google.cloud.kms.v1.KeyRing] is a toplevel logical
+  grouping of [CryptoKeys][google.cloud.kms.v1.CryptoKey].
   Attributes:
       name:
           Output only. The resource name for the
@@ -1574,14 +1572,11 @@ CryptoKey = _reflection.GeneratedProtocolMessageType(
         ),
         DESCRIPTOR=_CRYPTOKEY,
         __module__="google.cloud.kms_v1.proto.resources_pb2",
-        __doc__="""A [CryptoKey][google.cloud.kms.v1.CryptoKey] represents a
-  logical key that can be used for cryptographic operations.
-  
-  A [CryptoKey][google.cloud.kms.v1.CryptoKey] is made up of one or more
+        __doc__="""A [CryptoKey][google.cloud.kms.v1.CryptoKey] represents a logical key
+  that can be used for cryptographic operations.  A
+  [CryptoKey][google.cloud.kms.v1.CryptoKey] is made up of one or more
   [versions][google.cloud.kms.v1.CryptoKeyVersion], which represent the
   actual key material used in cryptographic operations.
-  
-  
   Attributes:
       name:
           Output only. The resource name for this
@@ -1661,15 +1656,12 @@ CryptoKeyVersionTemplate = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_CRYPTOKEYVERSIONTEMPLATE,
         __module__="google.cloud.kms_v1.proto.resources_pb2",
-        __doc__="""A
-  [CryptoKeyVersionTemplate][google.cloud.kms.v1.CryptoKeyVersionTemplate]
-  specifies the properties to use when creating a new
+        __doc__="""A [CryptoKeyVersionTemplate][google.cloud.kms.v1.CryptoKeyVersionTempl
+  ate] specifies the properties to use when creating a new
   [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion], either
-  manually with
-  [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion]
-  or automatically as a result of auto-rotation.
-  
-  
+  manually with [CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManageme
+  ntService.CreateCryptoKeyVersion] or automatically as a result of
+  auto-rotation.
   Attributes:
       protection_level:
           [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] to use
@@ -1699,11 +1691,9 @@ KeyOperationAttestation = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_KEYOPERATIONATTESTATION,
         __module__="google.cloud.kms_v1.proto.resources_pb2",
-        __doc__="""Contains an HSM-generated attestation about a key
-  operation. For more information, see [Verifying attestations]
+        __doc__="""Contains an HSM-generated attestation about a key operation. For more
+  information, see [Verifying attestations]
   (https://cloud.google.com/kms/docs/attest-key).
-  
-  
   Attributes:
       format:
           Output only. The format of the attestation data.
@@ -1722,20 +1712,14 @@ CryptoKeyVersion = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_CRYPTOKEYVERSION,
         __module__="google.cloud.kms_v1.proto.resources_pb2",
-        __doc__="""A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
-  represents an individual cryptographic key, and the associated key
-  material.
-  
-  An
-  [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED]
-  version can be used for cryptographic operations.
-  
-  For security reasons, the raw cryptographic key material represented by
-  a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] can never be
+        __doc__="""A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] represents
+  an individual cryptographic key, and the associated key material.  An 
+  [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.E
+  NABLED] version can be used for cryptographic operations.  For
+  security reasons, the raw cryptographic key material represented by a
+  [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] can never be
   viewed or exported. It can only be used to encrypt, decrypt, or sign
   data when an authorized user or application invokes Cloud KMS.
-  
-  
   Attributes:
       name:
           Output only. The resource name for this
@@ -1819,8 +1803,6 @@ PublicKey = _reflection.GeneratedProtocolMessageType(
         __doc__="""The public key for a given
   [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. Obtained via
   [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
-  
-  
   Attributes:
       pem:
           The public key, encoded in PEM format. For more information,
@@ -1848,11 +1830,9 @@ ImportJob = _reflection.GeneratedProtocolMessageType(
             dict(
                 DESCRIPTOR=_IMPORTJOB_WRAPPINGPUBLICKEY,
                 __module__="google.cloud.kms_v1.proto.resources_pb2",
-                __doc__="""The public key component of the wrapping key. For details
-    of the type of key this public key corresponds to, see the
+                __doc__="""The public key component of the wrapping key. For details of the type
+    of key this public key corresponds to, see the
     [ImportMethod][google.cloud.kms.v1.ImportJob.ImportMethod].
-    
-    
     Attributes:
         pem:
             The public key, encoded in PEM format. For more information,
@@ -1867,42 +1847,37 @@ ImportJob = _reflection.GeneratedProtocolMessageType(
         ),
         DESCRIPTOR=_IMPORTJOB,
         __module__="google.cloud.kms_v1.proto.resources_pb2",
-        __doc__="""An [ImportJob][google.cloud.kms.v1.ImportJob] can be used
-  to create [CryptoKeys][google.cloud.kms.v1.CryptoKey] and
-  [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] using
-  pre-existing key material, generated outside of Cloud KMS.
-  
-  When an [ImportJob][google.cloud.kms.v1.ImportJob] is created, Cloud KMS
-  will generate a "wrapping key", which is a public/private key pair. You
-  use the wrapping key to encrypt (also known as wrap) the pre-existing
-  key material to protect it during the import process. The nature of the
+        __doc__="""An [ImportJob][google.cloud.kms.v1.ImportJob] can be used to create
+  [CryptoKeys][google.cloud.kms.v1.CryptoKey] and
+  [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] using pre-
+  existing key material, generated outside of Cloud KMS.  When an
+  [ImportJob][google.cloud.kms.v1.ImportJob] is created, Cloud KMS will
+  generate a "wrapping key", which is a public/private key pair. You use
+  the wrapping key to encrypt (also known as wrap) the pre-existing key
+  material to protect it during the import process. The nature of the
   wrapping key depends on the choice of
-  [import\_method][google.cloud.kms.v1.ImportJob.import\_method]. When the
-  wrapping key generation is complete, the
+  [import\_method][google.cloud.kms.v1.ImportJob.import\_method]. When
+  the wrapping key generation is complete, the
   [state][google.cloud.kms.v1.ImportJob.state] will be set to
   [ACTIVE][google.cloud.kms.v1.ImportJob.ImportJobState.ACTIVE] and the
-  [public\_key][google.cloud.kms.v1.ImportJob.public\_key] can be fetched.
-  The fetched public key can then be used to wrap your pre-existing key
-  material.
-  
-  Once the key material is wrapped, it can be imported into a new
-  [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in an existing
-  [CryptoKey][google.cloud.kms.v1.CryptoKey] by calling
-  [ImportCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion].
-  Multiple [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] can
-  be imported with a single [ImportJob][google.cloud.kms.v1.ImportJob].
-  Cloud KMS uses the private key portion of the wrapping key to unwrap the
-  key material. Only Cloud KMS has access to the private key.
-  
-  An [ImportJob][google.cloud.kms.v1.ImportJob] expires 3 days after it is
+  [public\_key][google.cloud.kms.v1.ImportJob.public\_key] can be
+  fetched. The fetched public key can then be used to wrap your pre-
+  existing key material.  Once the key material is wrapped, it can be
+  imported into a new
+  [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in an
+  existing [CryptoKey][google.cloud.kms.v1.CryptoKey] by calling [Import
+  CryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.ImportCrypt
+  oKeyVersion]. Multiple
+  [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion] can be
+  imported with a single [ImportJob][google.cloud.kms.v1.ImportJob].
+  Cloud KMS uses the private key portion of the wrapping key to unwrap
+  the key material. Only Cloud KMS has access to the private key.  An
+  [ImportJob][google.cloud.kms.v1.ImportJob] expires 3 days after it is
   created. Once expired, Cloud KMS will no longer be able to import or
   unwrap any key material that was wrapped with the
-  [ImportJob][google.cloud.kms.v1.ImportJob]'s public key.
-  
-  For more information, see `Importing a
-  key <https://cloud.google.com/kms/docs/importing-a-key>`__.
-  
-  
+  [ImportJob][google.cloud.kms.v1.ImportJob]'s public key.  For more
+  information, see `Importing a key
+  <https://cloud.google.com/kms/docs/importing-a-key>`__.
   Attributes:
       name:
           Output only. The resource name for this
@@ -1965,13 +1940,11 @@ ExternalProtectionLevelOptions = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_EXTERNALPROTECTIONLEVELOPTIONS,
         __module__="google.cloud.kms_v1.proto.resources_pb2",
-        __doc__="""ExternalProtectionLevelOptions stores a group of
-  additional fields for configuring a
-  [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] that are
-  specific to the [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL]
-  protection level.
-  
-  
+        __doc__="""ExternalProtectionLevelOptions stores a group of additional fields for
+  configuring a [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
+  that are specific to the
+  [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL] protection
+  level.
   Attributes:
       external_key_uri:
           The URI for an external resource that this

@@ -103,9 +103,21 @@ class KeyManagementServiceClient(object):
         )
 
     @classmethod
+    def crypto_key_path_path(cls, project, location, key_ring, crypto_key_path):
+        """Return a fully-qualified crypto_key_path string."""
+        return google.api_core.path_template.expand(
+            "projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key_path=**}",
+            project=project,
+            location=location,
+            key_ring=key_ring,
+            crypto_key_path=crypto_key_path,
+        )
+
+    @classmethod
     def crypto_key_version_path(
         cls, project, location, key_ring, crypto_key, crypto_key_version
     ):
+
         """Return a fully-qualified crypto_key_version string."""
         return google.api_core.path_template.expand(
             "projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}",
