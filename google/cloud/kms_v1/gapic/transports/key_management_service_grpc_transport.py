@@ -118,7 +118,10 @@ class KeyManagementServiceGrpcTransport(object):
     def list_key_rings(self):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.list_key_rings`.
 
-        Lists ``KeyRings``.
+        Optional. Optional limit on the number of ``KeyRings`` to include in
+        the response. Further ``KeyRings`` can subsequently be obtained by
+        including the ``ListKeyRingsResponse.next_page_token`` in a subsequent
+        request. If unspecified, the server will pick an appropriate default.
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -131,7 +134,9 @@ class KeyManagementServiceGrpcTransport(object):
     def list_import_jobs(self):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.list_import_jobs`.
 
-        Lists ``ImportJobs``.
+        This version is still being generated. It may not be used, enabled,
+        disabled, or destroyed yet. Cloud KMS will automatically mark this
+        version ``ENABLED`` as soon as the version is ready.
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -144,7 +149,13 @@ class KeyManagementServiceGrpcTransport(object):
     def list_crypto_keys(self):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.list_crypto_keys`.
 
-        Lists ``CryptoKeys``.
+        The hostname for this service. This should be specified with no
+        prefix or protocol.
+
+        Example:
+
+        service Foo { option (google.api.default_host) = "foo.googleapi.com";
+        ... }
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -157,7 +168,8 @@ class KeyManagementServiceGrpcTransport(object):
     def list_crypto_key_versions(self):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.list_crypto_key_versions`.
 
-        Lists ``CryptoKeyVersions``.
+        Required. The resource name of the ``CryptoKeyVersion`` to use for
+        decryption.
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -170,7 +182,32 @@ class KeyManagementServiceGrpcTransport(object):
     def get_key_ring(self):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.get_key_ring`.
 
-        Returns metadata for a given ``KeyRing``.
+        An ``ImportJob`` can be used to create ``CryptoKeys`` and
+        ``CryptoKeyVersions`` using pre-existing key material, generated outside
+        of Cloud KMS.
+
+        When an ``ImportJob`` is created, Cloud KMS will generate a "wrapping
+        key", which is a public/private key pair. You use the wrapping key to
+        encrypt (also known as wrap) the pre-existing key material to protect it
+        during the import process. The nature of the wrapping key depends on the
+        choice of ``import_method``. When the wrapping key generation is
+        complete, the ``state`` will be set to ``ACTIVE`` and the ``public_key``
+        can be fetched. The fetched public key can then be used to wrap your
+        pre-existing key material.
+
+        Once the key material is wrapped, it can be imported into a new
+        ``CryptoKeyVersion`` in an existing ``CryptoKey`` by calling
+        ``ImportCryptoKeyVersion``. Multiple ``CryptoKeyVersions`` can be
+        imported with a single ``ImportJob``. Cloud KMS uses the private key
+        portion of the wrapping key to unwrap the key material. Only Cloud KMS
+        has access to the private key.
+
+        An ``ImportJob`` expires 3 days after it is created. Once expired, Cloud
+        KMS will no longer be able to import or unwrap any key material that was
+        wrapped with the ``ImportJob``'s public key.
+
+        For more information, see `Importing a
+        key <https://cloud.google.com/kms/docs/importing-a-key>`__.
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -183,7 +220,8 @@ class KeyManagementServiceGrpcTransport(object):
     def get_import_job(self):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.get_import_job`.
 
-        Returns metadata for a given ``ImportJob``.
+        Required. It must be unique within a KeyRing and match the regular
+        expression ``[a-zA-Z0-9_-]{1,63}``
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -196,8 +234,8 @@ class KeyManagementServiceGrpcTransport(object):
     def get_crypto_key(self):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.get_crypto_key`.
 
-        Returns metadata for a given ``CryptoKey``, as well as its ``primary``
-        ``CryptoKeyVersion``.
+        Optional. Optional pagination token, returned earlier via
+        ``ListKeyRingsResponse.next_page_token``.
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -210,7 +248,11 @@ class KeyManagementServiceGrpcTransport(object):
     def get_crypto_key_version(self):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.get_crypto_key_version`.
 
-        Returns metadata for a given ``CryptoKeyVersion``.
+        Imports a new ``CryptoKeyVersion`` into an existing ``CryptoKey``
+        using the wrapped key material provided in the request.
+
+        The version ID will be assigned the next sequential id within the
+        ``CryptoKey``.
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -223,7 +265,8 @@ class KeyManagementServiceGrpcTransport(object):
     def create_key_ring(self):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.create_key_ring`.
 
-        Create a new ``KeyRing`` in a given Project and Location.
+        Required. The resource name of the ``CryptoKeyVersion`` to use for
+        signing.
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -236,9 +279,9 @@ class KeyManagementServiceGrpcTransport(object):
     def create_import_job(self):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.create_import_job`.
 
-        Create a new ``ImportJob`` within a ``KeyRing``.
-
-        ``ImportJob.import_method`` is required.
+        This version is scheduled for destruction, and will be destroyed
+        soon. Call ``RestoreCryptoKeyVersion`` to put it back into the
+        ``DISABLED`` state.
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -251,10 +294,9 @@ class KeyManagementServiceGrpcTransport(object):
     def create_crypto_key(self):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.create_crypto_key`.
 
-        Create a new ``CryptoKey`` within a ``KeyRing``.
-
-        ``CryptoKey.purpose`` and ``CryptoKey.version_template.algorithm`` are
-        required.
+        Optional. Only include resources that match the filter in the
+        response. For more information, see `Sorting and filtering list
+        results <https://cloud.google.com/kms/docs/sorting-and-filtering>`__.
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -267,10 +309,10 @@ class KeyManagementServiceGrpcTransport(object):
     def create_crypto_key_version(self):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.create_crypto_key_version`.
 
-        Create a new ``CryptoKeyVersion`` in a ``CryptoKey``.
-
-        The server will assign the next sequential id. If unset, ``state`` will
-        be set to ``ENABLED``.
+        The custom pattern is used for specifying an HTTP method that is not
+        included in the ``pattern`` field, such as HEAD, or "*" to leave the
+        HTTP method unspecified for this rule. The wild-card rule is useful for
+        services that provide content to Web (HTML) clients.
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -283,11 +325,37 @@ class KeyManagementServiceGrpcTransport(object):
     def import_crypto_key_version(self):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.import_crypto_key_version`.
 
-        Imports a new ``CryptoKeyVersion`` into an existing ``CryptoKey`` using
-        the wrapped key material provided in the request.
+        Protocol Buffers - Google's data interchange format Copyright 2008
+        Google Inc. All rights reserved.
+        https://developers.google.com/protocol-buffers/
 
-        The version ID will be assigned the next sequential id within the
-        ``CryptoKey``.
+        Redistribution and use in source and binary forms, with or without
+        modification, are permitted provided that the following conditions are
+        met:
+
+        ::
+
+            * Redistributions of source code must retain the above copyright
+
+        notice, this list of conditions and the following disclaimer. \*
+        Redistributions in binary form must reproduce the above copyright
+        notice, this list of conditions and the following disclaimer in the
+        documentation and/or other materials provided with the distribution. \*
+        Neither the name of Google Inc. nor the names of its contributors may be
+        used to endorse or promote products derived from this software without
+        specific prior written permission.
+
+        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+        IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+        TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+        PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
+        OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+        EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+        PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+        PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+        LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+        NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+        SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -300,7 +368,7 @@ class KeyManagementServiceGrpcTransport(object):
     def update_crypto_key(self):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.update_crypto_key`.
 
-        Update a ``CryptoKey``.
+        Required. A ``CryptoKey`` with initial field values.
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -313,11 +381,13 @@ class KeyManagementServiceGrpcTransport(object):
     def update_crypto_key_version(self):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.update_crypto_key_version`.
 
-        Update a ``CryptoKeyVersion``'s metadata.
+        The name of the request field whose value is mapped to the HTTP
+        request body, or ``*`` for mapping all request fields not captured by
+        the path pattern to the HTTP body, or omitted for not having any HTTP
+        request body.
 
-        ``state`` may be changed between ``ENABLED`` and ``DISABLED`` using this
-        method. See ``DestroyCryptoKeyVersion`` and ``RestoreCryptoKeyVersion``
-        to move between other states.
+        NOTE: the referred field must be present at the top-level of the request
+        message type.
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -330,8 +400,9 @@ class KeyManagementServiceGrpcTransport(object):
     def encrypt(self):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.encrypt`.
 
-        Encrypts data, so that it can only be recovered by a call to
-        ``Decrypt``. The ``CryptoKey.purpose`` must be ``ENCRYPT_DECRYPT``.
+        Required. The digest of the data to sign. The digest must be
+        produced with the same digest algorithm as specified by the key
+        version's ``algorithm``.
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -344,8 +415,9 @@ class KeyManagementServiceGrpcTransport(object):
     def decrypt(self):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.decrypt`.
 
-        Decrypts data that was protected by ``Encrypt``. The
-        ``CryptoKey.purpose`` must be ``ENCRYPT_DECRYPT``.
+        This version is still being imported. It may not be used, enabled,
+        disabled, or destroyed yet. Cloud KMS will automatically mark this
+        version ``ENABLED`` as soon as the version is ready.
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -358,9 +430,7 @@ class KeyManagementServiceGrpcTransport(object):
     def update_crypto_key_primary_version(self):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.update_crypto_key_primary_version`.
 
-        Update the version of a ``CryptoKey`` that will be used in ``Encrypt``.
-
-        Returns an error if called on an asymmetric key.
+        The list of ``CryptoKeyVersions``.
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -373,15 +443,10 @@ class KeyManagementServiceGrpcTransport(object):
     def destroy_crypto_key_version(self):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.destroy_crypto_key_version`.
 
-        Schedule a ``CryptoKeyVersion`` for destruction.
-
-        Upon calling this method, ``CryptoKeyVersion.state`` will be set to
-        ``DESTROY_SCHEDULED`` and ``destroy_time`` will be set to a time 24
-        hours in the future, at which point the ``state`` will be changed to
-        ``DESTROYED``, and the key material will be irrevocably destroyed.
-
-        Before the ``destroy_time`` is reached, ``RestoreCryptoKeyVersion`` may
-        be called to reverse the process.
+        This version was not imported successfully. It may not be used,
+        enabled, disabled, or destroyed. The submitted key material has been
+        discarded. Additional details can be found in
+        ``CryptoKeyVersion.import_failure_reason``.
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -394,10 +459,7 @@ class KeyManagementServiceGrpcTransport(object):
     def restore_crypto_key_version(self):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.restore_crypto_key_version`.
 
-        Restore a ``CryptoKeyVersion`` in the ``DESTROY_SCHEDULED`` state.
-
-        Upon restoration of the CryptoKeyVersion, ``state`` will be set to
-        ``DISABLED``, and ``destroy_time`` will be cleared.
+        Request message for ``KeyManagementService.Encrypt``.
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -410,9 +472,17 @@ class KeyManagementServiceGrpcTransport(object):
     def get_public_key(self):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.get_public_key`.
 
-        Returns the public key for the given ``CryptoKeyVersion``. The
-        ``CryptoKey.purpose`` must be ``ASYMMETRIC_SIGN`` or
-        ``ASYMMETRIC_DECRYPT``.
+        The jstype option determines the JavaScript type used for values of
+        the field. The option is permitted only for 64 bit integral and fixed
+        types (int64, uint64, sint64, fixed64, sfixed64). A field with jstype
+        JS_STRING is represented as JavaScript string, which avoids loss of
+        precision that can happen when a large value is converted to a floating
+        point JavaScript. Specifying JS_NUMBER for the jstype causes the
+        generated JavaScript code to use the JavaScript "number" type. The
+        behavior of the default option JS_NORMAL is implementation dependent.
+
+        This option is an enum to permit additional types to be added, e.g.
+        goog.math.Integer.
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -425,9 +495,8 @@ class KeyManagementServiceGrpcTransport(object):
     def asymmetric_decrypt(self):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.asymmetric_decrypt`.
 
-        Decrypts data that was encrypted with a public key retrieved from
-        ``GetPublicKey`` corresponding to a ``CryptoKeyVersion`` with
-        ``CryptoKey.purpose`` ASYMMETRIC\_DECRYPT.
+        Input and output type names. These are resolved in the same way as
+        FieldDescriptorProto.type_name, but must refer to a message type.
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -440,9 +509,10 @@ class KeyManagementServiceGrpcTransport(object):
     def asymmetric_sign(self):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.asymmetric_sign`.
 
-        Signs data using a ``CryptoKeyVersion`` with ``CryptoKey.purpose``
-        ASYMMETRIC\_SIGN, producing a signature that can be verified with the
-        public key retrieved from ``GetPublicKey``.
+        Optional. Specify how the results should be sorted. If not
+        specified, the results will be sorted in the default order. For more
+        information, see `Sorting and filtering list
+        results <https://cloud.google.com/kms/docs/sorting-and-filtering>`__.
 
         Returns:
             Callable: A callable which accepts the appropriate

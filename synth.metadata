@@ -1,26 +1,25 @@
 {
-  "updateTime": "2020-04-14T21:47:51.484475Z",
   "sources": [
     {
-      "generator": {
-        "name": "artman",
-        "version": "2.0.0",
-        "dockerImage": "googleapis/artman@sha256:b3b47805231a305d0f40c4bf069df20f6a2635574e6d4259fac651d3f9f6e098"
+      "git": {
+        "name": ".",
+        "remote": "https://github.com/googleapis/python-kms.git",
+        "sha": "5ea110e325738d7ce4cdbd5619984f96f0c7e5a0"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "fea22b1d9f27f86ef355c1d0dba00e0791a08a19",
-        "internalRef": "306508794"
+        "sha": "862cd840dbb0101a0630913217bf8b6d4101c84c",
+        "internalRef": "307739946"
       }
     },
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "52638600f387deb98efb5f9c85fec39e82aa9052"
+        "sha": "716f741f2d307b48cbe8a5bc3bc883571212344a"
       }
     }
   ],
@@ -31,8 +30,7 @@
         "apiName": "kms",
         "apiVersion": "v1",
         "language": "python",
-        "generator": "gapic",
-        "config": "google/cloud/kms/artman_cloudkms.yaml"
+        "generator": "bazel"
       }
     }
   ]

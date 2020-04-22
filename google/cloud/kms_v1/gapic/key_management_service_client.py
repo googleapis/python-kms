@@ -49,20 +49,7 @@ _GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution("google-cloud-kms").vers
 
 
 class KeyManagementServiceClient(object):
-    """
-    Google Cloud Key Management Service
-
-    Manages cryptographic keys and operations using those keys. Implements a
-    REST model with the following objects:
-
-    -  ``KeyRing``
-    -  ``CryptoKey``
-    -  ``CryptoKeyVersion``
-    -  ``ImportJob``
-
-    If you are using manual gRPC libraries, see `Using gRPC with Cloud
-    KMS <https://cloud.google.com/kms/docs/grpc>`__.
-    """
+    """Request message for ``SetIamPolicy`` method."""
 
     SERVICE_ADDRESS = "cloudkms.googleapis.com:443"
     """The default address of the service."""
@@ -282,7 +269,10 @@ class KeyManagementServiceClient(object):
         metadata=None,
     ):
         """
-        Lists ``KeyRings``.
+        Optional. Optional limit on the number of ``KeyRings`` to include in
+        the response. Further ``KeyRings`` can subsequently be obtained by
+        including the ``ListKeyRingsResponse.next_page_token`` in a subsequent
+        request. If unspecified, the server will pick an appropriate default.
 
         Example:
             >>> from google.cloud import kms_v1
@@ -306,20 +296,19 @@ class KeyManagementServiceClient(object):
             ...         pass
 
         Args:
-            parent (str): Required. The resource name of the location associated with the
-                ``KeyRings``, in the format ``projects/*/locations/*``.
+            parent (str): A view for ``CryptoKeyVersion``\ s. Controls the level of detail
+                returned for ``CryptoKeyVersions`` in
+                ``KeyManagementService.ListCryptoKeyVersions`` and
+                ``KeyManagementService.ListCryptoKeys``.
             page_size (int): The maximum number of resources contained in the
                 underlying API response. If page streaming is performed per-
                 resource, this parameter does not affect the return value. If page
                 streaming is performed per-page, this determines the maximum number
                 of resources in a page.
-            filter_ (str): Optional. Only include resources that match the filter in the response.
-                For more information, see `Sorting and filtering list
-                results <https://cloud.google.com/kms/docs/sorting-and-filtering>`__.
-            order_by (str): Optional. Specify how the results should be sorted. If not specified,
-                the results will be sorted in the default order. For more information,
-                see `Sorting and filtering list
-                results <https://cloud.google.com/kms/docs/sorting-and-filtering>`__.
+            filter_ (str): Default view for each ``CryptoKeyVersion``. Does not include the
+                ``attestation`` field.
+            order_by (str): Required. The resource name of the ``KeyRing`` to list, in the
+                format ``projects/*/locations/*/keyRings/*``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -395,7 +384,9 @@ class KeyManagementServiceClient(object):
         metadata=None,
     ):
         """
-        Lists ``ImportJobs``.
+        This version is still being generated. It may not be used, enabled,
+        disabled, or destroyed yet. Cloud KMS will automatically mark this
+        version ``ENABLED`` as soon as the version is ready.
 
         Example:
             >>> from google.cloud import kms_v1
@@ -419,20 +410,15 @@ class KeyManagementServiceClient(object):
             ...         pass
 
         Args:
-            parent (str): Required. The resource name of the ``KeyRing`` to list, in the format
-                ``projects/*/locations/*/keyRings/*``.
+            parent (str): Request message for ``KeyManagementService.ImportCryptoKeyVersion``.
             page_size (int): The maximum number of resources contained in the
                 underlying API response. If page streaming is performed per-
                 resource, this parameter does not affect the return value. If page
                 streaming is performed per-page, this determines the maximum number
                 of resources in a page.
-            filter_ (str): Optional. Only include resources that match the filter in the response.
-                For more information, see `Sorting and filtering list
-                results <https://cloud.google.com/kms/docs/sorting-and-filtering>`__.
-            order_by (str): Optional. Specify how the results should be sorted. If not specified,
-                the results will be sorted in the default order. For more information,
-                see `Sorting and filtering list
-                results <https://cloud.google.com/kms/docs/sorting-and-filtering>`__.
+            filter_ (str): Response message for ``TestIamPermissions`` method.
+            order_by (str): OPTIONAL: A ``GetPolicyOptions`` object for specifying options to
+                ``GetIamPolicy``. This field is only used by Cloud IAM.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -509,7 +495,13 @@ class KeyManagementServiceClient(object):
         metadata=None,
     ):
         """
-        Lists ``CryptoKeys``.
+        The hostname for this service. This should be specified with no
+        prefix or protocol.
+
+        Example:
+
+        service Foo { option (google.api.default_host) = "foo.googleapi.com";
+        ... }
 
         Example:
             >>> from google.cloud import kms_v1
@@ -533,21 +525,17 @@ class KeyManagementServiceClient(object):
             ...         pass
 
         Args:
-            parent (str): Required. The resource name of the ``KeyRing`` to list, in the format
-                ``projects/*/locations/*/keyRings/*``.
+            parent (str): Request message for ``TestIamPermissions`` method.
             page_size (int): The maximum number of resources contained in the
                 underlying API response. If page streaming is performed per-
                 resource, this parameter does not affect the return value. If page
                 streaming is performed per-page, this determines the maximum number
                 of resources in a page.
             version_view (~google.cloud.kms_v1.types.CryptoKeyVersionView): The fields of the primary version to include in the response.
-            filter_ (str): Optional. Only include resources that match the filter in the response.
-                For more information, see `Sorting and filtering list
-                results <https://cloud.google.com/kms/docs/sorting-and-filtering>`__.
-            order_by (str): Optional. Specify how the results should be sorted. If not specified,
-                the results will be sorted in the default order. For more information,
-                see `Sorting and filtering list
-                results <https://cloud.google.com/kms/docs/sorting-and-filtering>`__.
+            filter_ (str): A ``Digest`` holds a cryptographic message digest.
+            order_by (str): Output only. The resource name for this ``CryptoKeyVersion`` in the
+                format
+                ``projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -628,7 +616,8 @@ class KeyManagementServiceClient(object):
         metadata=None,
     ):
         """
-        Lists ``CryptoKeyVersions``.
+        Required. The resource name of the ``CryptoKeyVersion`` to use for
+        decryption.
 
         Example:
             >>> from google.cloud import kms_v1
@@ -652,21 +641,18 @@ class KeyManagementServiceClient(object):
             ...         pass
 
         Args:
-            parent (str): Required. The resource name of the ``CryptoKey`` to list, in the format
-                ``projects/*/locations/*/keyRings/*/cryptoKeys/*``.
+            parent (str): Required. Immutable. The protection level of the ``ImportJob``. This
+                must match the ``protection_level`` of the ``version_template`` on the
+                ``CryptoKey`` you attempt to import into.
             page_size (int): The maximum number of resources contained in the
                 underlying API response. If page streaming is performed per-
                 resource, this parameter does not affect the return value. If page
                 streaming is performed per-page, this determines the maximum number
                 of resources in a page.
             view (~google.cloud.kms_v1.types.CryptoKeyVersionView): The fields to include in the response.
-            filter_ (str): Optional. Only include resources that match the filter in the response.
-                For more information, see `Sorting and filtering list
-                results <https://cloud.google.com/kms/docs/sorting-and-filtering>`__.
-            order_by (str): Optional. Specify how the results should be sorted. If not specified,
-                the results will be sorted in the default order. For more information,
-                see `Sorting and filtering list
-                results <https://cloud.google.com/kms/docs/sorting-and-filtering>`__.
+            filter_ (str): The current state of the ``CryptoKeyVersion``.
+            order_by (str): Optional. Optional pagination token, returned earlier via
+                ``ListCryptoKeysResponse.next_page_token``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -743,7 +729,32 @@ class KeyManagementServiceClient(object):
         metadata=None,
     ):
         """
-        Returns metadata for a given ``KeyRing``.
+        An ``ImportJob`` can be used to create ``CryptoKeys`` and
+        ``CryptoKeyVersions`` using pre-existing key material, generated outside
+        of Cloud KMS.
+
+        When an ``ImportJob`` is created, Cloud KMS will generate a "wrapping
+        key", which is a public/private key pair. You use the wrapping key to
+        encrypt (also known as wrap) the pre-existing key material to protect it
+        during the import process. The nature of the wrapping key depends on the
+        choice of ``import_method``. When the wrapping key generation is
+        complete, the ``state`` will be set to ``ACTIVE`` and the ``public_key``
+        can be fetched. The fetched public key can then be used to wrap your
+        pre-existing key material.
+
+        Once the key material is wrapped, it can be imported into a new
+        ``CryptoKeyVersion`` in an existing ``CryptoKey`` by calling
+        ``ImportCryptoKeyVersion``. Multiple ``CryptoKeyVersions`` can be
+        imported with a single ``ImportJob``. Cloud KMS uses the private key
+        portion of the wrapping key to unwrap the key material. Only Cloud KMS
+        has access to the private key.
+
+        An ``ImportJob`` expires 3 days after it is created. Once expired, Cloud
+        KMS will no longer be able to import or unwrap any key material that was
+        wrapped with the ``ImportJob``'s public key.
+
+        For more information, see `Importing a
+        key <https://cloud.google.com/kms/docs/importing-a-key>`__.
 
         Example:
             >>> from google.cloud import kms_v1
@@ -755,7 +766,30 @@ class KeyManagementServiceClient(object):
             >>> response = client.get_key_ring(name)
 
         Args:
-            name (str): Required. The ``name`` of the ``KeyRing`` to get.
+            name (str): Wrapped key material produced with ``RSA_OAEP_3072_SHA1_AES_256`` or
+                ``RSA_OAEP_4096_SHA1_AES_256``.
+
+                This field contains the concatenation of two wrapped keys:
+
+                .. raw:: html
+
+                    <ol>
+                      <li>An ephemeral AES-256 wrapping key wrapped with the
+                          `public_key` using RSAES-OAEP with SHA-1,
+                          MGF1 with SHA-1, and an empty label.
+                      </li>
+                      <li>The key to be imported, wrapped with the ephemeral AES-256 key
+                          using AES-KWP (RFC 5649).
+                      </li>
+                    </ol>
+
+                If importing symmetric key material, it is expected that the unwrapped
+                key contains plain bytes. If importing asymmetric key material, it is
+                expected that the unwrapped key is in PKCS#8-encoded DER format (the
+                PrivateKeyInfo structure from RFC 5208).
+
+                This format is the same as the format produced by PKCS#11 mechanism
+                CKM_RSA_AES_KEY_WRAP.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -812,7 +846,8 @@ class KeyManagementServiceClient(object):
         metadata=None,
     ):
         """
-        Returns metadata for a given ``ImportJob``.
+        Required. It must be unique within a KeyRing and match the regular
+        expression ``[a-zA-Z0-9_-]{1,63}``
 
         Example:
             >>> from google.cloud import kms_v1
@@ -824,7 +859,7 @@ class KeyManagementServiceClient(object):
             >>> response = client.get_import_job(name)
 
         Args:
-            name (str): Required. The ``name`` of the ``ImportJob`` to get.
+            name (str): Lists ``CryptoKeys``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -881,8 +916,8 @@ class KeyManagementServiceClient(object):
         metadata=None,
     ):
         """
-        Returns metadata for a given ``CryptoKey``, as well as its ``primary``
-        ``CryptoKeyVersion``.
+        Optional. Optional pagination token, returned earlier via
+        ``ListKeyRingsResponse.next_page_token``.
 
         Example:
             >>> from google.cloud import kms_v1
@@ -894,7 +929,8 @@ class KeyManagementServiceClient(object):
             >>> response = client.get_crypto_key(name)
 
         Args:
-            name (str): Required. The ``name`` of the ``CryptoKey`` to get.
+            name (str): Output only. The time this ``CryptoKeyVersion``'s key material was
+                generated.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -951,7 +987,11 @@ class KeyManagementServiceClient(object):
         metadata=None,
     ):
         """
-        Returns metadata for a given ``CryptoKeyVersion``.
+        Imports a new ``CryptoKeyVersion`` into an existing ``CryptoKey``
+        using the wrapped key material provided in the request.
+
+        The version ID will be assigned the next sequential id within the
+        ``CryptoKey``.
 
         Example:
             >>> from google.cloud import kms_v1
@@ -963,7 +1003,7 @@ class KeyManagementServiceClient(object):
             >>> response = client.get_crypto_key_version(name)
 
         Args:
-            name (str): Required. The ``name`` of the ``CryptoKeyVersion`` to get.
+            name (str): Request message for ``KeyManagementService.CreateImportJob``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1022,7 +1062,8 @@ class KeyManagementServiceClient(object):
         metadata=None,
     ):
         """
-        Create a new ``KeyRing`` in a given Project and Location.
+        Required. The resource name of the ``CryptoKeyVersion`` to use for
+        signing.
 
         Example:
             >>> from google.cloud import kms_v1
@@ -1040,11 +1081,11 @@ class KeyManagementServiceClient(object):
             >>> response = client.create_key_ring(parent, key_ring_id, key_ring)
 
         Args:
-            parent (str): Required. The resource name of the location associated with the
-                ``KeyRings``, in the format ``projects/*/locations/*``.
-            key_ring_id (str): Required. It must be unique within a location and match the regular
-                expression ``[a-zA-Z0-9_-]{1,63}``
-            key_ring (Union[dict, ~google.cloud.kms_v1.types.KeyRing]): Required. A ``KeyRing`` with initial field values.
+            parent (str): Optional. Optional pagination token, returned earlier via
+                ``ListCryptoKeyVersionsResponse.next_page_token``.
+            key_ring_id (str): Output only. The time at which this ``ImportJob`` was created.
+            key_ring (Union[dict, ~google.cloud.kms_v1.types.KeyRing]): Output only. The time this CryptoKeyVersion's key material was
+                destroyed. Only present if ``state`` is ``DESTROYED``.
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.kms_v1.types.KeyRing`
@@ -1108,9 +1149,9 @@ class KeyManagementServiceClient(object):
         metadata=None,
     ):
         """
-        Create a new ``ImportJob`` within a ``KeyRing``.
-
-        ``ImportJob.import_method`` is required.
+        This version is scheduled for destruction, and will be destroyed
+        soon. Call ``RestoreCryptoKeyVersion`` to put it back into the
+        ``DISABLED`` state.
 
         Example:
             >>> from google.cloud import kms_v1
@@ -1127,11 +1168,13 @@ class KeyManagementServiceClient(object):
             >>> response = client.create_import_job(parent, import_job_id, import_job)
 
         Args:
-            parent (str): Required. The ``name`` of the ``KeyRing`` associated with the
-                ``ImportJobs``.
-            import_job_id (str): Required. It must be unique within a KeyRing and match the regular
-                expression ``[a-zA-Z0-9_-]{1,63}``
-            import_job (Union[dict, ~google.cloud.kms_v1.types.ImportJob]): Required. An ``ImportJob`` with initial field values.
+            parent (str): Output only. The time at which this ``CryptoKeyVersion``'s key
+                material was imported.
+            import_job_id (str): Required. ``CryptoKey`` with updated values.
+            import_job (Union[dict, ~google.cloud.kms_v1.types.ImportJob]): Optional. Specify how the results should be sorted. If not
+                specified, the results will be sorted in the default order. For more
+                information, see `Sorting and filtering list
+                results <https://cloud.google.com/kms/docs/sorting-and-filtering>`__.
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.kms_v1.types.ImportJob`
@@ -1196,10 +1239,9 @@ class KeyManagementServiceClient(object):
         metadata=None,
     ):
         """
-        Create a new ``CryptoKey`` within a ``KeyRing``.
-
-        ``CryptoKey.purpose`` and ``CryptoKey.version_template.algorithm`` are
-        required.
+        Optional. Only include resources that match the filter in the
+        response. For more information, see `Sorting and filtering list
+        results <https://cloud.google.com/kms/docs/sorting-and-filtering>`__.
 
         Example:
             >>> from google.cloud import kms_v1
@@ -1219,17 +1261,18 @@ class KeyManagementServiceClient(object):
             >>> response = client.create_crypto_key(parent, crypto_key_id, crypto_key)
 
         Args:
-            parent (str): Required. The ``name`` of the KeyRing associated with the
-                ``CryptoKeys``.
-            crypto_key_id (str): Required. It must be unique within a KeyRing and match the regular
-                expression ``[a-zA-Z0-9_-]{1,63}``
-            crypto_key (Union[dict, ~google.cloud.kms_v1.types.CryptoKey]): Required. A ``CryptoKey`` with initial field values.
+            parent (str): Not ZigZag encoded. Negative numbers take 10 bytes. Use TYPE_SINT32
+                if negative values are likely.
+            crypto_key_id (str): javalite_serializable
+            crypto_key (Union[dict, ~google.cloud.kms_v1.types.CryptoKey]): Lists ``CryptoKeyVersions``.
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.kms_v1.types.CryptoKey`
-            skip_initial_version_creation (bool): If set to true, the request will create a ``CryptoKey`` without any
-                ``CryptoKeyVersions``. You must manually call ``CreateCryptoKeyVersion``
-                or ``ImportCryptoKeyVersion`` before you can use this ``CryptoKey``.
+            skip_initial_version_creation (bool): Required. The resource name of the ``CryptoKey`` or
+                ``CryptoKeyVersion`` to use for encryption.
+
+                If a ``CryptoKey`` is specified, the server will use its
+                ``primary version``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1292,10 +1335,10 @@ class KeyManagementServiceClient(object):
         metadata=None,
     ):
         """
-        Create a new ``CryptoKeyVersion`` in a ``CryptoKey``.
-
-        The server will assign the next sequential id. If unset, ``state`` will
-        be set to ``ENABLED``.
+        The custom pattern is used for specifying an HTTP method that is not
+        included in the ``pattern`` field, such as HEAD, or "*" to leave the
+        HTTP method unspecified for this rule. The wild-card rule is useful for
+        services that provide content to Web (HTML) clients.
 
         Example:
             >>> from google.cloud import kms_v1
@@ -1310,9 +1353,11 @@ class KeyManagementServiceClient(object):
             >>> response = client.create_crypto_key_version(parent, crypto_key_version)
 
         Args:
-            parent (str): Required. The ``name`` of the ``CryptoKey`` associated with the
-                ``CryptoKeyVersions``.
-            crypto_key_version (Union[dict, ~google.cloud.kms_v1.types.CryptoKeyVersion]): Required. A ``CryptoKeyVersion`` with initial field values.
+            parent (str): Output only. The name of the ``ImportJob`` used to import this
+                ``CryptoKeyVersion``. Only present if the underlying key material was
+                imported.
+            crypto_key_version (Union[dict, ~google.cloud.kms_v1.types.CryptoKeyVersion]): Required. The ``name`` of the KeyRing associated with the
+                ``CryptoKeys``.
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.kms_v1.types.CryptoKeyVersion`
@@ -1377,11 +1422,37 @@ class KeyManagementServiceClient(object):
         metadata=None,
     ):
         """
-        Imports a new ``CryptoKeyVersion`` into an existing ``CryptoKey`` using
-        the wrapped key material provided in the request.
+        Protocol Buffers - Google's data interchange format Copyright 2008
+        Google Inc. All rights reserved.
+        https://developers.google.com/protocol-buffers/
 
-        The version ID will be assigned the next sequential id within the
-        ``CryptoKey``.
+        Redistribution and use in source and binary forms, with or without
+        modification, are permitted provided that the following conditions are
+        met:
+
+        ::
+
+            * Redistributions of source code must retain the above copyright
+
+        notice, this list of conditions and the following disclaimer. \*
+        Redistributions in binary form must reproduce the above copyright
+        notice, this list of conditions and the following disclaimer in the
+        documentation and/or other materials provided with the distribution. \*
+        Neither the name of Google Inc. nor the names of its contributors may be
+        used to endorse or promote products derived from this software without
+        specific prior written permission.
+
+        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+        IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+        TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+        PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
+        OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+        EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+        PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+        PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+        LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+        NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+        SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
         Example:
             >>> from google.cloud import kms_v1
@@ -1400,36 +1471,14 @@ class KeyManagementServiceClient(object):
             >>> response = client.import_crypto_key_version(parent, algorithm, import_job)
 
         Args:
-            parent (str): Required. The ``name`` of the ``CryptoKey`` to be imported into.
-            algorithm (~google.cloud.kms_v1.types.CryptoKeyVersionAlgorithm): Required. The ``algorithm`` of the key being imported. This does not
-                need to match the ``version_template`` of the ``CryptoKey`` this version
-                imports into.
-            import_job (str): Required. The ``name`` of the ``ImportJob`` that was used to wrap this
-                key material.
-            rsa_aes_wrapped_key (bytes): Wrapped key material produced with ``RSA_OAEP_3072_SHA1_AES_256`` or
-                ``RSA_OAEP_4096_SHA1_AES_256``.
-
-                This field contains the concatenation of two wrapped keys:
-
-                .. raw:: html
-
-                    <ol>
-                      <li>An ephemeral AES-256 wrapping key wrapped with the
-                          `public_key` using RSAES-OAEP with SHA-1,
-                          MGF1 with SHA-1, and an empty label.
-                      </li>
-                      <li>The key to be imported, wrapped with the ephemeral AES-256 key
-                          using AES-KWP (RFC 5649).
-                      </li>
-                    </ol>
-
-                If importing symmetric key material, it is expected that the unwrapped
-                key contains plain bytes. If importing asymmetric key material, it is
-                expected that the unwrapped key is in PKCS#8-encoded DER format (the
-                PrivateKeyInfo structure from RFC 5208).
-
-                This format is the same as the format produced by PKCS#11 mechanism
-                CKM\_RSA\_AES\_KEY\_WRAP.
+            parent (str): javanano_as_lite
+            algorithm (~google.cloud.kms_v1.types.CryptoKeyVersionAlgorithm): REQUIRED: The complete policy to be applied to the ``resource``. The
+                size of the policy is limited to a few 10s of KB. An empty policy is a
+                valid policy but certain Cloud Platform services (such as Projects)
+                might reject them.
+            import_job (str): Output only. The resource name for the ``KeyRing`` in the format
+                ``projects/*/locations/*/keyRings/*``.
+            rsa_aes_wrapped_key (bytes): Request message for ``KeyManagementService.UpdateCryptoKey``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1498,7 +1547,7 @@ class KeyManagementServiceClient(object):
         metadata=None,
     ):
         """
-        Update a ``CryptoKey``.
+        Required. A ``CryptoKey`` with initial field values.
 
         Example:
             >>> from google.cloud import kms_v1
@@ -1514,7 +1563,7 @@ class KeyManagementServiceClient(object):
             >>> response = client.update_crypto_key(crypto_key, update_mask)
 
         Args:
-            crypto_key (Union[dict, ~google.cloud.kms_v1.types.CryptoKey]): Required. ``CryptoKey`` with updated values.
+            crypto_key (Union[dict, ~google.cloud.kms_v1.types.CryptoKey]): Output only. The time at which this ``KeyRing`` was created.
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.kms_v1.types.CryptoKey`
@@ -1581,11 +1630,13 @@ class KeyManagementServiceClient(object):
         metadata=None,
     ):
         """
-        Update a ``CryptoKeyVersion``'s metadata.
+        The name of the request field whose value is mapped to the HTTP
+        request body, or ``*`` for mapping all request fields not captured by
+        the path pattern to the HTTP body, or omitted for not having any HTTP
+        request body.
 
-        ``state`` may be changed between ``ENABLED`` and ``DISABLED`` using this
-        method. See ``DestroyCryptoKeyVersion`` and ``RestoreCryptoKeyVersion``
-        to move between other states.
+        NOTE: the referred field must be present at the top-level of the request
+        message type.
 
         Example:
             >>> from google.cloud import kms_v1
@@ -1601,7 +1652,7 @@ class KeyManagementServiceClient(object):
             >>> response = client.update_crypto_key_version(crypto_key_version, update_mask)
 
         Args:
-            crypto_key_version (Union[dict, ~google.cloud.kms_v1.types.CryptoKeyVersion]): Required. ``CryptoKeyVersion`` with updated values.
+            crypto_key_version (Union[dict, ~google.cloud.kms_v1.types.CryptoKeyVersion]): Returns metadata for a given ``KeyRing``.
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.kms_v1.types.CryptoKeyVersion`
@@ -1669,8 +1720,9 @@ class KeyManagementServiceClient(object):
         metadata=None,
     ):
         """
-        Encrypts data, so that it can only be recovered by a call to
-        ``Decrypt``. The ``CryptoKey.purpose`` must be ``ENCRYPT_DECRYPT``.
+        Required. The digest of the data to sign. The digest must be
+        produced with the same digest algorithm as specified by the key
+        version's ``algorithm``.
 
         Example:
             >>> from google.cloud import kms_v1
@@ -1686,24 +1738,15 @@ class KeyManagementServiceClient(object):
             >>> response = client.encrypt(name, plaintext)
 
         Args:
-            name (str): Required. The resource name of the ``CryptoKey`` or ``CryptoKeyVersion``
-                to use for encryption.
+            name (str): An annotation that describes a resource definition without a
+                corresponding message; see ``ResourceDescriptor``.
+            plaintext (bytes): A ``CryptoKey`` represents a logical key that can be used for
+                cryptographic operations.
 
-                If a ``CryptoKey`` is specified, the server will use its
-                ``primary version``.
-            plaintext (bytes): Required. The data to encrypt. Must be no larger than 64KiB.
-
-                The maximum size depends on the key version's ``protection_level``. For
-                ``SOFTWARE`` keys, the plaintext must be no larger than 64KiB. For
-                ``HSM`` keys, the combined length of the plaintext and
-                additional\_authenticated\_data fields must be no larger than 8KiB.
-            additional_authenticated_data (bytes): Optional. Optional data that, if specified, must also be provided during
-                decryption through ``DecryptRequest.additional_authenticated_data``.
-
-                The maximum size depends on the key version's ``protection_level``. For
-                ``SOFTWARE`` keys, the AAD must be no larger than 64KiB. For ``HSM``
-                keys, the combined length of the plaintext and
-                additional\_authenticated\_data fields must be no larger than 8KiB.
+                A ``CryptoKey`` is made up of one or more ``versions``, which represent
+                the actual key material used in cryptographic operations.
+            additional_authenticated_data (bytes): Required. The resource name of the ``KeyRing`` to list, in the
+                format ``projects/*/locations/*/keyRings/*``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1766,8 +1809,9 @@ class KeyManagementServiceClient(object):
         metadata=None,
     ):
         """
-        Decrypts data that was protected by ``Encrypt``. The
-        ``CryptoKey.purpose`` must be ``ENCRYPT_DECRYPT``.
+        This version is still being imported. It may not be used, enabled,
+        disabled, or destroyed yet. Cloud KMS will automatically mark this
+        version ``ENABLED`` as soon as the version is ready.
 
         Example:
             >>> from google.cloud import kms_v1
@@ -1782,12 +1826,25 @@ class KeyManagementServiceClient(object):
             >>> response = client.decrypt(name, ciphertext)
 
         Args:
-            name (str): Required. The resource name of the ``CryptoKey`` to use for decryption.
-                The server will choose the appropriate version.
-            ciphertext (bytes): Required. The encrypted data originally returned in
-                ``EncryptResponse.ciphertext``.
-            additional_authenticated_data (bytes): Optional. Optional data that must match the data originally supplied in
-                ``EncryptRequest.additional_authenticated_data``.
+            name (str): Output only. The current state of the ``ImportJob``, indicating if
+                it can be used.
+            ciphertext (bytes): ExternalProtectionLevelOptions stores a group of additional fields
+                for configuring a ``CryptoKeyVersion`` that are specific to the
+                ``EXTERNAL`` protection level.
+            additional_authenticated_data (bytes): OAuth scopes needed for the client.
+
+                Example:
+
+                | service Foo { option (google.api.oauth_scopes) =
+                | "https://www.googleapis.com/auth/cloud-platform"; ... }
+
+                If there is more than one scope, use a comma-separated string:
+
+                Example:
+
+                | service Foo { option (google.api.oauth_scopes) =
+                | "https://www.googleapis.com/auth/cloud-platform,"
+                  "https://www.googleapis.com/auth/monitoring"; ... }
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1849,9 +1906,7 @@ class KeyManagementServiceClient(object):
         metadata=None,
     ):
         """
-        Update the version of a ``CryptoKey`` that will be used in ``Encrypt``.
-
-        Returns an error if called on an asymmetric key.
+        The list of ``CryptoKeyVersions``.
 
         Example:
             >>> from google.cloud import kms_v1
@@ -1866,8 +1921,21 @@ class KeyManagementServiceClient(object):
             >>> response = client.update_crypto_key_primary_version(name, crypto_key_version_id)
 
         Args:
-            name (str): Required. The resource name of the ``CryptoKey`` to update.
-            crypto_key_version_id (str): Required. The id of the child ``CryptoKeyVersion`` to use as primary.
+            name (str): Specifies the format of the policy.
+
+                Valid values are 0, 1, and 3. Requests specifying an invalid value will
+                be rejected.
+
+                Operations affecting conditional bindings must specify version 3. This
+                can be either setting a conditional policy, modifying a conditional
+                binding, or removing a binding (conditional or unconditional) from the
+                stored conditional policy. Operations on non-conditional policies may
+                specify any valid value or leave the field unset.
+
+                If no etag is provided in the call to ``setIamPolicy``, version
+                compliance checks against the stored policy is skipped.
+            crypto_key_version_id (str): Output only. The time this ``ImportJob``'s key material was
+                generated.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1930,15 +1998,10 @@ class KeyManagementServiceClient(object):
         metadata=None,
     ):
         """
-        Schedule a ``CryptoKeyVersion`` for destruction.
-
-        Upon calling this method, ``CryptoKeyVersion.state`` will be set to
-        ``DESTROY_SCHEDULED`` and ``destroy_time`` will be set to a time 24
-        hours in the future, at which point the ``state`` will be changed to
-        ``DESTROYED``, and the key material will be irrevocably destroyed.
-
-        Before the ``destroy_time`` is reached, ``RestoreCryptoKeyVersion`` may
-        be called to reverse the process.
+        This version was not imported successfully. It may not be used,
+        enabled, disabled, or destroyed. The submitted key material has been
+        discarded. Additional details can be found in
+        ``CryptoKeyVersion.import_failure_reason``.
 
         Example:
             >>> from google.cloud import kms_v1
@@ -1950,7 +2013,8 @@ class KeyManagementServiceClient(object):
             >>> response = client.destroy_crypto_key_version(name)
 
         Args:
-            name (str): Required. The resource name of the ``CryptoKeyVersion`` to destroy.
+            name (str): ``CryptoKeys`` with this purpose may be used with
+                ``AsymmetricDecrypt`` and ``GetPublicKey``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -2007,10 +2071,7 @@ class KeyManagementServiceClient(object):
         metadata=None,
     ):
         """
-        Restore a ``CryptoKeyVersion`` in the ``DESTROY_SCHEDULED`` state.
-
-        Upon restoration of the CryptoKeyVersion, ``state`` will be set to
-        ``DISABLED``, and ``destroy_time`` will be cleared.
+        Request message for ``KeyManagementService.Encrypt``.
 
         Example:
             >>> from google.cloud import kms_v1
@@ -2022,7 +2083,7 @@ class KeyManagementServiceClient(object):
             >>> response = client.restore_crypto_key_version(name)
 
         Args:
-            name (str): Required. The resource name of the ``CryptoKeyVersion`` to restore.
+            name (str): Output only. The time at which this ``CryptoKey`` was created.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -2079,9 +2140,17 @@ class KeyManagementServiceClient(object):
         metadata=None,
     ):
         """
-        Returns the public key for the given ``CryptoKeyVersion``. The
-        ``CryptoKey.purpose`` must be ``ASYMMETRIC_SIGN`` or
-        ``ASYMMETRIC_DECRYPT``.
+        The jstype option determines the JavaScript type used for values of
+        the field. The option is permitted only for 64 bit integral and fixed
+        types (int64, uint64, sint64, fixed64, sfixed64). A field with jstype
+        JS_STRING is represented as JavaScript string, which avoids loss of
+        precision that can happen when a large value is converted to a floating
+        point JavaScript. Specifying JS_NUMBER for the jstype causes the
+        generated JavaScript code to use the JavaScript "number" type. The
+        behavior of the default option JS_NORMAL is implementation dependent.
+
+        This option is an enum to permit additional types to be added, e.g.
+        goog.math.Integer.
 
         Example:
             >>> from google.cloud import kms_v1
@@ -2093,7 +2162,9 @@ class KeyManagementServiceClient(object):
             >>> response = client.get_public_key(name)
 
         Args:
-            name (str): Required. The ``name`` of the ``CryptoKeyVersion`` public key to get.
+            name (str): Output only. The time this ``CryptoKeyVersion``'s key material is
+                scheduled for destruction. Only present if ``state`` is
+                ``DESTROY_SCHEDULED``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -2151,9 +2222,8 @@ class KeyManagementServiceClient(object):
         metadata=None,
     ):
         """
-        Decrypts data that was encrypted with a public key retrieved from
-        ``GetPublicKey`` corresponding to a ``CryptoKeyVersion`` with
-        ``CryptoKey.purpose`` ASYMMETRIC\_DECRYPT.
+        Input and output type names. These are resolved in the same way as
+        FieldDescriptorProto.type_name, but must refer to a message type.
 
         Example:
             >>> from google.cloud import kms_v1
@@ -2168,10 +2238,10 @@ class KeyManagementServiceClient(object):
             >>> response = client.asymmetric_decrypt(name, ciphertext)
 
         Args:
-            name (str): Required. The resource name of the ``CryptoKeyVersion`` to use for
-                decryption.
-            ciphertext (bytes): Required. The data encrypted with the named ``CryptoKeyVersion``'s
-                public key using OAEP.
+            name (str): The public key for a given ``CryptoKeyVersion``. Obtained via
+                ``GetPublicKey``.
+            ciphertext (bytes): An annotation that describes a resource definition, see
+                ``ResourceDescriptor``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -2229,9 +2299,10 @@ class KeyManagementServiceClient(object):
         metadata=None,
     ):
         """
-        Signs data using a ``CryptoKeyVersion`` with ``CryptoKey.purpose``
-        ASYMMETRIC\_SIGN, producing a signature that can be verified with the
-        public key retrieved from ``GetPublicKey``.
+        Optional. Specify how the results should be sorted. If not
+        specified, the results will be sorted in the default order. For more
+        information, see `Sorting and filtering list
+        results <https://cloud.google.com/kms/docs/sorting-and-filtering>`__.
 
         Example:
             >>> from google.cloud import kms_v1
@@ -2246,11 +2317,13 @@ class KeyManagementServiceClient(object):
             >>> response = client.asymmetric_sign(name, digest)
 
         Args:
-            name (str): Required. The resource name of the ``CryptoKeyVersion`` to use for
-                signing.
-            digest (Union[dict, ~google.cloud.kms_v1.types.Digest]): Required. The digest of the data to sign. The digest must be produced
-                with the same digest algorithm as specified by the key version's
-                ``algorithm``.
+            name (str): ``CryptoKeyPurpose`` describes the cryptographic capabilities of a
+                ``CryptoKey``. A given key can only be used for the operations allowed
+                by its purpose. For more information, see `Key
+                purposes <https://cloud.google.com/kms/docs/algorithms#key_purposes>`__.
+            digest (Union[dict, ~google.cloud.kms_v1.types.Digest]): Optional. Only include resources that match the filter in the
+                response. For more information, see `Sorting and filtering list
+                results <https://cloud.google.com/kms/docs/sorting-and-filtering>`__.
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.kms_v1.types.Digest`
@@ -2333,10 +2406,12 @@ class KeyManagementServiceClient(object):
         Args:
             resource (str): REQUIRED: The resource for which the policy is being specified.
                 See the operation documentation for the appropriate value for this field.
-            policy (Union[dict, ~google.cloud.kms_v1.types.Policy]): REQUIRED: The complete policy to be applied to the ``resource``. The
-                size of the policy is limited to a few 10s of KB. An empty policy is a
-                valid policy but certain Cloud Platform services (such as Projects)
-                might reject them.
+            policy (Union[dict, ~google.cloud.kms_v1.types.Policy]): This ImportMethod represents the CKM_RSA_AES_KEY_WRAP key wrapping
+                scheme defined in the PKCS #11 standard. In summary, this involves
+                wrapping the raw key with an ephemeral AES key, and wrapping the
+                ephemeral AES key with a 3072 bit RSA key. For more details, see `RSA
+                AES key wrap
+                mechanism <http://docs.oasis-open.org/pkcs11/pkcs11-curr/v2.40/cos01/pkcs11-curr-v2.40-cos01.html#_Toc408226908>`__.
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.kms_v1.types.Policy`
@@ -2413,8 +2488,12 @@ class KeyManagementServiceClient(object):
         Args:
             resource (str): REQUIRED: The resource for which the policy is being requested.
                 See the operation documentation for the appropriate value for this field.
-            options_ (Union[dict, ~google.cloud.kms_v1.types.GetPolicyOptions]): OPTIONAL: A ``GetPolicyOptions`` object for specifying options to
-                ``GetIamPolicy``. This field is only used by Cloud IAM.
+            options_ (Union[dict, ~google.cloud.kms_v1.types.GetPolicyOptions]): This ImportMethod represents the CKM_RSA_AES_KEY_WRAP key wrapping
+                scheme defined in the PKCS #11 standard. In summary, this involves
+                wrapping the raw key with an ephemeral AES key, and wrapping the
+                ephemeral AES key with a 4096 bit RSA key. For more details, see `RSA
+                AES key wrap
+                mechanism <http://docs.oasis-open.org/pkcs11/pkcs11-curr/v2.40/cos01/pkcs11-curr-v2.40-cos01.html#_Toc408226908>`__.
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.kms_v1.types.GetPolicyOptions`
@@ -2501,10 +2580,11 @@ class KeyManagementServiceClient(object):
         Args:
             resource (str): REQUIRED: The resource for which the policy detail is being requested.
                 See the operation documentation for the appropriate value for this field.
-            permissions (list[str]): The set of permissions to check for the ``resource``. Permissions with
-                wildcards (such as '*' or 'storage.*') are not allowed. For more
-                information see `IAM
-                Overview <https://cloud.google.com/iam/docs/overview#permissions>`__.
+            permissions (list[str]): Optional. Optional limit on the number of ``CryptoKeyVersions`` to
+                include in the response. Further ``CryptoKeyVersions`` can subsequently
+                be obtained by including the
+                ``ListCryptoKeyVersionsResponse.next_page_token`` in a subsequent
+                request. If unspecified, the server will pick an appropriate default.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
