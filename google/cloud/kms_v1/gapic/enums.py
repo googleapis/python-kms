@@ -23,7 +23,7 @@ class ProtectionLevel(enum.IntEnum):
     """
     ``ProtectionLevel`` specifies how cryptographic operations are
     performed. For more information, see [Protection levels]
-    (https://cloud.google.com/kms/docs/algorithms#protection\_levels).
+    (https://cloud.google.com/kms/docs/algorithms#protection_levels).
 
     Attributes:
       PROTECTION_LEVEL_UNSPECIFIED (int): Not specified.
@@ -50,10 +50,10 @@ class CryptoKey(object):
           CRYPTO_KEY_PURPOSE_UNSPECIFIED (int): Not specified.
           ENCRYPT_DECRYPT (int): ``CryptoKeys`` with this purpose may be used with ``Encrypt`` and
           ``Decrypt``.
-          ASYMMETRIC_SIGN (int): ``CryptoKeys`` with this purpose may be used with ``AsymmetricSign`` and
-          ``GetPublicKey``.
-          ASYMMETRIC_DECRYPT (int): ``CryptoKeys`` with this purpose may be used with ``AsymmetricDecrypt``
+          ASYMMETRIC_SIGN (int): ``CryptoKeys`` with this purpose may be used with ``AsymmetricSign``
           and ``GetPublicKey``.
+          ASYMMETRIC_DECRYPT (int): ``CryptoKeys`` with this purpose may be used with
+          ``AsymmetricDecrypt`` and ``GetPublicKey``.
         """
 
         CRYPTO_KEY_PURPOSE_UNSPECIFIED = 0
@@ -65,33 +65,32 @@ class CryptoKey(object):
 class CryptoKeyVersion(object):
     class CryptoKeyVersionAlgorithm(enum.IntEnum):
         """
-        The algorithm of the ``CryptoKeyVersion``, indicating what parameters
-        must be used for each cryptographic operation.
+        The algorithm of the ``CryptoKeyVersion``, indicating what
+        parameters must be used for each cryptographic operation.
 
         The ``GOOGLE_SYMMETRIC_ENCRYPTION`` algorithm is usable with
         ``CryptoKey.purpose`` ``ENCRYPT_DECRYPT``.
 
-        Algorithms beginning with "RSA\_SIGN\_" are usable with
+        Algorithms beginning with "RSA_SIGN_" are usable with
         ``CryptoKey.purpose`` ``ASYMMETRIC_SIGN``.
 
-        The fields in the name after "RSA\_SIGN\_" correspond to the following
+        The fields in the name after "RSA_SIGN_" correspond to the following
         parameters: padding algorithm, modulus bit length, and digest algorithm.
 
         For PSS, the salt length used is equal to the length of digest
         algorithm. For example, ``RSA_SIGN_PSS_2048_SHA256`` will use PSS with a
         salt length of 256 bits or 32 bytes.
 
-        Algorithms beginning with "RSA\_DECRYPT\_" are usable with
+        Algorithms beginning with "RSA_DECRYPT_" are usable with
         ``CryptoKey.purpose`` ``ASYMMETRIC_DECRYPT``.
 
-        The fields in the name after "RSA\_DECRYPT\_" correspond to the
-        following parameters: padding algorithm, modulus bit length, and digest
-        algorithm.
+        The fields in the name after "RSA_DECRYPT_" correspond to the following
+        parameters: padding algorithm, modulus bit length, and digest algorithm.
 
-        Algorithms beginning with "EC\_SIGN\_" are usable with
+        Algorithms beginning with "EC_SIGN_" are usable with
         ``CryptoKey.purpose`` ``ASYMMETRIC_SIGN``.
 
-        The fields in the name after "EC\_SIGN\_" correspond to the following
+        The fields in the name after "EC_SIGN_" correspond to the following
         parameters: elliptic curve, digest algorithm.
 
         For more information, see [Key purposes and algorithms]
@@ -104,10 +103,10 @@ class CryptoKeyVersion(object):
           RSA_SIGN_PSS_3072_SHA256 (int): RSASSA-PSS 3072 bit key with a SHA256 digest.
           RSA_SIGN_PSS_4096_SHA256 (int): RSASSA-PSS 4096 bit key with a SHA256 digest.
           RSA_SIGN_PSS_4096_SHA512 (int): RSASSA-PSS 4096 bit key with a SHA512 digest.
-          RSA_SIGN_PKCS1_2048_SHA256 (int): RSASSA-PKCS1-v1\_5 with a 2048 bit key and a SHA256 digest.
-          RSA_SIGN_PKCS1_3072_SHA256 (int): RSASSA-PKCS1-v1\_5 with a 3072 bit key and a SHA256 digest.
-          RSA_SIGN_PKCS1_4096_SHA256 (int): RSASSA-PKCS1-v1\_5 with a 4096 bit key and a SHA256 digest.
-          RSA_SIGN_PKCS1_4096_SHA512 (int): RSASSA-PKCS1-v1\_5 with a 4096 bit key and a SHA512 digest.
+          RSA_SIGN_PKCS1_2048_SHA256 (int): RSASSA-PKCS1-v1_5 with a 2048 bit key and a SHA256 digest.
+          RSA_SIGN_PKCS1_3072_SHA256 (int): RSASSA-PKCS1-v1_5 with a 3072 bit key and a SHA256 digest.
+          RSA_SIGN_PKCS1_4096_SHA256 (int): RSASSA-PKCS1-v1_5 with a 4096 bit key and a SHA256 digest.
+          RSA_SIGN_PKCS1_4096_SHA512 (int): RSASSA-PKCS1-v1_5 with a 4096 bit key and a SHA512 digest.
           RSA_DECRYPT_OAEP_2048_SHA256 (int): RSAES-OAEP 2048 bit key with a SHA256 digest.
           RSA_DECRYPT_OAEP_3072_SHA256 (int): RSAES-OAEP 3072 bit key with a SHA256 digest.
           RSA_DECRYPT_OAEP_4096_SHA256 (int): RSAES-OAEP 4096 bit key with a SHA256 digest.
@@ -145,19 +144,20 @@ class CryptoKeyVersion(object):
           disabled, or destroyed yet. Cloud KMS will automatically mark this
           version ``ENABLED`` as soon as the version is ready.
           ENABLED (int): This version may be used for cryptographic operations.
-          DISABLED (int): This version may not be used, but the key material is still available,
-          and the version can be placed back into the ``ENABLED`` state.
+          DISABLED (int): This version may not be used, but the key material is still
+          available, and the version can be placed back into the ``ENABLED``
+          state.
           DESTROYED (int): This version is destroyed, and the key material is no longer stored.
           A version may not leave this state once entered.
-          DESTROY_SCHEDULED (int): This version is scheduled for destruction, and will be destroyed soon.
-          Call ``RestoreCryptoKeyVersion`` to put it back into the ``DISABLED``
-          state.
+          DESTROY_SCHEDULED (int): This version is scheduled for destruction, and will be destroyed
+          soon. Call ``RestoreCryptoKeyVersion`` to put it back into the
+          ``DISABLED`` state.
           PENDING_IMPORT (int): This version is still being imported. It may not be used, enabled,
           disabled, or destroyed yet. Cloud KMS will automatically mark this
           version ``ENABLED`` as soon as the version is ready.
-          IMPORT_FAILED (int): This version was not imported successfully. It may not be used, enabled,
-          disabled, or destroyed. The submitted key material has been discarded.
-          Additional details can be found in
+          IMPORT_FAILED (int): This version was not imported successfully. It may not be used,
+          enabled, disabled, or destroyed. The submitted key material has been
+          discarded. Additional details can be found in
           ``CryptoKeyVersion.import_failure_reason``.
         """
 
@@ -195,9 +195,9 @@ class ImportJob(object):
 
         Attributes:
           IMPORT_JOB_STATE_UNSPECIFIED (int): Not specified.
-          PENDING_GENERATION (int): The wrapping key for this job is still being generated. It may not be
-          used. Cloud KMS will automatically mark this job as ``ACTIVE`` as soon
-          as the wrapping key is generated.
+          PENDING_GENERATION (int): The wrapping key for this job is still being generated. It may not
+          be used. Cloud KMS will automatically mark this job as ``ACTIVE`` as
+          soon as the wrapping key is generated.
           ACTIVE (int): This job may be used in ``CreateCryptoKey`` and
           ``CreateCryptoKeyVersion`` requests.
           EXPIRED (int): This job can no longer be used and may not leave this state once entered.
@@ -215,13 +215,13 @@ class ImportJob(object):
 
         Attributes:
           IMPORT_METHOD_UNSPECIFIED (int): Not specified.
-          RSA_OAEP_3072_SHA1_AES_256 (int): This ImportMethod represents the CKM\_RSA\_AES\_KEY\_WRAP key wrapping
+          RSA_OAEP_3072_SHA1_AES_256 (int): This ImportMethod represents the CKM_RSA_AES_KEY_WRAP key wrapping
           scheme defined in the PKCS #11 standard. In summary, this involves
           wrapping the raw key with an ephemeral AES key, and wrapping the
           ephemeral AES key with a 3072 bit RSA key. For more details, see `RSA
           AES key wrap
           mechanism <http://docs.oasis-open.org/pkcs11/pkcs11-curr/v2.40/cos01/pkcs11-curr-v2.40-cos01.html#_Toc408226908>`__.
-          RSA_OAEP_4096_SHA1_AES_256 (int): This ImportMethod represents the CKM\_RSA\_AES\_KEY\_WRAP key wrapping
+          RSA_OAEP_4096_SHA1_AES_256 (int): This ImportMethod represents the CKM_RSA_AES_KEY_WRAP key wrapping
           scheme defined in the PKCS #11 standard. In summary, this involves
           wrapping the raw key with an ephemeral AES key, and wrapping the
           ephemeral AES key with a 4096 bit RSA key. For more details, see `RSA

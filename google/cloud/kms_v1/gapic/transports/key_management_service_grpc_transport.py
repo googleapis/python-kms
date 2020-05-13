@@ -196,8 +196,8 @@ class KeyManagementServiceGrpcTransport(object):
     def get_crypto_key(self):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.get_crypto_key`.
 
-        Returns metadata for a given ``CryptoKey``, as well as its ``primary``
-        ``CryptoKeyVersion``.
+        Returns metadata for a given ``CryptoKey``, as well as its
+        ``primary`` ``CryptoKeyVersion``.
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -283,8 +283,8 @@ class KeyManagementServiceGrpcTransport(object):
     def import_crypto_key_version(self):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.import_crypto_key_version`.
 
-        Imports a new ``CryptoKeyVersion`` into an existing ``CryptoKey`` using
-        the wrapped key material provided in the request.
+        Imports a new ``CryptoKeyVersion`` into an existing ``CryptoKey``
+        using the wrapped key material provided in the request.
 
         The version ID will be assigned the next sequential id within the
         ``CryptoKey``.
@@ -358,7 +358,8 @@ class KeyManagementServiceGrpcTransport(object):
     def update_crypto_key_primary_version(self):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.update_crypto_key_primary_version`.
 
-        Update the version of a ``CryptoKey`` that will be used in ``Encrypt``.
+        Update the version of a ``CryptoKey`` that will be used in
+        ``Encrypt``.
 
         Returns an error if called on an asymmetric key.
 
@@ -427,7 +428,7 @@ class KeyManagementServiceGrpcTransport(object):
 
         Decrypts data that was encrypted with a public key retrieved from
         ``GetPublicKey`` corresponding to a ``CryptoKeyVersion`` with
-        ``CryptoKey.purpose`` ASYMMETRIC\_DECRYPT.
+        ``CryptoKey.purpose`` ASYMMETRIC_DECRYPT.
 
         Returns:
             Callable: A callable which accepts the appropriate
@@ -441,7 +442,7 @@ class KeyManagementServiceGrpcTransport(object):
         """Return the gRPC stub for :meth:`KeyManagementServiceClient.asymmetric_sign`.
 
         Signs data using a ``CryptoKeyVersion`` with ``CryptoKey.purpose``
-        ASYMMETRIC\_SIGN, producing a signature that can be verified with the
+        ASYMMETRIC_SIGN, producing a signature that can be verified with the
         public key retrieved from ``GetPublicKey``.
 
         Returns:
