@@ -2374,10 +2374,8 @@ ListKeyRingsRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _LISTKEYRINGSREQUEST,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Request message for
-  [KeyManagementService.ListKeyRings][google.cloud.kms.v1.KeyManagementService.ListKeyRings].
-  
-  
+        "__doc__": """Request message for [KeyManagementService.ListKeyRings][google.cloud.k
+  ms.v1.KeyManagementService.ListKeyRings].
   Attributes:
       parent:
           Required. The resource name of the location associated with
@@ -2417,10 +2415,8 @@ ListCryptoKeysRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _LISTCRYPTOKEYSREQUEST,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Request message for
-  [KeyManagementService.ListCryptoKeys][google.cloud.kms.v1.KeyManagementService.ListCryptoKeys].
-  
-  
+        "__doc__": """Request message for [KeyManagementService.ListCryptoKeys][google.cloud
+  .kms.v1.KeyManagementService.ListCryptoKeys].
   Attributes:
       parent:
           Required. The resource name of the
@@ -2462,10 +2458,8 @@ ListCryptoKeyVersionsRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _LISTCRYPTOKEYVERSIONSREQUEST,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Request message for
-  [KeyManagementService.ListCryptoKeyVersions][google.cloud.kms.v1.KeyManagementService.ListCryptoKeyVersions].
-  
-  
+        "__doc__": """Request message for [KeyManagementService.ListCryptoKeyVersions][googl
+  e.cloud.kms.v1.KeyManagementService.ListCryptoKeyVersions].
   Attributes:
       parent:
           Required. The resource name of the
@@ -2508,10 +2502,8 @@ ListImportJobsRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _LISTIMPORTJOBSREQUEST,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Request message for
-  [KeyManagementService.ListImportJobs][google.cloud.kms.v1.KeyManagementService.ListImportJobs].
-  
-  
+        "__doc__": """Request message for [KeyManagementService.ListImportJobs][google.cloud
+  .kms.v1.KeyManagementService.ListImportJobs].
   Attributes:
       parent:
           Required. The resource name of the
@@ -2551,10 +2543,8 @@ ListKeyRingsResponse = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _LISTKEYRINGSRESPONSE,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Response message for
-  [KeyManagementService.ListKeyRings][google.cloud.kms.v1.KeyManagementService.ListKeyRings].
-  
-  
+        "__doc__": """Response message for [KeyManagementService.ListKeyRings][google.cloud.
+  kms.v1.KeyManagementService.ListKeyRings].
   Attributes:
       key_rings:
           The list of [KeyRings][google.cloud.kms.v1.KeyRing].
@@ -2577,10 +2567,8 @@ ListCryptoKeysResponse = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _LISTCRYPTOKEYSRESPONSE,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Response message for
-  [KeyManagementService.ListCryptoKeys][google.cloud.kms.v1.KeyManagementService.ListCryptoKeys].
-  
-  
+        "__doc__": """Response message for [KeyManagementService.ListCryptoKeys][google.clou
+  d.kms.v1.KeyManagementService.ListCryptoKeys].
   Attributes:
       crypto_keys:
           The list of [CryptoKeys][google.cloud.kms.v1.CryptoKey].
@@ -2605,10 +2593,8 @@ ListCryptoKeyVersionsResponse = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _LISTCRYPTOKEYVERSIONSRESPONSE,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Response message for
-  [KeyManagementService.ListCryptoKeyVersions][google.cloud.kms.v1.KeyManagementService.ListCryptoKeyVersions].
-  
-  
+        "__doc__": """Response message for [KeyManagementService.ListCryptoKeyVersions][goog
+  le.cloud.kms.v1.KeyManagementService.ListCryptoKeyVersions].
   Attributes:
       crypto_key_versions:
           The list of
@@ -2634,10 +2620,8 @@ ListImportJobsResponse = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _LISTIMPORTJOBSRESPONSE,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Response message for
-  [KeyManagementService.ListImportJobs][google.cloud.kms.v1.KeyManagementService.ListImportJobs].
-  
-  
+        "__doc__": """Response message for [KeyManagementService.ListImportJobs][google.clou
+  d.kms.v1.KeyManagementService.ListImportJobs].
   Attributes:
       import_jobs:
           The list of [ImportJobs][google.cloud.kms.v1.ImportJob].
@@ -2662,10 +2646,8 @@ GetKeyRingRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _GETKEYRINGREQUEST,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Request message for
-  [KeyManagementService.GetKeyRing][google.cloud.kms.v1.KeyManagementService.GetKeyRing].
-  
-  
+        "__doc__": """Request message for [KeyManagementService.GetKeyRing][google.cloud.kms
+  .v1.KeyManagementService.GetKeyRing].
   Attributes:
       name:
           Required. The [name][google.cloud.kms.v1.KeyRing.name] of the
@@ -2682,10 +2664,8 @@ GetCryptoKeyRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _GETCRYPTOKEYREQUEST,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Request message for
-  [KeyManagementService.GetCryptoKey][google.cloud.kms.v1.KeyManagementService.GetCryptoKey].
-  
-  
+        "__doc__": """Request message for [KeyManagementService.GetCryptoKey][google.cloud.k
+  ms.v1.KeyManagementService.GetCryptoKey].
   Attributes:
       name:
           Required. The [name][google.cloud.kms.v1.CryptoKey.name] of
@@ -2702,10 +2682,8 @@ GetCryptoKeyVersionRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _GETCRYPTOKEYVERSIONREQUEST,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Request message for
-  [KeyManagementService.GetCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.GetCryptoKeyVersion].
-  
-  
+        "__doc__": """Request message for [KeyManagementService.GetCryptoKeyVersion][google.
+  cloud.kms.v1.KeyManagementService.GetCryptoKeyVersion].
   Attributes:
       name:
           Required. The
@@ -2724,10 +2702,8 @@ GetPublicKeyRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _GETPUBLICKEYREQUEST,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Request message for
-  [KeyManagementService.GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
-  
-  
+        "__doc__": """Request message for [KeyManagementService.GetPublicKey][google.cloud.k
+  ms.v1.KeyManagementService.GetPublicKey].
   Attributes:
       name:
           Required. The
@@ -2746,10 +2722,8 @@ GetImportJobRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _GETIMPORTJOBREQUEST,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Request message for
-  [KeyManagementService.GetImportJob][google.cloud.kms.v1.KeyManagementService.GetImportJob].
-  
-  
+        "__doc__": """Request message for [KeyManagementService.GetImportJob][google.cloud.k
+  ms.v1.KeyManagementService.GetImportJob].
   Attributes:
       name:
           Required. The [name][google.cloud.kms.v1.ImportJob.name] of
@@ -2766,10 +2740,8 @@ CreateKeyRingRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _CREATEKEYRINGREQUEST,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Request message for
-  [KeyManagementService.CreateKeyRing][google.cloud.kms.v1.KeyManagementService.CreateKeyRing].
-  
-  
+        "__doc__": """Request message for [KeyManagementService.CreateKeyRing][google.cloud.
+  kms.v1.KeyManagementService.CreateKeyRing].
   Attributes:
       parent:
           Required. The resource name of the location associated with
@@ -2793,10 +2765,8 @@ CreateCryptoKeyRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _CREATECRYPTOKEYREQUEST,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Request message for
-  [KeyManagementService.CreateCryptoKey][google.cloud.kms.v1.KeyManagementService.CreateCryptoKey].
-  
-  
+        "__doc__": """Request message for [KeyManagementService.CreateCryptoKey][google.clou
+  d.kms.v1.KeyManagementService.CreateCryptoKey].
   Attributes:
       parent:
           Required. The [name][google.cloud.kms.v1.KeyRing.name] of the
@@ -2829,10 +2799,8 @@ CreateCryptoKeyVersionRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _CREATECRYPTOKEYVERSIONREQUEST,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Request message for
-  [KeyManagementService.CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion].
-  
-  
+        "__doc__": """Request message for [KeyManagementService.CreateCryptoKeyVersion][goog
+  le.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion].
   Attributes:
       parent:
           Required. The [name][google.cloud.kms.v1.CryptoKey.name] of
@@ -2854,10 +2822,8 @@ ImportCryptoKeyVersionRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _IMPORTCRYPTOKEYVERSIONREQUEST,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Request message for
-  [KeyManagementService.ImportCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion].
-  
-  
+        "__doc__": """Request message for [KeyManagementService.ImportCryptoKeyVersion][goog
+  le.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion].
   Attributes:
       parent:
           Required. The [name][google.cloud.kms.v1.CryptoKey.name] of
@@ -2908,10 +2874,8 @@ CreateImportJobRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _CREATEIMPORTJOBREQUEST,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Request message for
-  [KeyManagementService.CreateImportJob][google.cloud.kms.v1.KeyManagementService.CreateImportJob].
-  
-  
+        "__doc__": """Request message for [KeyManagementService.CreateImportJob][google.clou
+  d.kms.v1.KeyManagementService.CreateImportJob].
   Attributes:
       parent:
           Required. The [name][google.cloud.kms.v1.KeyRing.name] of the
@@ -2935,10 +2899,8 @@ UpdateCryptoKeyRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _UPDATECRYPTOKEYREQUEST,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Request message for
-  [KeyManagementService.UpdateCryptoKey][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKey].
-  
-  
+        "__doc__": """Request message for [KeyManagementService.UpdateCryptoKey][google.clou
+  d.kms.v1.KeyManagementService.UpdateCryptoKey].
   Attributes:
       crypto_key:
           Required. [CryptoKey][google.cloud.kms.v1.CryptoKey] with
@@ -2957,10 +2919,8 @@ UpdateCryptoKeyVersionRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _UPDATECRYPTOKEYVERSIONREQUEST,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Request message for
-  [KeyManagementService.UpdateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyVersion].
-  
-  
+        "__doc__": """Request message for [KeyManagementService.UpdateCryptoKeyVersion][goog
+  le.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyVersion].
   Attributes:
       crypto_key_version:
           Required.
@@ -2980,10 +2940,8 @@ EncryptRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _ENCRYPTREQUEST,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Request message for
-  [KeyManagementService.Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt].
-  
-  
+        "__doc__": """Request message for [KeyManagementService.Encrypt][google.cloud.kms.v1
+  .KeyManagementService.Encrypt].
   Attributes:
       name:
           Required. The resource name of the
@@ -3029,10 +2987,8 @@ DecryptRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _DECRYPTREQUEST,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Request message for
-  [KeyManagementService.Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt].
-  
-  
+        "__doc__": """Request message for [KeyManagementService.Decrypt][google.cloud.kms.v1
+  .KeyManagementService.Decrypt].
   Attributes:
       name:
           Required. The resource name of the
@@ -3059,10 +3015,8 @@ AsymmetricSignRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _ASYMMETRICSIGNREQUEST,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Request message for
-  [KeyManagementService.AsymmetricSign][google.cloud.kms.v1.KeyManagementService.AsymmetricSign].
-  
-  
+        "__doc__": """Request message for [KeyManagementService.AsymmetricSign][google.cloud
+  .kms.v1.KeyManagementService.AsymmetricSign].
   Attributes:
       name:
           Required. The resource name of the
@@ -3085,10 +3039,8 @@ AsymmetricDecryptRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _ASYMMETRICDECRYPTREQUEST,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Request message for
-  [KeyManagementService.AsymmetricDecrypt][google.cloud.kms.v1.KeyManagementService.AsymmetricDecrypt].
-  
-  
+        "__doc__": """Request message for [KeyManagementService.AsymmetricDecrypt][google.cl
+  oud.kms.v1.KeyManagementService.AsymmetricDecrypt].
   Attributes:
       name:
           Required. The resource name of the
@@ -3110,10 +3062,8 @@ DecryptResponse = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _DECRYPTRESPONSE,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Response message for
-  [KeyManagementService.Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt].
-  
-  
+        "__doc__": """Response message for [KeyManagementService.Decrypt][google.cloud.kms.v
+  1.KeyManagementService.Decrypt].
   Attributes:
       plaintext:
           The decrypted data originally supplied in [EncryptRequest.plai
@@ -3130,10 +3080,8 @@ EncryptResponse = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _ENCRYPTRESPONSE,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Response message for
-  [KeyManagementService.Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt].
-  
-  
+        "__doc__": """Response message for [KeyManagementService.Encrypt][google.cloud.kms.v
+  1.KeyManagementService.Encrypt].
   Attributes:
       name:
           The resource name of the
@@ -3154,10 +3102,8 @@ AsymmetricSignResponse = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _ASYMMETRICSIGNRESPONSE,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Response message for
-  [KeyManagementService.AsymmetricSign][google.cloud.kms.v1.KeyManagementService.AsymmetricSign].
-  
-  
+        "__doc__": """Response message for [KeyManagementService.AsymmetricSign][google.clou
+  d.kms.v1.KeyManagementService.AsymmetricSign].
   Attributes:
       signature:
           The created signature.
@@ -3173,10 +3119,8 @@ AsymmetricDecryptResponse = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _ASYMMETRICDECRYPTRESPONSE,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Response message for
-  [KeyManagementService.AsymmetricDecrypt][google.cloud.kms.v1.KeyManagementService.AsymmetricDecrypt].
-  
-  
+        "__doc__": """Response message for [KeyManagementService.AsymmetricDecrypt][google.c
+  loud.kms.v1.KeyManagementService.AsymmetricDecrypt].
   Attributes:
       plaintext:
           The decrypted data originally encrypted with the matching
@@ -3193,10 +3137,9 @@ UpdateCryptoKeyPrimaryVersionRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _UPDATECRYPTOKEYPRIMARYVERSIONREQUEST,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Request message for
-  [KeyManagementService.UpdateCryptoKeyPrimaryVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyPrimaryVersion].
-  
-  
+        "__doc__": """Request message for [KeyManagementService.UpdateCryptoKeyPrimaryVersio
+  n][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyPrimaryVers
+  ion].
   Attributes:
       name:
           Required. The resource name of the
@@ -3217,10 +3160,8 @@ DestroyCryptoKeyVersionRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _DESTROYCRYPTOKEYVERSIONREQUEST,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Request message for
-  [KeyManagementService.DestroyCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.DestroyCryptoKeyVersion].
-  
-  
+        "__doc__": """Request message for [KeyManagementService.DestroyCryptoKeyVersion][goo
+  gle.cloud.kms.v1.KeyManagementService.DestroyCryptoKeyVersion].
   Attributes:
       name:
           Required. The resource name of the
@@ -3238,10 +3179,8 @@ RestoreCryptoKeyVersionRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _RESTORECRYPTOKEYVERSIONREQUEST,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """Request message for
-  [KeyManagementService.RestoreCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion].
-  
-  
+        "__doc__": """Request message for [KeyManagementService.RestoreCryptoKeyVersion][goo
+  gle.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion].
   Attributes:
       name:
           Required. The resource name of the
@@ -3259,10 +3198,8 @@ Digest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _DIGEST,
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
-        "__doc__": """A [Digest][google.cloud.kms.v1.Digest] holds a
-  cryptographic message digest.
-  
-  
+        "__doc__": """A [Digest][google.cloud.kms.v1.Digest] holds a cryptographic message
+  digest.
   Attributes:
       digest:
           Required. The message digest.
@@ -3286,8 +3223,6 @@ LocationMetadata = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.kms_v1.proto.service_pb2",
         "__doc__": """Cloud KMS metadata for the given
   [google.cloud.location.Location][google.cloud.location.Location].
-  
-  
   Attributes:
       hsm_available:
           Indicates whether [CryptoKeys][google.cloud.kms.v1.CryptoKey]
