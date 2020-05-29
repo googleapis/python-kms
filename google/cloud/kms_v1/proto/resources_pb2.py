@@ -1524,8 +1524,8 @@ KeyRing = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _KEYRING,
         "__module__": "google.cloud.kms_v1.proto.resources_pb2",
-        "__doc__": """A [KeyRing][google.cloud.kms.v1.KeyRing] is a toplevel
-  logical grouping of [CryptoKeys][google.cloud.kms.v1.CryptoKey].
+        "__doc__": """A [KeyRing][google.cloud.kms.v1.KeyRing] is a toplevel logical grouping
+  of [CryptoKeys][google.cloud.kms.v1.CryptoKey].
   
   
   Attributes:
