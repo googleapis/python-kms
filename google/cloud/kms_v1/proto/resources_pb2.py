@@ -25,6 +25,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     package="google.cloud.kms.v1",
     syntax="proto3",
     serialized_options=b"\n\027com.google.cloud.kms.v1B\021KmsResourcesProtoP\001Z6google.golang.org/genproto/googleapis/cloud/kms/v1;kms\370\001\001\252\002\023Google.Cloud.Kms.V1\312\002\023Google\\Cloud\\Kms\\V1",
+    create_key=_descriptor._internal_create_key,
     serialized_pb=b'\n)google/cloud/kms_v1/proto/resources.proto\x12\x13google.cloud.kms.v1\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1cgoogle/api/annotations.proto"\xb5\x01\n\x07KeyRing\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12\x34\n\x0b\x63reate_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03:a\xea\x41^\n\x1f\x63loudkms.googleapis.com/KeyRing\x12;projects/{project}/locations/{location}/keyRings/{key_ring}"\x86\x06\n\tCryptoKey\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12;\n\x07primary\x18\x02 \x01(\x0b\x32%.google.cloud.kms.v1.CryptoKeyVersionB\x03\xe0\x41\x03\x12\x45\n\x07purpose\x18\x03 \x01(\x0e\x32/.google.cloud.kms.v1.CryptoKey.CryptoKeyPurposeB\x03\xe0\x41\x05\x12\x34\n\x0b\x63reate_time\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x36\n\x12next_rotation_time\x18\x07 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x34\n\x0frotation_period\x18\x08 \x01(\x0b\x32\x19.google.protobuf.DurationH\x00\x12G\n\x10version_template\x18\x0b \x01(\x0b\x32-.google.cloud.kms.v1.CryptoKeyVersionTemplate\x12:\n\x06labels\x18\n \x03(\x0b\x32*.google.cloud.kms.v1.CryptoKey.LabelsEntry\x1a-\n\x0bLabelsEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01"x\n\x10\x43ryptoKeyPurpose\x12"\n\x1e\x43RYPTO_KEY_PURPOSE_UNSPECIFIED\x10\x00\x12\x13\n\x0f\x45NCRYPT_DECRYPT\x10\x01\x12\x13\n\x0f\x41SYMMETRIC_SIGN\x10\x05\x12\x16\n\x12\x41SYMMETRIC_DECRYPT\x10\x06:{\xea\x41x\n!cloudkms.googleapis.com/CryptoKey\x12Sprojects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}B\x13\n\x11rotation_schedule"\xb3\x01\n\x18\x43ryptoKeyVersionTemplate\x12>\n\x10protection_level\x18\x01 \x01(\x0e\x32$.google.cloud.kms.v1.ProtectionLevel\x12W\n\talgorithm\x18\x03 \x01(\x0e\x32?.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithmB\x03\xe0\x41\x02"\xf1\x01\n\x17KeyOperationAttestation\x12S\n\x06\x66ormat\x18\x04 \x01(\x0e\x32>.google.cloud.kms.v1.KeyOperationAttestation.AttestationFormatB\x03\xe0\x41\x03\x12\x14\n\x07\x63ontent\x18\x05 \x01(\x0c\x42\x03\xe0\x41\x03"k\n\x11\x41ttestationFormat\x12"\n\x1e\x41TTESTATION_FORMAT_UNSPECIFIED\x10\x00\x12\x18\n\x14\x43\x41VIUM_V1_COMPRESSED\x10\x03\x12\x18\n\x14\x43\x41VIUM_V2_COMPRESSED\x10\x04"\x8a\x0e\n\x10\x43ryptoKeyVersion\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12J\n\x05state\x18\x03 \x01(\x0e\x32;.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState\x12\x43\n\x10protection_level\x18\x07 \x01(\x0e\x32$.google.cloud.kms.v1.ProtectionLevelB\x03\xe0\x41\x03\x12W\n\talgorithm\x18\n \x01(\x0e\x32?.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithmB\x03\xe0\x41\x03\x12\x46\n\x0b\x61ttestation\x18\x08 \x01(\x0b\x32,.google.cloud.kms.v1.KeyOperationAttestationB\x03\xe0\x41\x03\x12\x34\n\x0b\x63reate_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x36\n\rgenerate_time\x18\x0b \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x35\n\x0c\x64\x65stroy_time\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12;\n\x12\x64\x65stroy_event_time\x18\x06 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x17\n\nimport_job\x18\x0e \x01(\tB\x03\xe0\x41\x03\x12\x34\n\x0bimport_time\x18\x0f \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12"\n\x15import_failure_reason\x18\x10 \x01(\tB\x03\xe0\x41\x03\x12^\n!external_protection_level_options\x18\x11 \x01(\x0b\x32\x33.google.cloud.kms.v1.ExternalProtectionLevelOptions"\xbf\x04\n\x19\x43ryptoKeyVersionAlgorithm\x12,\n(CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED\x10\x00\x12\x1f\n\x1bGOOGLE_SYMMETRIC_ENCRYPTION\x10\x01\x12\x1c\n\x18RSA_SIGN_PSS_2048_SHA256\x10\x02\x12\x1c\n\x18RSA_SIGN_PSS_3072_SHA256\x10\x03\x12\x1c\n\x18RSA_SIGN_PSS_4096_SHA256\x10\x04\x12\x1c\n\x18RSA_SIGN_PSS_4096_SHA512\x10\x0f\x12\x1e\n\x1aRSA_SIGN_PKCS1_2048_SHA256\x10\x05\x12\x1e\n\x1aRSA_SIGN_PKCS1_3072_SHA256\x10\x06\x12\x1e\n\x1aRSA_SIGN_PKCS1_4096_SHA256\x10\x07\x12\x1e\n\x1aRSA_SIGN_PKCS1_4096_SHA512\x10\x10\x12 \n\x1cRSA_DECRYPT_OAEP_2048_SHA256\x10\x08\x12 \n\x1cRSA_DECRYPT_OAEP_3072_SHA256\x10\t\x12 \n\x1cRSA_DECRYPT_OAEP_4096_SHA256\x10\n\x12 \n\x1cRSA_DECRYPT_OAEP_4096_SHA512\x10\x11\x12\x17\n\x13\x45\x43_SIGN_P256_SHA256\x10\x0c\x12\x17\n\x13\x45\x43_SIGN_P384_SHA384\x10\r\x12!\n\x1d\x45XTERNAL_SYMMETRIC_ENCRYPTION\x10\x12"\xc1\x01\n\x15\x43ryptoKeyVersionState\x12(\n$CRYPTO_KEY_VERSION_STATE_UNSPECIFIED\x10\x00\x12\x16\n\x12PENDING_GENERATION\x10\x05\x12\x0b\n\x07\x45NABLED\x10\x01\x12\x0c\n\x08\x44ISABLED\x10\x02\x12\r\n\tDESTROYED\x10\x03\x12\x15\n\x11\x44\x45STROY_SCHEDULED\x10\x04\x12\x12\n\x0ePENDING_IMPORT\x10\x06\x12\x11\n\rIMPORT_FAILED\x10\x07"I\n\x14\x43ryptoKeyVersionView\x12\'\n#CRYPTO_KEY_VERSION_VIEW_UNSPECIFIED\x10\x00\x12\x08\n\x04\x46ULL\x10\x01:\xaa\x01\xea\x41\xa6\x01\n(cloudkms.googleapis.com/CryptoKeyVersion\x12zprojects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}"\x9d\x02\n\tPublicKey\x12\x0b\n\x03pem\x18\x01 \x01(\t\x12R\n\talgorithm\x18\x02 \x01(\x0e\x32?.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm:\xae\x01\xea\x41\xaa\x01\n!cloudkms.googleapis.com/PublicKey\x12\x84\x01projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}/publicKey"\xdb\x07\n\tImportJob\x12\x11\n\x04name\x18\x01 \x01(\tB\x03\xe0\x41\x03\x12J\n\rimport_method\x18\x02 \x01(\x0e\x32+.google.cloud.kms.v1.ImportJob.ImportMethodB\x06\xe0\x41\x02\xe0\x41\x05\x12\x46\n\x10protection_level\x18\t \x01(\x0e\x32$.google.cloud.kms.v1.ProtectionLevelB\x06\xe0\x41\x02\xe0\x41\x05\x12\x34\n\x0b\x63reate_time\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x36\n\rgenerate_time\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x34\n\x0b\x65xpire_time\x18\x05 \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12:\n\x11\x65xpire_event_time\x18\n \x01(\x0b\x32\x1a.google.protobuf.TimestampB\x03\xe0\x41\x03\x12\x41\n\x05state\x18\x06 \x01(\x0e\x32-.google.cloud.kms.v1.ImportJob.ImportJobStateB\x03\xe0\x41\x03\x12I\n\npublic_key\x18\x07 \x01(\x0b\x32\x30.google.cloud.kms.v1.ImportJob.WrappingPublicKeyB\x03\xe0\x41\x03\x12\x46\n\x0b\x61ttestation\x18\x08 \x01(\x0b\x32,.google.cloud.kms.v1.KeyOperationAttestationB\x03\xe0\x41\x03\x1a \n\x11WrappingPublicKey\x12\x0b\n\x03pem\x18\x01 \x01(\t"m\n\x0cImportMethod\x12\x1d\n\x19IMPORT_METHOD_UNSPECIFIED\x10\x00\x12\x1e\n\x1aRSA_OAEP_3072_SHA1_AES_256\x10\x01\x12\x1e\n\x1aRSA_OAEP_4096_SHA1_AES_256\x10\x02"c\n\x0eImportJobState\x12 \n\x1cIMPORT_JOB_STATE_UNSPECIFIED\x10\x00\x12\x16\n\x12PENDING_GENERATION\x10\x01\x12\n\n\x06\x41\x43TIVE\x10\x02\x12\x0b\n\x07\x45XPIRED\x10\x03:{\xea\x41x\n!cloudkms.googleapis.com/ImportJob\x12Sprojects/{project}/locations/{location}/keyRings/{key_ring}/importJobs/{import_job}":\n\x1e\x45xternalProtectionLevelOptions\x12\x18\n\x10\x65xternal_key_uri\x18\x01 \x01(\t*X\n\x0fProtectionLevel\x12 \n\x1cPROTECTION_LEVEL_UNSPECIFIED\x10\x00\x12\x0c\n\x08SOFTWARE\x10\x01\x12\x07\n\x03HSM\x10\x02\x12\x0c\n\x08\x45XTERNAL\x10\x03\x42\x95\x01\n\x17\x63om.google.cloud.kms.v1B\x11KmsResourcesProtoP\x01Z6google.golang.org/genproto/googleapis/cloud/kms/v1;kms\xf8\x01\x01\xaa\x02\x13Google.Cloud.Kms.V1\xca\x02\x13Google\\Cloud\\Kms\\V1b\x06proto3',
     dependencies=[
         google_dot_api_dot_field__behavior__pb2.DESCRIPTOR,
@@ -40,6 +41,7 @@ _PROTECTIONLEVEL = _descriptor.EnumDescriptor(
     full_name="google.cloud.kms.v1.ProtectionLevel",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="PROTECTION_LEVEL_UNSPECIFIED",
@@ -47,15 +49,31 @@ _PROTECTIONLEVEL = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="SOFTWARE", index=1, number=1, serialized_options=None, type=None
+            name="SOFTWARE",
+            index=1,
+            number=1,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="HSM", index=2, number=2, serialized_options=None, type=None
+            name="HSM",
+            index=2,
+            number=2,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="EXTERNAL", index=3, number=3, serialized_options=None, type=None
+            name="EXTERNAL",
+            index=3,
+            number=3,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -77,6 +95,7 @@ _CRYPTOKEY_CRYPTOKEYPURPOSE = _descriptor.EnumDescriptor(
     full_name="google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="CRYPTO_KEY_PURPOSE_UNSPECIFIED",
@@ -84,6 +103,7 @@ _CRYPTOKEY_CRYPTOKEYPURPOSE = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="ENCRYPT_DECRYPT",
@@ -91,6 +111,7 @@ _CRYPTOKEY_CRYPTOKEYPURPOSE = _descriptor.EnumDescriptor(
             number=1,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="ASYMMETRIC_SIGN",
@@ -98,6 +119,7 @@ _CRYPTOKEY_CRYPTOKEYPURPOSE = _descriptor.EnumDescriptor(
             number=5,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="ASYMMETRIC_DECRYPT",
@@ -105,6 +127,7 @@ _CRYPTOKEY_CRYPTOKEYPURPOSE = _descriptor.EnumDescriptor(
             number=6,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -119,6 +142,7 @@ _KEYOPERATIONATTESTATION_ATTESTATIONFORMAT = _descriptor.EnumDescriptor(
     full_name="google.cloud.kms.v1.KeyOperationAttestation.AttestationFormat",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="ATTESTATION_FORMAT_UNSPECIFIED",
@@ -126,6 +150,7 @@ _KEYOPERATIONATTESTATION_ATTESTATIONFORMAT = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="CAVIUM_V1_COMPRESSED",
@@ -133,6 +158,7 @@ _KEYOPERATIONATTESTATION_ATTESTATIONFORMAT = _descriptor.EnumDescriptor(
             number=3,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="CAVIUM_V2_COMPRESSED",
@@ -140,6 +166,7 @@ _KEYOPERATIONATTESTATION_ATTESTATIONFORMAT = _descriptor.EnumDescriptor(
             number=4,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -154,6 +181,7 @@ _CRYPTOKEYVERSION_CRYPTOKEYVERSIONALGORITHM = _descriptor.EnumDescriptor(
     full_name="google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="CRYPTO_KEY_VERSION_ALGORITHM_UNSPECIFIED",
@@ -161,6 +189,7 @@ _CRYPTOKEYVERSION_CRYPTOKEYVERSIONALGORITHM = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="GOOGLE_SYMMETRIC_ENCRYPTION",
@@ -168,6 +197,7 @@ _CRYPTOKEYVERSION_CRYPTOKEYVERSIONALGORITHM = _descriptor.EnumDescriptor(
             number=1,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="RSA_SIGN_PSS_2048_SHA256",
@@ -175,6 +205,7 @@ _CRYPTOKEYVERSION_CRYPTOKEYVERSIONALGORITHM = _descriptor.EnumDescriptor(
             number=2,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="RSA_SIGN_PSS_3072_SHA256",
@@ -182,6 +213,7 @@ _CRYPTOKEYVERSION_CRYPTOKEYVERSIONALGORITHM = _descriptor.EnumDescriptor(
             number=3,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="RSA_SIGN_PSS_4096_SHA256",
@@ -189,6 +221,7 @@ _CRYPTOKEYVERSION_CRYPTOKEYVERSIONALGORITHM = _descriptor.EnumDescriptor(
             number=4,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="RSA_SIGN_PSS_4096_SHA512",
@@ -196,6 +229,7 @@ _CRYPTOKEYVERSION_CRYPTOKEYVERSIONALGORITHM = _descriptor.EnumDescriptor(
             number=15,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="RSA_SIGN_PKCS1_2048_SHA256",
@@ -203,6 +237,7 @@ _CRYPTOKEYVERSION_CRYPTOKEYVERSIONALGORITHM = _descriptor.EnumDescriptor(
             number=5,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="RSA_SIGN_PKCS1_3072_SHA256",
@@ -210,6 +245,7 @@ _CRYPTOKEYVERSION_CRYPTOKEYVERSIONALGORITHM = _descriptor.EnumDescriptor(
             number=6,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="RSA_SIGN_PKCS1_4096_SHA256",
@@ -217,6 +253,7 @@ _CRYPTOKEYVERSION_CRYPTOKEYVERSIONALGORITHM = _descriptor.EnumDescriptor(
             number=7,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="RSA_SIGN_PKCS1_4096_SHA512",
@@ -224,6 +261,7 @@ _CRYPTOKEYVERSION_CRYPTOKEYVERSIONALGORITHM = _descriptor.EnumDescriptor(
             number=16,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="RSA_DECRYPT_OAEP_2048_SHA256",
@@ -231,6 +269,7 @@ _CRYPTOKEYVERSION_CRYPTOKEYVERSIONALGORITHM = _descriptor.EnumDescriptor(
             number=8,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="RSA_DECRYPT_OAEP_3072_SHA256",
@@ -238,6 +277,7 @@ _CRYPTOKEYVERSION_CRYPTOKEYVERSIONALGORITHM = _descriptor.EnumDescriptor(
             number=9,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="RSA_DECRYPT_OAEP_4096_SHA256",
@@ -245,6 +285,7 @@ _CRYPTOKEYVERSION_CRYPTOKEYVERSIONALGORITHM = _descriptor.EnumDescriptor(
             number=10,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="RSA_DECRYPT_OAEP_4096_SHA512",
@@ -252,6 +293,7 @@ _CRYPTOKEYVERSION_CRYPTOKEYVERSIONALGORITHM = _descriptor.EnumDescriptor(
             number=17,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="EC_SIGN_P256_SHA256",
@@ -259,6 +301,7 @@ _CRYPTOKEYVERSION_CRYPTOKEYVERSIONALGORITHM = _descriptor.EnumDescriptor(
             number=12,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="EC_SIGN_P384_SHA384",
@@ -266,6 +309,7 @@ _CRYPTOKEYVERSION_CRYPTOKEYVERSIONALGORITHM = _descriptor.EnumDescriptor(
             number=13,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="EXTERNAL_SYMMETRIC_ENCRYPTION",
@@ -273,6 +317,7 @@ _CRYPTOKEYVERSION_CRYPTOKEYVERSIONALGORITHM = _descriptor.EnumDescriptor(
             number=18,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -287,6 +332,7 @@ _CRYPTOKEYVERSION_CRYPTOKEYVERSIONSTATE = _descriptor.EnumDescriptor(
     full_name="google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="CRYPTO_KEY_VERSION_STATE_UNSPECIFIED",
@@ -294,6 +340,7 @@ _CRYPTOKEYVERSION_CRYPTOKEYVERSIONSTATE = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="PENDING_GENERATION",
@@ -301,15 +348,31 @@ _CRYPTOKEYVERSION_CRYPTOKEYVERSIONSTATE = _descriptor.EnumDescriptor(
             number=5,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="ENABLED", index=2, number=1, serialized_options=None, type=None
+            name="ENABLED",
+            index=2,
+            number=1,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="DISABLED", index=3, number=2, serialized_options=None, type=None
+            name="DISABLED",
+            index=3,
+            number=2,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="DESTROYED", index=4, number=3, serialized_options=None, type=None
+            name="DESTROYED",
+            index=4,
+            number=3,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="DESTROY_SCHEDULED",
@@ -317,12 +380,23 @@ _CRYPTOKEYVERSION_CRYPTOKEYVERSIONSTATE = _descriptor.EnumDescriptor(
             number=4,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="PENDING_IMPORT", index=6, number=6, serialized_options=None, type=None
+            name="PENDING_IMPORT",
+            index=6,
+            number=6,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="IMPORT_FAILED", index=7, number=7, serialized_options=None, type=None
+            name="IMPORT_FAILED",
+            index=7,
+            number=7,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -337,6 +411,7 @@ _CRYPTOKEYVERSION_CRYPTOKEYVERSIONVIEW = _descriptor.EnumDescriptor(
     full_name="google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionView",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="CRYPTO_KEY_VERSION_VIEW_UNSPECIFIED",
@@ -344,9 +419,15 @@ _CRYPTOKEYVERSION_CRYPTOKEYVERSIONVIEW = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="FULL", index=1, number=1, serialized_options=None, type=None
+            name="FULL",
+            index=1,
+            number=1,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -361,6 +442,7 @@ _IMPORTJOB_IMPORTMETHOD = _descriptor.EnumDescriptor(
     full_name="google.cloud.kms.v1.ImportJob.ImportMethod",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="IMPORT_METHOD_UNSPECIFIED",
@@ -368,6 +450,7 @@ _IMPORTJOB_IMPORTMETHOD = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="RSA_OAEP_3072_SHA1_AES_256",
@@ -375,6 +458,7 @@ _IMPORTJOB_IMPORTMETHOD = _descriptor.EnumDescriptor(
             number=1,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="RSA_OAEP_4096_SHA1_AES_256",
@@ -382,6 +466,7 @@ _IMPORTJOB_IMPORTMETHOD = _descriptor.EnumDescriptor(
             number=2,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -396,6 +481,7 @@ _IMPORTJOB_IMPORTJOBSTATE = _descriptor.EnumDescriptor(
     full_name="google.cloud.kms.v1.ImportJob.ImportJobState",
     filename=None,
     file=DESCRIPTOR,
+    create_key=_descriptor._internal_create_key,
     values=[
         _descriptor.EnumValueDescriptor(
             name="IMPORT_JOB_STATE_UNSPECIFIED",
@@ -403,6 +489,7 @@ _IMPORTJOB_IMPORTJOBSTATE = _descriptor.EnumDescriptor(
             number=0,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
             name="PENDING_GENERATION",
@@ -410,12 +497,23 @@ _IMPORTJOB_IMPORTJOBSTATE = _descriptor.EnumDescriptor(
             number=1,
             serialized_options=None,
             type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="ACTIVE", index=2, number=2, serialized_options=None, type=None
+            name="ACTIVE",
+            index=2,
+            number=2,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.EnumValueDescriptor(
-            name="EXPIRED", index=3, number=3, serialized_options=None, type=None
+            name="EXPIRED",
+            index=3,
+            number=3,
+            serialized_options=None,
+            type=None,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     containing_type=None,
@@ -432,6 +530,7 @@ _KEYRING = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -450,6 +549,7 @@ _KEYRING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="create_time",
@@ -468,6 +568,7 @@ _KEYRING = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -489,6 +590,7 @@ _CRYPTOKEY_LABELSENTRY = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="key",
@@ -507,6 +609,7 @@ _CRYPTOKEY_LABELSENTRY = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="value",
@@ -525,6 +628,7 @@ _CRYPTOKEY_LABELSENTRY = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -545,6 +649,7 @@ _CRYPTOKEY = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -563,6 +668,7 @@ _CRYPTOKEY = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="primary",
@@ -581,6 +687,7 @@ _CRYPTOKEY = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="purpose",
@@ -599,6 +706,7 @@ _CRYPTOKEY = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\005",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="create_time",
@@ -617,6 +725,7 @@ _CRYPTOKEY = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="next_rotation_time",
@@ -635,6 +744,7 @@ _CRYPTOKEY = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="rotation_period",
@@ -653,6 +763,7 @@ _CRYPTOKEY = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="version_template",
@@ -671,6 +782,7 @@ _CRYPTOKEY = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="labels",
@@ -689,6 +801,7 @@ _CRYPTOKEY = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -704,6 +817,7 @@ _CRYPTOKEY = _descriptor.Descriptor(
             full_name="google.cloud.kms.v1.CryptoKey.rotation_schedule",
             index=0,
             containing_type=None,
+            create_key=_descriptor._internal_create_key,
             fields=[],
         )
     ],
@@ -718,6 +832,7 @@ _CRYPTOKEYVERSIONTEMPLATE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="protection_level",
@@ -736,6 +851,7 @@ _CRYPTOKEYVERSIONTEMPLATE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="algorithm",
@@ -754,6 +870,7 @@ _CRYPTOKEYVERSIONTEMPLATE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -775,6 +892,7 @@ _KEYOPERATIONATTESTATION = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="format",
@@ -793,6 +911,7 @@ _KEYOPERATIONATTESTATION = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="content",
@@ -811,6 +930,7 @@ _KEYOPERATIONATTESTATION = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -832,6 +952,7 @@ _CRYPTOKEYVERSION = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -850,6 +971,7 @@ _CRYPTOKEYVERSION = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="state",
@@ -868,6 +990,7 @@ _CRYPTOKEYVERSION = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="protection_level",
@@ -886,6 +1009,7 @@ _CRYPTOKEYVERSION = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="algorithm",
@@ -904,6 +1028,7 @@ _CRYPTOKEYVERSION = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="attestation",
@@ -922,6 +1047,7 @@ _CRYPTOKEYVERSION = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="create_time",
@@ -940,6 +1066,7 @@ _CRYPTOKEYVERSION = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="generate_time",
@@ -958,6 +1085,7 @@ _CRYPTOKEYVERSION = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="destroy_time",
@@ -976,6 +1104,7 @@ _CRYPTOKEYVERSION = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="destroy_event_time",
@@ -994,6 +1123,7 @@ _CRYPTOKEYVERSION = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="import_job",
@@ -1012,6 +1142,7 @@ _CRYPTOKEYVERSION = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="import_time",
@@ -1030,6 +1161,7 @@ _CRYPTOKEYVERSION = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="import_failure_reason",
@@ -1048,6 +1180,7 @@ _CRYPTOKEYVERSION = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="external_protection_level_options",
@@ -1066,6 +1199,7 @@ _CRYPTOKEYVERSION = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1091,6 +1225,7 @@ _PUBLICKEY = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="pem",
@@ -1109,6 +1244,7 @@ _PUBLICKEY = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="algorithm",
@@ -1127,6 +1263,7 @@ _PUBLICKEY = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1148,6 +1285,7 @@ _IMPORTJOB_WRAPPINGPUBLICKEY = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="pem",
@@ -1166,6 +1304,7 @@ _IMPORTJOB_WRAPPINGPUBLICKEY = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -1186,6 +1325,7 @@ _IMPORTJOB = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -1204,6 +1344,7 @@ _IMPORTJOB = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="import_method",
@@ -1222,6 +1363,7 @@ _IMPORTJOB = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\340A\005",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="protection_level",
@@ -1240,6 +1382,7 @@ _IMPORTJOB = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\340A\005",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="create_time",
@@ -1258,6 +1401,7 @@ _IMPORTJOB = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="generate_time",
@@ -1276,6 +1420,7 @@ _IMPORTJOB = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="expire_time",
@@ -1294,6 +1439,7 @@ _IMPORTJOB = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="expire_event_time",
@@ -1312,6 +1458,7 @@ _IMPORTJOB = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="state",
@@ -1330,6 +1477,7 @@ _IMPORTJOB = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="public_key",
@@ -1348,6 +1496,7 @@ _IMPORTJOB = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="attestation",
@@ -1366,6 +1515,7 @@ _IMPORTJOB = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\003",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1387,6 +1537,7 @@ _EXTERNALPROTECTIONLEVELOPTIONS = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="external_key_uri",
@@ -1405,6 +1556,7 @@ _EXTERNALPROTECTIONLEVELOPTIONS = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],

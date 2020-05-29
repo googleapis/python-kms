@@ -27,6 +27,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     package="google.cloud.kms.v1",
     syntax="proto3",
     serialized_options=b"\n\027com.google.cloud.kms.v1B\010KmsProtoP\001Z6google.golang.org/genproto/googleapis/cloud/kms/v1;kms\370\001\001\252\002\023Google.Cloud.Kms.V1\312\002\023Google\\Cloud\\Kms\\V1",
+    create_key=_descriptor._internal_create_key,
     serialized_pb=b'\n\'google/cloud/kms_v1/proto/service.proto\x12\x13google.cloud.kms.v1\x1a\x1cgoogle/api/annotations.proto\x1a\x17google/api/client.proto\x1a\x1fgoogle/api/field_behavior.proto\x1a\x19google/api/resource.proto\x1a)google/cloud/kms_v1/proto/resources.proto\x1a google/protobuf/field_mask.proto"\xad\x01\n\x13ListKeyRingsRequest\x12\x39\n\x06parent\x18\x01 \x01(\tB)\xe0\x41\x02\xfa\x41#\n!locations.googleapis.com/Location\x12\x16\n\tpage_size\x18\x02 \x01(\x05\x42\x03\xe0\x41\x01\x12\x17\n\npage_token\x18\x03 \x01(\tB\x03\xe0\x41\x01\x12\x13\n\x06\x66ilter\x18\x04 \x01(\tB\x03\xe0\x41\x01\x12\x15\n\x08order_by\x18\x05 \x01(\tB\x03\xe0\x41\x01"\xff\x01\n\x15ListCryptoKeysRequest\x12\x37\n\x06parent\x18\x01 \x01(\tB\'\xe0\x41\x02\xfa\x41!\n\x1f\x63loudkms.googleapis.com/KeyRing\x12\x16\n\tpage_size\x18\x02 \x01(\x05\x42\x03\xe0\x41\x01\x12\x17\n\npage_token\x18\x03 \x01(\tB\x03\xe0\x41\x01\x12P\n\x0cversion_view\x18\x04 \x01(\x0e\x32:.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionView\x12\x13\n\x06\x66ilter\x18\x05 \x01(\tB\x03\xe0\x41\x01\x12\x15\n\x08order_by\x18\x06 \x01(\tB\x03\xe0\x41\x01"\x80\x02\n\x1cListCryptoKeyVersionsRequest\x12\x39\n\x06parent\x18\x01 \x01(\tB)\xe0\x41\x02\xfa\x41#\n!cloudkms.googleapis.com/CryptoKey\x12\x16\n\tpage_size\x18\x02 \x01(\x05\x42\x03\xe0\x41\x01\x12\x17\n\npage_token\x18\x03 \x01(\tB\x03\xe0\x41\x01\x12H\n\x04view\x18\x04 \x01(\x0e\x32:.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionView\x12\x13\n\x06\x66ilter\x18\x05 \x01(\tB\x03\xe0\x41\x01\x12\x15\n\x08order_by\x18\x06 \x01(\tB\x03\xe0\x41\x01"\xad\x01\n\x15ListImportJobsRequest\x12\x37\n\x06parent\x18\x01 \x01(\tB\'\xe0\x41\x02\xfa\x41!\n\x1f\x63loudkms.googleapis.com/KeyRing\x12\x16\n\tpage_size\x18\x02 \x01(\x05\x42\x03\xe0\x41\x01\x12\x17\n\npage_token\x18\x03 \x01(\tB\x03\xe0\x41\x01\x12\x13\n\x06\x66ilter\x18\x04 \x01(\tB\x03\xe0\x41\x01\x12\x15\n\x08order_by\x18\x05 \x01(\tB\x03\xe0\x41\x01"t\n\x14ListKeyRingsResponse\x12/\n\tkey_rings\x18\x01 \x03(\x0b\x32\x1c.google.cloud.kms.v1.KeyRing\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\x12\x12\n\ntotal_size\x18\x03 \x01(\x05"z\n\x16ListCryptoKeysResponse\x12\x33\n\x0b\x63rypto_keys\x18\x01 \x03(\x0b\x32\x1e.google.cloud.kms.v1.CryptoKey\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\x12\x12\n\ntotal_size\x18\x03 \x01(\x05"\x90\x01\n\x1dListCryptoKeyVersionsResponse\x12\x42\n\x13\x63rypto_key_versions\x18\x01 \x03(\x0b\x32%.google.cloud.kms.v1.CryptoKeyVersion\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\x12\x12\n\ntotal_size\x18\x03 \x01(\x05"z\n\x16ListImportJobsResponse\x12\x33\n\x0bimport_jobs\x18\x01 \x03(\x0b\x32\x1e.google.cloud.kms.v1.ImportJob\x12\x17\n\x0fnext_page_token\x18\x02 \x01(\t\x12\x12\n\ntotal_size\x18\x03 \x01(\x05"J\n\x11GetKeyRingRequest\x12\x35\n\x04name\x18\x01 \x01(\tB\'\xe0\x41\x02\xfa\x41!\n\x1f\x63loudkms.googleapis.com/KeyRing"N\n\x13GetCryptoKeyRequest\x12\x37\n\x04name\x18\x01 \x01(\tB)\xe0\x41\x02\xfa\x41#\n!cloudkms.googleapis.com/CryptoKey"\\\n\x1aGetCryptoKeyVersionRequest\x12>\n\x04name\x18\x01 \x01(\tB0\xe0\x41\x02\xfa\x41*\n(cloudkms.googleapis.com/CryptoKeyVersion"U\n\x13GetPublicKeyRequest\x12>\n\x04name\x18\x01 \x01(\tB0\xe0\x41\x02\xfa\x41*\n(cloudkms.googleapis.com/CryptoKeyVersion"N\n\x13GetImportJobRequest\x12\x37\n\x04name\x18\x01 \x01(\tB)\xe0\x41\x02\xfa\x41#\n!cloudkms.googleapis.com/ImportJob"\xa0\x01\n\x14\x43reateKeyRingRequest\x12\x39\n\x06parent\x18\x01 \x01(\tB)\xe0\x41\x02\xfa\x41#\n!locations.googleapis.com/Location\x12\x18\n\x0bkey_ring_id\x18\x02 \x01(\tB\x03\xe0\x41\x02\x12\x33\n\x08key_ring\x18\x03 \x01(\x0b\x32\x1c.google.cloud.kms.v1.KeyRingB\x03\xe0\x41\x02"\xcd\x01\n\x16\x43reateCryptoKeyRequest\x12\x37\n\x06parent\x18\x01 \x01(\tB\'\xe0\x41\x02\xfa\x41!\n\x1f\x63loudkms.googleapis.com/KeyRing\x12\x1a\n\rcrypto_key_id\x18\x02 \x01(\tB\x03\xe0\x41\x02\x12\x37\n\ncrypto_key\x18\x03 \x01(\x0b\x32\x1e.google.cloud.kms.v1.CryptoKeyB\x03\xe0\x41\x02\x12%\n\x1dskip_initial_version_creation\x18\x05 \x01(\x08"\xa2\x01\n\x1d\x43reateCryptoKeyVersionRequest\x12\x39\n\x06parent\x18\x01 \x01(\tB)\xe0\x41\x02\xfa\x41#\n!cloudkms.googleapis.com/CryptoKey\x12\x46\n\x12\x63rypto_key_version\x18\x02 \x01(\x0b\x32%.google.cloud.kms.v1.CryptoKeyVersionB\x03\xe0\x41\x02"\x83\x02\n\x1dImportCryptoKeyVersionRequest\x12\x39\n\x06parent\x18\x01 \x01(\tB)\xe0\x41\x02\xfa\x41#\n!cloudkms.googleapis.com/CryptoKey\x12W\n\talgorithm\x18\x02 \x01(\x0e\x32?.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithmB\x03\xe0\x41\x02\x12\x17\n\nimport_job\x18\x04 \x01(\tB\x03\xe0\x41\x02\x12\x1d\n\x13rsa_aes_wrapped_key\x18\x05 \x01(\x0cH\x00\x42\x16\n\x14wrapped_key_material"\xa6\x01\n\x16\x43reateImportJobRequest\x12\x37\n\x06parent\x18\x01 \x01(\tB\'\xe0\x41\x02\xfa\x41!\n\x1f\x63loudkms.googleapis.com/KeyRing\x12\x1a\n\rimport_job_id\x18\x02 \x01(\tB\x03\xe0\x41\x02\x12\x37\n\nimport_job\x18\x03 \x01(\x0b\x32\x1e.google.cloud.kms.v1.ImportJobB\x03\xe0\x41\x02"\x87\x01\n\x16UpdateCryptoKeyRequest\x12\x37\n\ncrypto_key\x18\x01 \x01(\x0b\x32\x1e.google.cloud.kms.v1.CryptoKeyB\x03\xe0\x41\x02\x12\x34\n\x0bupdate_mask\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskB\x03\xe0\x41\x02"\x9d\x01\n\x1dUpdateCryptoKeyVersionRequest\x12\x46\n\x12\x63rypto_key_version\x18\x01 \x01(\x0b\x32%.google.cloud.kms.v1.CryptoKeyVersionB\x03\xe0\x41\x02\x12\x34\n\x0bupdate_mask\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.FieldMaskB\x03\xe0\x41\x02"m\n\x0e\x45ncryptRequest\x12\x17\n\x04name\x18\x01 \x01(\tB\t\xe0\x41\x02\xfa\x41\x03\n\x01*\x12\x16\n\tplaintext\x18\x02 \x01(\x0c\x42\x03\xe0\x41\x02\x12*\n\x1d\x61\x64\x64itional_authenticated_data\x18\x03 \x01(\x0c\x42\x03\xe0\x41\x01"\x8e\x01\n\x0e\x44\x65\x63ryptRequest\x12\x37\n\x04name\x18\x01 \x01(\tB)\xe0\x41\x02\xfa\x41#\n!cloudkms.googleapis.com/CryptoKey\x12\x17\n\nciphertext\x18\x02 \x01(\x0c\x42\x03\xe0\x41\x02\x12*\n\x1d\x61\x64\x64itional_authenticated_data\x18\x03 \x01(\x0c\x42\x03\xe0\x41\x01"\x89\x01\n\x15\x41symmetricSignRequest\x12>\n\x04name\x18\x01 \x01(\tB0\xe0\x41\x02\xfa\x41*\n(cloudkms.googleapis.com/CryptoKeyVersion\x12\x30\n\x06\x64igest\x18\x03 \x01(\x0b\x32\x1b.google.cloud.kms.v1.DigestB\x03\xe0\x41\x02"s\n\x18\x41symmetricDecryptRequest\x12>\n\x04name\x18\x01 \x01(\tB0\xe0\x41\x02\xfa\x41*\n(cloudkms.googleapis.com/CryptoKeyVersion\x12\x17\n\nciphertext\x18\x03 \x01(\x0c\x42\x03\xe0\x41\x02"$\n\x0f\x44\x65\x63ryptResponse\x12\x11\n\tplaintext\x18\x01 \x01(\x0c"3\n\x0f\x45ncryptResponse\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x12\n\nciphertext\x18\x02 \x01(\x0c"+\n\x16\x41symmetricSignResponse\x12\x11\n\tsignature\x18\x01 \x01(\x0c".\n\x19\x41symmetricDecryptResponse\x12\x11\n\tplaintext\x18\x01 \x01(\x0c"\x83\x01\n$UpdateCryptoKeyPrimaryVersionRequest\x12\x37\n\x04name\x18\x01 \x01(\tB)\xe0\x41\x02\xfa\x41#\n!cloudkms.googleapis.com/CryptoKey\x12"\n\x15\x63rypto_key_version_id\x18\x02 \x01(\tB\x03\xe0\x41\x02"`\n\x1e\x44\x65stroyCryptoKeyVersionRequest\x12>\n\x04name\x18\x01 \x01(\tB0\xe0\x41\x02\xfa\x41*\n(cloudkms.googleapis.com/CryptoKeyVersion"`\n\x1eRestoreCryptoKeyVersionRequest\x12>\n\x04name\x18\x01 \x01(\tB0\xe0\x41\x02\xfa\x41*\n(cloudkms.googleapis.com/CryptoKeyVersion"H\n\x06\x44igest\x12\x10\n\x06sha256\x18\x01 \x01(\x0cH\x00\x12\x10\n\x06sha384\x18\x02 \x01(\x0cH\x00\x12\x10\n\x06sha512\x18\x03 \x01(\x0cH\x00\x42\x08\n\x06\x64igest"@\n\x10LocationMetadata\x12\x15\n\rhsm_available\x18\x01 \x01(\x08\x12\x15\n\rekm_available\x18\x02 \x01(\x08\x32\x86&\n\x14KeyManagementService\x12\xa2\x01\n\x0cListKeyRings\x12(.google.cloud.kms.v1.ListKeyRingsRequest\x1a).google.cloud.kms.v1.ListKeyRingsResponse"=\x82\xd3\xe4\x93\x02.\x12,/v1/{parent=projects/*/locations/*}/keyRings\xda\x41\x06parent\x12\xb5\x01\n\x0eListCryptoKeys\x12*.google.cloud.kms.v1.ListCryptoKeysRequest\x1a+.google.cloud.kms.v1.ListCryptoKeysResponse"J\x82\xd3\xe4\x93\x02;\x12\x39/v1/{parent=projects/*/locations/*/keyRings/*}/cryptoKeys\xda\x41\x06parent\x12\xde\x01\n\x15ListCryptoKeyVersions\x12\x31.google.cloud.kms.v1.ListCryptoKeyVersionsRequest\x1a\x32.google.cloud.kms.v1.ListCryptoKeyVersionsResponse"^\x82\xd3\xe4\x93\x02O\x12M/v1/{parent=projects/*/locations/*/keyRings/*/cryptoKeys/*}/cryptoKeyVersions\xda\x41\x06parent\x12\xb5\x01\n\x0eListImportJobs\x12*.google.cloud.kms.v1.ListImportJobsRequest\x1a+.google.cloud.kms.v1.ListImportJobsResponse"J\x82\xd3\xe4\x93\x02;\x12\x39/v1/{parent=projects/*/locations/*/keyRings/*}/importJobs\xda\x41\x06parent\x12\x8f\x01\n\nGetKeyRing\x12&.google.cloud.kms.v1.GetKeyRingRequest\x1a\x1c.google.cloud.kms.v1.KeyRing";\x82\xd3\xe4\x93\x02.\x12,/v1/{name=projects/*/locations/*/keyRings/*}\xda\x41\x04name\x12\xa2\x01\n\x0cGetCryptoKey\x12(.google.cloud.kms.v1.GetCryptoKeyRequest\x1a\x1e.google.cloud.kms.v1.CryptoKey"H\x82\xd3\xe4\x93\x02;\x12\x39/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*}\xda\x41\x04name\x12\xcb\x01\n\x13GetCryptoKeyVersion\x12/.google.cloud.kms.v1.GetCryptoKeyVersionRequest\x1a%.google.cloud.kms.v1.CryptoKeyVersion"\\\x82\xd3\xe4\x93\x02O\x12M/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}\xda\x41\x04name\x12\xc0\x01\n\x0cGetPublicKey\x12(.google.cloud.kms.v1.GetPublicKeyRequest\x1a\x1e.google.cloud.kms.v1.PublicKey"f\x82\xd3\xe4\x93\x02Y\x12W/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}/publicKey\xda\x41\x04name\x12\xa2\x01\n\x0cGetImportJob\x12(.google.cloud.kms.v1.GetImportJobRequest\x1a\x1e.google.cloud.kms.v1.ImportJob"H\x82\xd3\xe4\x93\x02;\x12\x39/v1/{name=projects/*/locations/*/keyRings/*/importJobs/*}\xda\x41\x04name\x12\xb6\x01\n\rCreateKeyRing\x12).google.cloud.kms.v1.CreateKeyRingRequest\x1a\x1c.google.cloud.kms.v1.KeyRing"\\\x82\xd3\xe4\x93\x02\x38",/v1/{parent=projects/*/locations/*}/keyRings:\x08key_ring\xda\x41\x1bparent,key_ring_id,key_ring\x12\xcf\x01\n\x0f\x43reateCryptoKey\x12+.google.cloud.kms.v1.CreateCryptoKeyRequest\x1a\x1e.google.cloud.kms.v1.CryptoKey"o\x82\xd3\xe4\x93\x02G"9/v1/{parent=projects/*/locations/*/keyRings/*}/cryptoKeys:\ncrypto_key\xda\x41\x1fparent,crypto_key_id,crypto_key\x12\xfb\x01\n\x16\x43reateCryptoKeyVersion\x12\x32.google.cloud.kms.v1.CreateCryptoKeyVersionRequest\x1a%.google.cloud.kms.v1.CryptoKeyVersion"\x85\x01\x82\xd3\xe4\x93\x02\x63"M/v1/{parent=projects/*/locations/*/keyRings/*/cryptoKeys/*}/cryptoKeyVersions:\x12\x63rypto_key_version\xda\x41\x19parent,crypto_key_version\x12\xd4\x01\n\x16ImportCryptoKeyVersion\x12\x32.google.cloud.kms.v1.ImportCryptoKeyVersionRequest\x1a%.google.cloud.kms.v1.CryptoKeyVersion"_\x82\xd3\xe4\x93\x02Y"T/v1/{parent=projects/*/locations/*/keyRings/*/cryptoKeys/*}/cryptoKeyVersions:import:\x01*\x12\xcf\x01\n\x0f\x43reateImportJob\x12+.google.cloud.kms.v1.CreateImportJobRequest\x1a\x1e.google.cloud.kms.v1.ImportJob"o\x82\xd3\xe4\x93\x02G"9/v1/{parent=projects/*/locations/*/keyRings/*}/importJobs:\nimport_job\xda\x41\x1fparent,import_job_id,import_job\x12\xd1\x01\n\x0fUpdateCryptoKey\x12+.google.cloud.kms.v1.UpdateCryptoKeyRequest\x1a\x1e.google.cloud.kms.v1.CryptoKey"q\x82\xd3\xe4\x93\x02R2D/v1/{crypto_key.name=projects/*/locations/*/keyRings/*/cryptoKeys/*}:\ncrypto_key\xda\x41\x16\x63rypto_key,update_mask\x12\x93\x02\n\x16UpdateCryptoKeyVersion\x12\x32.google.cloud.kms.v1.UpdateCryptoKeyVersionRequest\x1a%.google.cloud.kms.v1.CryptoKeyVersion"\x9d\x01\x82\xd3\xe4\x93\x02v2`/v1/{crypto_key_version.name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:\x12\x63rypto_key_version\xda\x41\x1e\x63rypto_key_version,update_mask\x12\xb4\x01\n\x07\x45ncrypt\x12#.google.cloud.kms.v1.EncryptRequest\x1a$.google.cloud.kms.v1.EncryptResponse"^\x82\xd3\xe4\x93\x02G"B/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/**}:encrypt:\x01*\xda\x41\x0ename,plaintext\x12\xb4\x01\n\x07\x44\x65\x63rypt\x12#.google.cloud.kms.v1.DecryptRequest\x1a$.google.cloud.kms.v1.DecryptResponse"^\x82\xd3\xe4\x93\x02\x46"A/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*}:decrypt:\x01*\xda\x41\x0fname,ciphertext\x12\xe0\x01\n\x0e\x41symmetricSign\x12*.google.cloud.kms.v1.AsymmetricSignRequest\x1a+.google.cloud.kms.v1.AsymmetricSignResponse"u\x82\xd3\xe4\x93\x02\x61"\\/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:asymmetricSign:\x01*\xda\x41\x0bname,digest\x12\xf0\x01\n\x11\x41symmetricDecrypt\x12-.google.cloud.kms.v1.AsymmetricDecryptRequest\x1a..google.cloud.kms.v1.AsymmetricDecryptResponse"|\x82\xd3\xe4\x93\x02\x64"_/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:asymmetricDecrypt:\x01*\xda\x41\x0fname,ciphertext\x12\xf2\x01\n\x1dUpdateCryptoKeyPrimaryVersion\x12\x39.google.cloud.kms.v1.UpdateCryptoKeyPrimaryVersionRequest\x1a\x1e.google.cloud.kms.v1.CryptoKey"v\x82\xd3\xe4\x93\x02S"N/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*}:updatePrimaryVersion:\x01*\xda\x41\x1aname,crypto_key_version_id\x12\xde\x01\n\x17\x44\x65stroyCryptoKeyVersion\x12\x33.google.cloud.kms.v1.DestroyCryptoKeyVersionRequest\x1a%.google.cloud.kms.v1.CryptoKeyVersion"g\x82\xd3\xe4\x93\x02Z"U/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:destroy:\x01*\xda\x41\x04name\x12\xde\x01\n\x17RestoreCryptoKeyVersion\x12\x33.google.cloud.kms.v1.RestoreCryptoKeyVersionRequest\x1a%.google.cloud.kms.v1.CryptoKeyVersion"g\x82\xd3\xe4\x93\x02Z"U/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:restore:\x01*\xda\x41\x04name\x1at\xca\x41\x17\x63loudkms.googleapis.com\xd2\x41Whttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloudkmsB\x8c\x01\n\x17\x63om.google.cloud.kms.v1B\x08KmsProtoP\x01Z6google.golang.org/genproto/googleapis/cloud/kms/v1;kms\xf8\x01\x01\xaa\x02\x13Google.Cloud.Kms.V1\xca\x02\x13Google\\Cloud\\Kms\\V1b\x06proto3',
     dependencies=[
         google_dot_api_dot_annotations__pb2.DESCRIPTOR,
@@ -45,6 +46,7 @@ _LISTKEYRINGSREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="parent",
@@ -63,6 +65,7 @@ _LISTKEYRINGSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A#\n!locations.googleapis.com/Location",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="page_size",
@@ -81,6 +84,7 @@ _LISTKEYRINGSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="page_token",
@@ -99,6 +103,7 @@ _LISTKEYRINGSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="filter",
@@ -117,6 +122,7 @@ _LISTKEYRINGSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="order_by",
@@ -135,6 +141,7 @@ _LISTKEYRINGSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -156,6 +163,7 @@ _LISTCRYPTOKEYSREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="parent",
@@ -174,6 +182,7 @@ _LISTCRYPTOKEYSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A!\n\037cloudkms.googleapis.com/KeyRing",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="page_size",
@@ -192,6 +201,7 @@ _LISTCRYPTOKEYSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="page_token",
@@ -210,6 +220,7 @@ _LISTCRYPTOKEYSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="version_view",
@@ -228,6 +239,7 @@ _LISTCRYPTOKEYSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="filter",
@@ -246,6 +258,7 @@ _LISTCRYPTOKEYSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="order_by",
@@ -264,6 +277,7 @@ _LISTCRYPTOKEYSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -285,6 +299,7 @@ _LISTCRYPTOKEYVERSIONSREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="parent",
@@ -303,6 +318,7 @@ _LISTCRYPTOKEYVERSIONSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A#\n!cloudkms.googleapis.com/CryptoKey",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="page_size",
@@ -321,6 +337,7 @@ _LISTCRYPTOKEYVERSIONSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="page_token",
@@ -339,6 +356,7 @@ _LISTCRYPTOKEYVERSIONSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="view",
@@ -357,6 +375,7 @@ _LISTCRYPTOKEYVERSIONSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="filter",
@@ -375,6 +394,7 @@ _LISTCRYPTOKEYVERSIONSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="order_by",
@@ -393,6 +413,7 @@ _LISTCRYPTOKEYVERSIONSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -414,6 +435,7 @@ _LISTIMPORTJOBSREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="parent",
@@ -432,6 +454,7 @@ _LISTIMPORTJOBSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A!\n\037cloudkms.googleapis.com/KeyRing",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="page_size",
@@ -450,6 +473,7 @@ _LISTIMPORTJOBSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="page_token",
@@ -468,6 +492,7 @@ _LISTIMPORTJOBSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="filter",
@@ -486,6 +511,7 @@ _LISTIMPORTJOBSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="order_by",
@@ -504,6 +530,7 @@ _LISTIMPORTJOBSREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -525,6 +552,7 @@ _LISTKEYRINGSRESPONSE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="key_rings",
@@ -543,6 +571,7 @@ _LISTKEYRINGSRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="next_page_token",
@@ -561,6 +590,7 @@ _LISTKEYRINGSRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="total_size",
@@ -579,6 +609,7 @@ _LISTKEYRINGSRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -600,6 +631,7 @@ _LISTCRYPTOKEYSRESPONSE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="crypto_keys",
@@ -618,6 +650,7 @@ _LISTCRYPTOKEYSRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="next_page_token",
@@ -636,6 +669,7 @@ _LISTCRYPTOKEYSRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="total_size",
@@ -654,6 +688,7 @@ _LISTCRYPTOKEYSRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -675,6 +710,7 @@ _LISTCRYPTOKEYVERSIONSRESPONSE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="crypto_key_versions",
@@ -693,6 +729,7 @@ _LISTCRYPTOKEYVERSIONSRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="next_page_token",
@@ -711,6 +748,7 @@ _LISTCRYPTOKEYVERSIONSRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="total_size",
@@ -729,6 +767,7 @@ _LISTCRYPTOKEYVERSIONSRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -750,6 +789,7 @@ _LISTIMPORTJOBSRESPONSE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="import_jobs",
@@ -768,6 +808,7 @@ _LISTIMPORTJOBSRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="next_page_token",
@@ -786,6 +827,7 @@ _LISTIMPORTJOBSRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="total_size",
@@ -804,6 +846,7 @@ _LISTIMPORTJOBSRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -825,6 +868,7 @@ _GETKEYRINGREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -843,6 +887,7 @@ _GETKEYRINGREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A!\n\037cloudkms.googleapis.com/KeyRing",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -864,6 +909,7 @@ _GETCRYPTOKEYREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -882,6 +928,7 @@ _GETCRYPTOKEYREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A#\n!cloudkms.googleapis.com/CryptoKey",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -903,6 +950,7 @@ _GETCRYPTOKEYVERSIONREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -921,6 +969,7 @@ _GETCRYPTOKEYVERSIONREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A*\n(cloudkms.googleapis.com/CryptoKeyVersion",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -942,6 +991,7 @@ _GETPUBLICKEYREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -960,6 +1010,7 @@ _GETPUBLICKEYREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A*\n(cloudkms.googleapis.com/CryptoKeyVersion",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -981,6 +1032,7 @@ _GETIMPORTJOBREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -999,6 +1051,7 @@ _GETIMPORTJOBREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A#\n!cloudkms.googleapis.com/ImportJob",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -1020,6 +1073,7 @@ _CREATEKEYRINGREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="parent",
@@ -1038,6 +1092,7 @@ _CREATEKEYRINGREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A#\n!locations.googleapis.com/Location",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="key_ring_id",
@@ -1056,6 +1111,7 @@ _CREATEKEYRINGREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="key_ring",
@@ -1074,6 +1130,7 @@ _CREATEKEYRINGREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1095,6 +1152,7 @@ _CREATECRYPTOKEYREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="parent",
@@ -1113,6 +1171,7 @@ _CREATECRYPTOKEYREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A!\n\037cloudkms.googleapis.com/KeyRing",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="crypto_key_id",
@@ -1131,6 +1190,7 @@ _CREATECRYPTOKEYREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="crypto_key",
@@ -1149,6 +1209,7 @@ _CREATECRYPTOKEYREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="skip_initial_version_creation",
@@ -1167,6 +1228,7 @@ _CREATECRYPTOKEYREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1188,6 +1250,7 @@ _CREATECRYPTOKEYVERSIONREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="parent",
@@ -1206,6 +1269,7 @@ _CREATECRYPTOKEYVERSIONREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A#\n!cloudkms.googleapis.com/CryptoKey",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="crypto_key_version",
@@ -1224,6 +1288,7 @@ _CREATECRYPTOKEYVERSIONREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1245,6 +1310,7 @@ _IMPORTCRYPTOKEYVERSIONREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="parent",
@@ -1263,6 +1329,7 @@ _IMPORTCRYPTOKEYVERSIONREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A#\n!cloudkms.googleapis.com/CryptoKey",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="algorithm",
@@ -1281,6 +1348,7 @@ _IMPORTCRYPTOKEYVERSIONREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="import_job",
@@ -1299,6 +1367,7 @@ _IMPORTCRYPTOKEYVERSIONREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="rsa_aes_wrapped_key",
@@ -1317,6 +1386,7 @@ _IMPORTCRYPTOKEYVERSIONREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1332,6 +1402,7 @@ _IMPORTCRYPTOKEYVERSIONREQUEST = _descriptor.Descriptor(
             full_name="google.cloud.kms.v1.ImportCryptoKeyVersionRequest.wrapped_key_material",
             index=0,
             containing_type=None,
+            create_key=_descriptor._internal_create_key,
             fields=[],
         )
     ],
@@ -1346,6 +1417,7 @@ _CREATEIMPORTJOBREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="parent",
@@ -1364,6 +1436,7 @@ _CREATEIMPORTJOBREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A!\n\037cloudkms.googleapis.com/KeyRing",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="import_job_id",
@@ -1382,6 +1455,7 @@ _CREATEIMPORTJOBREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="import_job",
@@ -1400,6 +1474,7 @@ _CREATEIMPORTJOBREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1421,6 +1496,7 @@ _UPDATECRYPTOKEYREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="crypto_key",
@@ -1439,6 +1515,7 @@ _UPDATECRYPTOKEYREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="update_mask",
@@ -1457,6 +1534,7 @@ _UPDATECRYPTOKEYREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1478,6 +1556,7 @@ _UPDATECRYPTOKEYVERSIONREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="crypto_key_version",
@@ -1496,6 +1575,7 @@ _UPDATECRYPTOKEYVERSIONREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="update_mask",
@@ -1514,6 +1594,7 @@ _UPDATECRYPTOKEYVERSIONREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1535,6 +1616,7 @@ _ENCRYPTREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -1553,6 +1635,7 @@ _ENCRYPTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A\003\n\001*",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="plaintext",
@@ -1571,6 +1654,7 @@ _ENCRYPTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="additional_authenticated_data",
@@ -1589,6 +1673,7 @@ _ENCRYPTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1610,6 +1695,7 @@ _DECRYPTREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -1628,6 +1714,7 @@ _DECRYPTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A#\n!cloudkms.googleapis.com/CryptoKey",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="ciphertext",
@@ -1646,6 +1733,7 @@ _DECRYPTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="additional_authenticated_data",
@@ -1664,6 +1752,7 @@ _DECRYPTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\001",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1685,6 +1774,7 @@ _ASYMMETRICSIGNREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -1703,6 +1793,7 @@ _ASYMMETRICSIGNREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A*\n(cloudkms.googleapis.com/CryptoKeyVersion",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="digest",
@@ -1721,6 +1812,7 @@ _ASYMMETRICSIGNREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1742,6 +1834,7 @@ _ASYMMETRICDECRYPTREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -1760,6 +1853,7 @@ _ASYMMETRICDECRYPTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A*\n(cloudkms.googleapis.com/CryptoKeyVersion",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="ciphertext",
@@ -1778,6 +1872,7 @@ _ASYMMETRICDECRYPTREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1799,6 +1894,7 @@ _DECRYPTRESPONSE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="plaintext",
@@ -1817,6 +1913,7 @@ _DECRYPTRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -1838,6 +1935,7 @@ _ENCRYPTRESPONSE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -1856,6 +1954,7 @@ _ENCRYPTRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="ciphertext",
@@ -1874,6 +1973,7 @@ _ENCRYPTRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -1895,6 +1995,7 @@ _ASYMMETRICSIGNRESPONSE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="signature",
@@ -1913,6 +2014,7 @@ _ASYMMETRICSIGNRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -1934,6 +2036,7 @@ _ASYMMETRICDECRYPTRESPONSE = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="plaintext",
@@ -1952,6 +2055,7 @@ _ASYMMETRICDECRYPTRESPONSE = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -1973,6 +2077,7 @@ _UPDATECRYPTOKEYPRIMARYVERSIONREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -1991,6 +2096,7 @@ _UPDATECRYPTOKEYPRIMARYVERSIONREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A#\n!cloudkms.googleapis.com/CryptoKey",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="crypto_key_version_id",
@@ -2009,6 +2115,7 @@ _UPDATECRYPTOKEYPRIMARYVERSIONREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -2030,6 +2137,7 @@ _DESTROYCRYPTOKEYVERSIONREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -2048,6 +2156,7 @@ _DESTROYCRYPTOKEYVERSIONREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A*\n(cloudkms.googleapis.com/CryptoKeyVersion",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -2069,6 +2178,7 @@ _RESTORECRYPTOKEYVERSIONREQUEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="name",
@@ -2087,6 +2197,7 @@ _RESTORECRYPTOKEYVERSIONREQUEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=b"\340A\002\372A*\n(cloudkms.googleapis.com/CryptoKeyVersion",
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         )
     ],
     extensions=[],
@@ -2108,6 +2219,7 @@ _DIGEST = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="sha256",
@@ -2126,6 +2238,7 @@ _DIGEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="sha384",
@@ -2144,6 +2257,7 @@ _DIGEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="sha512",
@@ -2162,6 +2276,7 @@ _DIGEST = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -2177,6 +2292,7 @@ _DIGEST = _descriptor.Descriptor(
             full_name="google.cloud.kms.v1.Digest.digest",
             index=0,
             containing_type=None,
+            create_key=_descriptor._internal_create_key,
             fields=[],
         )
     ],
@@ -2191,6 +2307,7 @@ _LOCATIONMETADATA = _descriptor.Descriptor(
     filename=None,
     file=DESCRIPTOR,
     containing_type=None,
+    create_key=_descriptor._internal_create_key,
     fields=[
         _descriptor.FieldDescriptor(
             name="hsm_available",
@@ -2209,6 +2326,7 @@ _LOCATIONMETADATA = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.FieldDescriptor(
             name="ekm_available",
@@ -2227,6 +2345,7 @@ _LOCATIONMETADATA = _descriptor.Descriptor(
             extension_scope=None,
             serialized_options=None,
             file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
         ),
     ],
     extensions=[],
@@ -3310,6 +3429,7 @@ _KEYMANAGEMENTSERVICE = _descriptor.ServiceDescriptor(
     file=DESCRIPTOR,
     index=0,
     serialized_options=b"\312A\027cloudkms.googleapis.com\322AWhttps://www.googleapis.com/auth/cloud-platform,https://www.googleapis.com/auth/cloudkms",
+    create_key=_descriptor._internal_create_key,
     serialized_start=4488,
     serialized_end=9358,
     methods=[
@@ -3321,6 +3441,7 @@ _KEYMANAGEMENTSERVICE = _descriptor.ServiceDescriptor(
             input_type=_LISTKEYRINGSREQUEST,
             output_type=_LISTKEYRINGSRESPONSE,
             serialized_options=b"\202\323\344\223\002.\022,/v1/{parent=projects/*/locations/*}/keyRings\332A\006parent",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="ListCryptoKeys",
@@ -3330,6 +3451,7 @@ _KEYMANAGEMENTSERVICE = _descriptor.ServiceDescriptor(
             input_type=_LISTCRYPTOKEYSREQUEST,
             output_type=_LISTCRYPTOKEYSRESPONSE,
             serialized_options=b"\202\323\344\223\002;\0229/v1/{parent=projects/*/locations/*/keyRings/*}/cryptoKeys\332A\006parent",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="ListCryptoKeyVersions",
@@ -3339,6 +3461,7 @@ _KEYMANAGEMENTSERVICE = _descriptor.ServiceDescriptor(
             input_type=_LISTCRYPTOKEYVERSIONSREQUEST,
             output_type=_LISTCRYPTOKEYVERSIONSRESPONSE,
             serialized_options=b"\202\323\344\223\002O\022M/v1/{parent=projects/*/locations/*/keyRings/*/cryptoKeys/*}/cryptoKeyVersions\332A\006parent",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="ListImportJobs",
@@ -3348,6 +3471,7 @@ _KEYMANAGEMENTSERVICE = _descriptor.ServiceDescriptor(
             input_type=_LISTIMPORTJOBSREQUEST,
             output_type=_LISTIMPORTJOBSRESPONSE,
             serialized_options=b"\202\323\344\223\002;\0229/v1/{parent=projects/*/locations/*/keyRings/*}/importJobs\332A\006parent",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="GetKeyRing",
@@ -3357,6 +3481,7 @@ _KEYMANAGEMENTSERVICE = _descriptor.ServiceDescriptor(
             input_type=_GETKEYRINGREQUEST,
             output_type=google_dot_cloud_dot_kms__v1_dot_proto_dot_resources__pb2._KEYRING,
             serialized_options=b"\202\323\344\223\002.\022,/v1/{name=projects/*/locations/*/keyRings/*}\332A\004name",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="GetCryptoKey",
@@ -3366,6 +3491,7 @@ _KEYMANAGEMENTSERVICE = _descriptor.ServiceDescriptor(
             input_type=_GETCRYPTOKEYREQUEST,
             output_type=google_dot_cloud_dot_kms__v1_dot_proto_dot_resources__pb2._CRYPTOKEY,
             serialized_options=b"\202\323\344\223\002;\0229/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*}\332A\004name",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="GetCryptoKeyVersion",
@@ -3375,6 +3501,7 @@ _KEYMANAGEMENTSERVICE = _descriptor.ServiceDescriptor(
             input_type=_GETCRYPTOKEYVERSIONREQUEST,
             output_type=google_dot_cloud_dot_kms__v1_dot_proto_dot_resources__pb2._CRYPTOKEYVERSION,
             serialized_options=b"\202\323\344\223\002O\022M/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}\332A\004name",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="GetPublicKey",
@@ -3384,6 +3511,7 @@ _KEYMANAGEMENTSERVICE = _descriptor.ServiceDescriptor(
             input_type=_GETPUBLICKEYREQUEST,
             output_type=google_dot_cloud_dot_kms__v1_dot_proto_dot_resources__pb2._PUBLICKEY,
             serialized_options=b"\202\323\344\223\002Y\022W/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}/publicKey\332A\004name",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="GetImportJob",
@@ -3393,6 +3521,7 @@ _KEYMANAGEMENTSERVICE = _descriptor.ServiceDescriptor(
             input_type=_GETIMPORTJOBREQUEST,
             output_type=google_dot_cloud_dot_kms__v1_dot_proto_dot_resources__pb2._IMPORTJOB,
             serialized_options=b"\202\323\344\223\002;\0229/v1/{name=projects/*/locations/*/keyRings/*/importJobs/*}\332A\004name",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="CreateKeyRing",
@@ -3402,6 +3531,7 @@ _KEYMANAGEMENTSERVICE = _descriptor.ServiceDescriptor(
             input_type=_CREATEKEYRINGREQUEST,
             output_type=google_dot_cloud_dot_kms__v1_dot_proto_dot_resources__pb2._KEYRING,
             serialized_options=b'\202\323\344\223\0028",/v1/{parent=projects/*/locations/*}/keyRings:\010key_ring\332A\033parent,key_ring_id,key_ring',
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="CreateCryptoKey",
@@ -3411,6 +3541,7 @@ _KEYMANAGEMENTSERVICE = _descriptor.ServiceDescriptor(
             input_type=_CREATECRYPTOKEYREQUEST,
             output_type=google_dot_cloud_dot_kms__v1_dot_proto_dot_resources__pb2._CRYPTOKEY,
             serialized_options=b'\202\323\344\223\002G"9/v1/{parent=projects/*/locations/*/keyRings/*}/cryptoKeys:\ncrypto_key\332A\037parent,crypto_key_id,crypto_key',
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="CreateCryptoKeyVersion",
@@ -3420,6 +3551,7 @@ _KEYMANAGEMENTSERVICE = _descriptor.ServiceDescriptor(
             input_type=_CREATECRYPTOKEYVERSIONREQUEST,
             output_type=google_dot_cloud_dot_kms__v1_dot_proto_dot_resources__pb2._CRYPTOKEYVERSION,
             serialized_options=b'\202\323\344\223\002c"M/v1/{parent=projects/*/locations/*/keyRings/*/cryptoKeys/*}/cryptoKeyVersions:\022crypto_key_version\332A\031parent,crypto_key_version',
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="ImportCryptoKeyVersion",
@@ -3429,6 +3561,7 @@ _KEYMANAGEMENTSERVICE = _descriptor.ServiceDescriptor(
             input_type=_IMPORTCRYPTOKEYVERSIONREQUEST,
             output_type=google_dot_cloud_dot_kms__v1_dot_proto_dot_resources__pb2._CRYPTOKEYVERSION,
             serialized_options=b'\202\323\344\223\002Y"T/v1/{parent=projects/*/locations/*/keyRings/*/cryptoKeys/*}/cryptoKeyVersions:import:\001*',
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="CreateImportJob",
@@ -3438,6 +3571,7 @@ _KEYMANAGEMENTSERVICE = _descriptor.ServiceDescriptor(
             input_type=_CREATEIMPORTJOBREQUEST,
             output_type=google_dot_cloud_dot_kms__v1_dot_proto_dot_resources__pb2._IMPORTJOB,
             serialized_options=b'\202\323\344\223\002G"9/v1/{parent=projects/*/locations/*/keyRings/*}/importJobs:\nimport_job\332A\037parent,import_job_id,import_job',
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="UpdateCryptoKey",
@@ -3447,6 +3581,7 @@ _KEYMANAGEMENTSERVICE = _descriptor.ServiceDescriptor(
             input_type=_UPDATECRYPTOKEYREQUEST,
             output_type=google_dot_cloud_dot_kms__v1_dot_proto_dot_resources__pb2._CRYPTOKEY,
             serialized_options=b"\202\323\344\223\002R2D/v1/{crypto_key.name=projects/*/locations/*/keyRings/*/cryptoKeys/*}:\ncrypto_key\332A\026crypto_key,update_mask",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="UpdateCryptoKeyVersion",
@@ -3456,6 +3591,7 @@ _KEYMANAGEMENTSERVICE = _descriptor.ServiceDescriptor(
             input_type=_UPDATECRYPTOKEYVERSIONREQUEST,
             output_type=google_dot_cloud_dot_kms__v1_dot_proto_dot_resources__pb2._CRYPTOKEYVERSION,
             serialized_options=b"\202\323\344\223\002v2`/v1/{crypto_key_version.name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:\022crypto_key_version\332A\036crypto_key_version,update_mask",
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="Encrypt",
@@ -3465,6 +3601,7 @@ _KEYMANAGEMENTSERVICE = _descriptor.ServiceDescriptor(
             input_type=_ENCRYPTREQUEST,
             output_type=_ENCRYPTRESPONSE,
             serialized_options=b'\202\323\344\223\002G"B/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/**}:encrypt:\001*\332A\016name,plaintext',
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="Decrypt",
@@ -3474,6 +3611,7 @@ _KEYMANAGEMENTSERVICE = _descriptor.ServiceDescriptor(
             input_type=_DECRYPTREQUEST,
             output_type=_DECRYPTRESPONSE,
             serialized_options=b'\202\323\344\223\002F"A/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*}:decrypt:\001*\332A\017name,ciphertext',
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="AsymmetricSign",
@@ -3483,6 +3621,7 @@ _KEYMANAGEMENTSERVICE = _descriptor.ServiceDescriptor(
             input_type=_ASYMMETRICSIGNREQUEST,
             output_type=_ASYMMETRICSIGNRESPONSE,
             serialized_options=b'\202\323\344\223\002a"\\/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:asymmetricSign:\001*\332A\013name,digest',
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="AsymmetricDecrypt",
@@ -3492,6 +3631,7 @@ _KEYMANAGEMENTSERVICE = _descriptor.ServiceDescriptor(
             input_type=_ASYMMETRICDECRYPTREQUEST,
             output_type=_ASYMMETRICDECRYPTRESPONSE,
             serialized_options=b'\202\323\344\223\002d"_/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:asymmetricDecrypt:\001*\332A\017name,ciphertext',
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="UpdateCryptoKeyPrimaryVersion",
@@ -3501,6 +3641,7 @@ _KEYMANAGEMENTSERVICE = _descriptor.ServiceDescriptor(
             input_type=_UPDATECRYPTOKEYPRIMARYVERSIONREQUEST,
             output_type=google_dot_cloud_dot_kms__v1_dot_proto_dot_resources__pb2._CRYPTOKEY,
             serialized_options=b'\202\323\344\223\002S"N/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*}:updatePrimaryVersion:\001*\332A\032name,crypto_key_version_id',
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="DestroyCryptoKeyVersion",
@@ -3510,6 +3651,7 @@ _KEYMANAGEMENTSERVICE = _descriptor.ServiceDescriptor(
             input_type=_DESTROYCRYPTOKEYVERSIONREQUEST,
             output_type=google_dot_cloud_dot_kms__v1_dot_proto_dot_resources__pb2._CRYPTOKEYVERSION,
             serialized_options=b'\202\323\344\223\002Z"U/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:destroy:\001*\332A\004name',
+            create_key=_descriptor._internal_create_key,
         ),
         _descriptor.MethodDescriptor(
             name="RestoreCryptoKeyVersion",
@@ -3519,6 +3661,7 @@ _KEYMANAGEMENTSERVICE = _descriptor.ServiceDescriptor(
             input_type=_RESTORECRYPTOKEYVERSIONREQUEST,
             output_type=google_dot_cloud_dot_kms__v1_dot_proto_dot_resources__pb2._CRYPTOKEYVERSION,
             serialized_options=b'\202\323\344\223\002Z"U/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:restore:\001*\332A\004name',
+            create_key=_descriptor._internal_create_key,
         ),
     ],
 )
