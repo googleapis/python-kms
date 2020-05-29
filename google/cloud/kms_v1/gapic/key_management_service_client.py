@@ -313,12 +313,12 @@ class KeyManagementServiceClient(object):
                 resource, this parameter does not affect the return value. If page
                 streaming is performed per-page, this determines the maximum number
                 of resources in a page.
-            filter_ (str): Optional. Only include resources that match the filter in the response.
-                For more information, see `Sorting and filtering list
+            filter_ (str): Optional. Only include resources that match the filter in the
+                response. For more information, see `Sorting and filtering list
                 results <https://cloud.google.com/kms/docs/sorting-and-filtering>`__.
-            order_by (str): Optional. Specify how the results should be sorted. If not specified,
-                the results will be sorted in the default order. For more information,
-                see `Sorting and filtering list
+            order_by (str): Optional. Specify how the results should be sorted. If not
+                specified, the results will be sorted in the default order. For more
+                information, see `Sorting and filtering list
                 results <https://cloud.google.com/kms/docs/sorting-and-filtering>`__.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
@@ -419,19 +419,19 @@ class KeyManagementServiceClient(object):
             ...         pass
 
         Args:
-            parent (str): Required. The resource name of the ``KeyRing`` to list, in the format
-                ``projects/*/locations/*/keyRings/*``.
+            parent (str): Required. The resource name of the ``KeyRing`` to list, in the
+                format ``projects/*/locations/*/keyRings/*``.
             page_size (int): The maximum number of resources contained in the
                 underlying API response. If page streaming is performed per-
                 resource, this parameter does not affect the return value. If page
                 streaming is performed per-page, this determines the maximum number
                 of resources in a page.
-            filter_ (str): Optional. Only include resources that match the filter in the response.
-                For more information, see `Sorting and filtering list
+            filter_ (str): Optional. Only include resources that match the filter in the
+                response. For more information, see `Sorting and filtering list
                 results <https://cloud.google.com/kms/docs/sorting-and-filtering>`__.
-            order_by (str): Optional. Specify how the results should be sorted. If not specified,
-                the results will be sorted in the default order. For more information,
-                see `Sorting and filtering list
+            order_by (str): Optional. Specify how the results should be sorted. If not
+                specified, the results will be sorted in the default order. For more
+                information, see `Sorting and filtering list
                 results <https://cloud.google.com/kms/docs/sorting-and-filtering>`__.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
@@ -533,20 +533,20 @@ class KeyManagementServiceClient(object):
             ...         pass
 
         Args:
-            parent (str): Required. The resource name of the ``KeyRing`` to list, in the format
-                ``projects/*/locations/*/keyRings/*``.
+            parent (str): Required. The resource name of the ``KeyRing`` to list, in the
+                format ``projects/*/locations/*/keyRings/*``.
             page_size (int): The maximum number of resources contained in the
                 underlying API response. If page streaming is performed per-
                 resource, this parameter does not affect the return value. If page
                 streaming is performed per-page, this determines the maximum number
                 of resources in a page.
             version_view (~google.cloud.kms_v1.types.CryptoKeyVersionView): The fields of the primary version to include in the response.
-            filter_ (str): Optional. Only include resources that match the filter in the response.
-                For more information, see `Sorting and filtering list
+            filter_ (str): Optional. Only include resources that match the filter in the
+                response. For more information, see `Sorting and filtering list
                 results <https://cloud.google.com/kms/docs/sorting-and-filtering>`__.
-            order_by (str): Optional. Specify how the results should be sorted. If not specified,
-                the results will be sorted in the default order. For more information,
-                see `Sorting and filtering list
+            order_by (str): Optional. Specify how the results should be sorted. If not
+                specified, the results will be sorted in the default order. For more
+                information, see `Sorting and filtering list
                 results <https://cloud.google.com/kms/docs/sorting-and-filtering>`__.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
@@ -652,20 +652,20 @@ class KeyManagementServiceClient(object):
             ...         pass
 
         Args:
-            parent (str): Required. The resource name of the ``CryptoKey`` to list, in the format
-                ``projects/*/locations/*/keyRings/*/cryptoKeys/*``.
+            parent (str): Required. The resource name of the ``CryptoKey`` to list, in the
+                format ``projects/*/locations/*/keyRings/*/cryptoKeys/*``.
             page_size (int): The maximum number of resources contained in the
                 underlying API response. If page streaming is performed per-
                 resource, this parameter does not affect the return value. If page
                 streaming is performed per-page, this determines the maximum number
                 of resources in a page.
             view (~google.cloud.kms_v1.types.CryptoKeyVersionView): The fields to include in the response.
-            filter_ (str): Optional. Only include resources that match the filter in the response.
-                For more information, see `Sorting and filtering list
+            filter_ (str): Optional. Only include resources that match the filter in the
+                response. For more information, see `Sorting and filtering list
                 results <https://cloud.google.com/kms/docs/sorting-and-filtering>`__.
-            order_by (str): Optional. Specify how the results should be sorted. If not specified,
-                the results will be sorted in the default order. For more information,
-                see `Sorting and filtering list
+            order_by (str): Optional. Specify how the results should be sorted. If not
+                specified, the results will be sorted in the default order. For more
+                information, see `Sorting and filtering list
                 results <https://cloud.google.com/kms/docs/sorting-and-filtering>`__.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
@@ -881,8 +881,8 @@ class KeyManagementServiceClient(object):
         metadata=None,
     ):
         """
-        Returns metadata for a given ``CryptoKey``, as well as its ``primary``
-        ``CryptoKeyVersion``.
+        Returns metadata for a given ``CryptoKey``, as well as its
+        ``primary`` ``CryptoKeyVersion``.
 
         Example:
             >>> from google.cloud import kms_v1
@@ -1377,8 +1377,8 @@ class KeyManagementServiceClient(object):
         metadata=None,
     ):
         """
-        Imports a new ``CryptoKeyVersion`` into an existing ``CryptoKey`` using
-        the wrapped key material provided in the request.
+        Imports a new ``CryptoKeyVersion`` into an existing ``CryptoKey``
+        using the wrapped key material provided in the request.
 
         The version ID will be assigned the next sequential id within the
         ``CryptoKey``.
@@ -1404,8 +1404,8 @@ class KeyManagementServiceClient(object):
             algorithm (~google.cloud.kms_v1.types.CryptoKeyVersionAlgorithm): Required. The ``algorithm`` of the key being imported. This does not
                 need to match the ``version_template`` of the ``CryptoKey`` this version
                 imports into.
-            import_job (str): Required. The ``name`` of the ``ImportJob`` that was used to wrap this
-                key material.
+            import_job (str): Required. The ``name`` of the ``ImportJob`` that was used to wrap
+                this key material.
             rsa_aes_wrapped_key (bytes): Wrapped key material produced with ``RSA_OAEP_3072_SHA1_AES_256`` or
                 ``RSA_OAEP_4096_SHA1_AES_256``.
 
@@ -1429,7 +1429,7 @@ class KeyManagementServiceClient(object):
                 PrivateKeyInfo structure from RFC 5208).
 
                 This format is the same as the format produced by PKCS#11 mechanism
-                CKM\_RSA\_AES\_KEY\_WRAP.
+                CKM_RSA_AES_KEY_WRAP.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1686,8 +1686,8 @@ class KeyManagementServiceClient(object):
             >>> response = client.encrypt(name, plaintext)
 
         Args:
-            name (str): Required. The resource name of the ``CryptoKey`` or ``CryptoKeyVersion``
-                to use for encryption.
+            name (str): Required. The resource name of the ``CryptoKey`` or
+                ``CryptoKeyVersion`` to use for encryption.
 
                 If a ``CryptoKey`` is specified, the server will use its
                 ``primary version``.
@@ -1696,14 +1696,15 @@ class KeyManagementServiceClient(object):
                 The maximum size depends on the key version's ``protection_level``. For
                 ``SOFTWARE`` keys, the plaintext must be no larger than 64KiB. For
                 ``HSM`` keys, the combined length of the plaintext and
-                additional\_authenticated\_data fields must be no larger than 8KiB.
-            additional_authenticated_data (bytes): Optional. Optional data that, if specified, must also be provided during
-                decryption through ``DecryptRequest.additional_authenticated_data``.
+                additional_authenticated_data fields must be no larger than 8KiB.
+            additional_authenticated_data (bytes): Optional. Optional data that, if specified, must also be provided
+                during decryption through
+                ``DecryptRequest.additional_authenticated_data``.
 
                 The maximum size depends on the key version's ``protection_level``. For
                 ``SOFTWARE`` keys, the AAD must be no larger than 64KiB. For ``HSM``
                 keys, the combined length of the plaintext and
-                additional\_authenticated\_data fields must be no larger than 8KiB.
+                additional_authenticated_data fields must be no larger than 8KiB.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1782,12 +1783,12 @@ class KeyManagementServiceClient(object):
             >>> response = client.decrypt(name, ciphertext)
 
         Args:
-            name (str): Required. The resource name of the ``CryptoKey`` to use for decryption.
-                The server will choose the appropriate version.
+            name (str): Required. The resource name of the ``CryptoKey`` to use for
+                decryption. The server will choose the appropriate version.
             ciphertext (bytes): Required. The encrypted data originally returned in
                 ``EncryptResponse.ciphertext``.
-            additional_authenticated_data (bytes): Optional. Optional data that must match the data originally supplied in
-                ``EncryptRequest.additional_authenticated_data``.
+            additional_authenticated_data (bytes): Optional. Optional data that must match the data originally supplied
+                in ``EncryptRequest.additional_authenticated_data``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1849,7 +1850,8 @@ class KeyManagementServiceClient(object):
         metadata=None,
     ):
         """
-        Update the version of a ``CryptoKey`` that will be used in ``Encrypt``.
+        Update the version of a ``CryptoKey`` that will be used in
+        ``Encrypt``.
 
         Returns an error if called on an asymmetric key.
 
@@ -1867,7 +1869,8 @@ class KeyManagementServiceClient(object):
 
         Args:
             name (str): Required. The resource name of the ``CryptoKey`` to update.
-            crypto_key_version_id (str): Required. The id of the child ``CryptoKeyVersion`` to use as primary.
+            crypto_key_version_id (str): Required. The id of the child ``CryptoKeyVersion`` to use as
+                primary.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -2093,7 +2096,8 @@ class KeyManagementServiceClient(object):
             >>> response = client.get_public_key(name)
 
         Args:
-            name (str): Required. The ``name`` of the ``CryptoKeyVersion`` public key to get.
+            name (str): Required. The ``name`` of the ``CryptoKeyVersion`` public key to
+                get.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -2153,7 +2157,7 @@ class KeyManagementServiceClient(object):
         """
         Decrypts data that was encrypted with a public key retrieved from
         ``GetPublicKey`` corresponding to a ``CryptoKeyVersion`` with
-        ``CryptoKey.purpose`` ASYMMETRIC\_DECRYPT.
+        ``CryptoKey.purpose`` ASYMMETRIC_DECRYPT.
 
         Example:
             >>> from google.cloud import kms_v1
@@ -2230,7 +2234,7 @@ class KeyManagementServiceClient(object):
     ):
         """
         Signs data using a ``CryptoKeyVersion`` with ``CryptoKey.purpose``
-        ASYMMETRIC\_SIGN, producing a signature that can be verified with the
+        ASYMMETRIC_SIGN, producing a signature that can be verified with the
         public key retrieved from ``GetPublicKey``.
 
         Example:
@@ -2248,9 +2252,9 @@ class KeyManagementServiceClient(object):
         Args:
             name (str): Required. The resource name of the ``CryptoKeyVersion`` to use for
                 signing.
-            digest (Union[dict, ~google.cloud.kms_v1.types.Digest]): Required. The digest of the data to sign. The digest must be produced
-                with the same digest algorithm as specified by the key version's
-                ``algorithm``.
+            digest (Union[dict, ~google.cloud.kms_v1.types.Digest]): Required. The digest of the data to sign. The digest must be
+                produced with the same digest algorithm as specified by the key
+                version's ``algorithm``.
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.kms_v1.types.Digest`
@@ -2501,8 +2505,8 @@ class KeyManagementServiceClient(object):
         Args:
             resource (str): REQUIRED: The resource for which the policy detail is being requested.
                 See the operation documentation for the appropriate value for this field.
-            permissions (list[str]): The set of permissions to check for the ``resource``. Permissions with
-                wildcards (such as '*' or 'storage.*') are not allowed. For more
+            permissions (list[str]): The set of permissions to check for the ``resource``. Permissions
+                with wildcards (such as '*' or 'storage.*') are not allowed. For more
                 information see `IAM
                 Overview <https://cloud.google.com/iam/docs/overview#permissions>`__.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
