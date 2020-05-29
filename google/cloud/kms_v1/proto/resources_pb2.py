@@ -1704,8 +1704,9 @@ CryptoKeyVersion = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _CRYPTOKEYVERSION,
         "__module__": "google.cloud.kms_v1.proto.resources_pb2",
-        "__doc__": """A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] represents an
-  individual cryptographic key, and the associated key material.
+        "__doc__": """A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
+  represents an individual cryptographic key, and the associated key
+  material.
   
   An
   [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED]
