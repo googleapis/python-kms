@@ -4,6 +4,13 @@
 
 [1]: https://pypi.org/project/google-cloud-kms/#history
 
+### [1.4.1](https://www.github.com/googleapis/python-kms/compare/v1.4.0...v1.4.1) (2020-06-16)
+
+
+### Bug Fixes
+
+* use `crypto_key_path` instead of `crypto_key_path_path` [([#3319](https://www.github.com/googleapis/python-kms/issues/3319))](https://github.com/GoogleCloudPlatform/python-docs-samples/issues/3319) ([8068e87](https://www.github.com/googleapis/python-kms/commit/8068e87ff44c768561a1bcfb45ccaadf8dd393ba))
+
 ## [1.4.0](https://www.github.com/googleapis/python-kms/compare/v1.3.0...v1.4.0) (2020-04-14)
 
 
