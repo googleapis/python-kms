@@ -40,4 +40,8 @@ class KeyManagementServiceClient(
     enums = enums
 
 
-__all__ = ("enums", "types", "KeyManagementServiceClient")
+__all__ = (
+    "enums",
+    "types",
+    "KeyManagementServiceClient",
+)

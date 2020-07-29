@@ -27,9 +27,16 @@ from google.protobuf import field_mask_pb2
 from google.protobuf import timestamp_pb2
 
 
-_shared_modules = [duration_pb2, field_mask_pb2, timestamp_pb2]
+_shared_modules = [
+    duration_pb2,
+    field_mask_pb2,
+    timestamp_pb2,
+]
 
-_local_modules = [resources_pb2, service_pb2]
+_local_modules = [
+    resources_pb2,
+    service_pb2,
+]
 
 names = []
 
