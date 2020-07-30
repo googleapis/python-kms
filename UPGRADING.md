@@ -107,7 +107,7 @@ response = client.create_key_ring(
 ```
 
 ```py
-response = client.synthesize_speech(
+response = client.create_key_ring(
     parent=parent,
     key_ring_id=key_ring_id,
     key_ring=key_ring
@@ -118,7 +118,7 @@ This call is invalid because it mixes `request` with a keyword argument `key_rin
 will result in an error.
 
 ```py
-response = client.synthesize_speech(
+response = client.create_key_ring(
     request={
         "parent": parent,
         "key_ring_id": key_ring_id,
