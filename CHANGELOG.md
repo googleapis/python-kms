@@ -4,6 +4,22 @@
 
 [1]: https://pypi.org/project/google-cloud-kms/#history
 
+## [2.0.0](https://www.github.com/googleapis/python-kms/compare/v1.4.0...v2.0.0) (2020-07-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* migrate to microgenerator. (#16)
+
+### Features
+
+* migrate to microgenerator. ([#16](https://www.github.com/googleapis/python-kms/issues/16)) ([605f757](https://www.github.com/googleapis/python-kms/commit/605f7577a9a9f1a2b39fa69da7e250b5f70e945e))
+
+
+### Bug Fixes
+
+* use `crypto_key_path` instead of `crypto_key_path_path` [([#3319](https://www.github.com/googleapis/python-kms/issues/3319))](https://github.com/GoogleCloudPlatform/python-docs-samples/issues/3319) ([8068e87](https://www.github.com/googleapis/python-kms/commit/8068e87ff44c768561a1bcfb45ccaadf8dd393ba))
+
 ## [1.4.0](https://www.github.com/googleapis/python-kms/compare/v1.3.0...v1.4.0) (2020-04-14)
 
 
