@@ -6485,31 +6485,6 @@ def test_parse_import_job_path():
     assert expected == actual
 
 
-def test_key_ring_path():
-    project = "squid"
-    location = "clam"
-    key_ring = "whelk"
-
-    expected = "projects/{project}/locations/{location}/keyRings/{key_ring}".format(
-        project=project, location=location, key_ring=key_ring,
-    )
-    actual = KeyManagementServiceClient.key_ring_path(project, location, key_ring)
-    assert expected == actual
-
-
-def test_parse_key_ring_path():
-    expected = {
-        "project": "octopus",
-        "location": "oyster",
-        "key_ring": "nudibranch",
-    }
-    path = KeyManagementServiceClient.key_ring_path(**expected)
-
-    # Check that the path construction is reversible.
-    actual = KeyManagementServiceClient.parse_key_ring_path(path)
-    assert expected == actual
-
-
 def test_crypto_key_path():
     project = "squid"
     location = "clam"
@@ -6536,6 +6511,31 @@ def test_parse_crypto_key_path():
 
     # Check that the path construction is reversible.
     actual = KeyManagementServiceClient.parse_crypto_key_path(path)
+    assert expected == actual
+
+
+def test_key_ring_path():
+    project = "squid"
+    location = "clam"
+    key_ring = "whelk"
+
+    expected = "projects/{project}/locations/{location}/keyRings/{key_ring}".format(
+        project=project, location=location, key_ring=key_ring,
+    )
+    actual = KeyManagementServiceClient.key_ring_path(project, location, key_ring)
+    assert expected == actual
+
+
+def test_parse_key_ring_path():
+    expected = {
+        "project": "octopus",
+        "location": "oyster",
+        "key_ring": "nudibranch",
+    }
+    path = KeyManagementServiceClient.key_ring_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = KeyManagementServiceClient.parse_key_ring_path(path)
     assert expected == actual
 
 
