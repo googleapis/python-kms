@@ -24,13 +24,15 @@ from .grpc_asyncio import KeyManagementServiceGrpcAsyncIOTransport
 
 
 # Compile a registry of transports.
-_transport_registry = OrderedDict()  # type: Dict[str, Type[KeyManagementServiceTransport]]
-_transport_registry['grpc'] = KeyManagementServiceGrpcTransport
-_transport_registry['grpc_asyncio'] = KeyManagementServiceGrpcAsyncIOTransport
+_transport_registry = (
+    OrderedDict()
+)  # type: Dict[str, Type[KeyManagementServiceTransport]]
+_transport_registry["grpc"] = KeyManagementServiceGrpcTransport
+_transport_registry["grpc_asyncio"] = KeyManagementServiceGrpcAsyncIOTransport
 
 
 __all__ = (
-    'KeyManagementServiceTransport',
-    'KeyManagementServiceGrpcTransport',
-    'KeyManagementServiceGrpcAsyncIOTransport',
+    "KeyManagementServiceTransport",
+    "KeyManagementServiceGrpcTransport",
+    "KeyManagementServiceGrpcAsyncIOTransport",
 )

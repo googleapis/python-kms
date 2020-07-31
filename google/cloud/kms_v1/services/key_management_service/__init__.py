@@ -19,6 +19,6 @@ from .client import KeyManagementServiceClient
 from .async_client import KeyManagementServiceAsyncClient
 
 __all__ = (
-    'KeyManagementServiceClient',
-    'KeyManagementServiceAsyncClient',
+    "KeyManagementServiceClient",
+    "KeyManagementServiceAsyncClient",
 )

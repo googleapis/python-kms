@@ -21,12 +21,12 @@ import re
 from typing import Dict, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions # type: ignore
-from google.api_core import exceptions                 # type: ignore
-from google.api_core import gapic_v1                   # type: ignore
-from google.api_core import retry as retries           # type: ignore
-from google.auth import credentials                    # type: ignore
-from google.oauth2 import service_account              # type: ignore
+import google.api_core.client_options as ClientOptions  # type: ignore
+from google.api_core import exceptions  # type: ignore
+from google.api_core import gapic_v1  # type: ignore
+from google.api_core import retry as retries  # type: ignore
+from google.auth import credentials  # type: ignore
+from google.oauth2 import service_account  # type: ignore
 
 from google.cloud.kms_v1.services.key_management_service import pagers
 from google.cloud.kms_v1.types import resources
@@ -68,18 +68,25 @@ class KeyManagementServiceAsyncClient:
 
     crypto_key_path = staticmethod(KeyManagementServiceClient.crypto_key_path)
 
-    crypto_key_version_path = staticmethod(KeyManagementServiceClient.crypto_key_version_path)
+    crypto_key_version_path = staticmethod(
+        KeyManagementServiceClient.crypto_key_version_path
+    )
 
     from_service_account_file = KeyManagementServiceClient.from_service_account_file
     from_service_account_json = from_service_account_file
 
-    get_transport_class = functools.partial(type(KeyManagementServiceClient).get_transport_class, type(KeyManagementServiceClient))
+    get_transport_class = functools.partial(
+        type(KeyManagementServiceClient).get_transport_class,
+        type(KeyManagementServiceClient),
+    )
 
-    def __init__(self, *,
-            credentials: credentials.Credentials = None,
-            transport: Union[str, KeyManagementServiceTransport] = 'grpc_asyncio',
-            client_options: ClientOptions = None,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        credentials: credentials.Credentials = None,
+        transport: Union[str, KeyManagementServiceTransport] = "grpc_asyncio",
+        client_options: ClientOptions = None,
+    ) -> None:
         """Instantiate the key management service client.
 
 
@@ -112,19 +119,18 @@ class KeyManagementServiceAsyncClient:
         """
 
         self._client = KeyManagementServiceClient(
-            credentials=credentials,
-            transport=transport,
-            client_options=client_options,
+            credentials=credentials, transport=transport, client_options=client_options,
         )
 
-    async def list_key_rings(self,
-            request: service.ListKeyRingsRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListKeyRingsAsyncPager:
+    async def list_key_rings(
+        self,
+        request: service.ListKeyRingsRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListKeyRingsAsyncPager:
         r"""Lists [KeyRings][google.cloud.kms.v1.KeyRing].
 
 
@@ -159,8 +165,10 @@ class KeyManagementServiceAsyncClient:
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([parent]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.ListKeyRingsRequest(request)
 
@@ -181,7 +189,7 @@ class KeyManagementServiceAsyncClient:
                 predicate=retries.if_exception_type(
                     exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
-exceptions.ServiceUnavailable,
+                    exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=60.0,
@@ -191,39 +199,30 @@ exceptions.ServiceUnavailable,
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListKeyRingsAsyncPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    async def list_crypto_keys(self,
-            request: service.ListCryptoKeysRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListCryptoKeysAsyncPager:
+    async def list_crypto_keys(
+        self,
+        request: service.ListCryptoKeysRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListCryptoKeysAsyncPager:
         r"""Lists [CryptoKeys][google.cloud.kms.v1.CryptoKey].
 
 
@@ -258,8 +257,10 @@ exceptions.ServiceUnavailable,
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([parent]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.ListCryptoKeysRequest(request)
 
@@ -280,7 +281,7 @@ exceptions.ServiceUnavailable,
                 predicate=retries.if_exception_type(
                     exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
-exceptions.ServiceUnavailable,
+                    exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=60.0,
@@ -290,39 +291,30 @@ exceptions.ServiceUnavailable,
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListCryptoKeysAsyncPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    async def list_crypto_key_versions(self,
-            request: service.ListCryptoKeyVersionsRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListCryptoKeyVersionsAsyncPager:
+    async def list_crypto_key_versions(
+        self,
+        request: service.ListCryptoKeyVersionsRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListCryptoKeyVersionsAsyncPager:
         r"""Lists [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
 
 
@@ -358,8 +350,10 @@ exceptions.ServiceUnavailable,
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([parent]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.ListCryptoKeyVersionsRequest(request)
 
@@ -380,7 +374,7 @@ exceptions.ServiceUnavailable,
                 predicate=retries.if_exception_type(
                     exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
-exceptions.ServiceUnavailable,
+                    exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=60.0,
@@ -390,39 +384,30 @@ exceptions.ServiceUnavailable,
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListCryptoKeyVersionsAsyncPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    async def list_import_jobs(self,
-            request: service.ListImportJobsRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListImportJobsAsyncPager:
+    async def list_import_jobs(
+        self,
+        request: service.ListImportJobsRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListImportJobsAsyncPager:
         r"""Lists [ImportJobs][google.cloud.kms.v1.ImportJob].
 
 
@@ -457,8 +442,10 @@ exceptions.ServiceUnavailable,
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([parent]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.ListImportJobsRequest(request)
 
@@ -479,7 +466,7 @@ exceptions.ServiceUnavailable,
                 predicate=retries.if_exception_type(
                     exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
-exceptions.ServiceUnavailable,
+                    exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=60.0,
@@ -489,39 +476,30 @@ exceptions.ServiceUnavailable,
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListImportJobsAsyncPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    async def get_key_ring(self,
-            request: service.GetKeyRingRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.KeyRing:
+    async def get_key_ring(
+        self,
+        request: service.GetKeyRingRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.KeyRing:
         r"""Returns metadata for a given
         [KeyRing][google.cloud.kms.v1.KeyRing].
 
@@ -554,8 +532,10 @@ exceptions.ServiceUnavailable,
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([name]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.GetKeyRingRequest(request)
 
@@ -576,7 +556,7 @@ exceptions.ServiceUnavailable,
                 predicate=retries.if_exception_type(
                     exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
-exceptions.ServiceUnavailable,
+                    exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=60.0,
@@ -586,30 +566,24 @@ exceptions.ServiceUnavailable,
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def get_crypto_key(self,
-            request: service.GetCryptoKeyRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.CryptoKey:
+    async def get_crypto_key(
+        self,
+        request: service.GetCryptoKeyRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.CryptoKey:
         r"""Returns metadata for a given
         [CryptoKey][google.cloud.kms.v1.CryptoKey], as well as its
         [primary][google.cloud.kms.v1.CryptoKey.primary]
@@ -651,8 +625,10 @@ exceptions.ServiceUnavailable,
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([name]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.GetCryptoKeyRequest(request)
 
@@ -673,7 +649,7 @@ exceptions.ServiceUnavailable,
                 predicate=retries.if_exception_type(
                     exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
-exceptions.ServiceUnavailable,
+                    exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=60.0,
@@ -683,30 +659,24 @@ exceptions.ServiceUnavailable,
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def get_crypto_key_version(self,
-            request: service.GetCryptoKeyVersionRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.CryptoKeyVersion:
+    async def get_crypto_key_version(
+        self,
+        request: service.GetCryptoKeyVersionRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.CryptoKeyVersion:
         r"""Returns metadata for a given
         [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
 
@@ -753,8 +723,10 @@ exceptions.ServiceUnavailable,
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([name]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.GetCryptoKeyVersionRequest(request)
 
@@ -775,7 +747,7 @@ exceptions.ServiceUnavailable,
                 predicate=retries.if_exception_type(
                     exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
-exceptions.ServiceUnavailable,
+                    exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=60.0,
@@ -785,30 +757,24 @@ exceptions.ServiceUnavailable,
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def get_public_key(self,
-            request: service.GetPublicKeyRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.PublicKey:
+    async def get_public_key(
+        self,
+        request: service.GetPublicKeyRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.PublicKey:
         r"""Returns the public key for the given
         [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. The
         [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must
@@ -849,8 +815,10 @@ exceptions.ServiceUnavailable,
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([name]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.GetPublicKeyRequest(request)
 
@@ -871,7 +839,7 @@ exceptions.ServiceUnavailable,
                 predicate=retries.if_exception_type(
                     exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
-exceptions.ServiceUnavailable,
+                    exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=60.0,
@@ -881,30 +849,24 @@ exceptions.ServiceUnavailable,
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def get_import_job(self,
-            request: service.GetImportJobRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.ImportJob:
+    async def get_import_job(
+        self,
+        request: service.GetImportJobRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.ImportJob:
         r"""Returns metadata for a given
         [ImportJob][google.cloud.kms.v1.ImportJob].
 
@@ -980,8 +942,10 @@ exceptions.ServiceUnavailable,
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([name]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.GetImportJobRequest(request)
 
@@ -1002,7 +966,7 @@ exceptions.ServiceUnavailable,
                 predicate=retries.if_exception_type(
                     exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
-exceptions.ServiceUnavailable,
+                    exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=60.0,
@@ -1012,32 +976,26 @@ exceptions.ServiceUnavailable,
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def create_key_ring(self,
-            request: service.CreateKeyRingRequest = None,
-            *,
-            parent: str = None,
-            key_ring_id: str = None,
-            key_ring: resources.KeyRing = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.KeyRing:
+    async def create_key_ring(
+        self,
+        request: service.CreateKeyRingRequest = None,
+        *,
+        parent: str = None,
+        key_ring_id: str = None,
+        key_ring: resources.KeyRing = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.KeyRing:
         r"""Create a new [KeyRing][google.cloud.kms.v1.KeyRing] in a given
         Project and Location.
 
@@ -1083,8 +1041,10 @@ exceptions.ServiceUnavailable,
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([parent, key_ring_id, key_ring]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.CreateKeyRingRequest(request)
 
@@ -1109,7 +1069,7 @@ exceptions.ServiceUnavailable,
                 predicate=retries.if_exception_type(
                     exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
-exceptions.ServiceUnavailable,
+                    exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=60.0,
@@ -1119,32 +1079,26 @@ exceptions.ServiceUnavailable,
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def create_crypto_key(self,
-            request: service.CreateCryptoKeyRequest = None,
-            *,
-            parent: str = None,
-            crypto_key_id: str = None,
-            crypto_key: resources.CryptoKey = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.CryptoKey:
+    async def create_crypto_key(
+        self,
+        request: service.CreateCryptoKeyRequest = None,
+        *,
+        parent: str = None,
+        crypto_key_id: str = None,
+        crypto_key: resources.CryptoKey = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.CryptoKey:
         r"""Create a new [CryptoKey][google.cloud.kms.v1.CryptoKey] within a
         [KeyRing][google.cloud.kms.v1.KeyRing].
 
@@ -1200,8 +1154,10 @@ exceptions.ServiceUnavailable,
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([parent, crypto_key_id, crypto_key]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.CreateCryptoKeyRequest(request)
 
@@ -1226,7 +1182,7 @@ exceptions.ServiceUnavailable,
                 predicate=retries.if_exception_type(
                     exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
-exceptions.ServiceUnavailable,
+                    exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=60.0,
@@ -1236,31 +1192,25 @@ exceptions.ServiceUnavailable,
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def create_crypto_key_version(self,
-            request: service.CreateCryptoKeyVersionRequest = None,
-            *,
-            parent: str = None,
-            crypto_key_version: resources.CryptoKeyVersion = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.CryptoKeyVersion:
+    async def create_crypto_key_version(
+        self,
+        request: service.CreateCryptoKeyVersionRequest = None,
+        *,
+        parent: str = None,
+        crypto_key_version: resources.CryptoKeyVersion = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.CryptoKeyVersion:
         r"""Create a new
         [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in a
         [CryptoKey][google.cloud.kms.v1.CryptoKey].
@@ -1320,8 +1270,10 @@ exceptions.ServiceUnavailable,
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([parent, crypto_key_version]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.CreateCryptoKeyVersionRequest(request)
 
@@ -1344,29 +1296,23 @@ exceptions.ServiceUnavailable,
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def import_crypto_key_version(self,
-            request: service.ImportCryptoKeyVersionRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.CryptoKeyVersion:
+    async def import_crypto_key_version(
+        self,
+        request: service.ImportCryptoKeyVersionRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.CryptoKeyVersion:
         r"""Imports a new
         [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] into an
         existing [CryptoKey][google.cloud.kms.v1.CryptoKey] using the
@@ -1421,32 +1367,26 @@ exceptions.ServiceUnavailable,
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def create_import_job(self,
-            request: service.CreateImportJobRequest = None,
-            *,
-            parent: str = None,
-            import_job_id: str = None,
-            import_job: resources.ImportJob = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.ImportJob:
+    async def create_import_job(
+        self,
+        request: service.CreateImportJobRequest = None,
+        *,
+        parent: str = None,
+        import_job_id: str = None,
+        import_job: resources.ImportJob = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.ImportJob:
         r"""Create a new [ImportJob][google.cloud.kms.v1.ImportJob] within a
         [KeyRing][google.cloud.kms.v1.KeyRing].
 
@@ -1537,8 +1477,10 @@ exceptions.ServiceUnavailable,
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([parent, import_job_id, import_job]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.CreateImportJobRequest(request)
 
@@ -1563,7 +1505,7 @@ exceptions.ServiceUnavailable,
                 predicate=retries.if_exception_type(
                     exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
-exceptions.ServiceUnavailable,
+                    exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=60.0,
@@ -1573,31 +1515,25 @@ exceptions.ServiceUnavailable,
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def update_crypto_key(self,
-            request: service.UpdateCryptoKeyRequest = None,
-            *,
-            crypto_key: resources.CryptoKey = None,
-            update_mask: field_mask.FieldMask = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.CryptoKey:
+    async def update_crypto_key(
+        self,
+        request: service.UpdateCryptoKeyRequest = None,
+        *,
+        crypto_key: resources.CryptoKey = None,
+        update_mask: field_mask.FieldMask = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.CryptoKey:
         r"""Update a [CryptoKey][google.cloud.kms.v1.CryptoKey].
 
 
@@ -1641,8 +1577,10 @@ exceptions.ServiceUnavailable,
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([crypto_key, update_mask]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.UpdateCryptoKeyRequest(request)
 
@@ -1665,7 +1603,7 @@ exceptions.ServiceUnavailable,
                 predicate=retries.if_exception_type(
                     exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
-exceptions.ServiceUnavailable,
+                    exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=60.0,
@@ -1675,31 +1613,27 @@ exceptions.ServiceUnavailable,
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('crypto_key.name', request.crypto_key.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (("crypto_key.name", request.crypto_key.name),)
+            ),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def update_crypto_key_version(self,
-            request: service.UpdateCryptoKeyVersionRequest = None,
-            *,
-            crypto_key_version: resources.CryptoKeyVersion = None,
-            update_mask: field_mask.FieldMask = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.CryptoKeyVersion:
+    async def update_crypto_key_version(
+        self,
+        request: service.UpdateCryptoKeyVersionRequest = None,
+        *,
+        crypto_key_version: resources.CryptoKeyVersion = None,
+        update_mask: field_mask.FieldMask = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.CryptoKeyVersion:
         r"""Update a
         [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s
         metadata.
@@ -1763,8 +1697,10 @@ exceptions.ServiceUnavailable,
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([crypto_key_version, update_mask]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.UpdateCryptoKeyVersionRequest(request)
 
@@ -1787,7 +1723,7 @@ exceptions.ServiceUnavailable,
                 predicate=retries.if_exception_type(
                     exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
-exceptions.ServiceUnavailable,
+                    exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=60.0,
@@ -1797,31 +1733,27 @@ exceptions.ServiceUnavailable,
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('crypto_key_version.name', request.crypto_key_version.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (("crypto_key_version.name", request.crypto_key_version.name),)
+            ),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def encrypt(self,
-            request: service.EncryptRequest = None,
-            *,
-            name: str = None,
-            plaintext: bytes = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.EncryptResponse:
+    async def encrypt(
+        self,
+        request: service.EncryptRequest = None,
+        *,
+        name: str = None,
+        plaintext: bytes = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> service.EncryptResponse:
         r"""Encrypts data, so that it can only be recovered by a call to
         [Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt]. The
         [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must
@@ -1878,8 +1810,10 @@ exceptions.ServiceUnavailable,
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([name, plaintext]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.EncryptRequest(request)
 
@@ -1902,7 +1836,7 @@ exceptions.ServiceUnavailable,
                 predicate=retries.if_exception_type(
                     exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
-exceptions.ServiceUnavailable,
+                    exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=60.0,
@@ -1912,31 +1846,25 @@ exceptions.ServiceUnavailable,
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def decrypt(self,
-            request: service.DecryptRequest = None,
-            *,
-            name: str = None,
-            ciphertext: bytes = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.DecryptResponse:
+    async def decrypt(
+        self,
+        request: service.DecryptRequest = None,
+        *,
+        name: str = None,
+        ciphertext: bytes = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> service.DecryptResponse:
         r"""Decrypts data that was protected by
         [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt]. The
         [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must
@@ -1979,8 +1907,10 @@ exceptions.ServiceUnavailable,
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([name, ciphertext]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.DecryptRequest(request)
 
@@ -2003,7 +1933,7 @@ exceptions.ServiceUnavailable,
                 predicate=retries.if_exception_type(
                     exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
-exceptions.ServiceUnavailable,
+                    exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=60.0,
@@ -2013,31 +1943,25 @@ exceptions.ServiceUnavailable,
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def asymmetric_sign(self,
-            request: service.AsymmetricSignRequest = None,
-            *,
-            name: str = None,
-            digest: service.Digest = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.AsymmetricSignResponse:
+    async def asymmetric_sign(
+        self,
+        request: service.AsymmetricSignRequest = None,
+        *,
+        name: str = None,
+        digest: service.Digest = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> service.AsymmetricSignResponse:
         r"""Signs data using a
         [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with
         [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
@@ -2082,8 +2006,10 @@ exceptions.ServiceUnavailable,
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([name, digest]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.AsymmetricSignRequest(request)
 
@@ -2106,7 +2032,7 @@ exceptions.ServiceUnavailable,
                 predicate=retries.if_exception_type(
                     exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
-exceptions.ServiceUnavailable,
+                    exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=60.0,
@@ -2116,31 +2042,25 @@ exceptions.ServiceUnavailable,
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def asymmetric_decrypt(self,
-            request: service.AsymmetricDecryptRequest = None,
-            *,
-            name: str = None,
-            ciphertext: bytes = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.AsymmetricDecryptResponse:
+    async def asymmetric_decrypt(
+        self,
+        request: service.AsymmetricDecryptRequest = None,
+        *,
+        name: str = None,
+        ciphertext: bytes = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> service.AsymmetricDecryptResponse:
         r"""Decrypts data that was encrypted with a public key retrieved
         from
         [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey]
@@ -2185,8 +2105,10 @@ exceptions.ServiceUnavailable,
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([name, ciphertext]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.AsymmetricDecryptRequest(request)
 
@@ -2209,7 +2131,7 @@ exceptions.ServiceUnavailable,
                 predicate=retries.if_exception_type(
                     exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
-exceptions.ServiceUnavailable,
+                    exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=60.0,
@@ -2219,31 +2141,25 @@ exceptions.ServiceUnavailable,
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def update_crypto_key_primary_version(self,
-            request: service.UpdateCryptoKeyPrimaryVersionRequest = None,
-            *,
-            name: str = None,
-            crypto_key_version_id: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.CryptoKey:
+    async def update_crypto_key_primary_version(
+        self,
+        request: service.UpdateCryptoKeyPrimaryVersionRequest = None,
+        *,
+        name: str = None,
+        crypto_key_version_id: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.CryptoKey:
         r"""Update the version of a
         [CryptoKey][google.cloud.kms.v1.CryptoKey] that will be used in
         [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt].
@@ -2292,8 +2208,10 @@ exceptions.ServiceUnavailable,
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([name, crypto_key_version_id]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.UpdateCryptoKeyPrimaryVersionRequest(request)
 
@@ -2316,7 +2234,7 @@ exceptions.ServiceUnavailable,
                 predicate=retries.if_exception_type(
                     exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
-exceptions.ServiceUnavailable,
+                    exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=60.0,
@@ -2326,30 +2244,24 @@ exceptions.ServiceUnavailable,
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def destroy_crypto_key_version(self,
-            request: service.DestroyCryptoKeyVersionRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.CryptoKeyVersion:
+    async def destroy_crypto_key_version(
+        self,
+        request: service.DestroyCryptoKeyVersionRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.CryptoKeyVersion:
         r"""Schedule a
         [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] for
         destruction.
@@ -2414,8 +2326,10 @@ exceptions.ServiceUnavailable,
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([name]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.DestroyCryptoKeyVersionRequest(request)
 
@@ -2436,7 +2350,7 @@ exceptions.ServiceUnavailable,
                 predicate=retries.if_exception_type(
                     exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
-exceptions.ServiceUnavailable,
+                    exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=60.0,
@@ -2446,30 +2360,24 @@ exceptions.ServiceUnavailable,
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    async def restore_crypto_key_version(self,
-            request: service.RestoreCryptoKeyVersionRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.CryptoKeyVersion:
+    async def restore_crypto_key_version(
+        self,
+        request: service.RestoreCryptoKeyVersionRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.CryptoKeyVersion:
         r"""Restore a
         [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in the
         [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED]
@@ -2525,8 +2433,10 @@ exceptions.ServiceUnavailable,
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([name]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.RestoreCryptoKeyVersionRequest(request)
 
@@ -2547,7 +2457,7 @@ exceptions.ServiceUnavailable,
                 predicate=retries.if_exception_type(
                     exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
-exceptions.ServiceUnavailable,
+                    exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=60.0,
@@ -2557,18 +2467,11 @@ exceptions.ServiceUnavailable,
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = await rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
@@ -2849,14 +2752,10 @@ exceptions.ServiceUnavailable,
 
 try:
     _client_info = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution(
-            'google-cloud-kms',
-        ).version,
+        gapic_version=pkg_resources.get_distribution("google-cloud-kms",).version,
     )
 except pkg_resources.DistributionNotFound:
     _client_info = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = (
-    'KeyManagementServiceAsyncClient',
-)
+__all__ = ("KeyManagementServiceAsyncClient",)

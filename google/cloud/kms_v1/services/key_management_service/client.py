@@ -21,14 +21,14 @@ import re
 from typing import Callable, Dict, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions # type: ignore
-from google.api_core import exceptions                 # type: ignore
-from google.api_core import gapic_v1                   # type: ignore
-from google.api_core import retry as retries           # type: ignore
-from google.auth import credentials                    # type: ignore
-from google.auth.transport import mtls                 # type: ignore
+import google.api_core.client_options as ClientOptions  # type: ignore
+from google.api_core import exceptions  # type: ignore
+from google.api_core import gapic_v1  # type: ignore
+from google.api_core import retry as retries  # type: ignore
+from google.auth import credentials  # type: ignore
+from google.auth.transport import mtls  # type: ignore
 from google.auth.exceptions import MutualTLSChannelError  # type: ignore
-from google.oauth2 import service_account              # type: ignore
+from google.oauth2 import service_account  # type: ignore
 
 from google.cloud.kms_v1.services.key_management_service import pagers
 from google.cloud.kms_v1.types import resources
@@ -51,13 +51,16 @@ class KeyManagementServiceClientMeta(type):
     support objects (e.g. transport) without polluting the client instance
     objects.
     """
-    _transport_registry = OrderedDict()  # type: Dict[str, Type[KeyManagementServiceTransport]]
-    _transport_registry['grpc'] = KeyManagementServiceGrpcTransport
-    _transport_registry['grpc_asyncio'] = KeyManagementServiceGrpcAsyncIOTransport
 
-    def get_transport_class(cls,
-            label: str = None,
-        ) -> Type[KeyManagementServiceTransport]:
+    _transport_registry = (
+        OrderedDict()
+    )  # type: Dict[str, Type[KeyManagementServiceTransport]]
+    _transport_registry["grpc"] = KeyManagementServiceGrpcTransport
+    _transport_registry["grpc_asyncio"] = KeyManagementServiceGrpcAsyncIOTransport
+
+    def get_transport_class(
+        cls, label: str = None,
+    ) -> Type[KeyManagementServiceTransport]:
         """Return an appropriate transport class.
 
 
@@ -122,7 +125,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         return api_endpoint.replace(".googleapis.com", ".mtls.googleapis.com")
 
-    DEFAULT_ENDPOINT = 'cloudkms.googleapis.com'
+    DEFAULT_ENDPOINT = "cloudkms.googleapis.com"
     DEFAULT_MTLS_ENDPOINT = _get_default_mtls_endpoint.__func__(  # type: ignore
         DEFAULT_ENDPOINT
     )
@@ -142,59 +145,103 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         Returns:
             {@api.name}: The constructed client.
         """
-        credentials = service_account.Credentials.from_service_account_file(
-            filename)
-        kwargs['credentials'] = credentials
+        credentials = service_account.Credentials.from_service_account_file(filename)
+        kwargs["credentials"] = credentials
         return cls(*args, **kwargs)
 
     from_service_account_json = from_service_account_file
 
     @staticmethod
-    def crypto_key_path(project: str,location: str,key_ring: str,crypto_key: str,) -> str:
+    def crypto_key_path(
+        project: str, location: str, key_ring: str, crypto_key: str,
+    ) -> str:
         """Return a fully-qualified crypto_key string."""
-        return "projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}".format(project=project, location=location, key_ring=key_ring, crypto_key=crypto_key, )
+        return "projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}".format(
+            project=project,
+            location=location,
+            key_ring=key_ring,
+            crypto_key=crypto_key,
+        )
 
     @staticmethod
-    def parse_crypto_key_path(path: str) -> Dict[str,str]:
+    def parse_crypto_key_path(path: str) -> Dict[str, str]:
         """Parse a crypto_key path into its component segments."""
-        m = re.match(r"^projects/(?P<project>.+?)/locations/(?P<location>.+?)/keyRings/(?P<key_ring>.+?)/cryptoKeys/(?P<crypto_key>.+?)$", path)
+        m = re.match(
+            r"^projects/(?P<project>.+?)/locations/(?P<location>.+?)/keyRings/(?P<key_ring>.+?)/cryptoKeys/(?P<crypto_key>.+?)$",
+            path,
+        )
         return m.groupdict() if m else {}
+
     @staticmethod
-    def crypto_key_version_path(project: str,location: str,key_ring: str,crypto_key: str,crypto_key_version: str,) -> str:
+    def crypto_key_version_path(
+        project: str,
+        location: str,
+        key_ring: str,
+        crypto_key: str,
+        crypto_key_version: str,
+    ) -> str:
         """Return a fully-qualified crypto_key_version string."""
-        return "projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}".format(project=project, location=location, key_ring=key_ring, crypto_key=crypto_key, crypto_key_version=crypto_key_version, )
+        return "projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}".format(
+            project=project,
+            location=location,
+            key_ring=key_ring,
+            crypto_key=crypto_key,
+            crypto_key_version=crypto_key_version,
+        )
 
     @staticmethod
-    def parse_crypto_key_version_path(path: str) -> Dict[str,str]:
+    def parse_crypto_key_version_path(path: str) -> Dict[str, str]:
         """Parse a crypto_key_version path into its component segments."""
-        m = re.match(r"^projects/(?P<project>.+?)/locations/(?P<location>.+?)/keyRings/(?P<key_ring>.+?)/cryptoKeys/(?P<crypto_key>.+?)/cryptoKeyVersions/(?P<crypto_key_version>.+?)$", path)
+        m = re.match(
+            r"^projects/(?P<project>.+?)/locations/(?P<location>.+?)/keyRings/(?P<key_ring>.+?)/cryptoKeys/(?P<crypto_key>.+?)/cryptoKeyVersions/(?P<crypto_key_version>.+?)$",
+            path,
+        )
         return m.groupdict() if m else {}
+
     @staticmethod
-    def import_job_path(project: str,location: str,key_ring: str,import_job: str,) -> str:
+    def import_job_path(
+        project: str, location: str, key_ring: str, import_job: str,
+    ) -> str:
         """Return a fully-qualified import_job string."""
-        return "projects/{project}/locations/{location}/keyRings/{key_ring}/importJobs/{import_job}".format(project=project, location=location, key_ring=key_ring, import_job=import_job, )
+        return "projects/{project}/locations/{location}/keyRings/{key_ring}/importJobs/{import_job}".format(
+            project=project,
+            location=location,
+            key_ring=key_ring,
+            import_job=import_job,
+        )
 
     @staticmethod
-    def parse_import_job_path(path: str) -> Dict[str,str]:
+    def parse_import_job_path(path: str) -> Dict[str, str]:
         """Parse a import_job path into its component segments."""
-        m = re.match(r"^projects/(?P<project>.+?)/locations/(?P<location>.+?)/keyRings/(?P<key_ring>.+?)/importJobs/(?P<import_job>.+?)$", path)
+        m = re.match(
+            r"^projects/(?P<project>.+?)/locations/(?P<location>.+?)/keyRings/(?P<key_ring>.+?)/importJobs/(?P<import_job>.+?)$",
+            path,
+        )
         return m.groupdict() if m else {}
+
     @staticmethod
-    def key_ring_path(project: str,location: str,key_ring: str,) -> str:
+    def key_ring_path(project: str, location: str, key_ring: str,) -> str:
         """Return a fully-qualified key_ring string."""
-        return "projects/{project}/locations/{location}/keyRings/{key_ring}".format(project=project, location=location, key_ring=key_ring, )
+        return "projects/{project}/locations/{location}/keyRings/{key_ring}".format(
+            project=project, location=location, key_ring=key_ring,
+        )
 
     @staticmethod
-    def parse_key_ring_path(path: str) -> Dict[str,str]:
+    def parse_key_ring_path(path: str) -> Dict[str, str]:
         """Parse a key_ring path into its component segments."""
-        m = re.match(r"^projects/(?P<project>.+?)/locations/(?P<location>.+?)/keyRings/(?P<key_ring>.+?)$", path)
+        m = re.match(
+            r"^projects/(?P<project>.+?)/locations/(?P<location>.+?)/keyRings/(?P<key_ring>.+?)$",
+            path,
+        )
         return m.groupdict() if m else {}
 
-    def __init__(self, *,
-            credentials: credentials.Credentials = None,
-            transport: Union[str, KeyManagementServiceTransport] = None,
-            client_options: ClientOptions = None,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        credentials: credentials.Credentials = None,
+        transport: Union[str, KeyManagementServiceTransport] = None,
+        client_options: ClientOptions = None,
+    ) -> None:
         """Instantiate the key management service client.
 
 
@@ -242,7 +289,9 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                     or mtls.has_default_client_cert_source()
                 )
                 client_options.api_endpoint = (
-                    self.DEFAULT_MTLS_ENDPOINT if has_client_cert_source else self.DEFAULT_ENDPOINT
+                    self.DEFAULT_MTLS_ENDPOINT
+                    if has_client_cert_source
+                    else self.DEFAULT_ENDPOINT
                 )
             else:
                 raise MutualTLSChannelError(
@@ -255,8 +304,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         if isinstance(transport, KeyManagementServiceTransport):
             # transport is a KeyManagementServiceTransport instance.
             if credentials or client_options.credentials_file:
-                raise ValueError('When providing a transport instance, '
-                                 'provide its credentials directly.')
+                raise ValueError(
+                    "When providing a transport instance, "
+                    "provide its credentials directly."
+                )
             if client_options.scopes:
                 raise ValueError(
                     "When providing a transport instance, "
@@ -275,14 +326,15 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 quota_project_id=client_options.quota_project_id,
             )
 
-    def list_key_rings(self,
-            request: service.ListKeyRingsRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListKeyRingsPager:
+    def list_key_rings(
+        self,
+        request: service.ListKeyRingsRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListKeyRingsPager:
         r"""Lists [KeyRings][google.cloud.kms.v1.KeyRing].
 
 
@@ -317,8 +369,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([parent]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.ListKeyRingsRequest(request)
 
@@ -335,39 +389,30 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.ListKeyRingsPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def list_crypto_keys(self,
-            request: service.ListCryptoKeysRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListCryptoKeysPager:
+    def list_crypto_keys(
+        self,
+        request: service.ListCryptoKeysRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListCryptoKeysPager:
         r"""Lists [CryptoKeys][google.cloud.kms.v1.CryptoKey].
 
 
@@ -402,8 +447,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([parent]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.ListCryptoKeysRequest(request)
 
@@ -420,39 +467,30 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.ListCryptoKeysPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def list_crypto_key_versions(self,
-            request: service.ListCryptoKeyVersionsRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListCryptoKeyVersionsPager:
+    def list_crypto_key_versions(
+        self,
+        request: service.ListCryptoKeyVersionsRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListCryptoKeyVersionsPager:
         r"""Lists [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
 
 
@@ -488,8 +526,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([parent]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.ListCryptoKeyVersionsRequest(request)
 
@@ -506,39 +546,30 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.ListCryptoKeyVersionsPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def list_import_jobs(self,
-            request: service.ListImportJobsRequest = None,
-            *,
-            parent: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListImportJobsPager:
+    def list_import_jobs(
+        self,
+        request: service.ListImportJobsRequest = None,
+        *,
+        parent: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListImportJobsPager:
         r"""Lists [ImportJobs][google.cloud.kms.v1.ImportJob].
 
 
@@ -573,8 +604,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([parent]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.ListImportJobsRequest(request)
 
@@ -591,39 +624,30 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.ListImportJobsPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def get_key_ring(self,
-            request: service.GetKeyRingRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.KeyRing:
+    def get_key_ring(
+        self,
+        request: service.GetKeyRingRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.KeyRing:
         r"""Returns metadata for a given
         [KeyRing][google.cloud.kms.v1.KeyRing].
 
@@ -656,8 +680,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([name]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.GetKeyRingRequest(request)
 
@@ -674,30 +700,24 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def get_crypto_key(self,
-            request: service.GetCryptoKeyRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.CryptoKey:
+    def get_crypto_key(
+        self,
+        request: service.GetCryptoKeyRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.CryptoKey:
         r"""Returns metadata for a given
         [CryptoKey][google.cloud.kms.v1.CryptoKey], as well as its
         [primary][google.cloud.kms.v1.CryptoKey.primary]
@@ -739,8 +759,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([name]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.GetCryptoKeyRequest(request)
 
@@ -757,30 +779,24 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def get_crypto_key_version(self,
-            request: service.GetCryptoKeyVersionRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.CryptoKeyVersion:
+    def get_crypto_key_version(
+        self,
+        request: service.GetCryptoKeyVersionRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.CryptoKeyVersion:
         r"""Returns metadata for a given
         [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
 
@@ -827,8 +843,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([name]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.GetCryptoKeyVersionRequest(request)
 
@@ -845,30 +863,24 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def get_public_key(self,
-            request: service.GetPublicKeyRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.PublicKey:
+    def get_public_key(
+        self,
+        request: service.GetPublicKeyRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.PublicKey:
         r"""Returns the public key for the given
         [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. The
         [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must
@@ -909,8 +921,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([name]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.GetPublicKeyRequest(request)
 
@@ -927,30 +941,24 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def get_import_job(self,
-            request: service.GetImportJobRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.ImportJob:
+    def get_import_job(
+        self,
+        request: service.GetImportJobRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.ImportJob:
         r"""Returns metadata for a given
         [ImportJob][google.cloud.kms.v1.ImportJob].
 
@@ -1026,8 +1034,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([name]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.GetImportJobRequest(request)
 
@@ -1044,32 +1054,26 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def create_key_ring(self,
-            request: service.CreateKeyRingRequest = None,
-            *,
-            parent: str = None,
-            key_ring_id: str = None,
-            key_ring: resources.KeyRing = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.KeyRing:
+    def create_key_ring(
+        self,
+        request: service.CreateKeyRingRequest = None,
+        *,
+        parent: str = None,
+        key_ring_id: str = None,
+        key_ring: resources.KeyRing = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.KeyRing:
         r"""Create a new [KeyRing][google.cloud.kms.v1.KeyRing] in a given
         Project and Location.
 
@@ -1115,8 +1119,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([parent, key_ring_id, key_ring]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.CreateKeyRingRequest(request)
 
@@ -1137,32 +1143,26 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def create_crypto_key(self,
-            request: service.CreateCryptoKeyRequest = None,
-            *,
-            parent: str = None,
-            crypto_key_id: str = None,
-            crypto_key: resources.CryptoKey = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.CryptoKey:
+    def create_crypto_key(
+        self,
+        request: service.CreateCryptoKeyRequest = None,
+        *,
+        parent: str = None,
+        crypto_key_id: str = None,
+        crypto_key: resources.CryptoKey = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.CryptoKey:
         r"""Create a new [CryptoKey][google.cloud.kms.v1.CryptoKey] within a
         [KeyRing][google.cloud.kms.v1.KeyRing].
 
@@ -1218,8 +1218,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([parent, crypto_key_id, crypto_key]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.CreateCryptoKeyRequest(request)
 
@@ -1240,31 +1242,25 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def create_crypto_key_version(self,
-            request: service.CreateCryptoKeyVersionRequest = None,
-            *,
-            parent: str = None,
-            crypto_key_version: resources.CryptoKeyVersion = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.CryptoKeyVersion:
+    def create_crypto_key_version(
+        self,
+        request: service.CreateCryptoKeyVersionRequest = None,
+        *,
+        parent: str = None,
+        crypto_key_version: resources.CryptoKeyVersion = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.CryptoKeyVersion:
         r"""Create a new
         [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in a
         [CryptoKey][google.cloud.kms.v1.CryptoKey].
@@ -1324,8 +1320,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([parent, crypto_key_version]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.CreateCryptoKeyVersionRequest(request)
 
@@ -1339,34 +1337,30 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.create_crypto_key_version]
+        rpc = self._transport._wrapped_methods[
+            self._transport.create_crypto_key_version
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def import_crypto_key_version(self,
-            request: service.ImportCryptoKeyVersionRequest = None,
-            *,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.CryptoKeyVersion:
+    def import_crypto_key_version(
+        self,
+        request: service.ImportCryptoKeyVersionRequest = None,
+        *,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.CryptoKeyVersion:
         r"""Imports a new
         [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] into an
         existing [CryptoKey][google.cloud.kms.v1.CryptoKey] using the
@@ -1412,37 +1406,33 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.import_crypto_key_version]
+        rpc = self._transport._wrapped_methods[
+            self._transport.import_crypto_key_version
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def create_import_job(self,
-            request: service.CreateImportJobRequest = None,
-            *,
-            parent: str = None,
-            import_job_id: str = None,
-            import_job: resources.ImportJob = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.ImportJob:
+    def create_import_job(
+        self,
+        request: service.CreateImportJobRequest = None,
+        *,
+        parent: str = None,
+        import_job_id: str = None,
+        import_job: resources.ImportJob = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.ImportJob:
         r"""Create a new [ImportJob][google.cloud.kms.v1.ImportJob] within a
         [KeyRing][google.cloud.kms.v1.KeyRing].
 
@@ -1533,8 +1523,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([parent, import_job_id, import_job]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.CreateImportJobRequest(request)
 
@@ -1555,31 +1547,25 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def update_crypto_key(self,
-            request: service.UpdateCryptoKeyRequest = None,
-            *,
-            crypto_key: resources.CryptoKey = None,
-            update_mask: field_mask.FieldMask = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.CryptoKey:
+    def update_crypto_key(
+        self,
+        request: service.UpdateCryptoKeyRequest = None,
+        *,
+        crypto_key: resources.CryptoKey = None,
+        update_mask: field_mask.FieldMask = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.CryptoKey:
         r"""Update a [CryptoKey][google.cloud.kms.v1.CryptoKey].
 
 
@@ -1623,8 +1609,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([crypto_key, update_mask]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.UpdateCryptoKeyRequest(request)
 
@@ -1643,31 +1631,27 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('crypto_key.name', request.crypto_key.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (("crypto_key.name", request.crypto_key.name),)
+            ),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def update_crypto_key_version(self,
-            request: service.UpdateCryptoKeyVersionRequest = None,
-            *,
-            crypto_key_version: resources.CryptoKeyVersion = None,
-            update_mask: field_mask.FieldMask = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.CryptoKeyVersion:
+    def update_crypto_key_version(
+        self,
+        request: service.UpdateCryptoKeyVersionRequest = None,
+        *,
+        crypto_key_version: resources.CryptoKeyVersion = None,
+        update_mask: field_mask.FieldMask = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.CryptoKeyVersion:
         r"""Update a
         [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s
         metadata.
@@ -1731,8 +1715,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([crypto_key_version, update_mask]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.UpdateCryptoKeyVersionRequest(request)
 
@@ -1746,36 +1732,34 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.update_crypto_key_version]
+        rpc = self._transport._wrapped_methods[
+            self._transport.update_crypto_key_version
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('crypto_key_version.name', request.crypto_key_version.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (("crypto_key_version.name", request.crypto_key_version.name),)
+            ),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def encrypt(self,
-            request: service.EncryptRequest = None,
-            *,
-            name: str = None,
-            plaintext: bytes = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.EncryptResponse:
+    def encrypt(
+        self,
+        request: service.EncryptRequest = None,
+        *,
+        name: str = None,
+        plaintext: bytes = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> service.EncryptResponse:
         r"""Encrypts data, so that it can only be recovered by a call to
         [Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt]. The
         [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must
@@ -1832,8 +1816,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([name, plaintext]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.EncryptRequest(request)
 
@@ -1852,31 +1838,25 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def decrypt(self,
-            request: service.DecryptRequest = None,
-            *,
-            name: str = None,
-            ciphertext: bytes = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.DecryptResponse:
+    def decrypt(
+        self,
+        request: service.DecryptRequest = None,
+        *,
+        name: str = None,
+        ciphertext: bytes = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> service.DecryptResponse:
         r"""Decrypts data that was protected by
         [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt]. The
         [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose] must
@@ -1919,8 +1899,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([name, ciphertext]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.DecryptRequest(request)
 
@@ -1939,31 +1921,25 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def asymmetric_sign(self,
-            request: service.AsymmetricSignRequest = None,
-            *,
-            name: str = None,
-            digest: service.Digest = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.AsymmetricSignResponse:
+    def asymmetric_sign(
+        self,
+        request: service.AsymmetricSignRequest = None,
+        *,
+        name: str = None,
+        digest: service.Digest = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> service.AsymmetricSignResponse:
         r"""Signs data using a
         [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with
         [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
@@ -2008,8 +1984,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([name, digest]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.AsymmetricSignRequest(request)
 
@@ -2028,31 +2006,25 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def asymmetric_decrypt(self,
-            request: service.AsymmetricDecryptRequest = None,
-            *,
-            name: str = None,
-            ciphertext: bytes = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> service.AsymmetricDecryptResponse:
+    def asymmetric_decrypt(
+        self,
+        request: service.AsymmetricDecryptRequest = None,
+        *,
+        name: str = None,
+        ciphertext: bytes = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> service.AsymmetricDecryptResponse:
         r"""Decrypts data that was encrypted with a public key retrieved
         from
         [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey]
@@ -2097,8 +2069,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([name, ciphertext]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.AsymmetricDecryptRequest(request)
 
@@ -2117,31 +2091,25 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def update_crypto_key_primary_version(self,
-            request: service.UpdateCryptoKeyPrimaryVersionRequest = None,
-            *,
-            name: str = None,
-            crypto_key_version_id: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.CryptoKey:
+    def update_crypto_key_primary_version(
+        self,
+        request: service.UpdateCryptoKeyPrimaryVersionRequest = None,
+        *,
+        name: str = None,
+        crypto_key_version_id: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.CryptoKey:
         r"""Update the version of a
         [CryptoKey][google.cloud.kms.v1.CryptoKey] that will be used in
         [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt].
@@ -2190,8 +2158,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([name, crypto_key_version_id]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.UpdateCryptoKeyPrimaryVersionRequest(request)
 
@@ -2205,35 +2175,31 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.update_crypto_key_primary_version]
+        rpc = self._transport._wrapped_methods[
+            self._transport.update_crypto_key_primary_version
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def destroy_crypto_key_version(self,
-            request: service.DestroyCryptoKeyVersionRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.CryptoKeyVersion:
+    def destroy_crypto_key_version(
+        self,
+        request: service.DestroyCryptoKeyVersionRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.CryptoKeyVersion:
         r"""Schedule a
         [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] for
         destruction.
@@ -2298,8 +2264,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([name]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.DestroyCryptoKeyVersionRequest(request)
 
@@ -2311,35 +2279,31 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.destroy_crypto_key_version]
+        rpc = self._transport._wrapped_methods[
+            self._transport.destroy_crypto_key_version
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def restore_crypto_key_version(self,
-            request: service.RestoreCryptoKeyVersionRequest = None,
-            *,
-            name: str = None,
-            retry: retries.Retry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> resources.CryptoKeyVersion:
+    def restore_crypto_key_version(
+        self,
+        request: service.RestoreCryptoKeyVersionRequest = None,
+        *,
+        name: str = None,
+        retry: retries.Retry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> resources.CryptoKeyVersion:
         r"""Restore a
         [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in the
         [DESTROY_SCHEDULED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROY_SCHEDULED]
@@ -2395,8 +2359,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([name]):
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
         request = service.RestoreCryptoKeyVersionRequest(request)
 
@@ -2408,23 +2374,18 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.restore_crypto_key_version]
+        rpc = self._transport._wrapped_methods[
+            self._transport.restore_crypto_key_version
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('name', request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
@@ -2703,17 +2664,12 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         return response
 
 
-
 try:
     _client_info = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution(
-            'google-cloud-kms',
-        ).version,
+        gapic_version=pkg_resources.get_distribution("google-cloud-kms",).version,
     )
 except pkg_resources.DistributionNotFound:
     _client_info = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = (
-    'KeyManagementServiceClient',
-)
+__all__ = ("KeyManagementServiceClient",)
