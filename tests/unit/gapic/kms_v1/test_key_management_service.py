@@ -6421,6 +6421,70 @@ def test_key_management_service_grpc_asyncio_transport_channel_mtls_with_adc(
         assert transport.grpc_channel == mock_grpc_channel
 
 
+def test_crypto_key_version_path():
+    project = "squid"
+    location = "clam"
+    key_ring = "whelk"
+    crypto_key = "octopus"
+    crypto_key_version = "oyster"
+
+    expected = "projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}".format(
+        project=project,
+        location=location,
+        key_ring=key_ring,
+        crypto_key=crypto_key,
+        crypto_key_version=crypto_key_version,
+    )
+    actual = KeyManagementServiceClient.crypto_key_version_path(
+        project, location, key_ring, crypto_key, crypto_key_version
+    )
+    assert expected == actual
+
+
+def test_parse_crypto_key_version_path():
+    expected = {
+        "project": "nudibranch",
+        "location": "cuttlefish",
+        "key_ring": "mussel",
+        "crypto_key": "winkle",
+        "crypto_key_version": "nautilus",
+    }
+    path = KeyManagementServiceClient.crypto_key_version_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = KeyManagementServiceClient.parse_crypto_key_version_path(path)
+    assert expected == actual
+
+
+def test_import_job_path():
+    project = "squid"
+    location = "clam"
+    key_ring = "whelk"
+    import_job = "octopus"
+
+    expected = "projects/{project}/locations/{location}/keyRings/{key_ring}/importJobs/{import_job}".format(
+        project=project, location=location, key_ring=key_ring, import_job=import_job,
+    )
+    actual = KeyManagementServiceClient.import_job_path(
+        project, location, key_ring, import_job
+    )
+    assert expected == actual
+
+
+def test_parse_import_job_path():
+    expected = {
+        "project": "oyster",
+        "location": "nudibranch",
+        "key_ring": "cuttlefish",
+        "import_job": "mussel",
+    }
+    path = KeyManagementServiceClient.import_job_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = KeyManagementServiceClient.parse_import_job_path(path)
+    assert expected == actual
+
+
 def test_key_ring_path():
     project = "squid"
     location = "clam"
@@ -6472,70 +6536,6 @@ def test_parse_crypto_key_path():
 
     # Check that the path construction is reversible.
     actual = KeyManagementServiceClient.parse_crypto_key_path(path)
-    assert expected == actual
-
-
-def test_import_job_path():
-    project = "squid"
-    location = "clam"
-    key_ring = "whelk"
-    import_job = "octopus"
-
-    expected = "projects/{project}/locations/{location}/keyRings/{key_ring}/importJobs/{import_job}".format(
-        project=project, location=location, key_ring=key_ring, import_job=import_job,
-    )
-    actual = KeyManagementServiceClient.import_job_path(
-        project, location, key_ring, import_job
-    )
-    assert expected == actual
-
-
-def test_parse_import_job_path():
-    expected = {
-        "project": "oyster",
-        "location": "nudibranch",
-        "key_ring": "cuttlefish",
-        "import_job": "mussel",
-    }
-    path = KeyManagementServiceClient.import_job_path(**expected)
-
-    # Check that the path construction is reversible.
-    actual = KeyManagementServiceClient.parse_import_job_path(path)
-    assert expected == actual
-
-
-def test_crypto_key_version_path():
-    project = "squid"
-    location = "clam"
-    key_ring = "whelk"
-    crypto_key = "octopus"
-    crypto_key_version = "oyster"
-
-    expected = "projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}".format(
-        project=project,
-        location=location,
-        key_ring=key_ring,
-        crypto_key=crypto_key,
-        crypto_key_version=crypto_key_version,
-    )
-    actual = KeyManagementServiceClient.crypto_key_version_path(
-        project, location, key_ring, crypto_key, crypto_key_version
-    )
-    assert expected == actual
-
-
-def test_parse_crypto_key_version_path():
-    expected = {
-        "project": "nudibranch",
-        "location": "cuttlefish",
-        "key_ring": "mussel",
-        "crypto_key": "winkle",
-        "crypto_key_version": "nautilus",
-    }
-    path = KeyManagementServiceClient.crypto_key_version_path(**expected)
-
-    # Check that the path construction is reversible.
-    actual = KeyManagementServiceClient.parse_crypto_key_version_path(path)
     assert expected == actual
 
 
