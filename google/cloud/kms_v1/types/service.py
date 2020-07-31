@@ -23,41 +23,41 @@ from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package="google.cloud.kms.v1",
+    package='google.cloud.kms.v1',
     manifest={
-        "ListKeyRingsRequest",
-        "ListCryptoKeysRequest",
-        "ListCryptoKeyVersionsRequest",
-        "ListImportJobsRequest",
-        "ListKeyRingsResponse",
-        "ListCryptoKeysResponse",
-        "ListCryptoKeyVersionsResponse",
-        "ListImportJobsResponse",
-        "GetKeyRingRequest",
-        "GetCryptoKeyRequest",
-        "GetCryptoKeyVersionRequest",
-        "GetPublicKeyRequest",
-        "GetImportJobRequest",
-        "CreateKeyRingRequest",
-        "CreateCryptoKeyRequest",
-        "CreateCryptoKeyVersionRequest",
-        "ImportCryptoKeyVersionRequest",
-        "CreateImportJobRequest",
-        "UpdateCryptoKeyRequest",
-        "UpdateCryptoKeyVersionRequest",
-        "EncryptRequest",
-        "DecryptRequest",
-        "AsymmetricSignRequest",
-        "AsymmetricDecryptRequest",
-        "DecryptResponse",
-        "EncryptResponse",
-        "AsymmetricSignResponse",
-        "AsymmetricDecryptResponse",
-        "UpdateCryptoKeyPrimaryVersionRequest",
-        "DestroyCryptoKeyVersionRequest",
-        "RestoreCryptoKeyVersionRequest",
-        "Digest",
-        "LocationMetadata",
+        'ListKeyRingsRequest',
+        'ListCryptoKeysRequest',
+        'ListCryptoKeyVersionsRequest',
+        'ListImportJobsRequest',
+        'ListKeyRingsResponse',
+        'ListCryptoKeysResponse',
+        'ListCryptoKeyVersionsResponse',
+        'ListImportJobsResponse',
+        'GetKeyRingRequest',
+        'GetCryptoKeyRequest',
+        'GetCryptoKeyVersionRequest',
+        'GetPublicKeyRequest',
+        'GetImportJobRequest',
+        'CreateKeyRingRequest',
+        'CreateCryptoKeyRequest',
+        'CreateCryptoKeyVersionRequest',
+        'ImportCryptoKeyVersionRequest',
+        'CreateImportJobRequest',
+        'UpdateCryptoKeyRequest',
+        'UpdateCryptoKeyVersionRequest',
+        'EncryptRequest',
+        'DecryptRequest',
+        'AsymmetricSignRequest',
+        'AsymmetricDecryptRequest',
+        'DecryptResponse',
+        'EncryptResponse',
+        'AsymmetricSignResponse',
+        'AsymmetricDecryptResponse',
+        'UpdateCryptoKeyPrimaryVersionRequest',
+        'DestroyCryptoKeyVersionRequest',
+        'RestoreCryptoKeyVersionRequest',
+        'Digest',
+        'LocationMetadata',
     },
 )
 
@@ -147,8 +147,8 @@ class ListCryptoKeysRequest(proto.Message):
 
     page_token = proto.Field(proto.STRING, number=3)
 
-    version_view = proto.Field(
-        proto.ENUM, number=4, enum=resources.CryptoKeyVersion.CryptoKeyVersionView,
+    version_view = proto.Field(proto.ENUM, number=4,
+        enum=resources.CryptoKeyVersion.CryptoKeyVersionView,
     )
 
     filter = proto.Field(proto.STRING, number=5)
@@ -197,8 +197,8 @@ class ListCryptoKeyVersionsRequest(proto.Message):
 
     page_token = proto.Field(proto.STRING, number=3)
 
-    view = proto.Field(
-        proto.ENUM, number=4, enum=resources.CryptoKeyVersion.CryptoKeyVersionView,
+    view = proto.Field(proto.ENUM, number=4,
+        enum=resources.CryptoKeyVersion.CryptoKeyVersionView,
     )
 
     filter = proto.Field(proto.STRING, number=5)
@@ -270,7 +270,9 @@ class ListKeyRingsResponse(proto.Message):
     def raw_page(self):
         return self
 
-    key_rings = proto.RepeatedField(proto.MESSAGE, number=1, message=resources.KeyRing,)
+    key_rings = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=resources.KeyRing,
+    )
 
     next_page_token = proto.Field(proto.STRING, number=2)
 
@@ -298,8 +300,8 @@ class ListCryptoKeysResponse(proto.Message):
     def raw_page(self):
         return self
 
-    crypto_keys = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.CryptoKey,
+    crypto_keys = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=resources.CryptoKey,
     )
 
     next_page_token = proto.Field(proto.STRING, number=2)
@@ -329,8 +331,8 @@ class ListCryptoKeyVersionsResponse(proto.Message):
     def raw_page(self):
         return self
 
-    crypto_key_versions = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.CryptoKeyVersion,
+    crypto_key_versions = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=resources.CryptoKeyVersion,
     )
 
     next_page_token = proto.Field(proto.STRING, number=2)
@@ -359,8 +361,8 @@ class ListImportJobsResponse(proto.Message):
     def raw_page(self):
         return self
 
-    import_jobs = proto.RepeatedField(
-        proto.MESSAGE, number=1, message=resources.ImportJob,
+    import_jobs = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=resources.ImportJob,
     )
 
     next_page_token = proto.Field(proto.STRING, number=2)
@@ -458,7 +460,9 @@ class CreateKeyRingRequest(proto.Message):
 
     key_ring_id = proto.Field(proto.STRING, number=2)
 
-    key_ring = proto.Field(proto.MESSAGE, number=3, message=resources.KeyRing,)
+    key_ring = proto.Field(proto.MESSAGE, number=3,
+        message=resources.KeyRing,
+    )
 
 
 class CreateCryptoKeyRequest(proto.Message):
@@ -492,7 +496,9 @@ class CreateCryptoKeyRequest(proto.Message):
 
     crypto_key_id = proto.Field(proto.STRING, number=2)
 
-    crypto_key = proto.Field(proto.MESSAGE, number=3, message=resources.CryptoKey,)
+    crypto_key = proto.Field(proto.MESSAGE, number=3,
+        message=resources.CryptoKey,
+    )
 
     skip_initial_version_creation = proto.Field(proto.BOOL, number=5)
 
@@ -515,8 +521,8 @@ class CreateCryptoKeyVersionRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    crypto_key_version = proto.Field(
-        proto.MESSAGE, number=2, message=resources.CryptoKeyVersion,
+    crypto_key_version = proto.Field(proto.MESSAGE, number=2,
+        message=resources.CryptoKeyVersion,
     )
 
 
@@ -572,15 +578,13 @@ class ImportCryptoKeyVersionRequest(proto.Message):
 
     parent = proto.Field(proto.STRING, number=1)
 
-    algorithm = proto.Field(
-        proto.ENUM, number=2, enum=resources.CryptoKeyVersion.CryptoKeyVersionAlgorithm,
+    algorithm = proto.Field(proto.ENUM, number=2,
+        enum=resources.CryptoKeyVersion.CryptoKeyVersionAlgorithm,
     )
 
     import_job = proto.Field(proto.STRING, number=4)
 
-    rsa_aes_wrapped_key = proto.Field(
-        proto.BYTES, number=5, oneof="wrapped_key_material"
-    )
+    rsa_aes_wrapped_key = proto.Field(proto.BYTES, number=5, oneof='wrapped_key_material')
 
 
 class CreateImportJobRequest(proto.Message):
@@ -604,7 +608,9 @@ class CreateImportJobRequest(proto.Message):
 
     import_job_id = proto.Field(proto.STRING, number=2)
 
-    import_job = proto.Field(proto.MESSAGE, number=3, message=resources.ImportJob,)
+    import_job = proto.Field(proto.MESSAGE, number=3,
+        message=resources.ImportJob,
+    )
 
 
 class UpdateCryptoKeyRequest(proto.Message):
@@ -620,9 +626,13 @@ class UpdateCryptoKeyRequest(proto.Message):
             this request.
     """
 
-    crypto_key = proto.Field(proto.MESSAGE, number=1, message=resources.CryptoKey,)
+    crypto_key = proto.Field(proto.MESSAGE, number=1,
+        message=resources.CryptoKey,
+    )
 
-    update_mask = proto.Field(proto.MESSAGE, number=2, message=field_mask.FieldMask,)
+    update_mask = proto.Field(proto.MESSAGE, number=2,
+        message=field_mask.FieldMask,
+    )
 
 
 class UpdateCryptoKeyVersionRequest(proto.Message):
@@ -639,11 +649,13 @@ class UpdateCryptoKeyVersionRequest(proto.Message):
             this request.
     """
 
-    crypto_key_version = proto.Field(
-        proto.MESSAGE, number=1, message=resources.CryptoKeyVersion,
+    crypto_key_version = proto.Field(proto.MESSAGE, number=1,
+        message=resources.CryptoKeyVersion,
     )
 
-    update_mask = proto.Field(proto.MESSAGE, number=2, message=field_mask.FieldMask,)
+    update_mask = proto.Field(proto.MESSAGE, number=2,
+        message=field_mask.FieldMask,
+    )
 
 
 class EncryptRequest(proto.Message):
@@ -736,7 +748,9 @@ class AsymmetricSignRequest(proto.Message):
 
     name = proto.Field(proto.STRING, number=1)
 
-    digest = proto.Field(proto.MESSAGE, number=3, message="Digest",)
+    digest = proto.Field(proto.MESSAGE, number=3,
+        message='Digest',
+    )
 
 
 class AsymmetricDecryptRequest(proto.Message):
@@ -879,11 +893,11 @@ class Digest(proto.Message):
             algorithm.
     """
 
-    sha256 = proto.Field(proto.BYTES, number=1, oneof="digest")
+    sha256 = proto.Field(proto.BYTES, number=1, oneof='digest')
 
-    sha384 = proto.Field(proto.BYTES, number=2, oneof="digest")
+    sha384 = proto.Field(proto.BYTES, number=2, oneof='digest')
 
-    sha512 = proto.Field(proto.BYTES, number=3, oneof="digest")
+    sha512 = proto.Field(proto.BYTES, number=3, oneof='digest')
 
 
 class LocationMetadata(proto.Message):

@@ -38,15 +38,12 @@ class ListKeyRingsPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-
-    def __init__(
-        self,
-        method: Callable[..., service.ListKeyRingsResponse],
-        request: service.ListKeyRingsRequest,
-        response: service.ListKeyRingsResponse,
-        *,
-        metadata: Sequence[Tuple[str, str]] = ()
-    ):
+    def __init__(self,
+            method: Callable[..., service.ListKeyRingsResponse],
+            request: service.ListKeyRingsRequest,
+            response: service.ListKeyRingsResponse,
+            *,
+            metadata: Sequence[Tuple[str, str]] = ()):
         """Instantiate the pager.
 
         Args:
@@ -80,7 +77,7 @@ class ListKeyRingsPager:
             yield from page.key_rings
 
     def __repr__(self) -> str:
-        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
+        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
 
 
 class ListKeyRingsAsyncPager:
@@ -100,15 +97,12 @@ class ListKeyRingsAsyncPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-
-    def __init__(
-        self,
-        method: Callable[..., Awaitable[service.ListKeyRingsResponse]],
-        request: service.ListKeyRingsRequest,
-        response: service.ListKeyRingsResponse,
-        *,
-        metadata: Sequence[Tuple[str, str]] = ()
-    ):
+    def __init__(self,
+            method: Callable[..., Awaitable[service.ListKeyRingsResponse]],
+            request: service.ListKeyRingsRequest,
+            response: service.ListKeyRingsResponse,
+            *,
+            metadata: Sequence[Tuple[str, str]] = ()):
         """Instantiate the pager.
 
         Args:
@@ -146,7 +140,7 @@ class ListKeyRingsAsyncPager:
         return async_generator()
 
     def __repr__(self) -> str:
-        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
+        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
 
 
 class ListCryptoKeysPager:
@@ -166,15 +160,12 @@ class ListCryptoKeysPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-
-    def __init__(
-        self,
-        method: Callable[..., service.ListCryptoKeysResponse],
-        request: service.ListCryptoKeysRequest,
-        response: service.ListCryptoKeysResponse,
-        *,
-        metadata: Sequence[Tuple[str, str]] = ()
-    ):
+    def __init__(self,
+            method: Callable[..., service.ListCryptoKeysResponse],
+            request: service.ListCryptoKeysRequest,
+            response: service.ListCryptoKeysResponse,
+            *,
+            metadata: Sequence[Tuple[str, str]] = ()):
         """Instantiate the pager.
 
         Args:
@@ -208,7 +199,7 @@ class ListCryptoKeysPager:
             yield from page.crypto_keys
 
     def __repr__(self) -> str:
-        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
+        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
 
 
 class ListCryptoKeysAsyncPager:
@@ -228,15 +219,12 @@ class ListCryptoKeysAsyncPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-
-    def __init__(
-        self,
-        method: Callable[..., Awaitable[service.ListCryptoKeysResponse]],
-        request: service.ListCryptoKeysRequest,
-        response: service.ListCryptoKeysResponse,
-        *,
-        metadata: Sequence[Tuple[str, str]] = ()
-    ):
+    def __init__(self,
+            method: Callable[..., Awaitable[service.ListCryptoKeysResponse]],
+            request: service.ListCryptoKeysRequest,
+            response: service.ListCryptoKeysResponse,
+            *,
+            metadata: Sequence[Tuple[str, str]] = ()):
         """Instantiate the pager.
 
         Args:
@@ -274,7 +262,7 @@ class ListCryptoKeysAsyncPager:
         return async_generator()
 
     def __repr__(self) -> str:
-        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
+        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
 
 
 class ListCryptoKeyVersionsPager:
@@ -294,15 +282,12 @@ class ListCryptoKeyVersionsPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-
-    def __init__(
-        self,
-        method: Callable[..., service.ListCryptoKeyVersionsResponse],
-        request: service.ListCryptoKeyVersionsRequest,
-        response: service.ListCryptoKeyVersionsResponse,
-        *,
-        metadata: Sequence[Tuple[str, str]] = ()
-    ):
+    def __init__(self,
+            method: Callable[..., service.ListCryptoKeyVersionsResponse],
+            request: service.ListCryptoKeyVersionsRequest,
+            response: service.ListCryptoKeyVersionsResponse,
+            *,
+            metadata: Sequence[Tuple[str, str]] = ()):
         """Instantiate the pager.
 
         Args:
@@ -336,7 +321,7 @@ class ListCryptoKeyVersionsPager:
             yield from page.crypto_key_versions
 
     def __repr__(self) -> str:
-        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
+        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
 
 
 class ListCryptoKeyVersionsAsyncPager:
@@ -356,15 +341,12 @@ class ListCryptoKeyVersionsAsyncPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-
-    def __init__(
-        self,
-        method: Callable[..., Awaitable[service.ListCryptoKeyVersionsResponse]],
-        request: service.ListCryptoKeyVersionsRequest,
-        response: service.ListCryptoKeyVersionsResponse,
-        *,
-        metadata: Sequence[Tuple[str, str]] = ()
-    ):
+    def __init__(self,
+            method: Callable[..., Awaitable[service.ListCryptoKeyVersionsResponse]],
+            request: service.ListCryptoKeyVersionsRequest,
+            response: service.ListCryptoKeyVersionsResponse,
+            *,
+            metadata: Sequence[Tuple[str, str]] = ()):
         """Instantiate the pager.
 
         Args:
@@ -402,7 +384,7 @@ class ListCryptoKeyVersionsAsyncPager:
         return async_generator()
 
     def __repr__(self) -> str:
-        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
+        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
 
 
 class ListImportJobsPager:
@@ -422,15 +404,12 @@ class ListImportJobsPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-
-    def __init__(
-        self,
-        method: Callable[..., service.ListImportJobsResponse],
-        request: service.ListImportJobsRequest,
-        response: service.ListImportJobsResponse,
-        *,
-        metadata: Sequence[Tuple[str, str]] = ()
-    ):
+    def __init__(self,
+            method: Callable[..., service.ListImportJobsResponse],
+            request: service.ListImportJobsRequest,
+            response: service.ListImportJobsResponse,
+            *,
+            metadata: Sequence[Tuple[str, str]] = ()):
         """Instantiate the pager.
 
         Args:
@@ -464,7 +443,7 @@ class ListImportJobsPager:
             yield from page.import_jobs
 
     def __repr__(self) -> str:
-        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
+        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)
 
 
 class ListImportJobsAsyncPager:
@@ -484,15 +463,12 @@ class ListImportJobsAsyncPager:
     attributes are available on the pager. If multiple requests are made, only
     the most recent response is retained, and thus used for attribute lookup.
     """
-
-    def __init__(
-        self,
-        method: Callable[..., Awaitable[service.ListImportJobsResponse]],
-        request: service.ListImportJobsRequest,
-        response: service.ListImportJobsResponse,
-        *,
-        metadata: Sequence[Tuple[str, str]] = ()
-    ):
+    def __init__(self,
+            method: Callable[..., Awaitable[service.ListImportJobsResponse]],
+            request: service.ListImportJobsRequest,
+            response: service.ListImportJobsResponse,
+            *,
+            metadata: Sequence[Tuple[str, str]] = ()):
         """Instantiate the pager.
 
         Args:
@@ -530,4 +506,4 @@ class ListImportJobsAsyncPager:
         return async_generator()
 
     def __repr__(self) -> str:
-        return "{0}<{1!r}>".format(self.__class__.__name__, self._response)
+        return '{0}<{1!r}>'.format(self.__class__.__name__, self._response)

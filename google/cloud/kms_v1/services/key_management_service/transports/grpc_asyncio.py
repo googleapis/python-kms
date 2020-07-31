@@ -17,11 +17,11 @@
 
 from typing import Awaitable, Callable, Dict, Optional, Sequence, Tuple
 
-from google.api_core import grpc_helpers_async  # type: ignore
-from google.auth import credentials  # type: ignore
+from google.api_core import grpc_helpers_async         # type: ignore
+from google.auth import credentials                    # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 
-import grpc  # type: ignore
+import grpc                        # type: ignore
 from grpc.experimental import aio  # type: ignore
 
 from google.cloud.kms_v1.types import resources
@@ -61,15 +61,13 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
     _stubs: Dict[str, Callable] = {}
 
     @classmethod
-    def create_channel(
-        cls,
-        host: str = "cloudkms.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: Optional[str] = None,
-        scopes: Optional[Sequence[str]] = None,
-        quota_project_id: Optional[str] = None,
-        **kwargs,
-    ) -> aio.Channel:
+    def create_channel(cls,
+                       host: str = 'cloudkms.googleapis.com',
+                       credentials: credentials.Credentials = None,
+                       credentials_file: Optional[str] = None,
+                       scopes: Optional[Sequence[str]] = None,
+                       quota_project_id: Optional[str] = None,
+                       **kwargs) -> aio.Channel:
         """Create and return a gRPC AsyncIO channel object.
         Args:
             address (Optional[str]): The host for the channel to use.
@@ -98,21 +96,19 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
             credentials_file=credentials_file,
             scopes=scopes,
             quota_project_id=quota_project_id,
-            **kwargs,
+            **kwargs
         )
 
-    def __init__(
-        self,
-        *,
-        host: str = "cloudkms.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: Optional[str] = None,
-        scopes: Optional[Sequence[str]] = None,
-        channel: aio.Channel = None,
-        api_mtls_endpoint: str = None,
-        client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
-        quota_project_id=None,
-    ) -> None:
+    def __init__(self, *,
+            host: str = 'cloudkms.googleapis.com',
+            credentials: credentials.Credentials = None,
+            credentials_file: Optional[str] = None,
+            scopes: Optional[Sequence[str]] = None,
+            channel: aio.Channel = None,
+            api_mtls_endpoint: str = None,
+            client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
+            quota_project_id=None,
+            ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -156,11 +152,7 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
             # If a channel was explicitly provided, set it.
             self._grpc_channel = channel
         elif api_mtls_endpoint:
-            host = (
-                api_mtls_endpoint
-                if ":" in api_mtls_endpoint
-                else api_mtls_endpoint + ":443"
-            )
+            host = api_mtls_endpoint if ":" in api_mtls_endpoint else api_mtls_endpoint + ":443"
 
             # Create SSL credentials with client_cert_source or application
             # default SSL credentials.
@@ -202,20 +194,19 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
         """
         # Sanity check: Only create a new channel if we do not already
         # have one.
-        if not hasattr(self, "_grpc_channel"):
+        if not hasattr(self, '_grpc_channel'):
             self._grpc_channel = self.create_channel(
-                self._host, credentials=self._credentials,
+                self._host,
+                credentials=self._credentials,
             )
 
         # Return the channel from cache.
         return self._grpc_channel
 
     @property
-    def list_key_rings(
-        self,
-    ) -> Callable[
-        [service.ListKeyRingsRequest], Awaitable[service.ListKeyRingsResponse]
-    ]:
+    def list_key_rings(self) -> Callable[
+            [service.ListKeyRingsRequest],
+            Awaitable[service.ListKeyRingsResponse]]:
         r"""Return a callable for the list key rings method over gRPC.
 
         Lists [KeyRings][google.cloud.kms.v1.KeyRing].
@@ -230,20 +221,18 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "list_key_rings" not in self._stubs:
-            self._stubs["list_key_rings"] = self.grpc_channel.unary_unary(
-                "/google.cloud.kms.v1.KeyManagementService/ListKeyRings",
+        if 'list_key_rings' not in self._stubs:
+            self._stubs['list_key_rings'] = self.grpc_channel.unary_unary(
+                '/google.cloud.kms.v1.KeyManagementService/ListKeyRings',
                 request_serializer=service.ListKeyRingsRequest.serialize,
                 response_deserializer=service.ListKeyRingsResponse.deserialize,
             )
-        return self._stubs["list_key_rings"]
+        return self._stubs['list_key_rings']
 
     @property
-    def list_crypto_keys(
-        self,
-    ) -> Callable[
-        [service.ListCryptoKeysRequest], Awaitable[service.ListCryptoKeysResponse]
-    ]:
+    def list_crypto_keys(self) -> Callable[
+            [service.ListCryptoKeysRequest],
+            Awaitable[service.ListCryptoKeysResponse]]:
         r"""Return a callable for the list crypto keys method over gRPC.
 
         Lists [CryptoKeys][google.cloud.kms.v1.CryptoKey].
@@ -258,21 +247,18 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "list_crypto_keys" not in self._stubs:
-            self._stubs["list_crypto_keys"] = self.grpc_channel.unary_unary(
-                "/google.cloud.kms.v1.KeyManagementService/ListCryptoKeys",
+        if 'list_crypto_keys' not in self._stubs:
+            self._stubs['list_crypto_keys'] = self.grpc_channel.unary_unary(
+                '/google.cloud.kms.v1.KeyManagementService/ListCryptoKeys',
                 request_serializer=service.ListCryptoKeysRequest.serialize,
                 response_deserializer=service.ListCryptoKeysResponse.deserialize,
             )
-        return self._stubs["list_crypto_keys"]
+        return self._stubs['list_crypto_keys']
 
     @property
-    def list_crypto_key_versions(
-        self,
-    ) -> Callable[
-        [service.ListCryptoKeyVersionsRequest],
-        Awaitable[service.ListCryptoKeyVersionsResponse],
-    ]:
+    def list_crypto_key_versions(self) -> Callable[
+            [service.ListCryptoKeyVersionsRequest],
+            Awaitable[service.ListCryptoKeyVersionsResponse]]:
         r"""Return a callable for the list crypto key versions method over gRPC.
 
         Lists [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
@@ -287,20 +273,18 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "list_crypto_key_versions" not in self._stubs:
-            self._stubs["list_crypto_key_versions"] = self.grpc_channel.unary_unary(
-                "/google.cloud.kms.v1.KeyManagementService/ListCryptoKeyVersions",
+        if 'list_crypto_key_versions' not in self._stubs:
+            self._stubs['list_crypto_key_versions'] = self.grpc_channel.unary_unary(
+                '/google.cloud.kms.v1.KeyManagementService/ListCryptoKeyVersions',
                 request_serializer=service.ListCryptoKeyVersionsRequest.serialize,
                 response_deserializer=service.ListCryptoKeyVersionsResponse.deserialize,
             )
-        return self._stubs["list_crypto_key_versions"]
+        return self._stubs['list_crypto_key_versions']
 
     @property
-    def list_import_jobs(
-        self,
-    ) -> Callable[
-        [service.ListImportJobsRequest], Awaitable[service.ListImportJobsResponse]
-    ]:
+    def list_import_jobs(self) -> Callable[
+            [service.ListImportJobsRequest],
+            Awaitable[service.ListImportJobsResponse]]:
         r"""Return a callable for the list import jobs method over gRPC.
 
         Lists [ImportJobs][google.cloud.kms.v1.ImportJob].
@@ -315,18 +299,18 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "list_import_jobs" not in self._stubs:
-            self._stubs["list_import_jobs"] = self.grpc_channel.unary_unary(
-                "/google.cloud.kms.v1.KeyManagementService/ListImportJobs",
+        if 'list_import_jobs' not in self._stubs:
+            self._stubs['list_import_jobs'] = self.grpc_channel.unary_unary(
+                '/google.cloud.kms.v1.KeyManagementService/ListImportJobs',
                 request_serializer=service.ListImportJobsRequest.serialize,
                 response_deserializer=service.ListImportJobsResponse.deserialize,
             )
-        return self._stubs["list_import_jobs"]
+        return self._stubs['list_import_jobs']
 
     @property
-    def get_key_ring(
-        self,
-    ) -> Callable[[service.GetKeyRingRequest], Awaitable[resources.KeyRing]]:
+    def get_key_ring(self) -> Callable[
+            [service.GetKeyRingRequest],
+            Awaitable[resources.KeyRing]]:
         r"""Return a callable for the get key ring method over gRPC.
 
         Returns metadata for a given
@@ -342,18 +326,18 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "get_key_ring" not in self._stubs:
-            self._stubs["get_key_ring"] = self.grpc_channel.unary_unary(
-                "/google.cloud.kms.v1.KeyManagementService/GetKeyRing",
+        if 'get_key_ring' not in self._stubs:
+            self._stubs['get_key_ring'] = self.grpc_channel.unary_unary(
+                '/google.cloud.kms.v1.KeyManagementService/GetKeyRing',
                 request_serializer=service.GetKeyRingRequest.serialize,
                 response_deserializer=resources.KeyRing.deserialize,
             )
-        return self._stubs["get_key_ring"]
+        return self._stubs['get_key_ring']
 
     @property
-    def get_crypto_key(
-        self,
-    ) -> Callable[[service.GetCryptoKeyRequest], Awaitable[resources.CryptoKey]]:
+    def get_crypto_key(self) -> Callable[
+            [service.GetCryptoKeyRequest],
+            Awaitable[resources.CryptoKey]]:
         r"""Return a callable for the get crypto key method over gRPC.
 
         Returns metadata for a given
@@ -371,20 +355,18 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "get_crypto_key" not in self._stubs:
-            self._stubs["get_crypto_key"] = self.grpc_channel.unary_unary(
-                "/google.cloud.kms.v1.KeyManagementService/GetCryptoKey",
+        if 'get_crypto_key' not in self._stubs:
+            self._stubs['get_crypto_key'] = self.grpc_channel.unary_unary(
+                '/google.cloud.kms.v1.KeyManagementService/GetCryptoKey',
                 request_serializer=service.GetCryptoKeyRequest.serialize,
                 response_deserializer=resources.CryptoKey.deserialize,
             )
-        return self._stubs["get_crypto_key"]
+        return self._stubs['get_crypto_key']
 
     @property
-    def get_crypto_key_version(
-        self,
-    ) -> Callable[
-        [service.GetCryptoKeyVersionRequest], Awaitable[resources.CryptoKeyVersion]
-    ]:
+    def get_crypto_key_version(self) -> Callable[
+            [service.GetCryptoKeyVersionRequest],
+            Awaitable[resources.CryptoKeyVersion]]:
         r"""Return a callable for the get crypto key version method over gRPC.
 
         Returns metadata for a given
@@ -400,18 +382,18 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "get_crypto_key_version" not in self._stubs:
-            self._stubs["get_crypto_key_version"] = self.grpc_channel.unary_unary(
-                "/google.cloud.kms.v1.KeyManagementService/GetCryptoKeyVersion",
+        if 'get_crypto_key_version' not in self._stubs:
+            self._stubs['get_crypto_key_version'] = self.grpc_channel.unary_unary(
+                '/google.cloud.kms.v1.KeyManagementService/GetCryptoKeyVersion',
                 request_serializer=service.GetCryptoKeyVersionRequest.serialize,
                 response_deserializer=resources.CryptoKeyVersion.deserialize,
             )
-        return self._stubs["get_crypto_key_version"]
+        return self._stubs['get_crypto_key_version']
 
     @property
-    def get_public_key(
-        self,
-    ) -> Callable[[service.GetPublicKeyRequest], Awaitable[resources.PublicKey]]:
+    def get_public_key(self) -> Callable[
+            [service.GetPublicKeyRequest],
+            Awaitable[resources.PublicKey]]:
         r"""Return a callable for the get public key method over gRPC.
 
         Returns the public key for the given
@@ -432,18 +414,18 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "get_public_key" not in self._stubs:
-            self._stubs["get_public_key"] = self.grpc_channel.unary_unary(
-                "/google.cloud.kms.v1.KeyManagementService/GetPublicKey",
+        if 'get_public_key' not in self._stubs:
+            self._stubs['get_public_key'] = self.grpc_channel.unary_unary(
+                '/google.cloud.kms.v1.KeyManagementService/GetPublicKey',
                 request_serializer=service.GetPublicKeyRequest.serialize,
                 response_deserializer=resources.PublicKey.deserialize,
             )
-        return self._stubs["get_public_key"]
+        return self._stubs['get_public_key']
 
     @property
-    def get_import_job(
-        self,
-    ) -> Callable[[service.GetImportJobRequest], Awaitable[resources.ImportJob]]:
+    def get_import_job(self) -> Callable[
+            [service.GetImportJobRequest],
+            Awaitable[resources.ImportJob]]:
         r"""Return a callable for the get import job method over gRPC.
 
         Returns metadata for a given
@@ -459,18 +441,18 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "get_import_job" not in self._stubs:
-            self._stubs["get_import_job"] = self.grpc_channel.unary_unary(
-                "/google.cloud.kms.v1.KeyManagementService/GetImportJob",
+        if 'get_import_job' not in self._stubs:
+            self._stubs['get_import_job'] = self.grpc_channel.unary_unary(
+                '/google.cloud.kms.v1.KeyManagementService/GetImportJob',
                 request_serializer=service.GetImportJobRequest.serialize,
                 response_deserializer=resources.ImportJob.deserialize,
             )
-        return self._stubs["get_import_job"]
+        return self._stubs['get_import_job']
 
     @property
-    def create_key_ring(
-        self,
-    ) -> Callable[[service.CreateKeyRingRequest], Awaitable[resources.KeyRing]]:
+    def create_key_ring(self) -> Callable[
+            [service.CreateKeyRingRequest],
+            Awaitable[resources.KeyRing]]:
         r"""Return a callable for the create key ring method over gRPC.
 
         Create a new [KeyRing][google.cloud.kms.v1.KeyRing] in a given
@@ -486,18 +468,18 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "create_key_ring" not in self._stubs:
-            self._stubs["create_key_ring"] = self.grpc_channel.unary_unary(
-                "/google.cloud.kms.v1.KeyManagementService/CreateKeyRing",
+        if 'create_key_ring' not in self._stubs:
+            self._stubs['create_key_ring'] = self.grpc_channel.unary_unary(
+                '/google.cloud.kms.v1.KeyManagementService/CreateKeyRing',
                 request_serializer=service.CreateKeyRingRequest.serialize,
                 response_deserializer=resources.KeyRing.deserialize,
             )
-        return self._stubs["create_key_ring"]
+        return self._stubs['create_key_ring']
 
     @property
-    def create_crypto_key(
-        self,
-    ) -> Callable[[service.CreateCryptoKeyRequest], Awaitable[resources.CryptoKey]]:
+    def create_crypto_key(self) -> Callable[
+            [service.CreateCryptoKeyRequest],
+            Awaitable[resources.CryptoKey]]:
         r"""Return a callable for the create crypto key method over gRPC.
 
         Create a new [CryptoKey][google.cloud.kms.v1.CryptoKey] within a
@@ -517,20 +499,18 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "create_crypto_key" not in self._stubs:
-            self._stubs["create_crypto_key"] = self.grpc_channel.unary_unary(
-                "/google.cloud.kms.v1.KeyManagementService/CreateCryptoKey",
+        if 'create_crypto_key' not in self._stubs:
+            self._stubs['create_crypto_key'] = self.grpc_channel.unary_unary(
+                '/google.cloud.kms.v1.KeyManagementService/CreateCryptoKey',
                 request_serializer=service.CreateCryptoKeyRequest.serialize,
                 response_deserializer=resources.CryptoKey.deserialize,
             )
-        return self._stubs["create_crypto_key"]
+        return self._stubs['create_crypto_key']
 
     @property
-    def create_crypto_key_version(
-        self,
-    ) -> Callable[
-        [service.CreateCryptoKeyVersionRequest], Awaitable[resources.CryptoKeyVersion]
-    ]:
+    def create_crypto_key_version(self) -> Callable[
+            [service.CreateCryptoKeyVersionRequest],
+            Awaitable[resources.CryptoKeyVersion]]:
         r"""Return a callable for the create crypto key version method over gRPC.
 
         Create a new
@@ -552,20 +532,18 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "create_crypto_key_version" not in self._stubs:
-            self._stubs["create_crypto_key_version"] = self.grpc_channel.unary_unary(
-                "/google.cloud.kms.v1.KeyManagementService/CreateCryptoKeyVersion",
+        if 'create_crypto_key_version' not in self._stubs:
+            self._stubs['create_crypto_key_version'] = self.grpc_channel.unary_unary(
+                '/google.cloud.kms.v1.KeyManagementService/CreateCryptoKeyVersion',
                 request_serializer=service.CreateCryptoKeyVersionRequest.serialize,
                 response_deserializer=resources.CryptoKeyVersion.deserialize,
             )
-        return self._stubs["create_crypto_key_version"]
+        return self._stubs['create_crypto_key_version']
 
     @property
-    def import_crypto_key_version(
-        self,
-    ) -> Callable[
-        [service.ImportCryptoKeyVersionRequest], Awaitable[resources.CryptoKeyVersion]
-    ]:
+    def import_crypto_key_version(self) -> Callable[
+            [service.ImportCryptoKeyVersionRequest],
+            Awaitable[resources.CryptoKeyVersion]]:
         r"""Return a callable for the import crypto key version method over gRPC.
 
         Imports a new
@@ -586,18 +564,18 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "import_crypto_key_version" not in self._stubs:
-            self._stubs["import_crypto_key_version"] = self.grpc_channel.unary_unary(
-                "/google.cloud.kms.v1.KeyManagementService/ImportCryptoKeyVersion",
+        if 'import_crypto_key_version' not in self._stubs:
+            self._stubs['import_crypto_key_version'] = self.grpc_channel.unary_unary(
+                '/google.cloud.kms.v1.KeyManagementService/ImportCryptoKeyVersion',
                 request_serializer=service.ImportCryptoKeyVersionRequest.serialize,
                 response_deserializer=resources.CryptoKeyVersion.deserialize,
             )
-        return self._stubs["import_crypto_key_version"]
+        return self._stubs['import_crypto_key_version']
 
     @property
-    def create_import_job(
-        self,
-    ) -> Callable[[service.CreateImportJobRequest], Awaitable[resources.ImportJob]]:
+    def create_import_job(self) -> Callable[
+            [service.CreateImportJobRequest],
+            Awaitable[resources.ImportJob]]:
         r"""Return a callable for the create import job method over gRPC.
 
         Create a new [ImportJob][google.cloud.kms.v1.ImportJob] within a
@@ -616,18 +594,18 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "create_import_job" not in self._stubs:
-            self._stubs["create_import_job"] = self.grpc_channel.unary_unary(
-                "/google.cloud.kms.v1.KeyManagementService/CreateImportJob",
+        if 'create_import_job' not in self._stubs:
+            self._stubs['create_import_job'] = self.grpc_channel.unary_unary(
+                '/google.cloud.kms.v1.KeyManagementService/CreateImportJob',
                 request_serializer=service.CreateImportJobRequest.serialize,
                 response_deserializer=resources.ImportJob.deserialize,
             )
-        return self._stubs["create_import_job"]
+        return self._stubs['create_import_job']
 
     @property
-    def update_crypto_key(
-        self,
-    ) -> Callable[[service.UpdateCryptoKeyRequest], Awaitable[resources.CryptoKey]]:
+    def update_crypto_key(self) -> Callable[
+            [service.UpdateCryptoKeyRequest],
+            Awaitable[resources.CryptoKey]]:
         r"""Return a callable for the update crypto key method over gRPC.
 
         Update a [CryptoKey][google.cloud.kms.v1.CryptoKey].
@@ -642,20 +620,18 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "update_crypto_key" not in self._stubs:
-            self._stubs["update_crypto_key"] = self.grpc_channel.unary_unary(
-                "/google.cloud.kms.v1.KeyManagementService/UpdateCryptoKey",
+        if 'update_crypto_key' not in self._stubs:
+            self._stubs['update_crypto_key'] = self.grpc_channel.unary_unary(
+                '/google.cloud.kms.v1.KeyManagementService/UpdateCryptoKey',
                 request_serializer=service.UpdateCryptoKeyRequest.serialize,
                 response_deserializer=resources.CryptoKey.deserialize,
             )
-        return self._stubs["update_crypto_key"]
+        return self._stubs['update_crypto_key']
 
     @property
-    def update_crypto_key_version(
-        self,
-    ) -> Callable[
-        [service.UpdateCryptoKeyVersionRequest], Awaitable[resources.CryptoKeyVersion]
-    ]:
+    def update_crypto_key_version(self) -> Callable[
+            [service.UpdateCryptoKeyVersionRequest],
+            Awaitable[resources.CryptoKeyVersion]]:
         r"""Return a callable for the update crypto key version method over gRPC.
 
         Update a
@@ -683,18 +659,18 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "update_crypto_key_version" not in self._stubs:
-            self._stubs["update_crypto_key_version"] = self.grpc_channel.unary_unary(
-                "/google.cloud.kms.v1.KeyManagementService/UpdateCryptoKeyVersion",
+        if 'update_crypto_key_version' not in self._stubs:
+            self._stubs['update_crypto_key_version'] = self.grpc_channel.unary_unary(
+                '/google.cloud.kms.v1.KeyManagementService/UpdateCryptoKeyVersion',
                 request_serializer=service.UpdateCryptoKeyVersionRequest.serialize,
                 response_deserializer=resources.CryptoKeyVersion.deserialize,
             )
-        return self._stubs["update_crypto_key_version"]
+        return self._stubs['update_crypto_key_version']
 
     @property
-    def encrypt(
-        self,
-    ) -> Callable[[service.EncryptRequest], Awaitable[service.EncryptResponse]]:
+    def encrypt(self) -> Callable[
+            [service.EncryptRequest],
+            Awaitable[service.EncryptResponse]]:
         r"""Return a callable for the encrypt method over gRPC.
 
         Encrypts data, so that it can only be recovered by a call to
@@ -713,18 +689,18 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "encrypt" not in self._stubs:
-            self._stubs["encrypt"] = self.grpc_channel.unary_unary(
-                "/google.cloud.kms.v1.KeyManagementService/Encrypt",
+        if 'encrypt' not in self._stubs:
+            self._stubs['encrypt'] = self.grpc_channel.unary_unary(
+                '/google.cloud.kms.v1.KeyManagementService/Encrypt',
                 request_serializer=service.EncryptRequest.serialize,
                 response_deserializer=service.EncryptResponse.deserialize,
             )
-        return self._stubs["encrypt"]
+        return self._stubs['encrypt']
 
     @property
-    def decrypt(
-        self,
-    ) -> Callable[[service.DecryptRequest], Awaitable[service.DecryptResponse]]:
+    def decrypt(self) -> Callable[
+            [service.DecryptRequest],
+            Awaitable[service.DecryptResponse]]:
         r"""Return a callable for the decrypt method over gRPC.
 
         Decrypts data that was protected by
@@ -743,20 +719,18 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "decrypt" not in self._stubs:
-            self._stubs["decrypt"] = self.grpc_channel.unary_unary(
-                "/google.cloud.kms.v1.KeyManagementService/Decrypt",
+        if 'decrypt' not in self._stubs:
+            self._stubs['decrypt'] = self.grpc_channel.unary_unary(
+                '/google.cloud.kms.v1.KeyManagementService/Decrypt',
                 request_serializer=service.DecryptRequest.serialize,
                 response_deserializer=service.DecryptResponse.deserialize,
             )
-        return self._stubs["decrypt"]
+        return self._stubs['decrypt']
 
     @property
-    def asymmetric_sign(
-        self,
-    ) -> Callable[
-        [service.AsymmetricSignRequest], Awaitable[service.AsymmetricSignResponse]
-    ]:
+    def asymmetric_sign(self) -> Callable[
+            [service.AsymmetricSignRequest],
+            Awaitable[service.AsymmetricSignResponse]]:
         r"""Return a callable for the asymmetric sign method over gRPC.
 
         Signs data using a
@@ -776,20 +750,18 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "asymmetric_sign" not in self._stubs:
-            self._stubs["asymmetric_sign"] = self.grpc_channel.unary_unary(
-                "/google.cloud.kms.v1.KeyManagementService/AsymmetricSign",
+        if 'asymmetric_sign' not in self._stubs:
+            self._stubs['asymmetric_sign'] = self.grpc_channel.unary_unary(
+                '/google.cloud.kms.v1.KeyManagementService/AsymmetricSign',
                 request_serializer=service.AsymmetricSignRequest.serialize,
                 response_deserializer=service.AsymmetricSignResponse.deserialize,
             )
-        return self._stubs["asymmetric_sign"]
+        return self._stubs['asymmetric_sign']
 
     @property
-    def asymmetric_decrypt(
-        self,
-    ) -> Callable[
-        [service.AsymmetricDecryptRequest], Awaitable[service.AsymmetricDecryptResponse]
-    ]:
+    def asymmetric_decrypt(self) -> Callable[
+            [service.AsymmetricDecryptRequest],
+            Awaitable[service.AsymmetricDecryptResponse]]:
         r"""Return a callable for the asymmetric decrypt method over gRPC.
 
         Decrypts data that was encrypted with a public key retrieved
@@ -810,20 +782,18 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "asymmetric_decrypt" not in self._stubs:
-            self._stubs["asymmetric_decrypt"] = self.grpc_channel.unary_unary(
-                "/google.cloud.kms.v1.KeyManagementService/AsymmetricDecrypt",
+        if 'asymmetric_decrypt' not in self._stubs:
+            self._stubs['asymmetric_decrypt'] = self.grpc_channel.unary_unary(
+                '/google.cloud.kms.v1.KeyManagementService/AsymmetricDecrypt',
                 request_serializer=service.AsymmetricDecryptRequest.serialize,
                 response_deserializer=service.AsymmetricDecryptResponse.deserialize,
             )
-        return self._stubs["asymmetric_decrypt"]
+        return self._stubs['asymmetric_decrypt']
 
     @property
-    def update_crypto_key_primary_version(
-        self,
-    ) -> Callable[
-        [service.UpdateCryptoKeyPrimaryVersionRequest], Awaitable[resources.CryptoKey]
-    ]:
+    def update_crypto_key_primary_version(self) -> Callable[
+            [service.UpdateCryptoKeyPrimaryVersionRequest],
+            Awaitable[resources.CryptoKey]]:
         r"""Return a callable for the update crypto key primary
         version method over gRPC.
 
@@ -843,22 +813,18 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "update_crypto_key_primary_version" not in self._stubs:
-            self._stubs[
-                "update_crypto_key_primary_version"
-            ] = self.grpc_channel.unary_unary(
-                "/google.cloud.kms.v1.KeyManagementService/UpdateCryptoKeyPrimaryVersion",
+        if 'update_crypto_key_primary_version' not in self._stubs:
+            self._stubs['update_crypto_key_primary_version'] = self.grpc_channel.unary_unary(
+                '/google.cloud.kms.v1.KeyManagementService/UpdateCryptoKeyPrimaryVersion',
                 request_serializer=service.UpdateCryptoKeyPrimaryVersionRequest.serialize,
                 response_deserializer=resources.CryptoKey.deserialize,
             )
-        return self._stubs["update_crypto_key_primary_version"]
+        return self._stubs['update_crypto_key_primary_version']
 
     @property
-    def destroy_crypto_key_version(
-        self,
-    ) -> Callable[
-        [service.DestroyCryptoKeyVersionRequest], Awaitable[resources.CryptoKeyVersion]
-    ]:
+    def destroy_crypto_key_version(self) -> Callable[
+            [service.DestroyCryptoKeyVersionRequest],
+            Awaitable[resources.CryptoKeyVersion]]:
         r"""Return a callable for the destroy crypto key version method over gRPC.
 
         Schedule a
@@ -893,20 +859,18 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "destroy_crypto_key_version" not in self._stubs:
-            self._stubs["destroy_crypto_key_version"] = self.grpc_channel.unary_unary(
-                "/google.cloud.kms.v1.KeyManagementService/DestroyCryptoKeyVersion",
+        if 'destroy_crypto_key_version' not in self._stubs:
+            self._stubs['destroy_crypto_key_version'] = self.grpc_channel.unary_unary(
+                '/google.cloud.kms.v1.KeyManagementService/DestroyCryptoKeyVersion',
                 request_serializer=service.DestroyCryptoKeyVersionRequest.serialize,
                 response_deserializer=resources.CryptoKeyVersion.deserialize,
             )
-        return self._stubs["destroy_crypto_key_version"]
+        return self._stubs['destroy_crypto_key_version']
 
     @property
-    def restore_crypto_key_version(
-        self,
-    ) -> Callable[
-        [service.RestoreCryptoKeyVersionRequest], Awaitable[resources.CryptoKeyVersion]
-    ]:
+    def restore_crypto_key_version(self) -> Callable[
+            [service.RestoreCryptoKeyVersionRequest],
+            Awaitable[resources.CryptoKeyVersion]]:
         r"""Return a callable for the restore crypto key version method over gRPC.
 
         Restore a
@@ -932,13 +896,13 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if "restore_crypto_key_version" not in self._stubs:
-            self._stubs["restore_crypto_key_version"] = self.grpc_channel.unary_unary(
-                "/google.cloud.kms.v1.KeyManagementService/RestoreCryptoKeyVersion",
+        if 'restore_crypto_key_version' not in self._stubs:
+            self._stubs['restore_crypto_key_version'] = self.grpc_channel.unary_unary(
+                '/google.cloud.kms.v1.KeyManagementService/RestoreCryptoKeyVersion',
                 request_serializer=service.RestoreCryptoKeyVersionRequest.serialize,
                 response_deserializer=resources.CryptoKeyVersion.deserialize,
             )
-        return self._stubs["restore_crypto_key_version"]
+        return self._stubs['restore_crypto_key_version']
 
     @property
     def set_iam_policy(
@@ -1021,4 +985,6 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
         return self._stubs["test_iam_permissions"]
 
 
-__all__ = ("KeyManagementServiceGrpcAsyncIOTransport",)
+__all__ = (
+    'KeyManagementServiceGrpcAsyncIOTransport',
+)

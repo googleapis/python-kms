@@ -33,30 +33,30 @@ from google.iam.v1 import policy_pb2 as policy  # type: ignore
 
 try:
     _client_info = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution("google-cloud-kms",).version,
+        gapic_version=pkg_resources.get_distribution(
+            'google-cloud-kms',
+        ).version,
     )
 except pkg_resources.DistributionNotFound:
     _client_info = gapic_v1.client_info.ClientInfo()
-
 
 class KeyManagementServiceTransport(abc.ABC):
     """Abstract transport class for KeyManagementService."""
 
     AUTH_SCOPES = (
-        "https://www.googleapis.com/auth/cloud-platform",
-        "https://www.googleapis.com/auth/cloudkms",
+        'https://www.googleapis.com/auth/cloud-platform',
+        'https://www.googleapis.com/auth/cloudkms',
     )
 
     def __init__(
-        self,
-        *,
-        host: str = "cloudkms.googleapis.com",
-        credentials: credentials.Credentials = None,
-        credentials_file: typing.Optional[str] = None,
-        scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
-        quota_project_id: typing.Optional[str] = None,
-        **kwargs,
-    ) -> None:
+            self, *,
+            host: str = 'cloudkms.googleapis.com',
+            credentials: credentials.Credentials = None,
+            credentials_file: typing.Optional[str] = None,
+            scopes: typing.Optional[typing.Sequence[str]] = AUTH_SCOPES,
+            quota_project_id: typing.Optional[str] = None,
+            **kwargs,
+            ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -74,26 +74,24 @@ class KeyManagementServiceTransport(abc.ABC):
                 and quota.
         """
         # Save the hostname. Default to port 443 (HTTPS) if none is specified.
-        if ":" not in host:
-            host += ":443"
+        if ':' not in host:
+            host += ':443'
         self._host = host
 
         # If no credentials are provided, then determine the appropriate
         # defaults.
         if credentials and credentials_file:
-            raise exceptions.DuplicateCredentialArgs(
-                "'credentials_file' and 'credentials' are mutually exclusive"
-            )
+            raise exceptions.DuplicateCredentialArgs("'credentials_file' and 'credentials' are mutually exclusive")
 
         if credentials_file is not None:
             credentials, _ = auth.load_credentials_from_file(
-                credentials_file, scopes=scopes, quota_project_id=quota_project_id
-            )
+                                credentials_file,
+                                scopes=scopes,
+                                quota_project_id=quota_project_id
+                            )
 
         elif credentials is None:
-            credentials, _ = auth.default(
-                scopes=scopes, quota_project_id=quota_project_id
-            )
+            credentials, _ = auth.default(scopes=scopes, quota_project_id=quota_project_id)
 
         # Save the credentials.
         self._credentials = credentials
@@ -113,7 +111,7 @@ class KeyManagementServiceTransport(abc.ABC):
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
                         exceptions.InternalServerError,
-                        exceptions.ServiceUnavailable,
+exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -128,7 +126,7 @@ class KeyManagementServiceTransport(abc.ABC):
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
                         exceptions.InternalServerError,
-                        exceptions.ServiceUnavailable,
+exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -143,7 +141,7 @@ class KeyManagementServiceTransport(abc.ABC):
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
                         exceptions.InternalServerError,
-                        exceptions.ServiceUnavailable,
+exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -158,7 +156,7 @@ class KeyManagementServiceTransport(abc.ABC):
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
                         exceptions.InternalServerError,
-                        exceptions.ServiceUnavailable,
+exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -173,7 +171,7 @@ class KeyManagementServiceTransport(abc.ABC):
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
                         exceptions.InternalServerError,
-                        exceptions.ServiceUnavailable,
+exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -188,7 +186,7 @@ class KeyManagementServiceTransport(abc.ABC):
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
                         exceptions.InternalServerError,
-                        exceptions.ServiceUnavailable,
+exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -203,7 +201,7 @@ class KeyManagementServiceTransport(abc.ABC):
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
                         exceptions.InternalServerError,
-                        exceptions.ServiceUnavailable,
+exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -218,7 +216,7 @@ class KeyManagementServiceTransport(abc.ABC):
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
                         exceptions.InternalServerError,
-                        exceptions.ServiceUnavailable,
+exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -233,7 +231,7 @@ class KeyManagementServiceTransport(abc.ABC):
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
                         exceptions.InternalServerError,
-                        exceptions.ServiceUnavailable,
+exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -248,7 +246,7 @@ class KeyManagementServiceTransport(abc.ABC):
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
                         exceptions.InternalServerError,
-                        exceptions.ServiceUnavailable,
+exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -263,7 +261,7 @@ class KeyManagementServiceTransport(abc.ABC):
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
                         exceptions.InternalServerError,
-                        exceptions.ServiceUnavailable,
+exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -288,7 +286,7 @@ class KeyManagementServiceTransport(abc.ABC):
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
                         exceptions.InternalServerError,
-                        exceptions.ServiceUnavailable,
+exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -303,7 +301,7 @@ class KeyManagementServiceTransport(abc.ABC):
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
                         exceptions.InternalServerError,
-                        exceptions.ServiceUnavailable,
+exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -318,7 +316,7 @@ class KeyManagementServiceTransport(abc.ABC):
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
                         exceptions.InternalServerError,
-                        exceptions.ServiceUnavailable,
+exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -333,7 +331,7 @@ class KeyManagementServiceTransport(abc.ABC):
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
                         exceptions.InternalServerError,
-                        exceptions.ServiceUnavailable,
+exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -348,7 +346,7 @@ class KeyManagementServiceTransport(abc.ABC):
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
                         exceptions.InternalServerError,
-                        exceptions.ServiceUnavailable,
+exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -363,7 +361,7 @@ class KeyManagementServiceTransport(abc.ABC):
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
                         exceptions.InternalServerError,
-                        exceptions.ServiceUnavailable,
+exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -378,7 +376,7 @@ class KeyManagementServiceTransport(abc.ABC):
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
                         exceptions.InternalServerError,
-                        exceptions.ServiceUnavailable,
+exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -393,7 +391,7 @@ class KeyManagementServiceTransport(abc.ABC):
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
                         exceptions.InternalServerError,
-                        exceptions.ServiceUnavailable,
+exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -408,7 +406,7 @@ class KeyManagementServiceTransport(abc.ABC):
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
                         exceptions.InternalServerError,
-                        exceptions.ServiceUnavailable,
+exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -423,252 +421,220 @@ class KeyManagementServiceTransport(abc.ABC):
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
                         exceptions.InternalServerError,
-                        exceptions.ServiceUnavailable,
+exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
                 client_info=_client_info,
             ),
+
         }
 
     @property
-    def list_key_rings(
-        self,
-    ) -> typing.Callable[
-        [service.ListKeyRingsRequest],
-        typing.Union[
-            service.ListKeyRingsResponse, typing.Awaitable[service.ListKeyRingsResponse]
-        ],
-    ]:
+    def list_key_rings(self) -> typing.Callable[
+            [service.ListKeyRingsRequest],
+            typing.Union[
+                service.ListKeyRingsResponse,
+                typing.Awaitable[service.ListKeyRingsResponse]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def list_crypto_keys(
-        self,
-    ) -> typing.Callable[
-        [service.ListCryptoKeysRequest],
-        typing.Union[
-            service.ListCryptoKeysResponse,
-            typing.Awaitable[service.ListCryptoKeysResponse],
-        ],
-    ]:
+    def list_crypto_keys(self) -> typing.Callable[
+            [service.ListCryptoKeysRequest],
+            typing.Union[
+                service.ListCryptoKeysResponse,
+                typing.Awaitable[service.ListCryptoKeysResponse]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def list_crypto_key_versions(
-        self,
-    ) -> typing.Callable[
-        [service.ListCryptoKeyVersionsRequest],
-        typing.Union[
-            service.ListCryptoKeyVersionsResponse,
-            typing.Awaitable[service.ListCryptoKeyVersionsResponse],
-        ],
-    ]:
+    def list_crypto_key_versions(self) -> typing.Callable[
+            [service.ListCryptoKeyVersionsRequest],
+            typing.Union[
+                service.ListCryptoKeyVersionsResponse,
+                typing.Awaitable[service.ListCryptoKeyVersionsResponse]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def list_import_jobs(
-        self,
-    ) -> typing.Callable[
-        [service.ListImportJobsRequest],
-        typing.Union[
-            service.ListImportJobsResponse,
-            typing.Awaitable[service.ListImportJobsResponse],
-        ],
-    ]:
+    def list_import_jobs(self) -> typing.Callable[
+            [service.ListImportJobsRequest],
+            typing.Union[
+                service.ListImportJobsResponse,
+                typing.Awaitable[service.ListImportJobsResponse]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def get_key_ring(
-        self,
-    ) -> typing.Callable[
-        [service.GetKeyRingRequest],
-        typing.Union[resources.KeyRing, typing.Awaitable[resources.KeyRing]],
-    ]:
+    def get_key_ring(self) -> typing.Callable[
+            [service.GetKeyRingRequest],
+            typing.Union[
+                resources.KeyRing,
+                typing.Awaitable[resources.KeyRing]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def get_crypto_key(
-        self,
-    ) -> typing.Callable[
-        [service.GetCryptoKeyRequest],
-        typing.Union[resources.CryptoKey, typing.Awaitable[resources.CryptoKey]],
-    ]:
+    def get_crypto_key(self) -> typing.Callable[
+            [service.GetCryptoKeyRequest],
+            typing.Union[
+                resources.CryptoKey,
+                typing.Awaitable[resources.CryptoKey]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def get_crypto_key_version(
-        self,
-    ) -> typing.Callable[
-        [service.GetCryptoKeyVersionRequest],
-        typing.Union[
-            resources.CryptoKeyVersion, typing.Awaitable[resources.CryptoKeyVersion]
-        ],
-    ]:
+    def get_crypto_key_version(self) -> typing.Callable[
+            [service.GetCryptoKeyVersionRequest],
+            typing.Union[
+                resources.CryptoKeyVersion,
+                typing.Awaitable[resources.CryptoKeyVersion]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def get_public_key(
-        self,
-    ) -> typing.Callable[
-        [service.GetPublicKeyRequest],
-        typing.Union[resources.PublicKey, typing.Awaitable[resources.PublicKey]],
-    ]:
+    def get_public_key(self) -> typing.Callable[
+            [service.GetPublicKeyRequest],
+            typing.Union[
+                resources.PublicKey,
+                typing.Awaitable[resources.PublicKey]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def get_import_job(
-        self,
-    ) -> typing.Callable[
-        [service.GetImportJobRequest],
-        typing.Union[resources.ImportJob, typing.Awaitable[resources.ImportJob]],
-    ]:
+    def get_import_job(self) -> typing.Callable[
+            [service.GetImportJobRequest],
+            typing.Union[
+                resources.ImportJob,
+                typing.Awaitable[resources.ImportJob]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def create_key_ring(
-        self,
-    ) -> typing.Callable[
-        [service.CreateKeyRingRequest],
-        typing.Union[resources.KeyRing, typing.Awaitable[resources.KeyRing]],
-    ]:
+    def create_key_ring(self) -> typing.Callable[
+            [service.CreateKeyRingRequest],
+            typing.Union[
+                resources.KeyRing,
+                typing.Awaitable[resources.KeyRing]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def create_crypto_key(
-        self,
-    ) -> typing.Callable[
-        [service.CreateCryptoKeyRequest],
-        typing.Union[resources.CryptoKey, typing.Awaitable[resources.CryptoKey]],
-    ]:
+    def create_crypto_key(self) -> typing.Callable[
+            [service.CreateCryptoKeyRequest],
+            typing.Union[
+                resources.CryptoKey,
+                typing.Awaitable[resources.CryptoKey]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def create_crypto_key_version(
-        self,
-    ) -> typing.Callable[
-        [service.CreateCryptoKeyVersionRequest],
-        typing.Union[
-            resources.CryptoKeyVersion, typing.Awaitable[resources.CryptoKeyVersion]
-        ],
-    ]:
+    def create_crypto_key_version(self) -> typing.Callable[
+            [service.CreateCryptoKeyVersionRequest],
+            typing.Union[
+                resources.CryptoKeyVersion,
+                typing.Awaitable[resources.CryptoKeyVersion]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def import_crypto_key_version(
-        self,
-    ) -> typing.Callable[
-        [service.ImportCryptoKeyVersionRequest],
-        typing.Union[
-            resources.CryptoKeyVersion, typing.Awaitable[resources.CryptoKeyVersion]
-        ],
-    ]:
+    def import_crypto_key_version(self) -> typing.Callable[
+            [service.ImportCryptoKeyVersionRequest],
+            typing.Union[
+                resources.CryptoKeyVersion,
+                typing.Awaitable[resources.CryptoKeyVersion]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def create_import_job(
-        self,
-    ) -> typing.Callable[
-        [service.CreateImportJobRequest],
-        typing.Union[resources.ImportJob, typing.Awaitable[resources.ImportJob]],
-    ]:
+    def create_import_job(self) -> typing.Callable[
+            [service.CreateImportJobRequest],
+            typing.Union[
+                resources.ImportJob,
+                typing.Awaitable[resources.ImportJob]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def update_crypto_key(
-        self,
-    ) -> typing.Callable[
-        [service.UpdateCryptoKeyRequest],
-        typing.Union[resources.CryptoKey, typing.Awaitable[resources.CryptoKey]],
-    ]:
+    def update_crypto_key(self) -> typing.Callable[
+            [service.UpdateCryptoKeyRequest],
+            typing.Union[
+                resources.CryptoKey,
+                typing.Awaitable[resources.CryptoKey]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def update_crypto_key_version(
-        self,
-    ) -> typing.Callable[
-        [service.UpdateCryptoKeyVersionRequest],
-        typing.Union[
-            resources.CryptoKeyVersion, typing.Awaitable[resources.CryptoKeyVersion]
-        ],
-    ]:
+    def update_crypto_key_version(self) -> typing.Callable[
+            [service.UpdateCryptoKeyVersionRequest],
+            typing.Union[
+                resources.CryptoKeyVersion,
+                typing.Awaitable[resources.CryptoKeyVersion]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def encrypt(
-        self,
-    ) -> typing.Callable[
-        [service.EncryptRequest],
-        typing.Union[
-            service.EncryptResponse, typing.Awaitable[service.EncryptResponse]
-        ],
-    ]:
+    def encrypt(self) -> typing.Callable[
+            [service.EncryptRequest],
+            typing.Union[
+                service.EncryptResponse,
+                typing.Awaitable[service.EncryptResponse]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def decrypt(
-        self,
-    ) -> typing.Callable[
-        [service.DecryptRequest],
-        typing.Union[
-            service.DecryptResponse, typing.Awaitable[service.DecryptResponse]
-        ],
-    ]:
+    def decrypt(self) -> typing.Callable[
+            [service.DecryptRequest],
+            typing.Union[
+                service.DecryptResponse,
+                typing.Awaitable[service.DecryptResponse]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def asymmetric_sign(
-        self,
-    ) -> typing.Callable[
-        [service.AsymmetricSignRequest],
-        typing.Union[
-            service.AsymmetricSignResponse,
-            typing.Awaitable[service.AsymmetricSignResponse],
-        ],
-    ]:
+    def asymmetric_sign(self) -> typing.Callable[
+            [service.AsymmetricSignRequest],
+            typing.Union[
+                service.AsymmetricSignResponse,
+                typing.Awaitable[service.AsymmetricSignResponse]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def asymmetric_decrypt(
-        self,
-    ) -> typing.Callable[
-        [service.AsymmetricDecryptRequest],
-        typing.Union[
-            service.AsymmetricDecryptResponse,
-            typing.Awaitable[service.AsymmetricDecryptResponse],
-        ],
-    ]:
+    def asymmetric_decrypt(self) -> typing.Callable[
+            [service.AsymmetricDecryptRequest],
+            typing.Union[
+                service.AsymmetricDecryptResponse,
+                typing.Awaitable[service.AsymmetricDecryptResponse]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def update_crypto_key_primary_version(
-        self,
-    ) -> typing.Callable[
-        [service.UpdateCryptoKeyPrimaryVersionRequest],
-        typing.Union[resources.CryptoKey, typing.Awaitable[resources.CryptoKey]],
-    ]:
+    def update_crypto_key_primary_version(self) -> typing.Callable[
+            [service.UpdateCryptoKeyPrimaryVersionRequest],
+            typing.Union[
+                resources.CryptoKey,
+                typing.Awaitable[resources.CryptoKey]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def destroy_crypto_key_version(
-        self,
-    ) -> typing.Callable[
-        [service.DestroyCryptoKeyVersionRequest],
-        typing.Union[
-            resources.CryptoKeyVersion, typing.Awaitable[resources.CryptoKeyVersion]
-        ],
-    ]:
+    def destroy_crypto_key_version(self) -> typing.Callable[
+            [service.DestroyCryptoKeyVersionRequest],
+            typing.Union[
+                resources.CryptoKeyVersion,
+                typing.Awaitable[resources.CryptoKeyVersion]
+            ]]:
         raise NotImplementedError()
 
     @property
-    def restore_crypto_key_version(
-        self,
-    ) -> typing.Callable[
-        [service.RestoreCryptoKeyVersionRequest],
-        typing.Union[
-            resources.CryptoKeyVersion, typing.Awaitable[resources.CryptoKeyVersion]
-        ],
-    ]:
+    def restore_crypto_key_version(self) -> typing.Callable[
+            [service.RestoreCryptoKeyVersionRequest],
+            typing.Union[
+                resources.CryptoKeyVersion,
+                typing.Awaitable[resources.CryptoKeyVersion]
+            ]]:
         raise NotImplementedError()
 
     @property
@@ -702,4 +668,6 @@ class KeyManagementServiceTransport(abc.ABC):
         raise NotImplementedError()
 
 
-__all__ = ("KeyManagementServiceTransport",)
+__all__ = (
+    'KeyManagementServiceTransport',
+)

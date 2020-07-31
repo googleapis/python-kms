@@ -23,17 +23,17 @@ from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package="google.cloud.kms.v1",
+    package='google.cloud.kms.v1',
     manifest={
-        "ProtectionLevel",
-        "KeyRing",
-        "CryptoKey",
-        "CryptoKeyVersionTemplate",
-        "KeyOperationAttestation",
-        "CryptoKeyVersion",
-        "PublicKey",
-        "ImportJob",
-        "ExternalProtectionLevelOptions",
+        'ProtectionLevel',
+        'KeyRing',
+        'CryptoKey',
+        'CryptoKeyVersionTemplate',
+        'KeyOperationAttestation',
+        'CryptoKeyVersion',
+        'PublicKey',
+        'ImportJob',
+        'ExternalProtectionLevelOptions',
     },
 )
 
@@ -66,7 +66,9 @@ class KeyRing(proto.Message):
 
     name = proto.Field(proto.STRING, number=1)
 
-    create_time = proto.Field(proto.MESSAGE, number=2, message=timestamp.Timestamp,)
+    create_time = proto.Field(proto.MESSAGE, number=2,
+        message=timestamp.Timestamp,
+    )
 
 
 class CryptoKey(proto.Message):
@@ -154,7 +156,6 @@ class CryptoKey(proto.Message):
             `Labeling
             Keys <https://cloud.google.com/kms/docs/labeling-keys>`__.
     """
-
     class CryptoKeyPurpose(proto.Enum):
         r"""[CryptoKeyPurpose][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose]
         describes the cryptographic capabilities of a
@@ -170,22 +171,28 @@ class CryptoKey(proto.Message):
 
     name = proto.Field(proto.STRING, number=1)
 
-    primary = proto.Field(proto.MESSAGE, number=2, message="CryptoKeyVersion",)
-
-    purpose = proto.Field(proto.ENUM, number=3, enum=CryptoKeyPurpose,)
-
-    create_time = proto.Field(proto.MESSAGE, number=5, message=timestamp.Timestamp,)
-
-    next_rotation_time = proto.Field(
-        proto.MESSAGE, number=7, message=timestamp.Timestamp,
+    primary = proto.Field(proto.MESSAGE, number=2,
+        message='CryptoKeyVersion',
     )
 
-    rotation_period = proto.Field(
-        proto.MESSAGE, number=8, oneof="rotation_schedule", message=duration.Duration,
+    purpose = proto.Field(proto.ENUM, number=3,
+        enum=CryptoKeyPurpose,
     )
 
-    version_template = proto.Field(
-        proto.MESSAGE, number=11, message="CryptoKeyVersionTemplate",
+    create_time = proto.Field(proto.MESSAGE, number=5,
+        message=timestamp.Timestamp,
+    )
+
+    next_rotation_time = proto.Field(proto.MESSAGE, number=7,
+        message=timestamp.Timestamp,
+    )
+
+    rotation_period = proto.Field(proto.MESSAGE, number=8, oneof='rotation_schedule',
+        message=duration.Duration,
+    )
+
+    version_template = proto.Field(proto.MESSAGE, number=11,
+        message='CryptoKeyVersionTemplate',
     )
 
     labels = proto.MapField(proto.STRING, proto.STRING, number=10)
@@ -221,10 +228,12 @@ class CryptoKeyVersionTemplate(proto.Message):
             [ENCRYPT_DECRYPT][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT].
     """
 
-    protection_level = proto.Field(proto.ENUM, number=1, enum="ProtectionLevel",)
+    protection_level = proto.Field(proto.ENUM, number=1,
+        enum='ProtectionLevel',
+    )
 
-    algorithm = proto.Field(
-        proto.ENUM, number=3, enum="CryptoKeyVersion.CryptoKeyVersionAlgorithm",
+    algorithm = proto.Field(proto.ENUM, number=3,
+        enum='CryptoKeyVersion.CryptoKeyVersionAlgorithm',
     )
 
 
@@ -241,14 +250,15 @@ class KeyOperationAttestation(proto.Message):
             Output only. The attestation data provided by
             the HSM when the key operation was performed.
     """
-
     class AttestationFormat(proto.Enum):
         r"""Attestation formats provided by the HSM."""
         ATTESTATION_FORMAT_UNSPECIFIED = 0
         CAVIUM_V1_COMPRESSED = 3
         CAVIUM_V2_COMPRESSED = 4
 
-    format = proto.Field(proto.ENUM, number=4, enum=AttestationFormat,)
+    format = proto.Field(proto.ENUM, number=4,
+        enum=AttestationFormat,
+    )
 
     content = proto.Field(proto.BYTES, number=5)
 
@@ -337,7 +347,6 @@ class CryptoKeyVersion(proto.Message):
             [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL]
             protection level.
     """
-
     class CryptoKeyVersionAlgorithm(proto.Enum):
         r"""The algorithm of the
         [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion], indicating
@@ -426,32 +435,48 @@ class CryptoKeyVersion(proto.Message):
 
     name = proto.Field(proto.STRING, number=1)
 
-    state = proto.Field(proto.ENUM, number=3, enum=CryptoKeyVersionState,)
+    state = proto.Field(proto.ENUM, number=3,
+        enum=CryptoKeyVersionState,
+    )
 
-    protection_level = proto.Field(proto.ENUM, number=7, enum="ProtectionLevel",)
+    protection_level = proto.Field(proto.ENUM, number=7,
+        enum='ProtectionLevel',
+    )
 
-    algorithm = proto.Field(proto.ENUM, number=10, enum=CryptoKeyVersionAlgorithm,)
+    algorithm = proto.Field(proto.ENUM, number=10,
+        enum=CryptoKeyVersionAlgorithm,
+    )
 
-    attestation = proto.Field(proto.MESSAGE, number=8, message=KeyOperationAttestation,)
+    attestation = proto.Field(proto.MESSAGE, number=8,
+        message=KeyOperationAttestation,
+    )
 
-    create_time = proto.Field(proto.MESSAGE, number=4, message=timestamp.Timestamp,)
+    create_time = proto.Field(proto.MESSAGE, number=4,
+        message=timestamp.Timestamp,
+    )
 
-    generate_time = proto.Field(proto.MESSAGE, number=11, message=timestamp.Timestamp,)
+    generate_time = proto.Field(proto.MESSAGE, number=11,
+        message=timestamp.Timestamp,
+    )
 
-    destroy_time = proto.Field(proto.MESSAGE, number=5, message=timestamp.Timestamp,)
+    destroy_time = proto.Field(proto.MESSAGE, number=5,
+        message=timestamp.Timestamp,
+    )
 
-    destroy_event_time = proto.Field(
-        proto.MESSAGE, number=6, message=timestamp.Timestamp,
+    destroy_event_time = proto.Field(proto.MESSAGE, number=6,
+        message=timestamp.Timestamp,
     )
 
     import_job = proto.Field(proto.STRING, number=14)
 
-    import_time = proto.Field(proto.MESSAGE, number=15, message=timestamp.Timestamp,)
+    import_time = proto.Field(proto.MESSAGE, number=15,
+        message=timestamp.Timestamp,
+    )
 
     import_failure_reason = proto.Field(proto.STRING, number=16)
 
-    external_protection_level_options = proto.Field(
-        proto.MESSAGE, number=17, message="ExternalProtectionLevelOptions",
+    external_protection_level_options = proto.Field(proto.MESSAGE, number=17,
+        message='ExternalProtectionLevelOptions',
     )
 
 
@@ -477,8 +502,8 @@ class PublicKey(proto.Message):
 
     pem = proto.Field(proto.STRING, number=1)
 
-    algorithm = proto.Field(
-        proto.ENUM, number=2, enum=CryptoKeyVersion.CryptoKeyVersionAlgorithm,
+    algorithm = proto.Field(proto.ENUM, number=2,
+        enum=CryptoKeyVersion.CryptoKeyVersionAlgorithm,
     )
 
 
@@ -570,7 +595,6 @@ class ImportJob(proto.Message):
             is one with a protection level of
             [HSM][google.cloud.kms.v1.ProtectionLevel.HSM].
     """
-
     class ImportMethod(proto.Enum):
         r"""[ImportMethod][google.cloud.kms.v1.ImportJob.ImportMethod] describes
         the key wrapping method chosen for this
@@ -608,25 +632,41 @@ class ImportJob(proto.Message):
 
     name = proto.Field(proto.STRING, number=1)
 
-    import_method = proto.Field(proto.ENUM, number=2, enum=ImportMethod,)
-
-    protection_level = proto.Field(proto.ENUM, number=9, enum="ProtectionLevel",)
-
-    create_time = proto.Field(proto.MESSAGE, number=3, message=timestamp.Timestamp,)
-
-    generate_time = proto.Field(proto.MESSAGE, number=4, message=timestamp.Timestamp,)
-
-    expire_time = proto.Field(proto.MESSAGE, number=5, message=timestamp.Timestamp,)
-
-    expire_event_time = proto.Field(
-        proto.MESSAGE, number=10, message=timestamp.Timestamp,
+    import_method = proto.Field(proto.ENUM, number=2,
+        enum=ImportMethod,
     )
 
-    state = proto.Field(proto.ENUM, number=6, enum=ImportJobState,)
+    protection_level = proto.Field(proto.ENUM, number=9,
+        enum='ProtectionLevel',
+    )
 
-    public_key = proto.Field(proto.MESSAGE, number=7, message=WrappingPublicKey,)
+    create_time = proto.Field(proto.MESSAGE, number=3,
+        message=timestamp.Timestamp,
+    )
 
-    attestation = proto.Field(proto.MESSAGE, number=8, message=KeyOperationAttestation,)
+    generate_time = proto.Field(proto.MESSAGE, number=4,
+        message=timestamp.Timestamp,
+    )
+
+    expire_time = proto.Field(proto.MESSAGE, number=5,
+        message=timestamp.Timestamp,
+    )
+
+    expire_event_time = proto.Field(proto.MESSAGE, number=10,
+        message=timestamp.Timestamp,
+    )
+
+    state = proto.Field(proto.ENUM, number=6,
+        enum=ImportJobState,
+    )
+
+    public_key = proto.Field(proto.MESSAGE, number=7,
+        message=WrappingPublicKey,
+    )
+
+    attestation = proto.Field(proto.MESSAGE, number=8,
+        message=KeyOperationAttestation,
+    )
 
 
 class ExternalProtectionLevelOptions(proto.Message):
