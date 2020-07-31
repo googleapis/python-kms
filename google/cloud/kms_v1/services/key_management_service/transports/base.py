@@ -112,8 +112,8 @@ class KeyManagementServiceTransport(abc.ABC):
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
-                        exceptions.ServiceUnavailable,
                         exceptions.InternalServerError,
+                        exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -127,8 +127,8 @@ class KeyManagementServiceTransport(abc.ABC):
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
-                        exceptions.ServiceUnavailable,
                         exceptions.InternalServerError,
+                        exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -142,8 +142,8 @@ class KeyManagementServiceTransport(abc.ABC):
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
-                        exceptions.ServiceUnavailable,
                         exceptions.InternalServerError,
+                        exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -157,8 +157,8 @@ class KeyManagementServiceTransport(abc.ABC):
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
-                        exceptions.ServiceUnavailable,
                         exceptions.InternalServerError,
+                        exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -172,8 +172,8 @@ class KeyManagementServiceTransport(abc.ABC):
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
-                        exceptions.ServiceUnavailable,
                         exceptions.InternalServerError,
+                        exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -187,8 +187,8 @@ class KeyManagementServiceTransport(abc.ABC):
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
-                        exceptions.ServiceUnavailable,
                         exceptions.InternalServerError,
+                        exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -202,8 +202,8 @@ class KeyManagementServiceTransport(abc.ABC):
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
-                        exceptions.ServiceUnavailable,
                         exceptions.InternalServerError,
+                        exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -217,8 +217,8 @@ class KeyManagementServiceTransport(abc.ABC):
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
-                        exceptions.ServiceUnavailable,
                         exceptions.InternalServerError,
+                        exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -232,8 +232,8 @@ class KeyManagementServiceTransport(abc.ABC):
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
-                        exceptions.ServiceUnavailable,
                         exceptions.InternalServerError,
+                        exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -247,8 +247,8 @@ class KeyManagementServiceTransport(abc.ABC):
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
-                        exceptions.ServiceUnavailable,
                         exceptions.InternalServerError,
+                        exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -262,8 +262,8 @@ class KeyManagementServiceTransport(abc.ABC):
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
-                        exceptions.ServiceUnavailable,
                         exceptions.InternalServerError,
+                        exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -287,8 +287,8 @@ class KeyManagementServiceTransport(abc.ABC):
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
-                        exceptions.ServiceUnavailable,
                         exceptions.InternalServerError,
+                        exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -302,8 +302,8 @@ class KeyManagementServiceTransport(abc.ABC):
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
-                        exceptions.ServiceUnavailable,
                         exceptions.InternalServerError,
+                        exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -317,8 +317,8 @@ class KeyManagementServiceTransport(abc.ABC):
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
-                        exceptions.ServiceUnavailable,
                         exceptions.InternalServerError,
+                        exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -332,8 +332,8 @@ class KeyManagementServiceTransport(abc.ABC):
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
-                        exceptions.ServiceUnavailable,
                         exceptions.InternalServerError,
+                        exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -347,8 +347,8 @@ class KeyManagementServiceTransport(abc.ABC):
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
-                        exceptions.ServiceUnavailable,
                         exceptions.InternalServerError,
+                        exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -362,8 +362,8 @@ class KeyManagementServiceTransport(abc.ABC):
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
-                        exceptions.ServiceUnavailable,
                         exceptions.InternalServerError,
+                        exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -377,8 +377,8 @@ class KeyManagementServiceTransport(abc.ABC):
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
-                        exceptions.ServiceUnavailable,
                         exceptions.InternalServerError,
+                        exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -392,8 +392,8 @@ class KeyManagementServiceTransport(abc.ABC):
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
-                        exceptions.ServiceUnavailable,
                         exceptions.InternalServerError,
+                        exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -407,8 +407,8 @@ class KeyManagementServiceTransport(abc.ABC):
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
-                        exceptions.ServiceUnavailable,
                         exceptions.InternalServerError,
+                        exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
@@ -422,8 +422,8 @@ class KeyManagementServiceTransport(abc.ABC):
                     multiplier=1.3,
                     predicate=retries.if_exception_type(
                         exceptions.DeadlineExceeded,
-                        exceptions.ServiceUnavailable,
                         exceptions.InternalServerError,
+                        exceptions.ServiceUnavailable,
                     ),
                 ),
                 default_timeout=60.0,
