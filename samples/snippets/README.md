@@ -4,6 +4,7 @@
 ## Python Samples for Google Cloud Key Management Service
 
 This directory contains samples for Google Cloud Key Management Service, which may be used as a refererence for how to use Google Cloud Key Management Service. 
+The Google Cloud KMS API is a service that allows you to keep encryption keys centrally in the cloud, for direct use by cloud services. More info about Cloud KMS can be found at https://cloud.google.com/kms/docs/
 Samples, quickstarts, and other documentation are available at <a href="https://cloud.google.com/kms">cloud.google.com</a>.
 
 
