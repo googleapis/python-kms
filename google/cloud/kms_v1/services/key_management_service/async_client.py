@@ -38,7 +38,7 @@ from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
 from google.protobuf import wrappers_pb2 as wrappers  # type: ignore
 
-from .transports.base import KeyManagementServiceTransport
+from .transports.base import KeyManagementServiceTransport, DEFAULT_CLIENT_INFO
 from .transports.grpc_asyncio import KeyManagementServiceGrpcAsyncIOTransport
 from .client import KeyManagementServiceClient
 
@@ -63,15 +63,15 @@ class KeyManagementServiceAsyncClient:
     DEFAULT_ENDPOINT = KeyManagementServiceClient.DEFAULT_ENDPOINT
     DEFAULT_MTLS_ENDPOINT = KeyManagementServiceClient.DEFAULT_MTLS_ENDPOINT
 
-    import_job_path = staticmethod(KeyManagementServiceClient.import_job_path)
-
-    key_ring_path = staticmethod(KeyManagementServiceClient.key_ring_path)
-
     crypto_key_path = staticmethod(KeyManagementServiceClient.crypto_key_path)
+
+    import_job_path = staticmethod(KeyManagementServiceClient.import_job_path)
 
     crypto_key_version_path = staticmethod(
         KeyManagementServiceClient.crypto_key_version_path
     )
+
+    key_ring_path = staticmethod(KeyManagementServiceClient.key_ring_path)
 
     from_service_account_file = KeyManagementServiceClient.from_service_account_file
     from_service_account_json = from_service_account_file
@@ -87,6 +87,7 @@ class KeyManagementServiceAsyncClient:
         credentials: credentials.Credentials = None,
         transport: Union[str, KeyManagementServiceTransport] = "grpc_asyncio",
         client_options: ClientOptions = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
         """Instantiate the key management service client.
 
@@ -120,7 +121,10 @@ class KeyManagementServiceAsyncClient:
         """
 
         self._client = KeyManagementServiceClient(
-            credentials=credentials, transport=transport, client_options=client_options,
+            credentials=credentials,
+            transport=transport,
+            client_options=client_options,
+            client_info=client_info,
         )
 
     async def list_key_rings(
@@ -194,7 +198,7 @@ class KeyManagementServiceAsyncClient:
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -286,7 +290,7 @@ class KeyManagementServiceAsyncClient:
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -379,7 +383,7 @@ class KeyManagementServiceAsyncClient:
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -471,7 +475,7 @@ class KeyManagementServiceAsyncClient:
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -561,7 +565,7 @@ class KeyManagementServiceAsyncClient:
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -654,7 +658,7 @@ class KeyManagementServiceAsyncClient:
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -752,7 +756,7 @@ class KeyManagementServiceAsyncClient:
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -844,7 +848,7 @@ class KeyManagementServiceAsyncClient:
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -971,7 +975,7 @@ class KeyManagementServiceAsyncClient:
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -1074,7 +1078,7 @@ class KeyManagementServiceAsyncClient:
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -1187,7 +1191,7 @@ class KeyManagementServiceAsyncClient:
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -1291,7 +1295,7 @@ class KeyManagementServiceAsyncClient:
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.create_crypto_key_version,
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -1362,7 +1366,7 @@ class KeyManagementServiceAsyncClient:
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.import_crypto_key_version,
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -1510,7 +1514,7 @@ class KeyManagementServiceAsyncClient:
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -1608,7 +1612,7 @@ class KeyManagementServiceAsyncClient:
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -1728,7 +1732,7 @@ class KeyManagementServiceAsyncClient:
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -1841,7 +1845,7 @@ class KeyManagementServiceAsyncClient:
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -1938,7 +1942,7 @@ class KeyManagementServiceAsyncClient:
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -2037,7 +2041,7 @@ class KeyManagementServiceAsyncClient:
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -2136,7 +2140,7 @@ class KeyManagementServiceAsyncClient:
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -2239,7 +2243,7 @@ class KeyManagementServiceAsyncClient:
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -2355,7 +2359,7 @@ class KeyManagementServiceAsyncClient:
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -2462,7 +2466,7 @@ class KeyManagementServiceAsyncClient:
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -2572,7 +2576,7 @@ class KeyManagementServiceAsyncClient:
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.set_iam_policy,
             default_timeout=None,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -2683,7 +2687,7 @@ class KeyManagementServiceAsyncClient:
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.get_iam_policy,
             default_timeout=None,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -2735,7 +2739,7 @@ class KeyManagementServiceAsyncClient:
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.test_iam_permissions,
             default_timeout=None,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -2752,11 +2756,11 @@ class KeyManagementServiceAsyncClient:
 
 
 try:
-    _client_info = gapic_v1.client_info.ClientInfo(
+    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution("google-cloud-kms",).version,
     )
 except pkg_resources.DistributionNotFound:
-    _client_info = gapic_v1.client_info.ClientInfo()
+    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
 __all__ = ("KeyManagementServiceAsyncClient",)

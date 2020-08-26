@@ -175,6 +175,7 @@ def test_key_management_service_client_client_options(
             api_mtls_endpoint="squid.clam.whelk",
             client_cert_source=None,
             quota_project_id=None,
+            client_info=transports.base.DEFAULT_CLIENT_INFO,
         )
 
     # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS is
@@ -191,6 +192,7 @@ def test_key_management_service_client_client_options(
                 api_mtls_endpoint=client.DEFAULT_ENDPOINT,
                 client_cert_source=None,
                 quota_project_id=None,
+                client_info=transports.base.DEFAULT_CLIENT_INFO,
             )
 
     # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS is
@@ -207,6 +209,7 @@ def test_key_management_service_client_client_options(
                 api_mtls_endpoint=client.DEFAULT_MTLS_ENDPOINT,
                 client_cert_source=None,
                 quota_project_id=None,
+                client_info=transports.base.DEFAULT_CLIENT_INFO,
             )
 
     # Check the case api_endpoint is not provided, GOOGLE_API_USE_MTLS is
@@ -226,6 +229,7 @@ def test_key_management_service_client_client_options(
                 api_mtls_endpoint=client.DEFAULT_MTLS_ENDPOINT,
                 client_cert_source=client_cert_source_callback,
                 quota_project_id=None,
+                client_info=transports.base.DEFAULT_CLIENT_INFO,
             )
 
     # Check the case api_endpoint is not provided, GOOGLE_API_USE_MTLS is
@@ -246,6 +250,7 @@ def test_key_management_service_client_client_options(
                     api_mtls_endpoint=client.DEFAULT_MTLS_ENDPOINT,
                     client_cert_source=None,
                     quota_project_id=None,
+                    client_info=transports.base.DEFAULT_CLIENT_INFO,
                 )
 
     # Check the case api_endpoint is not provided, GOOGLE_API_USE_MTLS is
@@ -266,6 +271,7 @@ def test_key_management_service_client_client_options(
                     api_mtls_endpoint=client.DEFAULT_ENDPOINT,
                     client_cert_source=None,
                     quota_project_id=None,
+                    client_info=transports.base.DEFAULT_CLIENT_INFO,
                 )
 
     # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS has
@@ -287,6 +293,7 @@ def test_key_management_service_client_client_options(
             api_mtls_endpoint=client.DEFAULT_ENDPOINT,
             client_cert_source=None,
             quota_project_id="octopus",
+            client_info=transports.base.DEFAULT_CLIENT_INFO,
         )
 
 
@@ -321,6 +328,7 @@ def test_key_management_service_client_client_options_scopes(
             api_mtls_endpoint=client.DEFAULT_ENDPOINT,
             client_cert_source=None,
             quota_project_id=None,
+            client_info=transports.base.DEFAULT_CLIENT_INFO,
         )
 
 
@@ -355,6 +363,7 @@ def test_key_management_service_client_client_options_credentials_file(
             api_mtls_endpoint=client.DEFAULT_ENDPOINT,
             client_cert_source=None,
             quota_project_id=None,
+            client_info=transports.base.DEFAULT_CLIENT_INFO,
         )
 
 
@@ -374,6 +383,7 @@ def test_key_management_service_client_client_options_from_dict():
             api_mtls_endpoint="squid.clam.whelk",
             client_cert_source=None,
             quota_project_id=None,
+            client_info=transports.base.DEFAULT_CLIENT_INFO,
         )
 
 
@@ -6464,60 +6474,6 @@ def test_key_management_service_grpc_asyncio_transport_channel_mtls_with_adc(
         assert transport.grpc_channel == mock_grpc_channel
 
 
-def test_import_job_path():
-    project = "squid"
-    location = "clam"
-    key_ring = "whelk"
-    import_job = "octopus"
-
-    expected = "projects/{project}/locations/{location}/keyRings/{key_ring}/importJobs/{import_job}".format(
-        project=project, location=location, key_ring=key_ring, import_job=import_job,
-    )
-    actual = KeyManagementServiceClient.import_job_path(
-        project, location, key_ring, import_job
-    )
-    assert expected == actual
-
-
-def test_parse_import_job_path():
-    expected = {
-        "project": "oyster",
-        "location": "nudibranch",
-        "key_ring": "cuttlefish",
-        "import_job": "mussel",
-    }
-    path = KeyManagementServiceClient.import_job_path(**expected)
-
-    # Check that the path construction is reversible.
-    actual = KeyManagementServiceClient.parse_import_job_path(path)
-    assert expected == actual
-
-
-def test_key_ring_path():
-    project = "squid"
-    location = "clam"
-    key_ring = "whelk"
-
-    expected = "projects/{project}/locations/{location}/keyRings/{key_ring}".format(
-        project=project, location=location, key_ring=key_ring,
-    )
-    actual = KeyManagementServiceClient.key_ring_path(project, location, key_ring)
-    assert expected == actual
-
-
-def test_parse_key_ring_path():
-    expected = {
-        "project": "octopus",
-        "location": "oyster",
-        "key_ring": "nudibranch",
-    }
-    path = KeyManagementServiceClient.key_ring_path(**expected)
-
-    # Check that the path construction is reversible.
-    actual = KeyManagementServiceClient.parse_key_ring_path(path)
-    assert expected == actual
-
-
 def test_crypto_key_path():
     project = "squid"
     location = "clam"
@@ -6544,6 +6500,35 @@ def test_parse_crypto_key_path():
 
     # Check that the path construction is reversible.
     actual = KeyManagementServiceClient.parse_crypto_key_path(path)
+    assert expected == actual
+
+
+def test_import_job_path():
+    project = "squid"
+    location = "clam"
+    key_ring = "whelk"
+    import_job = "octopus"
+
+    expected = "projects/{project}/locations/{location}/keyRings/{key_ring}/importJobs/{import_job}".format(
+        project=project, location=location, key_ring=key_ring, import_job=import_job,
+    )
+    actual = KeyManagementServiceClient.import_job_path(
+        project, location, key_ring, import_job
+    )
+    assert expected == actual
+
+
+def test_parse_import_job_path():
+    expected = {
+        "project": "oyster",
+        "location": "nudibranch",
+        "key_ring": "cuttlefish",
+        "import_job": "mussel",
+    }
+    path = KeyManagementServiceClient.import_job_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = KeyManagementServiceClient.parse_import_job_path(path)
     assert expected == actual
 
 
@@ -6580,6 +6565,52 @@ def test_parse_crypto_key_version_path():
     # Check that the path construction is reversible.
     actual = KeyManagementServiceClient.parse_crypto_key_version_path(path)
     assert expected == actual
+
+
+def test_key_ring_path():
+    project = "squid"
+    location = "clam"
+    key_ring = "whelk"
+
+    expected = "projects/{project}/locations/{location}/keyRings/{key_ring}".format(
+        project=project, location=location, key_ring=key_ring,
+    )
+    actual = KeyManagementServiceClient.key_ring_path(project, location, key_ring)
+    assert expected == actual
+
+
+def test_parse_key_ring_path():
+    expected = {
+        "project": "octopus",
+        "location": "oyster",
+        "key_ring": "nudibranch",
+    }
+    path = KeyManagementServiceClient.key_ring_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = KeyManagementServiceClient.parse_key_ring_path(path)
+    assert expected == actual
+
+
+def test_client_withDEFAULT_CLIENT_INFO():
+    client_info = gapic_v1.client_info.ClientInfo()
+
+    with mock.patch.object(
+        transports.KeyManagementServiceTransport, "_prep_wrapped_messages"
+    ) as prep:
+        client = KeyManagementServiceClient(
+            credentials=credentials.AnonymousCredentials(), client_info=client_info,
+        )
+        prep.assert_called_once_with(client_info)
+
+    with mock.patch.object(
+        transports.KeyManagementServiceTransport, "_prep_wrapped_messages"
+    ) as prep:
+        transport_class = KeyManagementServiceClient.get_transport_class()
+        transport = transport_class(
+            credentials=credentials.AnonymousCredentials(), client_info=client_info,
+        )
+        prep.assert_called_once_with(client_info)
 
 
 def test_set_iam_policy(transport: str = "grpc"):
