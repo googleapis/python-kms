@@ -36,6 +36,7 @@ from google.iam.v1 import policy_pb2 as policy  # type: ignore
 from google.protobuf import duration_pb2 as duration  # type: ignore
 from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
+from google.protobuf import wrappers_pb2 as wrappers  # type: ignore
 
 from .transports.base import KeyManagementServiceTransport
 from .transports.grpc_asyncio import KeyManagementServiceGrpcAsyncIOTransport
@@ -64,13 +65,13 @@ class KeyManagementServiceAsyncClient:
 
     import_job_path = staticmethod(KeyManagementServiceClient.import_job_path)
 
-    crypto_key_path = staticmethod(KeyManagementServiceClient.crypto_key_path)
-
-    key_ring_path = staticmethod(KeyManagementServiceClient.key_ring_path)
-
     crypto_key_version_path = staticmethod(
         KeyManagementServiceClient.crypto_key_version_path
     )
+
+    crypto_key_path = staticmethod(KeyManagementServiceClient.crypto_key_path)
+
+    key_ring_path = staticmethod(KeyManagementServiceClient.key_ring_path)
 
     from_service_account_file = KeyManagementServiceClient.from_service_account_file
     from_service_account_json = from_service_account_file
@@ -187,9 +188,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -279,9 +280,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -372,9 +373,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -464,9 +465,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -554,9 +555,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -615,7 +616,7 @@ class KeyManagementServiceAsyncClient:
                 operations.
 
                 A [CryptoKey][google.cloud.kms.v1.CryptoKey] is made up
-                of one or more
+                of zero or more
                 [versions][google.cloud.kms.v1.CryptoKeyVersion], which
                 represent the actual key material used in cryptographic
                 operations.
@@ -647,9 +648,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -745,9 +746,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -837,9 +838,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -964,9 +965,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -1067,9 +1068,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -1144,7 +1145,7 @@ class KeyManagementServiceAsyncClient:
                 operations.
 
                 A [CryptoKey][google.cloud.kms.v1.CryptoKey] is made up
-                of one or more
+                of zero or more
                 [versions][google.cloud.kms.v1.CryptoKeyVersion], which
                 represent the actual key material used in cryptographic
                 operations.
@@ -1180,9 +1181,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -1503,9 +1504,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -1567,7 +1568,7 @@ class KeyManagementServiceAsyncClient:
                 operations.
 
                 A [CryptoKey][google.cloud.kms.v1.CryptoKey] is made up
-                of one or more
+                of zero or more
                 [versions][google.cloud.kms.v1.CryptoKeyVersion], which
                 represent the actual key material used in cryptographic
                 operations.
@@ -1601,9 +1602,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -1721,9 +1722,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -1834,9 +1835,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -1931,9 +1932,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -2030,9 +2031,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -2129,9 +2130,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -2198,7 +2199,7 @@ class KeyManagementServiceAsyncClient:
                 operations.
 
                 A [CryptoKey][google.cloud.kms.v1.CryptoKey] is made up
-                of one or more
+                of zero or more
                 [versions][google.cloud.kms.v1.CryptoKeyVersion], which
                 represent the actual key material used in cryptographic
                 operations.
@@ -2232,9 +2233,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -2348,9 +2349,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -2455,9 +2456,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,

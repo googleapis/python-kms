@@ -49,6 +49,7 @@ from google.oauth2 import service_account
 from google.protobuf import duration_pb2 as duration  # type: ignore
 from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
+from google.protobuf import wrappers_pb2 as wrappers  # type: ignore
 
 
 def client_cert_source_callback():
@@ -2481,6 +2482,7 @@ def test_get_public_key(
         call.return_value = resources.PublicKey(
             pem="pem_value",
             algorithm=resources.CryptoKeyVersion.CryptoKeyVersionAlgorithm.GOOGLE_SYMMETRIC_ENCRYPTION,
+            name="name_value",
         )
 
         response = client.get_public_key(request)
@@ -2500,6 +2502,8 @@ def test_get_public_key(
         response.algorithm
         == resources.CryptoKeyVersion.CryptoKeyVersionAlgorithm.GOOGLE_SYMMETRIC_ENCRYPTION
     )
+
+    assert response.name == "name_value"
 
 
 def test_get_public_key_from_dict():
@@ -2525,6 +2529,7 @@ async def test_get_public_key_async(transport: str = "grpc_asyncio"):
             resources.PublicKey(
                 pem="pem_value",
                 algorithm=resources.CryptoKeyVersion.CryptoKeyVersionAlgorithm.GOOGLE_SYMMETRIC_ENCRYPTION,
+                name="name_value",
             )
         )
 
@@ -2545,6 +2550,8 @@ async def test_get_public_key_async(transport: str = "grpc_asyncio"):
         response.algorithm
         == resources.CryptoKeyVersion.CryptoKeyVersionAlgorithm.GOOGLE_SYMMETRIC_ENCRYPTION
     )
+
+    assert response.name == "name_value"
 
 
 def test_get_public_key_field_headers():
@@ -4527,7 +4534,10 @@ def test_encrypt(transport: str = "grpc", request_type=service.EncryptRequest):
     with mock.patch.object(type(client._transport.encrypt), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = service.EncryptResponse(
-            name="name_value", ciphertext=b"ciphertext_blob",
+            name="name_value",
+            ciphertext=b"ciphertext_blob",
+            verified_plaintext_crc32c=True,
+            verified_additional_authenticated_data_crc32c=True,
         )
 
         response = client.encrypt(request)
@@ -4544,6 +4554,10 @@ def test_encrypt(transport: str = "grpc", request_type=service.EncryptRequest):
     assert response.name == "name_value"
 
     assert response.ciphertext == b"ciphertext_blob"
+
+    assert response.verified_plaintext_crc32c is True
+
+    assert response.verified_additional_authenticated_data_crc32c is True
 
 
 def test_encrypt_from_dict():
@@ -4564,7 +4578,12 @@ async def test_encrypt_async(transport: str = "grpc_asyncio"):
     with mock.patch.object(type(client._client._transport.encrypt), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            service.EncryptResponse(name="name_value", ciphertext=b"ciphertext_blob",)
+            service.EncryptResponse(
+                name="name_value",
+                ciphertext=b"ciphertext_blob",
+                verified_plaintext_crc32c=True,
+                verified_additional_authenticated_data_crc32c=True,
+            )
         )
 
         response = await client.encrypt(request)
@@ -4581,6 +4600,10 @@ async def test_encrypt_async(transport: str = "grpc_asyncio"):
     assert response.name == "name_value"
 
     assert response.ciphertext == b"ciphertext_blob"
+
+    assert response.verified_plaintext_crc32c is True
+
+    assert response.verified_additional_authenticated_data_crc32c is True
 
 
 def test_encrypt_field_headers():
@@ -4922,7 +4945,9 @@ def test_asymmetric_sign(
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.asymmetric_sign), "__call__") as call:
         # Designate an appropriate return value for the call.
-        call.return_value = service.AsymmetricSignResponse(signature=b"signature_blob",)
+        call.return_value = service.AsymmetricSignResponse(
+            signature=b"signature_blob", verified_digest_crc32c=True, name="name_value",
+        )
 
         response = client.asymmetric_sign(request)
 
@@ -4936,6 +4961,10 @@ def test_asymmetric_sign(
     assert isinstance(response, service.AsymmetricSignResponse)
 
     assert response.signature == b"signature_blob"
+
+    assert response.verified_digest_crc32c is True
+
+    assert response.name == "name_value"
 
 
 def test_asymmetric_sign_from_dict():
@@ -4958,7 +4987,11 @@ async def test_asymmetric_sign_async(transport: str = "grpc_asyncio"):
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            service.AsymmetricSignResponse(signature=b"signature_blob",)
+            service.AsymmetricSignResponse(
+                signature=b"signature_blob",
+                verified_digest_crc32c=True,
+                name="name_value",
+            )
         )
 
         response = await client.asymmetric_sign(request)
@@ -4973,6 +5006,10 @@ async def test_asymmetric_sign_async(transport: str = "grpc_asyncio"):
     assert isinstance(response, service.AsymmetricSignResponse)
 
     assert response.signature == b"signature_blob"
+
+    assert response.verified_digest_crc32c is True
+
+    assert response.name == "name_value"
 
 
 def test_asymmetric_sign_field_headers():
@@ -5132,7 +5169,7 @@ def test_asymmetric_decrypt(
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = service.AsymmetricDecryptResponse(
-            plaintext=b"plaintext_blob",
+            plaintext=b"plaintext_blob", verified_ciphertext_crc32c=True,
         )
 
         response = client.asymmetric_decrypt(request)
@@ -5147,6 +5184,8 @@ def test_asymmetric_decrypt(
     assert isinstance(response, service.AsymmetricDecryptResponse)
 
     assert response.plaintext == b"plaintext_blob"
+
+    assert response.verified_ciphertext_crc32c is True
 
 
 def test_asymmetric_decrypt_from_dict():
@@ -5169,7 +5208,9 @@ async def test_asymmetric_decrypt_async(transport: str = "grpc_asyncio"):
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            service.AsymmetricDecryptResponse(plaintext=b"plaintext_blob",)
+            service.AsymmetricDecryptResponse(
+                plaintext=b"plaintext_blob", verified_ciphertext_crc32c=True,
+            )
         )
 
         response = await client.asymmetric_decrypt(request)
@@ -5184,6 +5225,8 @@ async def test_asymmetric_decrypt_async(transport: str = "grpc_asyncio"):
     assert isinstance(response, service.AsymmetricDecryptResponse)
 
     assert response.plaintext == b"plaintext_blob"
+
+    assert response.verified_ciphertext_crc32c is True
 
 
 def test_asymmetric_decrypt_field_headers():
@@ -6450,6 +6493,41 @@ def test_parse_import_job_path():
     assert expected == actual
 
 
+def test_crypto_key_version_path():
+    project = "squid"
+    location = "clam"
+    key_ring = "whelk"
+    crypto_key = "octopus"
+    crypto_key_version = "oyster"
+
+    expected = "projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}".format(
+        project=project,
+        location=location,
+        key_ring=key_ring,
+        crypto_key=crypto_key,
+        crypto_key_version=crypto_key_version,
+    )
+    actual = KeyManagementServiceClient.crypto_key_version_path(
+        project, location, key_ring, crypto_key, crypto_key_version
+    )
+    assert expected == actual
+
+
+def test_parse_crypto_key_version_path():
+    expected = {
+        "project": "nudibranch",
+        "location": "cuttlefish",
+        "key_ring": "mussel",
+        "crypto_key": "winkle",
+        "crypto_key_version": "nautilus",
+    }
+    path = KeyManagementServiceClient.crypto_key_version_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = KeyManagementServiceClient.parse_crypto_key_version_path(path)
+    assert expected == actual
+
+
 def test_crypto_key_path():
     project = "squid"
     location = "clam"
@@ -6501,41 +6579,6 @@ def test_parse_key_ring_path():
 
     # Check that the path construction is reversible.
     actual = KeyManagementServiceClient.parse_key_ring_path(path)
-    assert expected == actual
-
-
-def test_crypto_key_version_path():
-    project = "squid"
-    location = "clam"
-    key_ring = "whelk"
-    crypto_key = "octopus"
-    crypto_key_version = "oyster"
-
-    expected = "projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}".format(
-        project=project,
-        location=location,
-        key_ring=key_ring,
-        crypto_key=crypto_key,
-        crypto_key_version=crypto_key_version,
-    )
-    actual = KeyManagementServiceClient.crypto_key_version_path(
-        project, location, key_ring, crypto_key, crypto_key_version
-    )
-    assert expected == actual
-
-
-def test_parse_crypto_key_version_path():
-    expected = {
-        "project": "nudibranch",
-        "location": "cuttlefish",
-        "key_ring": "mussel",
-        "crypto_key": "winkle",
-        "crypto_key_version": "nautilus",
-    }
-    path = KeyManagementServiceClient.crypto_key_version_path(**expected)
-
-    # Check that the path construction is reversible.
-    actual = KeyManagementServiceClient.parse_crypto_key_version_path(path)
     assert expected == actual
 
 

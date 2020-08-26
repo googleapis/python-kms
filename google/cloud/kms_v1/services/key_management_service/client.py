@@ -38,6 +38,7 @@ from google.iam.v1 import policy_pb2 as policy  # type: ignore
 from google.protobuf import duration_pb2 as duration  # type: ignore
 from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
+from google.protobuf import wrappers_pb2 as wrappers  # type: ignore
 
 from .transports.base import KeyManagementServiceTransport
 from .transports.grpc import KeyManagementServiceGrpcTransport
@@ -779,7 +780,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 operations.
 
                 A [CryptoKey][google.cloud.kms.v1.CryptoKey] is made up
-                of one or more
+                of zero or more
                 [versions][google.cloud.kms.v1.CryptoKeyVersion], which
                 represent the actual key material used in cryptographic
                 operations.
@@ -1268,7 +1269,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 operations.
 
                 A [CryptoKey][google.cloud.kms.v1.CryptoKey] is made up
-                of one or more
+                of zero or more
                 [versions][google.cloud.kms.v1.CryptoKeyVersion], which
                 represent the actual key material used in cryptographic
                 operations.
@@ -1682,7 +1683,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 operations.
 
                 A [CryptoKey][google.cloud.kms.v1.CryptoKey] is made up
-                of one or more
+                of zero or more
                 [versions][google.cloud.kms.v1.CryptoKeyVersion], which
                 represent the actual key material used in cryptographic
                 operations.
@@ -2267,7 +2268,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 operations.
 
                 A [CryptoKey][google.cloud.kms.v1.CryptoKey] is made up
-                of one or more
+                of zero or more
                 [versions][google.cloud.kms.v1.CryptoKeyVersion], which
                 represent the actual key material used in cryptographic
                 operations.
