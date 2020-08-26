@@ -653,8 +653,8 @@ def test_list_key_rings_pages():
             RuntimeError,
         )
         pages = list(client.list_key_rings(request={}).pages)
-        for page, token in zip(pages, ["abc", "def", "ghi", ""]):
-            assert page.raw_page.next_page_token == token
+        for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
+            assert page_.raw_page.next_page_token == token
 
 
 @pytest.mark.asyncio
@@ -730,10 +730,10 @@ async def test_list_key_rings_async_pages():
             RuntimeError,
         )
         pages = []
-        async for page in (await client.list_key_rings(request={})).pages:
-            pages.append(page)
-        for page, token in zip(pages, ["abc", "def", "ghi", ""]):
-            assert page.raw_page.next_page_token == token
+        async for page_ in (await client.list_key_rings(request={})).pages:
+            pages.append(page_)
+        for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
+            assert page_.raw_page.next_page_token == token
 
 
 def test_list_crypto_keys(
@@ -1012,8 +1012,8 @@ def test_list_crypto_keys_pages():
             RuntimeError,
         )
         pages = list(client.list_crypto_keys(request={}).pages)
-        for page, token in zip(pages, ["abc", "def", "ghi", ""]):
-            assert page.raw_page.next_page_token == token
+        for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
+            assert page_.raw_page.next_page_token == token
 
 
 @pytest.mark.asyncio
@@ -1089,10 +1089,10 @@ async def test_list_crypto_keys_async_pages():
             RuntimeError,
         )
         pages = []
-        async for page in (await client.list_crypto_keys(request={})).pages:
-            pages.append(page)
-        for page, token in zip(pages, ["abc", "def", "ghi", ""]):
-            assert page.raw_page.next_page_token == token
+        async for page_ in (await client.list_crypto_keys(request={})).pages:
+            pages.append(page_)
+        for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
+            assert page_.raw_page.next_page_token == token
 
 
 def test_list_crypto_key_versions(
@@ -1383,8 +1383,8 @@ def test_list_crypto_key_versions_pages():
             RuntimeError,
         )
         pages = list(client.list_crypto_key_versions(request={}).pages)
-        for page, token in zip(pages, ["abc", "def", "ghi", ""]):
-            assert page.raw_page.next_page_token == token
+        for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
+            assert page_.raw_page.next_page_token == token
 
 
 @pytest.mark.asyncio
@@ -1472,10 +1472,10 @@ async def test_list_crypto_key_versions_async_pages():
             RuntimeError,
         )
         pages = []
-        async for page in (await client.list_crypto_key_versions(request={})).pages:
-            pages.append(page)
-        for page, token in zip(pages, ["abc", "def", "ghi", ""]):
-            assert page.raw_page.next_page_token == token
+        async for page_ in (await client.list_crypto_key_versions(request={})).pages:
+            pages.append(page_)
+        for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
+            assert page_.raw_page.next_page_token == token
 
 
 def test_list_import_jobs(
@@ -1754,8 +1754,8 @@ def test_list_import_jobs_pages():
             RuntimeError,
         )
         pages = list(client.list_import_jobs(request={}).pages)
-        for page, token in zip(pages, ["abc", "def", "ghi", ""]):
-            assert page.raw_page.next_page_token == token
+        for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
+            assert page_.raw_page.next_page_token == token
 
 
 @pytest.mark.asyncio
@@ -1831,10 +1831,10 @@ async def test_list_import_jobs_async_pages():
             RuntimeError,
         )
         pages = []
-        async for page in (await client.list_import_jobs(request={})).pages:
-            pages.append(page)
-        for page, token in zip(pages, ["abc", "def", "ghi", ""]):
-            assert page.raw_page.next_page_token == token
+        async for page_ in (await client.list_import_jobs(request={})).pages:
+            pages.append(page_)
+        for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
+            assert page_.raw_page.next_page_token == token
 
 
 def test_get_key_ring(transport: str = "grpc", request_type=service.GetKeyRingRequest):
@@ -6474,6 +6474,31 @@ def test_key_management_service_grpc_asyncio_transport_channel_mtls_with_adc(
         assert transport.grpc_channel == mock_grpc_channel
 
 
+def test_key_ring_path():
+    project = "squid"
+    location = "clam"
+    key_ring = "whelk"
+
+    expected = "projects/{project}/locations/{location}/keyRings/{key_ring}".format(
+        project=project, location=location, key_ring=key_ring,
+    )
+    actual = KeyManagementServiceClient.key_ring_path(project, location, key_ring)
+    assert expected == actual
+
+
+def test_parse_key_ring_path():
+    expected = {
+        "project": "octopus",
+        "location": "oyster",
+        "key_ring": "nudibranch",
+    }
+    path = KeyManagementServiceClient.key_ring_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = KeyManagementServiceClient.parse_key_ring_path(path)
+    assert expected == actual
+
+
 def test_import_job_path():
     project = "squid"
     location = "clam"
@@ -6500,31 +6525,6 @@ def test_parse_import_job_path():
 
     # Check that the path construction is reversible.
     actual = KeyManagementServiceClient.parse_import_job_path(path)
-    assert expected == actual
-
-
-def test_key_ring_path():
-    project = "squid"
-    location = "clam"
-    key_ring = "whelk"
-
-    expected = "projects/{project}/locations/{location}/keyRings/{key_ring}".format(
-        project=project, location=location, key_ring=key_ring,
-    )
-    actual = KeyManagementServiceClient.key_ring_path(project, location, key_ring)
-    assert expected == actual
-
-
-def test_parse_key_ring_path():
-    expected = {
-        "project": "octopus",
-        "location": "oyster",
-        "key_ring": "nudibranch",
-    }
-    path = KeyManagementServiceClient.key_ring_path(**expected)
-
-    # Check that the path construction is reversible.
-    actual = KeyManagementServiceClient.parse_key_ring_path(path)
     assert expected == actual
 
 
