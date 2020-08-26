@@ -62,8 +62,6 @@ class KeyManagementServiceAsyncClient:
     DEFAULT_ENDPOINT = KeyManagementServiceClient.DEFAULT_ENDPOINT
     DEFAULT_MTLS_ENDPOINT = KeyManagementServiceClient.DEFAULT_MTLS_ENDPOINT
 
-    import_job_path = staticmethod(KeyManagementServiceClient.import_job_path)
-
     crypto_key_version_path = staticmethod(
         KeyManagementServiceClient.crypto_key_version_path
     )
@@ -71,6 +69,8 @@ class KeyManagementServiceAsyncClient:
     key_ring_path = staticmethod(KeyManagementServiceClient.key_ring_path)
 
     crypto_key_path = staticmethod(KeyManagementServiceClient.crypto_key_path)
+
+    import_job_path = staticmethod(KeyManagementServiceClient.import_job_path)
 
     from_service_account_file = KeyManagementServiceClient.from_service_account_file
     from_service_account_json = from_service_account_file
