@@ -63,15 +63,15 @@ class KeyManagementServiceAsyncClient:
     DEFAULT_ENDPOINT = KeyManagementServiceClient.DEFAULT_ENDPOINT
     DEFAULT_MTLS_ENDPOINT = KeyManagementServiceClient.DEFAULT_MTLS_ENDPOINT
 
-    crypto_key_path = staticmethod(KeyManagementServiceClient.crypto_key_path)
-
     import_job_path = staticmethod(KeyManagementServiceClient.import_job_path)
+
+    key_ring_path = staticmethod(KeyManagementServiceClient.key_ring_path)
 
     crypto_key_version_path = staticmethod(
         KeyManagementServiceClient.crypto_key_version_path
     )
 
-    key_ring_path = staticmethod(KeyManagementServiceClient.key_ring_path)
+    crypto_key_path = staticmethod(KeyManagementServiceClient.crypto_key_path)
 
     from_service_account_file = KeyManagementServiceClient.from_service_account_file
     from_service_account_json = from_service_account_file
@@ -192,9 +192,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -284,9 +284,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -377,9 +377,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -469,9 +469,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -559,9 +559,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -652,9 +652,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -750,9 +750,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -842,9 +842,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -969,9 +969,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -1072,9 +1072,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -1185,9 +1185,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -1508,9 +1508,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -1606,9 +1606,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -1726,9 +1726,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -1839,9 +1839,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -1936,9 +1936,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -2035,9 +2035,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -2134,9 +2134,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -2237,9 +2237,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -2353,9 +2353,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
@@ -2460,9 +2460,9 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
