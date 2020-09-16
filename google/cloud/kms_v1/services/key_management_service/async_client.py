@@ -36,8 +36,9 @@ from google.iam.v1 import policy_pb2 as policy  # type: ignore
 from google.protobuf import duration_pb2 as duration  # type: ignore
 from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
+from google.protobuf import wrappers_pb2 as wrappers  # type: ignore
 
-from .transports.base import KeyManagementServiceTransport
+from .transports.base import KeyManagementServiceTransport, DEFAULT_CLIENT_INFO
 from .transports.grpc_asyncio import KeyManagementServiceGrpcAsyncIOTransport
 from .client import KeyManagementServiceClient
 
@@ -62,15 +63,22 @@ class KeyManagementServiceAsyncClient:
     DEFAULT_ENDPOINT = KeyManagementServiceClient.DEFAULT_ENDPOINT
     DEFAULT_MTLS_ENDPOINT = KeyManagementServiceClient.DEFAULT_MTLS_ENDPOINT
 
+    crypto_key_path = staticmethod(KeyManagementServiceClient.crypto_key_path)
+    parse_crypto_key_path = staticmethod(
+        KeyManagementServiceClient.parse_crypto_key_path
+    )
     crypto_key_version_path = staticmethod(
         KeyManagementServiceClient.crypto_key_version_path
     )
-
-    key_ring_path = staticmethod(KeyManagementServiceClient.key_ring_path)
-
-    crypto_key_path = staticmethod(KeyManagementServiceClient.crypto_key_path)
-
+    parse_crypto_key_version_path = staticmethod(
+        KeyManagementServiceClient.parse_crypto_key_version_path
+    )
     import_job_path = staticmethod(KeyManagementServiceClient.import_job_path)
+    parse_import_job_path = staticmethod(
+        KeyManagementServiceClient.parse_import_job_path
+    )
+    key_ring_path = staticmethod(KeyManagementServiceClient.key_ring_path)
+    parse_key_ring_path = staticmethod(KeyManagementServiceClient.parse_key_ring_path)
 
     from_service_account_file = KeyManagementServiceClient.from_service_account_file
     from_service_account_json = from_service_account_file
@@ -86,6 +94,7 @@ class KeyManagementServiceAsyncClient:
         credentials: credentials.Credentials = None,
         transport: Union[str, KeyManagementServiceTransport] = "grpc_asyncio",
         client_options: ClientOptions = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
         """Instantiate the key management service client.
 
@@ -102,16 +111,19 @@ class KeyManagementServiceAsyncClient:
             client_options (ClientOptions): Custom options for the client. It
                 won't take effect if a ``transport`` instance is provided.
                 (1) The ``api_endpoint`` property can be used to override the
-                default endpoint provided by the client. GOOGLE_API_USE_MTLS
+                default endpoint provided by the client. GOOGLE_API_USE_MTLS_ENDPOINT
                 environment variable can also be used to override the endpoint:
                 "always" (always use the default mTLS endpoint), "never" (always
-                use the default regular endpoint, this is the default value for
-                the environment variable) and "auto" (auto switch to the default
-                mTLS endpoint if client SSL credentials is present). However,
-                the ``api_endpoint`` property takes precedence if provided.
-                (2) The ``client_cert_source`` property is used to provide client
-                SSL credentials for mutual TLS transport. If not provided, the
-                default SSL credentials will be used if present.
+                use the default regular endpoint) and "auto" (auto switch to the
+                default mTLS endpoint if client certificate is present, this is
+                the default value). However, the ``api_endpoint`` property takes
+                precedence if provided.
+                (2) If GOOGLE_API_USE_CLIENT_CERTIFICATE environment variable
+                is "true", then the ``client_cert_source`` property can be used
+                to provide client certificate for mutual TLS transport. If
+                not provided, the default SSL client certificate will be used if
+                present. If GOOGLE_API_USE_CLIENT_CERTIFICATE is "false" or not
+                set, no client certificate will be used.
 
         Raises:
             google.auth.exceptions.MutualTlsChannelError: If mutual TLS transport
@@ -119,7 +131,10 @@ class KeyManagementServiceAsyncClient:
         """
 
         self._client = KeyManagementServiceClient(
-            credentials=credentials, transport=transport, client_options=client_options,
+            credentials=credentials,
+            transport=transport,
+            client_options=client_options,
+            client_info=client_info,
         )
 
     async def list_key_rings(
@@ -187,13 +202,13 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -279,13 +294,13 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -372,13 +387,13 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -464,13 +479,13 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -554,13 +569,13 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -615,7 +630,7 @@ class KeyManagementServiceAsyncClient:
                 operations.
 
                 A [CryptoKey][google.cloud.kms.v1.CryptoKey] is made up
-                of one or more
+                of zero or more
                 [versions][google.cloud.kms.v1.CryptoKeyVersion], which
                 represent the actual key material used in cryptographic
                 operations.
@@ -647,13 +662,13 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -745,13 +760,13 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -837,13 +852,13 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -964,13 +979,13 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -1067,13 +1082,13 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -1144,7 +1159,7 @@ class KeyManagementServiceAsyncClient:
                 operations.
 
                 A [CryptoKey][google.cloud.kms.v1.CryptoKey] is made up
-                of one or more
+                of zero or more
                 [versions][google.cloud.kms.v1.CryptoKeyVersion], which
                 represent the actual key material used in cryptographic
                 operations.
@@ -1180,13 +1195,13 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -1290,7 +1305,7 @@ class KeyManagementServiceAsyncClient:
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.create_crypto_key_version,
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -1361,7 +1376,7 @@ class KeyManagementServiceAsyncClient:
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.import_crypto_key_version,
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -1503,13 +1518,13 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -1567,7 +1582,7 @@ class KeyManagementServiceAsyncClient:
                 operations.
 
                 A [CryptoKey][google.cloud.kms.v1.CryptoKey] is made up
-                of one or more
+                of zero or more
                 [versions][google.cloud.kms.v1.CryptoKeyVersion], which
                 represent the actual key material used in cryptographic
                 operations.
@@ -1601,13 +1616,13 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -1721,13 +1736,13 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -1834,13 +1849,13 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -1931,13 +1946,13 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -2030,13 +2045,13 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -2129,13 +2144,13 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -2198,7 +2213,7 @@ class KeyManagementServiceAsyncClient:
                 operations.
 
                 A [CryptoKey][google.cloud.kms.v1.CryptoKey] is made up
-                of one or more
+                of zero or more
                 [versions][google.cloud.kms.v1.CryptoKeyVersion], which
                 represent the actual key material used in cryptographic
                 operations.
@@ -2232,13 +2247,13 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -2348,13 +2363,13 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -2455,13 +2470,13 @@ class KeyManagementServiceAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
+                    exceptions.DeadlineExceeded,
                     exceptions.InternalServerError,
                     exceptions.ServiceUnavailable,
-                    exceptions.DeadlineExceeded,
                 ),
             ),
             default_timeout=60.0,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -2571,7 +2586,7 @@ class KeyManagementServiceAsyncClient:
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.set_iam_policy,
             default_timeout=None,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -2682,7 +2697,7 @@ class KeyManagementServiceAsyncClient:
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.get_iam_policy,
             default_timeout=None,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -2734,7 +2749,7 @@ class KeyManagementServiceAsyncClient:
         rpc = gapic_v1.method_async.wrap_method(
             self._client._transport.test_iam_permissions,
             default_timeout=None,
-            client_info=_client_info,
+            client_info=DEFAULT_CLIENT_INFO,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -2751,11 +2766,11 @@ class KeyManagementServiceAsyncClient:
 
 
 try:
-    _client_info = gapic_v1.client_info.ClientInfo(
+    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
         gapic_version=pkg_resources.get_distribution("google-cloud-kms",).version,
     )
 except pkg_resources.DistributionNotFound:
-    _client_info = gapic_v1.client_info.ClientInfo()
+    DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
 __all__ = ("KeyManagementServiceAsyncClient",)

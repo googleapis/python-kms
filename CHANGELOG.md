@@ -4,6 +4,37 @@
 
 [1]: https://pypi.org/project/google-cloud-kms/#history
 
+## [2.2.0](https://www.github.com/googleapis/python-kms/compare/v2.1.0...v2.2.0) (2020-09-16)
+
+
+### Features
+
+* regenerate client lib to pick up new mtls env ([#55](https://www.github.com/googleapis/python-kms/issues/55)) ([4d62c19](https://www.github.com/googleapis/python-kms/commit/4d62c19d2f0f7c597214f2b39dfecb85f9d75a58))
+
+
+### Documentation
+
+* add crypto_key_path_path method rename to UPGRADING.md ([#45](https://www.github.com/googleapis/python-kms/issues/45)) ([81db5d9](https://www.github.com/googleapis/python-kms/commit/81db5d90112092772b83aec57e2358088ed88e0d)), closes [#43](https://www.github.com/googleapis/python-kms/issues/43)
+
+## [2.1.0](https://www.github.com/googleapis/python-kms/compare/v2.0.1...v2.1.0) (2020-08-27)
+
+
+### Features
+
+* accept custom client_info ([#41](https://www.github.com/googleapis/python-kms/issues/41)) ([6688e80](https://www.github.com/googleapis/python-kms/commit/6688e80aa4db74980d4a6194519c814a22cde177))
+
+### [2.0.1](https://www.github.com/googleapis/python-kms/compare/v2.0.0...v2.0.1) (2020-08-24)
+
+
+### Bug Fixes
+
+* add system test back ([#39](https://www.github.com/googleapis/python-kms/issues/39)) ([fc5a720](https://www.github.com/googleapis/python-kms/commit/fc5a720d93ba41cd2616c7c9c8012d9a3e8f4a9c))
+
+
+### Documentation
+
+* Generate using new common.py_samples() synthtool functionality ([#35](https://www.github.com/googleapis/python-kms/issues/35)) ([90097bc](https://www.github.com/googleapis/python-kms/commit/90097bca7660f148f36e009f70d108404efa5308))
+
 ## [2.0.0](https://www.github.com/googleapis/python-kms/compare/v1.4.0...v2.0.0) (2020-07-30)
 
 

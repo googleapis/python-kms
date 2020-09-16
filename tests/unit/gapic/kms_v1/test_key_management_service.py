@@ -49,6 +49,7 @@ from google.oauth2 import service_account
 from google.protobuf import duration_pb2 as duration  # type: ignore
 from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
+from google.protobuf import wrappers_pb2 as wrappers  # type: ignore
 
 
 def client_cert_source_callback():
@@ -171,14 +172,14 @@ def test_key_management_service_client_client_options(
             credentials_file=None,
             host="squid.clam.whelk",
             scopes=None,
-            api_mtls_endpoint="squid.clam.whelk",
-            client_cert_source=None,
+            ssl_channel_credentials=None,
             quota_project_id=None,
+            client_info=transports.base.DEFAULT_CLIENT_INFO,
         )
 
-    # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS is
+    # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS_ENDPOINT is
     # "never".
-    with mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS": "never"}):
+    with mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS_ENDPOINT": "never"}):
         with mock.patch.object(transport_class, "__init__") as patched:
             patched.return_value = None
             client = client_class()
@@ -187,14 +188,14 @@ def test_key_management_service_client_client_options(
                 credentials_file=None,
                 host=client.DEFAULT_ENDPOINT,
                 scopes=None,
-                api_mtls_endpoint=client.DEFAULT_ENDPOINT,
-                client_cert_source=None,
+                ssl_channel_credentials=None,
                 quota_project_id=None,
+                client_info=transports.base.DEFAULT_CLIENT_INFO,
             )
 
-    # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS is
+    # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS_ENDPOINT is
     # "always".
-    with mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS": "always"}):
+    with mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS_ENDPOINT": "always"}):
         with mock.patch.object(transport_class, "__init__") as patched:
             patched.return_value = None
             client = client_class()
@@ -203,74 +204,22 @@ def test_key_management_service_client_client_options(
                 credentials_file=None,
                 host=client.DEFAULT_MTLS_ENDPOINT,
                 scopes=None,
-                api_mtls_endpoint=client.DEFAULT_MTLS_ENDPOINT,
-                client_cert_source=None,
+                ssl_channel_credentials=None,
                 quota_project_id=None,
+                client_info=transports.base.DEFAULT_CLIENT_INFO,
             )
 
-    # Check the case api_endpoint is not provided, GOOGLE_API_USE_MTLS is
-    # "auto", and client_cert_source is provided.
-    with mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS": "auto"}):
-        options = client_options.ClientOptions(
-            client_cert_source=client_cert_source_callback
-        )
-        with mock.patch.object(transport_class, "__init__") as patched:
-            patched.return_value = None
-            client = client_class(client_options=options)
-            patched.assert_called_once_with(
-                credentials=None,
-                credentials_file=None,
-                host=client.DEFAULT_MTLS_ENDPOINT,
-                scopes=None,
-                api_mtls_endpoint=client.DEFAULT_MTLS_ENDPOINT,
-                client_cert_source=client_cert_source_callback,
-                quota_project_id=None,
-            )
-
-    # Check the case api_endpoint is not provided, GOOGLE_API_USE_MTLS is
-    # "auto", and default_client_cert_source is provided.
-    with mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS": "auto"}):
-        with mock.patch.object(transport_class, "__init__") as patched:
-            with mock.patch(
-                "google.auth.transport.mtls.has_default_client_cert_source",
-                return_value=True,
-            ):
-                patched.return_value = None
-                client = client_class()
-                patched.assert_called_once_with(
-                    credentials=None,
-                    credentials_file=None,
-                    host=client.DEFAULT_MTLS_ENDPOINT,
-                    scopes=None,
-                    api_mtls_endpoint=client.DEFAULT_MTLS_ENDPOINT,
-                    client_cert_source=None,
-                    quota_project_id=None,
-                )
-
-    # Check the case api_endpoint is not provided, GOOGLE_API_USE_MTLS is
-    # "auto", but client_cert_source and default_client_cert_source are None.
-    with mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS": "auto"}):
-        with mock.patch.object(transport_class, "__init__") as patched:
-            with mock.patch(
-                "google.auth.transport.mtls.has_default_client_cert_source",
-                return_value=False,
-            ):
-                patched.return_value = None
-                client = client_class()
-                patched.assert_called_once_with(
-                    credentials=None,
-                    credentials_file=None,
-                    host=client.DEFAULT_ENDPOINT,
-                    scopes=None,
-                    api_mtls_endpoint=client.DEFAULT_ENDPOINT,
-                    client_cert_source=None,
-                    quota_project_id=None,
-                )
-
-    # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS has
+    # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS_ENDPOINT has
     # unsupported value.
-    with mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS": "Unsupported"}):
+    with mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS_ENDPOINT": "Unsupported"}):
         with pytest.raises(MutualTLSChannelError):
+            client = client_class()
+
+    # Check the case GOOGLE_API_USE_CLIENT_CERTIFICATE has unsupported value.
+    with mock.patch.dict(
+        os.environ, {"GOOGLE_API_USE_CLIENT_CERTIFICATE": "Unsupported"}
+    ):
+        with pytest.raises(ValueError):
             client = client_class()
 
     # Check the case quota_project_id is provided
@@ -283,10 +232,157 @@ def test_key_management_service_client_client_options(
             credentials_file=None,
             host=client.DEFAULT_ENDPOINT,
             scopes=None,
-            api_mtls_endpoint=client.DEFAULT_ENDPOINT,
-            client_cert_source=None,
+            ssl_channel_credentials=None,
             quota_project_id="octopus",
+            client_info=transports.base.DEFAULT_CLIENT_INFO,
         )
+
+
+@pytest.mark.parametrize(
+    "client_class,transport_class,transport_name,use_client_cert_env",
+    [
+        (
+            KeyManagementServiceClient,
+            transports.KeyManagementServiceGrpcTransport,
+            "grpc",
+            "true",
+        ),
+        (
+            KeyManagementServiceAsyncClient,
+            transports.KeyManagementServiceGrpcAsyncIOTransport,
+            "grpc_asyncio",
+            "true",
+        ),
+        (
+            KeyManagementServiceClient,
+            transports.KeyManagementServiceGrpcTransport,
+            "grpc",
+            "false",
+        ),
+        (
+            KeyManagementServiceAsyncClient,
+            transports.KeyManagementServiceGrpcAsyncIOTransport,
+            "grpc_asyncio",
+            "false",
+        ),
+    ],
+)
+@mock.patch.object(
+    KeyManagementServiceClient,
+    "DEFAULT_ENDPOINT",
+    modify_default_endpoint(KeyManagementServiceClient),
+)
+@mock.patch.object(
+    KeyManagementServiceAsyncClient,
+    "DEFAULT_ENDPOINT",
+    modify_default_endpoint(KeyManagementServiceAsyncClient),
+)
+@mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS_ENDPOINT": "auto"})
+def test_key_management_service_client_mtls_env_auto(
+    client_class, transport_class, transport_name, use_client_cert_env
+):
+    # This tests the endpoint autoswitch behavior. Endpoint is autoswitched to the default
+    # mtls endpoint, if GOOGLE_API_USE_CLIENT_CERTIFICATE is "true" and client cert exists.
+
+    # Check the case client_cert_source is provided. Whether client cert is used depends on
+    # GOOGLE_API_USE_CLIENT_CERTIFICATE value.
+    with mock.patch.dict(
+        os.environ, {"GOOGLE_API_USE_CLIENT_CERTIFICATE": use_client_cert_env}
+    ):
+        options = client_options.ClientOptions(
+            client_cert_source=client_cert_source_callback
+        )
+        with mock.patch.object(transport_class, "__init__") as patched:
+            ssl_channel_creds = mock.Mock()
+            with mock.patch(
+                "grpc.ssl_channel_credentials", return_value=ssl_channel_creds
+            ):
+                patched.return_value = None
+                client = client_class(client_options=options)
+
+                if use_client_cert_env == "false":
+                    expected_ssl_channel_creds = None
+                    expected_host = client.DEFAULT_ENDPOINT
+                else:
+                    expected_ssl_channel_creds = ssl_channel_creds
+                    expected_host = client.DEFAULT_MTLS_ENDPOINT
+
+                patched.assert_called_once_with(
+                    credentials=None,
+                    credentials_file=None,
+                    host=expected_host,
+                    scopes=None,
+                    ssl_channel_credentials=expected_ssl_channel_creds,
+                    quota_project_id=None,
+                    client_info=transports.base.DEFAULT_CLIENT_INFO,
+                )
+
+    # Check the case ADC client cert is provided. Whether client cert is used depends on
+    # GOOGLE_API_USE_CLIENT_CERTIFICATE value.
+    with mock.patch.dict(
+        os.environ, {"GOOGLE_API_USE_CLIENT_CERTIFICATE": use_client_cert_env}
+    ):
+        with mock.patch.object(transport_class, "__init__") as patched:
+            with mock.patch(
+                "google.auth.transport.grpc.SslCredentials.__init__", return_value=None
+            ):
+                with mock.patch(
+                    "google.auth.transport.grpc.SslCredentials.is_mtls",
+                    new_callable=mock.PropertyMock,
+                ) as is_mtls_mock:
+                    with mock.patch(
+                        "google.auth.transport.grpc.SslCredentials.ssl_credentials",
+                        new_callable=mock.PropertyMock,
+                    ) as ssl_credentials_mock:
+                        if use_client_cert_env == "false":
+                            is_mtls_mock.return_value = False
+                            ssl_credentials_mock.return_value = None
+                            expected_host = client.DEFAULT_ENDPOINT
+                            expected_ssl_channel_creds = None
+                        else:
+                            is_mtls_mock.return_value = True
+                            ssl_credentials_mock.return_value = mock.Mock()
+                            expected_host = client.DEFAULT_MTLS_ENDPOINT
+                            expected_ssl_channel_creds = (
+                                ssl_credentials_mock.return_value
+                            )
+
+                        patched.return_value = None
+                        client = client_class()
+                        patched.assert_called_once_with(
+                            credentials=None,
+                            credentials_file=None,
+                            host=expected_host,
+                            scopes=None,
+                            ssl_channel_credentials=expected_ssl_channel_creds,
+                            quota_project_id=None,
+                            client_info=transports.base.DEFAULT_CLIENT_INFO,
+                        )
+
+    # Check the case client_cert_source and ADC client cert are not provided.
+    with mock.patch.dict(
+        os.environ, {"GOOGLE_API_USE_CLIENT_CERTIFICATE": use_client_cert_env}
+    ):
+        with mock.patch.object(transport_class, "__init__") as patched:
+            with mock.patch(
+                "google.auth.transport.grpc.SslCredentials.__init__", return_value=None
+            ):
+                with mock.patch(
+                    "google.auth.transport.grpc.SslCredentials.is_mtls",
+                    new_callable=mock.PropertyMock,
+                ) as is_mtls_mock:
+                    is_mtls_mock.return_value = False
+                    patched.return_value = None
+                    client = client_class()
+                    patched.assert_called_once_with(
+                        credentials=None,
+                        credentials_file=None,
+                        host=client.DEFAULT_ENDPOINT,
+                        scopes=None,
+                        ssl_channel_credentials=None,
+                        quota_project_id=None,
+                        client_info=transports.base.DEFAULT_CLIENT_INFO,
+                    )
 
 
 @pytest.mark.parametrize(
@@ -317,9 +413,9 @@ def test_key_management_service_client_client_options_scopes(
             credentials_file=None,
             host=client.DEFAULT_ENDPOINT,
             scopes=["1", "2"],
-            api_mtls_endpoint=client.DEFAULT_ENDPOINT,
-            client_cert_source=None,
+            ssl_channel_credentials=None,
             quota_project_id=None,
+            client_info=transports.base.DEFAULT_CLIENT_INFO,
         )
 
 
@@ -351,9 +447,9 @@ def test_key_management_service_client_client_options_credentials_file(
             credentials_file="credentials.json",
             host=client.DEFAULT_ENDPOINT,
             scopes=None,
-            api_mtls_endpoint=client.DEFAULT_ENDPOINT,
-            client_cert_source=None,
+            ssl_channel_credentials=None,
             quota_project_id=None,
+            client_info=transports.base.DEFAULT_CLIENT_INFO,
         )
 
 
@@ -370,20 +466,22 @@ def test_key_management_service_client_client_options_from_dict():
             credentials_file=None,
             host="squid.clam.whelk",
             scopes=None,
-            api_mtls_endpoint="squid.clam.whelk",
-            client_cert_source=None,
+            ssl_channel_credentials=None,
             quota_project_id=None,
+            client_info=transports.base.DEFAULT_CLIENT_INFO,
         )
 
 
-def test_list_key_rings(transport: str = "grpc"):
+def test_list_key_rings(
+    transport: str = "grpc", request_type=service.ListKeyRingsRequest
+):
     client = KeyManagementServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.ListKeyRingsRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.list_key_rings), "__call__") as call:
@@ -398,7 +496,7 @@ def test_list_key_rings(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.ListKeyRingsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, pagers.ListKeyRingsPager)
@@ -406,6 +504,10 @@ def test_list_key_rings(transport: str = "grpc"):
     assert response.next_page_token == "next_page_token_value"
 
     assert response.total_size == 1086
+
+
+def test_list_key_rings_from_dict():
+    test_list_key_rings(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -636,8 +738,8 @@ def test_list_key_rings_pages():
             RuntimeError,
         )
         pages = list(client.list_key_rings(request={}).pages)
-        for page, token in zip(pages, ["abc", "def", "ghi", ""]):
-            assert page.raw_page.next_page_token == token
+        for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
+            assert page_.raw_page.next_page_token == token
 
 
 @pytest.mark.asyncio
@@ -713,20 +815,22 @@ async def test_list_key_rings_async_pages():
             RuntimeError,
         )
         pages = []
-        async for page in (await client.list_key_rings(request={})).pages:
-            pages.append(page)
-        for page, token in zip(pages, ["abc", "def", "ghi", ""]):
-            assert page.raw_page.next_page_token == token
+        async for page_ in (await client.list_key_rings(request={})).pages:
+            pages.append(page_)
+        for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
+            assert page_.raw_page.next_page_token == token
 
 
-def test_list_crypto_keys(transport: str = "grpc"):
+def test_list_crypto_keys(
+    transport: str = "grpc", request_type=service.ListCryptoKeysRequest
+):
     client = KeyManagementServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.ListCryptoKeysRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -743,7 +847,7 @@ def test_list_crypto_keys(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.ListCryptoKeysRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, pagers.ListCryptoKeysPager)
@@ -751,6 +855,10 @@ def test_list_crypto_keys(transport: str = "grpc"):
     assert response.next_page_token == "next_page_token_value"
 
     assert response.total_size == 1086
+
+
+def test_list_crypto_keys_from_dict():
+    test_list_crypto_keys(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -989,8 +1097,8 @@ def test_list_crypto_keys_pages():
             RuntimeError,
         )
         pages = list(client.list_crypto_keys(request={}).pages)
-        for page, token in zip(pages, ["abc", "def", "ghi", ""]):
-            assert page.raw_page.next_page_token == token
+        for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
+            assert page_.raw_page.next_page_token == token
 
 
 @pytest.mark.asyncio
@@ -1066,20 +1174,22 @@ async def test_list_crypto_keys_async_pages():
             RuntimeError,
         )
         pages = []
-        async for page in (await client.list_crypto_keys(request={})).pages:
-            pages.append(page)
-        for page, token in zip(pages, ["abc", "def", "ghi", ""]):
-            assert page.raw_page.next_page_token == token
+        async for page_ in (await client.list_crypto_keys(request={})).pages:
+            pages.append(page_)
+        for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
+            assert page_.raw_page.next_page_token == token
 
 
-def test_list_crypto_key_versions(transport: str = "grpc"):
+def test_list_crypto_key_versions(
+    transport: str = "grpc", request_type=service.ListCryptoKeyVersionsRequest
+):
     client = KeyManagementServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.ListCryptoKeyVersionsRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -1096,7 +1206,7 @@ def test_list_crypto_key_versions(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.ListCryptoKeyVersionsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, pagers.ListCryptoKeyVersionsPager)
@@ -1104,6 +1214,10 @@ def test_list_crypto_key_versions(transport: str = "grpc"):
     assert response.next_page_token == "next_page_token_value"
 
     assert response.total_size == 1086
+
+
+def test_list_crypto_key_versions_from_dict():
+    test_list_crypto_key_versions(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -1354,8 +1468,8 @@ def test_list_crypto_key_versions_pages():
             RuntimeError,
         )
         pages = list(client.list_crypto_key_versions(request={}).pages)
-        for page, token in zip(pages, ["abc", "def", "ghi", ""]):
-            assert page.raw_page.next_page_token == token
+        for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
+            assert page_.raw_page.next_page_token == token
 
 
 @pytest.mark.asyncio
@@ -1443,20 +1557,22 @@ async def test_list_crypto_key_versions_async_pages():
             RuntimeError,
         )
         pages = []
-        async for page in (await client.list_crypto_key_versions(request={})).pages:
-            pages.append(page)
-        for page, token in zip(pages, ["abc", "def", "ghi", ""]):
-            assert page.raw_page.next_page_token == token
+        async for page_ in (await client.list_crypto_key_versions(request={})).pages:
+            pages.append(page_)
+        for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
+            assert page_.raw_page.next_page_token == token
 
 
-def test_list_import_jobs(transport: str = "grpc"):
+def test_list_import_jobs(
+    transport: str = "grpc", request_type=service.ListImportJobsRequest
+):
     client = KeyManagementServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.ListImportJobsRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -1473,7 +1589,7 @@ def test_list_import_jobs(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.ListImportJobsRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, pagers.ListImportJobsPager)
@@ -1481,6 +1597,10 @@ def test_list_import_jobs(transport: str = "grpc"):
     assert response.next_page_token == "next_page_token_value"
 
     assert response.total_size == 1086
+
+
+def test_list_import_jobs_from_dict():
+    test_list_import_jobs(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -1719,8 +1839,8 @@ def test_list_import_jobs_pages():
             RuntimeError,
         )
         pages = list(client.list_import_jobs(request={}).pages)
-        for page, token in zip(pages, ["abc", "def", "ghi", ""]):
-            assert page.raw_page.next_page_token == token
+        for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
+            assert page_.raw_page.next_page_token == token
 
 
 @pytest.mark.asyncio
@@ -1796,20 +1916,20 @@ async def test_list_import_jobs_async_pages():
             RuntimeError,
         )
         pages = []
-        async for page in (await client.list_import_jobs(request={})).pages:
-            pages.append(page)
-        for page, token in zip(pages, ["abc", "def", "ghi", ""]):
-            assert page.raw_page.next_page_token == token
+        async for page_ in (await client.list_import_jobs(request={})).pages:
+            pages.append(page_)
+        for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
+            assert page_.raw_page.next_page_token == token
 
 
-def test_get_key_ring(transport: str = "grpc"):
+def test_get_key_ring(transport: str = "grpc", request_type=service.GetKeyRingRequest):
     client = KeyManagementServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.GetKeyRingRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.get_key_ring), "__call__") as call:
@@ -1822,12 +1942,16 @@ def test_get_key_ring(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.GetKeyRingRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, resources.KeyRing)
 
     assert response.name == "name_value"
+
+
+def test_get_key_ring_from_dict():
+    test_get_key_ring(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -1987,14 +2111,16 @@ async def test_get_key_ring_flattened_error_async():
         )
 
 
-def test_get_crypto_key(transport: str = "grpc"):
+def test_get_crypto_key(
+    transport: str = "grpc", request_type=service.GetCryptoKeyRequest
+):
     client = KeyManagementServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.GetCryptoKeyRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.get_crypto_key), "__call__") as call:
@@ -2011,7 +2137,7 @@ def test_get_crypto_key(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.GetCryptoKeyRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, resources.CryptoKey)
@@ -2019,6 +2145,10 @@ def test_get_crypto_key(transport: str = "grpc"):
     assert response.name == "name_value"
 
     assert response.purpose == resources.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT
+
+
+def test_get_crypto_key_from_dict():
+    test_get_crypto_key(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -2183,14 +2313,16 @@ async def test_get_crypto_key_flattened_error_async():
         )
 
 
-def test_get_crypto_key_version(transport: str = "grpc"):
+def test_get_crypto_key_version(
+    transport: str = "grpc", request_type=service.GetCryptoKeyVersionRequest
+):
     client = KeyManagementServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.GetCryptoKeyVersionRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -2212,7 +2344,7 @@ def test_get_crypto_key_version(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.GetCryptoKeyVersionRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, resources.CryptoKeyVersion)
@@ -2234,6 +2366,10 @@ def test_get_crypto_key_version(transport: str = "grpc"):
     assert response.import_job == "import_job_value"
 
     assert response.import_failure_reason == "import_failure_reason_value"
+
+
+def test_get_crypto_key_version_from_dict():
+    test_get_crypto_key_version(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -2424,14 +2560,16 @@ async def test_get_crypto_key_version_flattened_error_async():
         )
 
 
-def test_get_public_key(transport: str = "grpc"):
+def test_get_public_key(
+    transport: str = "grpc", request_type=service.GetPublicKeyRequest
+):
     client = KeyManagementServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.GetPublicKeyRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.get_public_key), "__call__") as call:
@@ -2439,6 +2577,7 @@ def test_get_public_key(transport: str = "grpc"):
         call.return_value = resources.PublicKey(
             pem="pem_value",
             algorithm=resources.CryptoKeyVersion.CryptoKeyVersionAlgorithm.GOOGLE_SYMMETRIC_ENCRYPTION,
+            name="name_value",
         )
 
         response = client.get_public_key(request)
@@ -2447,7 +2586,7 @@ def test_get_public_key(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.GetPublicKeyRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, resources.PublicKey)
@@ -2458,6 +2597,12 @@ def test_get_public_key(transport: str = "grpc"):
         response.algorithm
         == resources.CryptoKeyVersion.CryptoKeyVersionAlgorithm.GOOGLE_SYMMETRIC_ENCRYPTION
     )
+
+    assert response.name == "name_value"
+
+
+def test_get_public_key_from_dict():
+    test_get_public_key(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -2479,6 +2624,7 @@ async def test_get_public_key_async(transport: str = "grpc_asyncio"):
             resources.PublicKey(
                 pem="pem_value",
                 algorithm=resources.CryptoKeyVersion.CryptoKeyVersionAlgorithm.GOOGLE_SYMMETRIC_ENCRYPTION,
+                name="name_value",
             )
         )
 
@@ -2499,6 +2645,8 @@ async def test_get_public_key_async(transport: str = "grpc_asyncio"):
         response.algorithm
         == resources.CryptoKeyVersion.CryptoKeyVersionAlgorithm.GOOGLE_SYMMETRIC_ENCRYPTION
     )
+
+    assert response.name == "name_value"
 
 
 def test_get_public_key_field_headers():
@@ -2625,14 +2773,16 @@ async def test_get_public_key_flattened_error_async():
         )
 
 
-def test_get_import_job(transport: str = "grpc"):
+def test_get_import_job(
+    transport: str = "grpc", request_type=service.GetImportJobRequest
+):
     client = KeyManagementServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.GetImportJobRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.get_import_job), "__call__") as call:
@@ -2650,7 +2800,7 @@ def test_get_import_job(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.GetImportJobRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, resources.ImportJob)
@@ -2665,6 +2815,10 @@ def test_get_import_job(transport: str = "grpc"):
     assert response.protection_level == resources.ProtectionLevel.SOFTWARE
 
     assert response.state == resources.ImportJob.ImportJobState.PENDING_GENERATION
+
+
+def test_get_import_job_from_dict():
+    test_get_import_job(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -2838,14 +2992,16 @@ async def test_get_import_job_flattened_error_async():
         )
 
 
-def test_create_key_ring(transport: str = "grpc"):
+def test_create_key_ring(
+    transport: str = "grpc", request_type=service.CreateKeyRingRequest
+):
     client = KeyManagementServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.CreateKeyRingRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.create_key_ring), "__call__") as call:
@@ -2858,12 +3014,16 @@ def test_create_key_ring(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.CreateKeyRingRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, resources.KeyRing)
 
     assert response.name == "name_value"
+
+
+def test_create_key_ring_from_dict():
+    test_create_key_ring(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -3045,14 +3205,16 @@ async def test_create_key_ring_flattened_error_async():
         )
 
 
-def test_create_crypto_key(transport: str = "grpc"):
+def test_create_crypto_key(
+    transport: str = "grpc", request_type=service.CreateCryptoKeyRequest
+):
     client = KeyManagementServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.CreateCryptoKeyRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -3071,7 +3233,7 @@ def test_create_crypto_key(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.CreateCryptoKeyRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, resources.CryptoKey)
@@ -3079,6 +3241,10 @@ def test_create_crypto_key(transport: str = "grpc"):
     assert response.name == "name_value"
 
     assert response.purpose == resources.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT
+
+
+def test_create_crypto_key_from_dict():
+    test_create_crypto_key(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -3269,14 +3435,16 @@ async def test_create_crypto_key_flattened_error_async():
         )
 
 
-def test_create_crypto_key_version(transport: str = "grpc"):
+def test_create_crypto_key_version(
+    transport: str = "grpc", request_type=service.CreateCryptoKeyVersionRequest
+):
     client = KeyManagementServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.CreateCryptoKeyVersionRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -3298,7 +3466,7 @@ def test_create_crypto_key_version(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.CreateCryptoKeyVersionRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, resources.CryptoKeyVersion)
@@ -3320,6 +3488,10 @@ def test_create_crypto_key_version(transport: str = "grpc"):
     assert response.import_job == "import_job_value"
 
     assert response.import_failure_reason == "import_failure_reason_value"
+
+
+def test_create_crypto_key_version_from_dict():
+    test_create_crypto_key_version(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -3528,14 +3700,16 @@ async def test_create_crypto_key_version_flattened_error_async():
         )
 
 
-def test_import_crypto_key_version(transport: str = "grpc"):
+def test_import_crypto_key_version(
+    transport: str = "grpc", request_type=service.ImportCryptoKeyVersionRequest
+):
     client = KeyManagementServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.ImportCryptoKeyVersionRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -3557,7 +3731,7 @@ def test_import_crypto_key_version(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.ImportCryptoKeyVersionRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, resources.CryptoKeyVersion)
@@ -3579,6 +3753,10 @@ def test_import_crypto_key_version(transport: str = "grpc"):
     assert response.import_job == "import_job_value"
 
     assert response.import_failure_reason == "import_failure_reason_value"
+
+
+def test_import_crypto_key_version_from_dict():
+    test_import_crypto_key_version(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -3694,14 +3872,16 @@ async def test_import_crypto_key_version_field_headers_async():
     assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
 
 
-def test_create_import_job(transport: str = "grpc"):
+def test_create_import_job(
+    transport: str = "grpc", request_type=service.CreateImportJobRequest
+):
     client = KeyManagementServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.CreateImportJobRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -3721,7 +3901,7 @@ def test_create_import_job(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.CreateImportJobRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, resources.ImportJob)
@@ -3736,6 +3916,10 @@ def test_create_import_job(transport: str = "grpc"):
     assert response.protection_level == resources.ProtectionLevel.SOFTWARE
 
     assert response.state == resources.ImportJob.ImportJobState.PENDING_GENERATION
+
+
+def test_create_import_job_from_dict():
+    test_create_import_job(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -3935,14 +4119,16 @@ async def test_create_import_job_flattened_error_async():
         )
 
 
-def test_update_crypto_key(transport: str = "grpc"):
+def test_update_crypto_key(
+    transport: str = "grpc", request_type=service.UpdateCryptoKeyRequest
+):
     client = KeyManagementServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.UpdateCryptoKeyRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -3961,7 +4147,7 @@ def test_update_crypto_key(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.UpdateCryptoKeyRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, resources.CryptoKey)
@@ -3969,6 +4155,10 @@ def test_update_crypto_key(transport: str = "grpc"):
     assert response.name == "name_value"
 
     assert response.purpose == resources.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT
+
+
+def test_update_crypto_key_from_dict():
+    test_update_crypto_key(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -4155,14 +4345,16 @@ async def test_update_crypto_key_flattened_error_async():
         )
 
 
-def test_update_crypto_key_version(transport: str = "grpc"):
+def test_update_crypto_key_version(
+    transport: str = "grpc", request_type=service.UpdateCryptoKeyVersionRequest
+):
     client = KeyManagementServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.UpdateCryptoKeyVersionRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -4184,7 +4376,7 @@ def test_update_crypto_key_version(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.UpdateCryptoKeyVersionRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, resources.CryptoKeyVersion)
@@ -4206,6 +4398,10 @@ def test_update_crypto_key_version(transport: str = "grpc"):
     assert response.import_job == "import_job_value"
 
     assert response.import_failure_reason == "import_failure_reason_value"
+
+
+def test_update_crypto_key_version_from_dict():
+    test_update_crypto_key_version(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -4420,20 +4616,23 @@ async def test_update_crypto_key_version_flattened_error_async():
         )
 
 
-def test_encrypt(transport: str = "grpc"):
+def test_encrypt(transport: str = "grpc", request_type=service.EncryptRequest):
     client = KeyManagementServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.EncryptRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.encrypt), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = service.EncryptResponse(
-            name="name_value", ciphertext=b"ciphertext_blob",
+            name="name_value",
+            ciphertext=b"ciphertext_blob",
+            verified_plaintext_crc32c=True,
+            verified_additional_authenticated_data_crc32c=True,
         )
 
         response = client.encrypt(request)
@@ -4442,7 +4641,7 @@ def test_encrypt(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.EncryptRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.EncryptResponse)
@@ -4450,6 +4649,14 @@ def test_encrypt(transport: str = "grpc"):
     assert response.name == "name_value"
 
     assert response.ciphertext == b"ciphertext_blob"
+
+    assert response.verified_plaintext_crc32c is True
+
+    assert response.verified_additional_authenticated_data_crc32c is True
+
+
+def test_encrypt_from_dict():
+    test_encrypt(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -4466,7 +4673,12 @@ async def test_encrypt_async(transport: str = "grpc_asyncio"):
     with mock.patch.object(type(client._client._transport.encrypt), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            service.EncryptResponse(name="name_value", ciphertext=b"ciphertext_blob",)
+            service.EncryptResponse(
+                name="name_value",
+                ciphertext=b"ciphertext_blob",
+                verified_plaintext_crc32c=True,
+                verified_additional_authenticated_data_crc32c=True,
+            )
         )
 
         response = await client.encrypt(request)
@@ -4483,6 +4695,10 @@ async def test_encrypt_async(transport: str = "grpc_asyncio"):
     assert response.name == "name_value"
 
     assert response.ciphertext == b"ciphertext_blob"
+
+    assert response.verified_plaintext_crc32c is True
+
+    assert response.verified_additional_authenticated_data_crc32c is True
 
 
 def test_encrypt_field_headers():
@@ -4615,14 +4831,14 @@ async def test_encrypt_flattened_error_async():
         )
 
 
-def test_decrypt(transport: str = "grpc"):
+def test_decrypt(transport: str = "grpc", request_type=service.DecryptRequest):
     client = KeyManagementServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.DecryptRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.decrypt), "__call__") as call:
@@ -4635,12 +4851,16 @@ def test_decrypt(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.DecryptRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.DecryptResponse)
 
     assert response.plaintext == b"plaintext_blob"
+
+
+def test_decrypt_from_dict():
+    test_decrypt(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -4806,19 +5026,23 @@ async def test_decrypt_flattened_error_async():
         )
 
 
-def test_asymmetric_sign(transport: str = "grpc"):
+def test_asymmetric_sign(
+    transport: str = "grpc", request_type=service.AsymmetricSignRequest
+):
     client = KeyManagementServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.AsymmetricSignRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client._transport.asymmetric_sign), "__call__") as call:
         # Designate an appropriate return value for the call.
-        call.return_value = service.AsymmetricSignResponse(signature=b"signature_blob",)
+        call.return_value = service.AsymmetricSignResponse(
+            signature=b"signature_blob", verified_digest_crc32c=True, name="name_value",
+        )
 
         response = client.asymmetric_sign(request)
 
@@ -4826,12 +5050,20 @@ def test_asymmetric_sign(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.AsymmetricSignRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.AsymmetricSignResponse)
 
     assert response.signature == b"signature_blob"
+
+    assert response.verified_digest_crc32c is True
+
+    assert response.name == "name_value"
+
+
+def test_asymmetric_sign_from_dict():
+    test_asymmetric_sign(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -4850,7 +5082,11 @@ async def test_asymmetric_sign_async(transport: str = "grpc_asyncio"):
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            service.AsymmetricSignResponse(signature=b"signature_blob",)
+            service.AsymmetricSignResponse(
+                signature=b"signature_blob",
+                verified_digest_crc32c=True,
+                name="name_value",
+            )
         )
 
         response = await client.asymmetric_sign(request)
@@ -4865,6 +5101,10 @@ async def test_asymmetric_sign_async(transport: str = "grpc_asyncio"):
     assert isinstance(response, service.AsymmetricSignResponse)
 
     assert response.signature == b"signature_blob"
+
+    assert response.verified_digest_crc32c is True
+
+    assert response.name == "name_value"
 
 
 def test_asymmetric_sign_field_headers():
@@ -5007,14 +5247,16 @@ async def test_asymmetric_sign_flattened_error_async():
         )
 
 
-def test_asymmetric_decrypt(transport: str = "grpc"):
+def test_asymmetric_decrypt(
+    transport: str = "grpc", request_type=service.AsymmetricDecryptRequest
+):
     client = KeyManagementServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.AsymmetricDecryptRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -5022,7 +5264,7 @@ def test_asymmetric_decrypt(transport: str = "grpc"):
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = service.AsymmetricDecryptResponse(
-            plaintext=b"plaintext_blob",
+            plaintext=b"plaintext_blob", verified_ciphertext_crc32c=True,
         )
 
         response = client.asymmetric_decrypt(request)
@@ -5031,12 +5273,18 @@ def test_asymmetric_decrypt(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.AsymmetricDecryptRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, service.AsymmetricDecryptResponse)
 
     assert response.plaintext == b"plaintext_blob"
+
+    assert response.verified_ciphertext_crc32c is True
+
+
+def test_asymmetric_decrypt_from_dict():
+    test_asymmetric_decrypt(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -5055,7 +5303,9 @@ async def test_asymmetric_decrypt_async(transport: str = "grpc_asyncio"):
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            service.AsymmetricDecryptResponse(plaintext=b"plaintext_blob",)
+            service.AsymmetricDecryptResponse(
+                plaintext=b"plaintext_blob", verified_ciphertext_crc32c=True,
+            )
         )
 
         response = await client.asymmetric_decrypt(request)
@@ -5070,6 +5320,8 @@ async def test_asymmetric_decrypt_async(transport: str = "grpc_asyncio"):
     assert isinstance(response, service.AsymmetricDecryptResponse)
 
     assert response.plaintext == b"plaintext_blob"
+
+    assert response.verified_ciphertext_crc32c is True
 
 
 def test_asymmetric_decrypt_field_headers():
@@ -5216,14 +5468,16 @@ async def test_asymmetric_decrypt_flattened_error_async():
         )
 
 
-def test_update_crypto_key_primary_version(transport: str = "grpc"):
+def test_update_crypto_key_primary_version(
+    transport: str = "grpc", request_type=service.UpdateCryptoKeyPrimaryVersionRequest
+):
     client = KeyManagementServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.UpdateCryptoKeyPrimaryVersionRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -5242,7 +5496,7 @@ def test_update_crypto_key_primary_version(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.UpdateCryptoKeyPrimaryVersionRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, resources.CryptoKey)
@@ -5250,6 +5504,10 @@ def test_update_crypto_key_primary_version(transport: str = "grpc"):
     assert response.name == "name_value"
 
     assert response.purpose == resources.CryptoKey.CryptoKeyPurpose.ENCRYPT_DECRYPT
+
+
+def test_update_crypto_key_primary_version_from_dict():
+    test_update_crypto_key_primary_version(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -5430,14 +5688,16 @@ async def test_update_crypto_key_primary_version_flattened_error_async():
         )
 
 
-def test_destroy_crypto_key_version(transport: str = "grpc"):
+def test_destroy_crypto_key_version(
+    transport: str = "grpc", request_type=service.DestroyCryptoKeyVersionRequest
+):
     client = KeyManagementServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.DestroyCryptoKeyVersionRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -5459,7 +5719,7 @@ def test_destroy_crypto_key_version(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.DestroyCryptoKeyVersionRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, resources.CryptoKeyVersion)
@@ -5481,6 +5741,10 @@ def test_destroy_crypto_key_version(transport: str = "grpc"):
     assert response.import_job == "import_job_value"
 
     assert response.import_failure_reason == "import_failure_reason_value"
+
+
+def test_destroy_crypto_key_version_from_dict():
+    test_destroy_crypto_key_version(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -5671,14 +5935,16 @@ async def test_destroy_crypto_key_version_flattened_error_async():
         )
 
 
-def test_restore_crypto_key_version(transport: str = "grpc"):
+def test_restore_crypto_key_version(
+    transport: str = "grpc", request_type=service.RestoreCryptoKeyVersionRequest
+):
     client = KeyManagementServiceClient(
         credentials=credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
     # and we are mocking out the actual API, so just send an empty request.
-    request = service.RestoreCryptoKeyVersionRequest()
+    request = request_type()
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
@@ -5700,7 +5966,7 @@ def test_restore_crypto_key_version(transport: str = "grpc"):
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
 
-        assert args[0] == request
+        assert args[0] == service.RestoreCryptoKeyVersionRequest()
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, resources.CryptoKeyVersion)
@@ -5722,6 +5988,10 @@ def test_restore_crypto_key_version(transport: str = "grpc"):
     assert response.import_job == "import_job_value"
 
     assert response.import_failure_reason == "import_failure_reason_value"
+
+
+def test_restore_crypto_key_version_from_dict():
+    test_restore_crypto_key_version(request_type=dict)
 
 
 @pytest.mark.asyncio
@@ -5966,6 +6236,21 @@ def test_transport_get_channel():
     assert channel
 
 
+@pytest.mark.parametrize(
+    "transport_class",
+    [
+        transports.KeyManagementServiceGrpcTransport,
+        transports.KeyManagementServiceGrpcAsyncIOTransport,
+    ],
+)
+def test_transport_adc(transport_class):
+    # Test default credentials are used if not provided.
+    with mock.patch.object(auth, "default") as adc:
+        adc.return_value = (credentials.AnonymousCredentials(), None)
+        transport_class()
+        adc.assert_called_once()
+
+
 def test_transport_grpc_default():
     # A client should use the gRPC transport by default.
     client = KeyManagementServiceClient(credentials=credentials.AnonymousCredentials(),)
@@ -6048,6 +6333,17 @@ def test_key_management_service_base_transport_with_credentials_file():
         )
 
 
+def test_key_management_service_base_transport_with_adc():
+    # Test the default credentials are used if credentials and credentials_file are None.
+    with mock.patch.object(auth, "default") as adc, mock.patch(
+        "google.cloud.kms_v1.services.key_management_service.transports.KeyManagementServiceTransport._prep_wrapped_messages"
+    ) as Transport:
+        Transport.return_value = None
+        adc.return_value = (credentials.AnonymousCredentials(), None)
+        transport = transports.KeyManagementServiceTransport()
+        adc.assert_called_once()
+
+
 def test_key_management_service_auth_adc():
     # If no credentials are provided, we should use ADC credentials.
     with mock.patch.object(auth, "default") as adc:
@@ -6102,191 +6398,145 @@ def test_key_management_service_host_with_port():
 def test_key_management_service_grpc_transport_channel():
     channel = grpc.insecure_channel("http://localhost/")
 
-    # Check that if channel is provided, mtls endpoint and client_cert_source
-    # won't be used.
-    callback = mock.MagicMock()
+    # Check that channel is used if provided.
     transport = transports.KeyManagementServiceGrpcTransport(
-        host="squid.clam.whelk",
-        channel=channel,
-        api_mtls_endpoint="mtls.squid.clam.whelk",
-        client_cert_source=callback,
+        host="squid.clam.whelk", channel=channel,
     )
     assert transport.grpc_channel == channel
     assert transport._host == "squid.clam.whelk:443"
-    assert not callback.called
 
 
 def test_key_management_service_grpc_asyncio_transport_channel():
     channel = aio.insecure_channel("http://localhost/")
 
-    # Check that if channel is provided, mtls endpoint and client_cert_source
-    # won't be used.
-    callback = mock.MagicMock()
+    # Check that channel is used if provided.
     transport = transports.KeyManagementServiceGrpcAsyncIOTransport(
-        host="squid.clam.whelk",
-        channel=channel,
-        api_mtls_endpoint="mtls.squid.clam.whelk",
-        client_cert_source=callback,
+        host="squid.clam.whelk", channel=channel,
     )
     assert transport.grpc_channel == channel
     assert transport._host == "squid.clam.whelk:443"
-    assert not callback.called
-
-
-@mock.patch("grpc.ssl_channel_credentials", autospec=True)
-@mock.patch("google.api_core.grpc_helpers.create_channel", autospec=True)
-def test_key_management_service_grpc_transport_channel_mtls_with_client_cert_source(
-    grpc_create_channel, grpc_ssl_channel_cred
-):
-    # Check that if channel is None, but api_mtls_endpoint and client_cert_source
-    # are provided, then a mTLS channel will be created.
-    mock_cred = mock.Mock()
-
-    mock_ssl_cred = mock.Mock()
-    grpc_ssl_channel_cred.return_value = mock_ssl_cred
-
-    mock_grpc_channel = mock.Mock()
-    grpc_create_channel.return_value = mock_grpc_channel
-
-    transport = transports.KeyManagementServiceGrpcTransport(
-        host="squid.clam.whelk",
-        credentials=mock_cred,
-        api_mtls_endpoint="mtls.squid.clam.whelk",
-        client_cert_source=client_cert_source_callback,
-    )
-    grpc_ssl_channel_cred.assert_called_once_with(
-        certificate_chain=b"cert bytes", private_key=b"key bytes"
-    )
-    grpc_create_channel.assert_called_once_with(
-        "mtls.squid.clam.whelk:443",
-        credentials=mock_cred,
-        credentials_file=None,
-        scopes=(
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/cloudkms",
-        ),
-        ssl_credentials=mock_ssl_cred,
-        quota_project_id=None,
-    )
-    assert transport.grpc_channel == mock_grpc_channel
-
-
-@mock.patch("grpc.ssl_channel_credentials", autospec=True)
-@mock.patch("google.api_core.grpc_helpers_async.create_channel", autospec=True)
-def test_key_management_service_grpc_asyncio_transport_channel_mtls_with_client_cert_source(
-    grpc_create_channel, grpc_ssl_channel_cred
-):
-    # Check that if channel is None, but api_mtls_endpoint and client_cert_source
-    # are provided, then a mTLS channel will be created.
-    mock_cred = mock.Mock()
-
-    mock_ssl_cred = mock.Mock()
-    grpc_ssl_channel_cred.return_value = mock_ssl_cred
-
-    mock_grpc_channel = mock.Mock()
-    grpc_create_channel.return_value = mock_grpc_channel
-
-    transport = transports.KeyManagementServiceGrpcAsyncIOTransport(
-        host="squid.clam.whelk",
-        credentials=mock_cred,
-        api_mtls_endpoint="mtls.squid.clam.whelk",
-        client_cert_source=client_cert_source_callback,
-    )
-    grpc_ssl_channel_cred.assert_called_once_with(
-        certificate_chain=b"cert bytes", private_key=b"key bytes"
-    )
-    grpc_create_channel.assert_called_once_with(
-        "mtls.squid.clam.whelk:443",
-        credentials=mock_cred,
-        credentials_file=None,
-        scopes=(
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/cloudkms",
-        ),
-        ssl_credentials=mock_ssl_cred,
-        quota_project_id=None,
-    )
-    assert transport.grpc_channel == mock_grpc_channel
 
 
 @pytest.mark.parametrize(
-    "api_mtls_endpoint", ["mtls.squid.clam.whelk", "mtls.squid.clam.whelk:443"]
+    "transport_class",
+    [
+        transports.KeyManagementServiceGrpcTransport,
+        transports.KeyManagementServiceGrpcAsyncIOTransport,
+    ],
 )
-@mock.patch("google.api_core.grpc_helpers.create_channel", autospec=True)
-def test_key_management_service_grpc_transport_channel_mtls_with_adc(
-    grpc_create_channel, api_mtls_endpoint
+def test_key_management_service_transport_channel_mtls_with_client_cert_source(
+    transport_class,
 ):
-    # Check that if channel and client_cert_source are None, but api_mtls_endpoint
-    # is provided, then a mTLS channel will be created with SSL ADC.
-    mock_grpc_channel = mock.Mock()
-    grpc_create_channel.return_value = mock_grpc_channel
+    with mock.patch(
+        "grpc.ssl_channel_credentials", autospec=True
+    ) as grpc_ssl_channel_cred:
+        with mock.patch.object(
+            transport_class, "create_channel", autospec=True
+        ) as grpc_create_channel:
+            mock_ssl_cred = mock.Mock()
+            grpc_ssl_channel_cred.return_value = mock_ssl_cred
 
-    # Mock google.auth.transport.grpc.SslCredentials class.
+            mock_grpc_channel = mock.Mock()
+            grpc_create_channel.return_value = mock_grpc_channel
+
+            cred = credentials.AnonymousCredentials()
+            with pytest.warns(DeprecationWarning):
+                with mock.patch.object(auth, "default") as adc:
+                    adc.return_value = (cred, None)
+                    transport = transport_class(
+                        host="squid.clam.whelk",
+                        api_mtls_endpoint="mtls.squid.clam.whelk",
+                        client_cert_source=client_cert_source_callback,
+                    )
+                    adc.assert_called_once()
+
+            grpc_ssl_channel_cred.assert_called_once_with(
+                certificate_chain=b"cert bytes", private_key=b"key bytes"
+            )
+            grpc_create_channel.assert_called_once_with(
+                "mtls.squid.clam.whelk:443",
+                credentials=cred,
+                credentials_file=None,
+                scopes=(
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloudkms",
+                ),
+                ssl_credentials=mock_ssl_cred,
+                quota_project_id=None,
+            )
+            assert transport.grpc_channel == mock_grpc_channel
+
+
+@pytest.mark.parametrize(
+    "transport_class",
+    [
+        transports.KeyManagementServiceGrpcTransport,
+        transports.KeyManagementServiceGrpcAsyncIOTransport,
+    ],
+)
+def test_key_management_service_transport_channel_mtls_with_adc(transport_class):
     mock_ssl_cred = mock.Mock()
     with mock.patch.multiple(
         "google.auth.transport.grpc.SslCredentials",
         __init__=mock.Mock(return_value=None),
         ssl_credentials=mock.PropertyMock(return_value=mock_ssl_cred),
     ):
-        mock_cred = mock.Mock()
-        transport = transports.KeyManagementServiceGrpcTransport(
-            host="squid.clam.whelk",
-            credentials=mock_cred,
-            api_mtls_endpoint=api_mtls_endpoint,
-            client_cert_source=None,
-        )
-        grpc_create_channel.assert_called_once_with(
-            "mtls.squid.clam.whelk:443",
-            credentials=mock_cred,
-            credentials_file=None,
-            scopes=(
-                "https://www.googleapis.com/auth/cloud-platform",
-                "https://www.googleapis.com/auth/cloudkms",
-            ),
-            ssl_credentials=mock_ssl_cred,
-            quota_project_id=None,
-        )
-        assert transport.grpc_channel == mock_grpc_channel
+        with mock.patch.object(
+            transport_class, "create_channel", autospec=True
+        ) as grpc_create_channel:
+            mock_grpc_channel = mock.Mock()
+            grpc_create_channel.return_value = mock_grpc_channel
+            mock_cred = mock.Mock()
+
+            with pytest.warns(DeprecationWarning):
+                transport = transport_class(
+                    host="squid.clam.whelk",
+                    credentials=mock_cred,
+                    api_mtls_endpoint="mtls.squid.clam.whelk",
+                    client_cert_source=None,
+                )
+
+            grpc_create_channel.assert_called_once_with(
+                "mtls.squid.clam.whelk:443",
+                credentials=mock_cred,
+                credentials_file=None,
+                scopes=(
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloudkms",
+                ),
+                ssl_credentials=mock_ssl_cred,
+                quota_project_id=None,
+            )
+            assert transport.grpc_channel == mock_grpc_channel
 
 
-@pytest.mark.parametrize(
-    "api_mtls_endpoint", ["mtls.squid.clam.whelk", "mtls.squid.clam.whelk:443"]
-)
-@mock.patch("google.api_core.grpc_helpers_async.create_channel", autospec=True)
-def test_key_management_service_grpc_asyncio_transport_channel_mtls_with_adc(
-    grpc_create_channel, api_mtls_endpoint
-):
-    # Check that if channel and client_cert_source are None, but api_mtls_endpoint
-    # is provided, then a mTLS channel will be created with SSL ADC.
-    mock_grpc_channel = mock.Mock()
-    grpc_create_channel.return_value = mock_grpc_channel
+def test_crypto_key_path():
+    project = "squid"
+    location = "clam"
+    key_ring = "whelk"
+    crypto_key = "octopus"
 
-    # Mock google.auth.transport.grpc.SslCredentials class.
-    mock_ssl_cred = mock.Mock()
-    with mock.patch.multiple(
-        "google.auth.transport.grpc.SslCredentials",
-        __init__=mock.Mock(return_value=None),
-        ssl_credentials=mock.PropertyMock(return_value=mock_ssl_cred),
-    ):
-        mock_cred = mock.Mock()
-        transport = transports.KeyManagementServiceGrpcAsyncIOTransport(
-            host="squid.clam.whelk",
-            credentials=mock_cred,
-            api_mtls_endpoint=api_mtls_endpoint,
-            client_cert_source=None,
-        )
-        grpc_create_channel.assert_called_once_with(
-            "mtls.squid.clam.whelk:443",
-            credentials=mock_cred,
-            credentials_file=None,
-            scopes=(
-                "https://www.googleapis.com/auth/cloud-platform",
-                "https://www.googleapis.com/auth/cloudkms",
-            ),
-            ssl_credentials=mock_ssl_cred,
-            quota_project_id=None,
-        )
-        assert transport.grpc_channel == mock_grpc_channel
+    expected = "projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}".format(
+        project=project, location=location, key_ring=key_ring, crypto_key=crypto_key,
+    )
+    actual = KeyManagementServiceClient.crypto_key_path(
+        project, location, key_ring, crypto_key
+    )
+    assert expected == actual
+
+
+def test_parse_crypto_key_path():
+    expected = {
+        "project": "oyster",
+        "location": "nudibranch",
+        "key_ring": "cuttlefish",
+        "crypto_key": "mussel",
+    }
+    path = KeyManagementServiceClient.crypto_key_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = KeyManagementServiceClient.parse_crypto_key_path(path)
+    assert expected == actual
 
 
 def test_crypto_key_version_path():
@@ -6324,60 +6574,6 @@ def test_parse_crypto_key_version_path():
     assert expected == actual
 
 
-def test_key_ring_path():
-    project = "squid"
-    location = "clam"
-    key_ring = "whelk"
-
-    expected = "projects/{project}/locations/{location}/keyRings/{key_ring}".format(
-        project=project, location=location, key_ring=key_ring,
-    )
-    actual = KeyManagementServiceClient.key_ring_path(project, location, key_ring)
-    assert expected == actual
-
-
-def test_parse_key_ring_path():
-    expected = {
-        "project": "octopus",
-        "location": "oyster",
-        "key_ring": "nudibranch",
-    }
-    path = KeyManagementServiceClient.key_ring_path(**expected)
-
-    # Check that the path construction is reversible.
-    actual = KeyManagementServiceClient.parse_key_ring_path(path)
-    assert expected == actual
-
-
-def test_crypto_key_path():
-    project = "squid"
-    location = "clam"
-    key_ring = "whelk"
-    crypto_key = "octopus"
-
-    expected = "projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}".format(
-        project=project, location=location, key_ring=key_ring, crypto_key=crypto_key,
-    )
-    actual = KeyManagementServiceClient.crypto_key_path(
-        project, location, key_ring, crypto_key
-    )
-    assert expected == actual
-
-
-def test_parse_crypto_key_path():
-    expected = {
-        "project": "oyster",
-        "location": "nudibranch",
-        "key_ring": "cuttlefish",
-        "crypto_key": "mussel",
-    }
-    path = KeyManagementServiceClient.crypto_key_path(**expected)
-
-    # Check that the path construction is reversible.
-    actual = KeyManagementServiceClient.parse_crypto_key_path(path)
-    assert expected == actual
-
-
 def test_import_job_path():
     project = "squid"
     location = "clam"
@@ -6405,6 +6601,52 @@ def test_parse_import_job_path():
     # Check that the path construction is reversible.
     actual = KeyManagementServiceClient.parse_import_job_path(path)
     assert expected == actual
+
+
+def test_key_ring_path():
+    project = "squid"
+    location = "clam"
+    key_ring = "whelk"
+
+    expected = "projects/{project}/locations/{location}/keyRings/{key_ring}".format(
+        project=project, location=location, key_ring=key_ring,
+    )
+    actual = KeyManagementServiceClient.key_ring_path(project, location, key_ring)
+    assert expected == actual
+
+
+def test_parse_key_ring_path():
+    expected = {
+        "project": "octopus",
+        "location": "oyster",
+        "key_ring": "nudibranch",
+    }
+    path = KeyManagementServiceClient.key_ring_path(**expected)
+
+    # Check that the path construction is reversible.
+    actual = KeyManagementServiceClient.parse_key_ring_path(path)
+    assert expected == actual
+
+
+def test_client_withDEFAULT_CLIENT_INFO():
+    client_info = gapic_v1.client_info.ClientInfo()
+
+    with mock.patch.object(
+        transports.KeyManagementServiceTransport, "_prep_wrapped_messages"
+    ) as prep:
+        client = KeyManagementServiceClient(
+            credentials=credentials.AnonymousCredentials(), client_info=client_info,
+        )
+        prep.assert_called_once_with(client_info)
+
+    with mock.patch.object(
+        transports.KeyManagementServiceTransport, "_prep_wrapped_messages"
+    ) as prep:
+        transport_class = KeyManagementServiceClient.get_transport_class()
+        transport = transport_class(
+            credentials=credentials.AnonymousCredentials(), client_info=client_info,
+        )
+        prep.assert_called_once_with(client_info)
 
 
 def test_set_iam_policy(transport: str = "grpc"):
