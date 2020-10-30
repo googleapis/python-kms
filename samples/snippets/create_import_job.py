@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 
 
-# [START create_import_job]
+# [START kms_create_import_job]
 def create_import_job(project_id, location_id, key_ring_id, import_job_id):
     """
     Create a new import job in Cloud KMS.
@@ -43,4 +43,4 @@ def create_import_job(project_id, location_id, key_ring_id, import_job_id):
   # Retrieve the state from an existing import job.
   import_job = client.create_import_job(key_ring_name, import_job_id, import_job_params)
   return import_job
-# [END create_import_job]
+# [END kms_create_import_job]
