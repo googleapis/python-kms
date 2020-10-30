@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 
 
-# [START create_key_for_import]
+# [START kms_create_key_for_import]
 def create_key_for_import():
     """
     Generate Cloud KMS-compatible key material locally.
@@ -37,4 +37,4 @@ def create_key_for_import():
       serialization.PrivateFormat.PKCS8,
       serialization.NoEncryption())
 
-# [END create_key_for_import]
+# [END kms_create_key_for_import]
