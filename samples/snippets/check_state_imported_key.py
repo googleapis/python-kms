@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 
 
-# [START check_state_imported_key]
+# [START kms_check_state_imported_key]
 def check_state_imported_key(project_id, location_id, key_ring_id, import_job_id):
     """
     Check the state of an import job in Cloud KMS.
@@ -40,4 +40,4 @@ def check_state_imported_key(project_id, location_id, key_ring_id, import_job_id
   # Retrieve the state from an existing import job.
   import_job = client.get_import_job(name=import_job_name)
   return import_job.state
-# [END check_state_imported_key]
+# [END kms_check_state_imported_key]
