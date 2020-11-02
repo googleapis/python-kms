@@ -26,21 +26,20 @@ def create_import_job(project_id, location_id, key_ring_id, import_job_id):
         ImportJob: The import job.
     """
 
-  # Import the client library.
-  from google.cloud import kms
+    # Import the client library.
+    from google.cloud import kms
 
-  # Create the client.
-  client = kms.KeyManagementServiceClient()
+    # Create the client.
+    client = kms.KeyManagementServiceClient()
 
-  # Retrieve the fully-qualified import_job and key_ring string.
-  import_job_name = client.import_job_path(
-      project_id, location_id, key_ring_id, import_job_id)
-  key_ring_name = client.key_ring_path(project_id, location_id, key_ring_id)
+    # Retrieve the fully-qualified key_ring string.
+    key_ring_name = client.key_ring_path(project_id, location_id, key_ring_id)
 
-  import_job_params = {'import_method': 'RSA_OAEP_4096_SHA1_AES_256', 'protection_level': 'HSM'}
+    # Set paramaters for the import job, allowed values for ImportMethod and ProtectionLevel found here: 
+    # https://googleapis.dev/python/cloudkms/latest/_modules/google/cloud/kms_v1/types/resources.html
+    import_job_params = {'import_method': 'RSA_OAEP_4096_SHA1_AES_256', 'protection_level': 'HSM'}
 
-
-  # Retrieve the state from an existing import job.
-  import_job = client.create_import_job(key_ring_name, import_job_id, import_job_params)
-  return import_job
+    # Call the client to create a new import job.
+    import_job = client.create_import_job(key_ring_name, import_job_id, import_job_params)
+    return import_job
 # [END kms_create_import_job]

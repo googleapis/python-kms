@@ -16,28 +16,26 @@
 def check_state_imported_key(project_id, location_id, key_ring_id, import_job_id):
     """
     Check the state of an import job in Cloud KMS.
-    
+
     Args:
         project_id (string): Google Cloud project ID (e.g. 'my-project').
         location_id (string): Cloud KMS location (e.g. 'us-east1').
         key_ring_id (string): ID of the Cloud KMS key ring (e.g. 'my-key-ring').
         import_job_id (string): ID of the import job (e.g. 'my-import-job').
-    Returns:
-        ImportJob.ImportJobState: The current state of the import job.
     """
 
-  # Import the client library.
-  from google.cloud import kms
+    # Import the client library.
+    from google.cloud import kms
 
-  # Create the client.
-  client = kms.KeyManagementServiceClient()
+    # Create the client.
+    client = kms.KeyManagementServiceClient()
 
-  # Retrieve the fully-qualified import_job string.
-  import_job_name = client.import_job_path(
-      project_id, location_id, key_ring_id, import_job_id)
+    # Retrieve the fully-qualified import_job string.
+    import_job_name = client.import_job_path(
+        project_id, location_id, key_ring_id, import_job_id)
 
 
-  # Retrieve the state from an existing import job.
-  import_job = client.get_import_job(name=import_job_name)
-  return import_job.state
+    # Retrieve the state from an existing import job.
+    import_job = client.get_import_job(name=import_job_name)
+    print('Current state of import job {}: {}'.format(import_job.name, import_job.state))
 # [END kms_check_state_imported_key]

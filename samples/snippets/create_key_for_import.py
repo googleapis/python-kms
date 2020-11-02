@@ -23,18 +23,18 @@ def create_key_for_import():
         bytes: Locally generated key material in PKCS #8 DER format.
     """
 
-  # Import Python standard cryptographic libraries.
-  from cryptography.hazmat.backends import default_backend
-  from cryptography.hazmat.primitives import serialization
-  from cryptography.hazmat.primitives.asymmetric import ec
+    # Import Python standard cryptographic libraries.
+    from cryptography.hazmat.backends import default_backend
+    from cryptography.hazmat.primitives import serialization
+    from cryptography.hazmat.primitives.asymmetric import ec
 
 
-  # Generate some key material in Python and format it in PKCS #8 DER as
-  # required by Google Cloud KMS.
-  key = ec.generate_private_key(ec.SECP256R1, default_backend())
-  return key.private_bytes(
-      serialization.Encoding.DER,
-      serialization.PrivateFormat.PKCS8,
-      serialization.NoEncryption())
+    # Generate some key material in Python and format it in PKCS #8 DER as
+    # required by Google Cloud KMS.
+    key = ec.generate_private_key(ec.SECP256R1, default_backend())
+    return key.private_bytes(
+        serialization.Encoding.DER,
+        serialization.PrivateFormat.PKCS8,
+        serialization.NoEncryption())
 
 # [END kms_create_key_for_import]
