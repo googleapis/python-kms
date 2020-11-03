@@ -16,7 +16,7 @@
 def create_import_job(project_id, location_id, key_ring_id, import_job_id):
     """
     Create a new import job in Cloud KMS.
-    
+
     Args:
         project_id (string): Google Cloud project ID (e.g. 'my-project').
         location_id (string): Cloud KMS location (e.g. 'us-east1').
@@ -35,7 +35,7 @@ def create_import_job(project_id, location_id, key_ring_id, import_job_id):
     # Retrieve the fully-qualified key_ring string.
     key_ring_name = client.key_ring_path(project_id, location_id, key_ring_id)
 
-    # Set paramaters for the import job, allowed values for ImportMethod and ProtectionLevel found here: 
+    # Set paramaters for the import job, allowed values for ImportMethod and ProtectionLevel found here:
     # https://googleapis.dev/python/cloudkms/latest/_modules/google/cloud/kms_v1/types/resources.html
     import_job_params = {'import_method': 'RSA_OAEP_4096_SHA1_AES_256', 'protection_level': 'HSM'}
 

@@ -40,9 +40,9 @@ def import_manually_wrapped_key(project_id, location_id, key_ring_id, crypto_key
 
     # Retrieve the fully-qualified crypto_key and import_job string.
     crypto_key_name = client.crypto_key_path(
-        project, location, key_ring_id, crypto_key_id)
+        project_id, location_id, key_ring_id, crypto_key_id)
     import_job_name = client.import_job_path(
-        project, location, key_ring_id, import_job_id)
+        project_id, location_id, key_ring_id, import_job_id)
 
     # Generate a temporary 32-byte key for AES-KWP and wrap the key material.
     kwp_key = os.urandom(32)

@@ -76,6 +76,7 @@ def project_id():
 def location_id():
     return "us-east1"
 
+
 @pytest.fixture(scope="module")
 def import_job_id():
     return "my-import-job"
@@ -160,14 +161,6 @@ def hsm_key_id(client, project_id, location_id, key_ring_id):
     wait_for_ready(client, '{}/cryptoKeyVersions/1'.format(key.name))
     return key_id
 
-@pytest.fixture(scope="module")
-def import_job_id(client, project_id, location_id, key_ring_id, import_job_id):
-    key_ring_name = client.key_ring_path(project_id, location_id, key_ring_id)
-    import_job_params = {'import_method': 'RSA_OAEP_4096_SHA1_AES_256', 'protection_level': 'HSM'}
-    job = client.create_import_job(key_ring_name, import_job_id, import_job_params)
-    wait_for_ready(client, '{}/cryptoKeyVersions/1'.format(key.name))
-    return key_id
-
 
 @pytest.fixture(scope="module")
 def symmetric_key_id(client, project_id, location_id, key_ring_id):
@@ -192,11 +185,14 @@ def wait_for_ready(client, key_version_name):
         time.sleep(0.1*(i**2))
     pytest.fail('{} not ready'.format(key_version_name))
 
+
 def test_check_state_import_job(project_id, location_id, key_ring_id, import_job_id):
     check_state_import_job(project_id, location_id, key_ring_id, import_job_id)
 
+
 def test_check_state_imported_key(project_id, location_id, key_ring_id, import_job_id):
     check_state_imported_key(project_id, location_id, key_ring_id, import_job_id)
+
 
 def test_create_import_job(project_id, location_id, key_ring_id, import_job_id):
     job = create_import_job(project_id, location_id, key_ring_id, import_job_id)
@@ -216,6 +212,7 @@ def test_create_key_asymmetric_sign(project_id, location_id, key_ring_id):
     key = create_key_asymmetric_sign(project_id, location_id, key_ring_id, key_id)
     assert key.purpose == kms.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_SIGN
     assert key.version_template.algorithm == kms.CryptoKeyVersion.CryptoKeyVersionAlgorithm.RSA_SIGN_PKCS1_2048_SHA256
+
 
 def test_create_key_for_import():
     key_material = create_key_for_import()
@@ -377,6 +374,7 @@ def test_iam_remove_member(client, project_id, location_id, key_ring_id, asymmet
     policy = iam_remove_member(project_id, location_id, key_ring_id, asymmetric_sign_rsa_key_id, 'group:test@google.com')
     assert not any('group:test@google.com' in b.members for b in policy.bindings)
     assert any('group:tester@google.com' in b.members for b in policy.bindings)
+
 
 def test_import_manually_wrapped_key(project_id, location_id, key_ring_id, crypto_key_id, import_job_id):
     key_material = create_key_for_import()

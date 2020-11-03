@@ -34,8 +34,7 @@ def check_state_import_job(project_id, location_id, key_ring_id, import_job_id):
     import_job_name = client.import_job_path(
         project_id, location_id, key_ring_id, import_job_id)
 
-
     # Retrieve the state from an existing import job.
     import_job = client.get_import_job(name=import_job_name)
     print('Current state of import job {}: {}'.format(import_job.name, import_job.state))
-  # [END kms_check_state_import_job]
+# [END kms_check_state_import_job]
