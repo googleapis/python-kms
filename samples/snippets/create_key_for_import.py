@@ -31,9 +31,10 @@ def create_key_for_import():
     # Generate some key material in Python and format it in PKCS #8 DER as
     # required by Google Cloud KMS.
     key = ec.generate_private_key(ec.SECP256R1, default_backend())
-    return key.private_bytes(
+    formatted_key = key.private_bytes(
         serialization.Encoding.DER,
         serialization.PrivateFormat.PKCS8,
         serialization.NoEncryption())
 
+    print('Generated key bytes: {}'.format(formatted_key))
 # [END kms_create_key_for_import]

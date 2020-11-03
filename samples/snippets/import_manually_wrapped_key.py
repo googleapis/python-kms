@@ -69,4 +69,6 @@ def import_manually_wrapped_key(project_id, location_id, key_ring_id, crypto_key
         "algorithm": kms.CryptoKeyVersion.CryptoKeyVersionAlgorithm.EC_SIGN_P256_SHA256,
         "rsa_aes_wrapped_key": wrapped_kwp_key + wrapped_target_key,
     })
+
+    print('Imported: {}'.format(import_job.name))
 # [END kms_import_manually_wrapped_key]

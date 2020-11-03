@@ -186,18 +186,24 @@ def wait_for_ready(client, key_version_name):
     pytest.fail('{} not ready'.format(key_version_name))
 
 
-def test_check_state_import_job(project_id, location_id, key_ring_id, import_job_id):
+def test_check_state_import_job(project_id, location_id, key_ring_id, import_job_id, capsys):
     check_state_import_job(project_id, location_id, key_ring_id, import_job_id)
+    out, _ = capsys.readouterr()
+    assert "Current state" in out
 
 
-def test_check_state_imported_key(project_id, location_id, key_ring_id, import_job_id):
+def test_check_state_imported_key(project_id, location_id, key_ring_id, import_job_id, capsys):
     check_state_imported_key(project_id, location_id, key_ring_id, import_job_id)
+    out, _ = capsys.readouterr()
+    assert "Current state" in out
 
 
-def test_create_import_job(project_id, location_id, key_ring_id, import_job_id):
+def test_create_import_job(project_id, location_id, key_ring_id, import_job_id, capsys):
     job = create_import_job(project_id, location_id, key_ring_id, import_job_id)
     assert job.state == kms.ImportJob.ImportJobState.ACTIVE
     assert job.protection_level == kms.ProtectionLevel.HSM
+    out, _ = capsys.readouterr()
+    assert "Created import job" in out
 
 
 def test_create_key_asymmetric_decrypt(project_id, location_id, key_ring_id):
@@ -214,9 +220,10 @@ def test_create_key_asymmetric_sign(project_id, location_id, key_ring_id):
     assert key.version_template.algorithm == kms.CryptoKeyVersion.CryptoKeyVersionAlgorithm.RSA_SIGN_PKCS1_2048_SHA256
 
 
-def test_create_key_for_import():
-    key_material = create_key_for_import()
-    assert key_material
+def test_create_key_for_import(capsys):
+    create_key_for_import()
+    out, _ = capsys.readouterr()
+    assert "Generated key" in out
 
 
 def test_create_key_hsm(project_id, location_id, key_ring_id):
@@ -376,9 +383,11 @@ def test_iam_remove_member(client, project_id, location_id, key_ring_id, asymmet
     assert any('group:tester@google.com' in b.members for b in policy.bindings)
 
 
-def test_import_manually_wrapped_key(project_id, location_id, key_ring_id, crypto_key_id, import_job_id):
+def test_import_manually_wrapped_key(project_id, location_id, key_ring_id, crypto_key_id, import_job_id, capsys):
     key_material = create_key_for_import()
     import_manually_wrapped_key(project_id, location_id, key_ring_id, crypto_key_id, import_job_id, key_material)
+    out, _ = capsys.readouterr()
+    assert "Imported" in out
 
 
 def test_sign_asymmetric(client, project_id, location_id, key_ring_id, asymmetric_sign_rsa_key_id):

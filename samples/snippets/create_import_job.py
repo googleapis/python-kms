@@ -22,8 +22,6 @@ def create_import_job(project_id, location_id, key_ring_id, import_job_id):
         location_id (string): Cloud KMS location (e.g. 'us-east1').
         key_ring_id (string): ID of the Cloud KMS key ring (e.g. 'my-key-ring').
         import_job_id (string): ID of the import job (e.g. 'my-import-job').
-    Returns:
-        ImportJob: The import job.
     """
 
     # Import the client library.
@@ -41,5 +39,6 @@ def create_import_job(project_id, location_id, key_ring_id, import_job_id):
 
     # Call the client to create a new import job.
     import_job = client.create_import_job(key_ring_name, import_job_id, import_job_params)
-    return import_job
+
+    print('Created import job: {}'.format(import_job.name))
 # [END kms_create_import_job]
