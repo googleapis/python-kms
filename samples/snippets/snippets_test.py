@@ -83,6 +83,11 @@ def import_job_id():
 
 
 @pytest.fixture(scope="module")
+def import_tests_key_id():
+    return "my-import-job-ec-key"
+
+
+@pytest.fixture(scope="module")
 def key_ring_id(client, project_id, location_id):
     location_name = f"projects/{project_id}/locations/{location_id}"
     key_ring_id = '{}'.format(uuid.uuid4())
@@ -218,8 +223,8 @@ def test_create_key_asymmetric_sign(project_id, location_id, key_ring_id):
     assert key.version_template.algorithm == kms.CryptoKeyVersion.CryptoKeyVersionAlgorithm.RSA_SIGN_PKCS1_2048_SHA256
 
 
-def test_create_key_for_import(capsys):
-    create_key_for_import()
+def test_create_key_for_import(project_id, location_id, key_ring_id, import_tests_key_id, capsys):
+    create_key_for_import(project_id, location_id, key_ring_id, import_tests_key_id)
     out, _ = capsys.readouterr()
     assert "Generated key" in out
 
@@ -381,14 +386,13 @@ def test_iam_remove_member(client, project_id, location_id, key_ring_id, asymmet
     assert any('group:tester@google.com' in b.members for b in policy.bindings)
 
 
-def test_import_manually_wrapped_key(project_id, location_id, key_ring_id, import_job_id, capsys):
+def test_import_manually_wrapped_key(project_id, location_id, key_ring_id, import_job_id, import_tests_key_id, capsys):
     key = ec.generate_private_key(ec.SECP256R1, default_backend())
     formatted_key = key.private_bytes(
         serialization.Encoding.DER,
         serialization.PrivateFormat.PKCS8,
         serialization.NoEncryption())
-    key_id = '{}'.format(uuid.uuid4())
-    import_manually_wrapped_key(project_id, location_id, key_ring_id, key_id, import_job_id, formatted_key)
+    import_manually_wrapped_key(project_id, location_id, key_ring_id, import_tests_key_id, import_job_id, formatted_key)
     out, _ = capsys.readouterr()
     assert "Imported" in out
 

@@ -13,18 +13,24 @@
 
 
 # [START kms_create_key_for_import]
-def create_key_for_import():
+def create_key_for_import(project_id, location_id, key_ring_id, crypto_key_id):
     """
-    Generate Cloud KMS-compatible key material locally.
+    Generate Cloud KMS-compatible key material locally and sets up an empty CryptoKey within a KeyRing for import.
 
     Args:
-      None
+        project_id (string): Google Cloud project ID (e.g. 'my-project').
+        location_id (string): Cloud KMS location (e.g. 'us-east1').
+        key_ring_id (string): ID of the Cloud KMS key ring (e.g. 'my-key-ring').
+        crypto_key_id (string): ID of the key to import (e.g. 'my-asymmetric-signing-key').
     """
 
     # Import Python standard cryptographic libraries.
     from cryptography.hazmat.backends import default_backend
     from cryptography.hazmat.primitives import serialization
     from cryptography.hazmat.primitives.asymmetric import ec
+
+    # Import the client library.
+    from google.cloud import kms
 
     # Generate some key material in Python and format it in PKCS #8 DER as
     # required by Google Cloud KMS.
@@ -35,4 +41,21 @@ def create_key_for_import():
         serialization.NoEncryption())
 
     print('Generated key bytes: {}'.format(formatted_key))
+
+    # Build the key. For more information regarding allowed values of these fields, see:
+    # https://googleapis.dev/python/cloudkms/latest/_modules/google/cloud/kms_v1/types/resources.html
+    purpose = kms.CryptoKey.CryptoKeyPurpose.ASYMMETRIC_SIGN
+    algorithm = kms.CryptoKeyVersion.CryptoKeyVersionAlgorithm.EC_SIGN_P256_SHA256
+    protection_level = kms.ProtectionLevel.HSM
+    key = {
+        'purpose': purpose,
+        'version_template': {
+            'algorithm': algorithm,
+            'protection_level': protection_level
+        }
+    }
+
+    # Call the API.
+    created_key = client.create_crypto_key(request={'parent': key_ring_name, 'crypto_key_id': crypto_key_id, 'crypto_key': key})
+    print('Created hsm key: {}'.format(created_key.name))
 # [END kms_create_key_for_import]
