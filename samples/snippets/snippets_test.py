@@ -186,24 +186,22 @@ def wait_for_ready(client, key_version_name):
     pytest.fail('{} not ready'.format(key_version_name))
 
 
-def test_check_state_import_job(project_id, location_id, key_ring_id, import_job_id, capsys):
+def test_create_import_job(project_id, location_id, key_ring_id, import_job_id, capsys):
     create_import_job(project_id, location_id, key_ring_id, import_job_id)
+    out, _ = capsys.readouterr()
+    assert "Created import job" in out
+
+
+def test_check_state_import_job(project_id, location_id, key_ring_id, import_job_id, capsys):
     check_state_import_job(project_id, location_id, key_ring_id, import_job_id)
     out, _ = capsys.readouterr()
     assert "Current state" in out
 
 
 def test_check_state_imported_key(project_id, location_id, key_ring_id, import_job_id, capsys):
-    create_import_job(project_id, location_id, key_ring_id, import_job_id)
     check_state_imported_key(project_id, location_id, key_ring_id, import_job_id)
     out, _ = capsys.readouterr()
     assert "Current state" in out
-
-
-def test_create_import_job(project_id, location_id, key_ring_id, import_job_id, capsys):
-    create_import_job(project_id, location_id, key_ring_id, import_job_id)
-    out, _ = capsys.readouterr()
-    assert "Created import job" in out
 
 
 def test_create_key_asymmetric_decrypt(project_id, location_id, key_ring_id):
@@ -384,7 +382,6 @@ def test_iam_remove_member(client, project_id, location_id, key_ring_id, asymmet
 
 
 def test_import_manually_wrapped_key(project_id, location_id, key_ring_id, import_job_id, capsys):
-    create_import_job(project_id, location_id, key_ring_id, import_job_id)
     key = ec.generate_private_key(ec.SECP256R1, default_backend())
     formatted_key = key.private_bytes(
         serialization.Encoding.DER,
