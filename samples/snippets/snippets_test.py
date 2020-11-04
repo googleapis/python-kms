@@ -20,7 +20,7 @@ import uuid
 from cryptography.exceptions import InvalidSignature
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes, serialization
-from cryptography.hazmat.primitives.asymmetric import padding, utils
+from cryptography.hazmat.primitives.asymmetric import ec, padding, utils
 from google.cloud import kms
 import pytest
 
@@ -384,9 +384,13 @@ def test_iam_remove_member(client, project_id, location_id, key_ring_id, asymmet
 
 
 def test_import_manually_wrapped_key(project_id, location_id, key_ring_id, import_job_id, capsys):
-    key_material = create_key_for_import()
+    key = ec.generate_private_key(ec.SECP256R1, default_backend())
+    formatted_key = key.private_bytes(
+        serialization.Encoding.DER,
+        serialization.PrivateFormat.PKCS8,
+        serialization.NoEncryption())
     key_id = '{}'.format(uuid.uuid4())
-    import_manually_wrapped_key(project_id, location_id, key_ring_id, key_id, import_job_id, key_material)
+    import_manually_wrapped_key(project_id, location_id, key_ring_id, key_id, import_job_id, formatted_key)
     out, _ = capsys.readouterr()
     assert "Imported" in out
 

@@ -19,8 +19,6 @@ def create_key_for_import():
 
     Args:
       None
-    Returns:
-        bytes: Locally generated key material in PKCS #8 DER format.
     """
 
     # Import Python standard cryptographic libraries.
