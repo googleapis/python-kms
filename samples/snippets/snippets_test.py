@@ -187,21 +187,21 @@ def wait_for_ready(client, key_version_name):
 
 
 def test_check_state_import_job(project_id, location_id, key_ring_id, import_job_id, capsys):
+    create_import_job(project_id, location_id, key_ring_id, import_job_id)
     check_state_import_job(project_id, location_id, key_ring_id, import_job_id)
     out, _ = capsys.readouterr()
     assert "Current state" in out
 
 
 def test_check_state_imported_key(project_id, location_id, key_ring_id, import_job_id, capsys):
+    create_import_job(project_id, location_id, key_ring_id, import_job_id)
     check_state_imported_key(project_id, location_id, key_ring_id, import_job_id)
     out, _ = capsys.readouterr()
     assert "Current state" in out
 
 
 def test_create_import_job(project_id, location_id, key_ring_id, import_job_id, capsys):
-    job = create_import_job(project_id, location_id, key_ring_id, import_job_id)
-    assert job.state == kms.ImportJob.ImportJobState.ACTIVE
-    assert job.protection_level == kms.ProtectionLevel.HSM
+    create_import_job(project_id, location_id, key_ring_id, import_job_id)
     out, _ = capsys.readouterr()
     assert "Created import job" in out
 
@@ -383,9 +383,10 @@ def test_iam_remove_member(client, project_id, location_id, key_ring_id, asymmet
     assert any('group:tester@google.com' in b.members for b in policy.bindings)
 
 
-def test_import_manually_wrapped_key(project_id, location_id, key_ring_id, crypto_key_id, import_job_id, capsys):
+def test_import_manually_wrapped_key(project_id, location_id, key_ring_id, import_job_id, capsys):
     key_material = create_key_for_import()
-    import_manually_wrapped_key(project_id, location_id, key_ring_id, crypto_key_id, import_job_id, key_material)
+    key_id = '{}'.format(uuid.uuid4())
+    import_manually_wrapped_key(project_id, location_id, key_ring_id, key_id, import_job_id, key_material)
     out, _ = capsys.readouterr()
     assert "Imported" in out
 
