@@ -384,6 +384,7 @@ def test_iam_remove_member(client, project_id, location_id, key_ring_id, asymmet
 
 
 def test_import_manually_wrapped_key(project_id, location_id, key_ring_id, import_job_id, capsys):
+    create_import_job(project_id, location_id, key_ring_id, import_job_id)
     key = ec.generate_private_key(ec.SECP256R1, default_backend())
     formatted_key = key.private_bytes(
         serialization.Encoding.DER,
