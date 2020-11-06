@@ -226,7 +226,7 @@ def test_create_key_asymmetric_sign(project_id, location_id, key_ring_id):
 def test_create_key_for_import(project_id, location_id, key_ring_id, import_tests_key_id, capsys):
     create_key_for_import(project_id, location_id, key_ring_id, import_tests_key_id)
     out, _ = capsys.readouterr()
-    assert "Generated key" in out
+    assert "Created hsm key" in out
 
 
 def test_create_key_hsm(project_id, location_id, key_ring_id):
@@ -387,12 +387,7 @@ def test_iam_remove_member(client, project_id, location_id, key_ring_id, asymmet
 
 
 def test_import_manually_wrapped_key(project_id, location_id, key_ring_id, import_job_id, import_tests_key_id, capsys):
-    key = ec.generate_private_key(ec.SECP256R1, default_backend())
-    formatted_key = key.private_bytes(
-        serialization.Encoding.DER,
-        serialization.PrivateFormat.PKCS8,
-        serialization.NoEncryption())
-    import_manually_wrapped_key(project_id, location_id, key_ring_id, import_tests_key_id, import_job_id, formatted_key)
+    import_manually_wrapped_key(project_id, location_id, key_ring_id, import_tests_key_id, import_job_id)
     out, _ = capsys.readouterr()
     assert "Imported" in out
 
