@@ -15,7 +15,9 @@
 # [START kms_create_key_for_import]
 def create_key_for_import(project_id, location_id, key_ring_id, crypto_key_id):
     """
+
     Sets up an empty CryptoKey within a KeyRing for import.
+
 
     Args:
         project_id (string): Google Cloud project ID (e.g. 'my-project').

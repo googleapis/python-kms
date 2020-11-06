@@ -54,12 +54,12 @@ def import_manually_wrapped_key(project_id, location_id, key_ring_id, crypto_key
     # Generate a temporary 32-byte key for AES-KWP and wrap the key material.
     kwp_key = os.urandom(32)
     wrapped_target_key = keywrap.aes_key_wrap_with_padding(
-        kwp_key, formatted_key, default_backend())
+        kwp_key, formatted_key, backends.default_backend())
 
     # Retrieve the public key from the import job.
     import_job = client.get_import_job(name=import_job_name)
     import_job_pub = serialization.load_pem_public_key(
-        bytes(import_job.public_key.pem, 'UTF-8'), default_backend())
+        bytes(import_job.public_key.pem, 'UTF-8'), backends.default_backend())
 
     # Wrap the KWP key using the import job key.
     wrapped_kwp_key = import_job_pub.encrypt(
