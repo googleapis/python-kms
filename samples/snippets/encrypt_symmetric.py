@@ -39,7 +39,7 @@ def encrypt_symmetric(project_id, location_id, key_ring_id, key_id, plaintext):
     plaintext_bytes = plaintext.encode('utf-8')
     
     # Optional, but recommended: compute plaintext's CRC32C.
-    # See crc32c function below.
+    # See crc32c() function defined below.
     plaintext_crc32c = crc32c(data)
 
     # Create the client.
@@ -55,7 +55,7 @@ def encrypt_symmetric(project_id, location_id, key_ring_id, key_id, plaintext):
     # Optional, but recommended: perform integrity verification on encrypt_response:
     if not encrypt_response.verified_plaintext_crc32c:
         raise Exception('The request sent to the server was corrupted in-transit.')
-    if not encrypt_response.ciphertext_crc32c == crc32c(encrypt_response.ciphertext)
+    if not encrypt_response.ciphertext_crc32c == crc32c(encrypt_response.ciphertext):
         raise Exception('The response received from the server was corrupted in-transit.')
     # End integrity verification
     
