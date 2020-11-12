@@ -56,7 +56,7 @@ def sign_asymmetric(project_id, location_id, key_ring_id, key_id, version_id, me
     # Note: Key algorithms will require a varying hash function. For
     # example, EC_SIGN_P384_SHA384 requires SHA-384.
     digest = {'sha256': hash_}
-    
+
     # Optional, but recommended: compute digest's CRC32C.
     # See crc32c() function defined below.
     digest_crc32c = crc32c(hash_)
