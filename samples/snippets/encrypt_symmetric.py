@@ -40,7 +40,7 @@ def encrypt_symmetric(project_id, location_id, key_ring_id, key_id, plaintext):
     
     # Optional, but recommended: compute plaintext's CRC32C.
     # See crc32c() function defined below.
-    plaintext_crc32c = crc32c(data)
+    plaintext_crc32c = crc32c(plaintext_bytes)
 
     # Create the client.
     client = kms.KeyManagementServiceClient()
