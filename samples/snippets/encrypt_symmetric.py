@@ -13,21 +13,6 @@
 
 
 # [START kms_encrypt_symmetric]
-# This method is used to calculate CRC32C checksum for in-transit integrity verification.
-def crc32c(data):
-  """Calculates the CRC32C checksum of the provided data.
-
-  Args:
-    data: the bytes over which the checksum should be calculated.
-
-  Returns:
-    An int representing the CRC32C checksum of the provided bytes.
-  """
-  import crcmod
-  import six
-  crc32c_fun = crcmod.predefined.mkPredefinedCrcFun('crc-32c')
-  return crc32c_fun(six.ensure_binary(data))
-
 def encrypt_symmetric(project_id, location_id, key_ring_id, key_id, plaintext):
     """
     Encrypt plaintext using a symmetric key.
@@ -54,6 +39,7 @@ def encrypt_symmetric(project_id, location_id, key_ring_id, key_id, plaintext):
     plaintext_bytes = plaintext.encode('utf-8')
     
     # Optional, but recommended: compute plaintext's CRC32C.
+    # See crc32c function below.
     plaintext_crc32c = crc32c(data)
 
     # Create the client.
@@ -63,7 +49,8 @@ def encrypt_symmetric(project_id, location_id, key_ring_id, key_id, plaintext):
     key_name = client.crypto_key_path(project_id, location_id, key_ring_id, key_id)
 
     # Call the API.
-    encrypt_response = client.encrypt(request={'name': key_name, 'plaintext': plaintext_bytes, 'plaintext_crc32c': plaintext_crc32c})
+    encrypt_response = client.encrypt(
+      request={'name': key_name, 'plaintext': plaintext_bytes, 'plaintext_crc32c': plaintext_crc32c})
     
     # Optional, but recommended: perform integrity verification on encrypt_response:
     if not encrypt_response.verified_plaintext_crc32c:
@@ -74,4 +61,18 @@ def encrypt_symmetric(project_id, location_id, key_ring_id, key_id, plaintext):
     
     print('Ciphertext: {}'.format(base64.b64encode(encrypt_response.ciphertext)))
     return encrypt_response
+  
+def crc32c(data):
+  """Calculates the CRC32C checksum of the provided data.
+
+  Args:
+    data: the bytes over which the checksum should be calculated.
+
+  Returns:
+    An int representing the CRC32C checksum of the provided bytes.
+  """
+  import crcmod
+  import six
+  crc32c_fun = crcmod.predefined.mkPredefinedCrcFun('crc-32c')
+  return crc32c_fun(six.ensure_binary(data))
 # [END kms_encrypt_symmetric]
