@@ -52,7 +52,9 @@ def encrypt_symmetric(project_id, location_id, key_ring_id, key_id, plaintext):
     encrypt_response = client.encrypt(
       request={'name': key_name, 'plaintext': plaintext_bytes, 'plaintext_crc32c': plaintext_crc32c})
 
-    # Optional, but recommended: perform integrity verification on encrypt_response:
+    # Optional, but recommended: perform integrity verification on encrypt_response.
+    # For more details on ensuring E2E in-transit integrity to and from Cloud KMS visit:
+    # https://cloud.google.com/kms/docs/data-integrity-guidelines
     if not encrypt_response.verified_plaintext_crc32c:
         raise Exception('The request sent to the server was corrupted in-transit.')
     if not encrypt_response.ciphertext_crc32c == crc32c(encrypt_response.ciphertext):
