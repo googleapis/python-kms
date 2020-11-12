@@ -40,6 +40,16 @@ def get_public_key(project_id, location_id, key_ring_id, key_id, version_id):
 
     # Call the API.
     public_key = client.get_public_key(request={'name': key_version_name})
+
+    # Optional, but recommended: perform integrity verification on public_key.
+    # For more details on ensuring E2E in-transit integrity to and from Cloud KMS visit:
+    # https://cloud.google.com/kms/docs/data-integrity-guidelines
+    if not public_key.name == key_version_name:
+        raise Exception('The request sent to the server was corrupted in-transit.')
+    if not public_key.pem_crc32c == crc32c(public_key.pem):
+        raise Exception('The response received from the server was corrupted in-transit.')
+    # End integrity verification
+
     print('Public key: {}'.format(public_key.pem))
     return public_key
 # [END kms_get_public_key]
