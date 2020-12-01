@@ -235,7 +235,7 @@ class KeyOperationAttestation(proto.Message):
     (https://cloud.google.com/kms/docs/attest-key).
 
     Attributes:
-        format (~.resources.KeyOperationAttestation.AttestationFormat):
+        format_ (~.resources.KeyOperationAttestation.AttestationFormat):
             Output only. The format of the attestation
             data.
         content (bytes):
@@ -249,7 +249,7 @@ class KeyOperationAttestation(proto.Message):
         CAVIUM_V1_COMPRESSED = 3
         CAVIUM_V2_COMPRESSED = 4
 
-    format = proto.Field(proto.ENUM, number=4, enum=AttestationFormat,)
+    format_ = proto.Field(proto.ENUM, number=4, enum=AttestationFormat,)
 
     content = proto.Field(proto.BYTES, number=5)
 
@@ -433,7 +433,9 @@ class CryptoKeyVersion(proto.Message):
 
     algorithm = proto.Field(proto.ENUM, number=10, enum=CryptoKeyVersionAlgorithm,)
 
-    attestation = proto.Field(proto.MESSAGE, number=8, message=KeyOperationAttestation,)
+    attestation = proto.Field(
+        proto.MESSAGE, number=8, message="KeyOperationAttestation",
+    )
 
     create_time = proto.Field(proto.MESSAGE, number=4, message=timestamp.Timestamp,)
 
@@ -503,7 +505,7 @@ class PublicKey(proto.Message):
     pem = proto.Field(proto.STRING, number=1)
 
     algorithm = proto.Field(
-        proto.ENUM, number=2, enum=CryptoKeyVersion.CryptoKeyVersionAlgorithm,
+        proto.ENUM, number=2, enum="CryptoKeyVersion.CryptoKeyVersionAlgorithm",
     )
 
     pem_crc32c = proto.Field(proto.MESSAGE, number=3, message=wrappers.Int64Value,)
@@ -655,7 +657,9 @@ class ImportJob(proto.Message):
 
     public_key = proto.Field(proto.MESSAGE, number=7, message=WrappingPublicKey,)
 
-    attestation = proto.Field(proto.MESSAGE, number=8, message=KeyOperationAttestation,)
+    attestation = proto.Field(
+        proto.MESSAGE, number=8, message="KeyOperationAttestation",
+    )
 
 
 class ExternalProtectionLevelOptions(proto.Message):
