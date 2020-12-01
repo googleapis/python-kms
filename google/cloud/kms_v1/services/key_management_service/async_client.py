@@ -79,9 +79,51 @@ class KeyManagementServiceAsyncClient:
     )
     key_ring_path = staticmethod(KeyManagementServiceClient.key_ring_path)
     parse_key_ring_path = staticmethod(KeyManagementServiceClient.parse_key_ring_path)
+    public_key_path = staticmethod(KeyManagementServiceClient.public_key_path)
+    parse_public_key_path = staticmethod(
+        KeyManagementServiceClient.parse_public_key_path
+    )
+
+    common_billing_account_path = staticmethod(
+        KeyManagementServiceClient.common_billing_account_path
+    )
+    parse_common_billing_account_path = staticmethod(
+        KeyManagementServiceClient.parse_common_billing_account_path
+    )
+
+    common_folder_path = staticmethod(KeyManagementServiceClient.common_folder_path)
+    parse_common_folder_path = staticmethod(
+        KeyManagementServiceClient.parse_common_folder_path
+    )
+
+    common_organization_path = staticmethod(
+        KeyManagementServiceClient.common_organization_path
+    )
+    parse_common_organization_path = staticmethod(
+        KeyManagementServiceClient.parse_common_organization_path
+    )
+
+    common_project_path = staticmethod(KeyManagementServiceClient.common_project_path)
+    parse_common_project_path = staticmethod(
+        KeyManagementServiceClient.parse_common_project_path
+    )
+
+    common_location_path = staticmethod(KeyManagementServiceClient.common_location_path)
+    parse_common_location_path = staticmethod(
+        KeyManagementServiceClient.parse_common_location_path
+    )
 
     from_service_account_file = KeyManagementServiceClient.from_service_account_file
     from_service_account_json = from_service_account_file
+
+    @property
+    def transport(self) -> KeyManagementServiceTransport:
+        """Return the transport used by the client instance.
+
+        Returns:
+            KeyManagementServiceTransport: The transport used by the client instance.
+        """
+        return self._client.transport
 
     get_transport_class = functools.partial(
         type(KeyManagementServiceClient).get_transport_class,
@@ -179,7 +221,8 @@ class KeyManagementServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -271,7 +314,8 @@ class KeyManagementServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -364,7 +408,8 @@ class KeyManagementServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -456,7 +501,8 @@ class KeyManagementServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent]):
+        has_flattened_params = any([parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -546,7 +592,8 @@ class KeyManagementServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -639,7 +686,8 @@ class KeyManagementServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -737,7 +785,8 @@ class KeyManagementServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -829,7 +878,8 @@ class KeyManagementServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -956,7 +1006,8 @@ class KeyManagementServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -1055,7 +1106,8 @@ class KeyManagementServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, key_ring_id, key_ring]):
+        has_flattened_params = any([parent, key_ring_id, key_ring])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -1168,7 +1220,8 @@ class KeyManagementServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, crypto_key_id, crypto_key]):
+        has_flattened_params = any([parent, crypto_key_id, crypto_key])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -1284,7 +1337,8 @@ class KeyManagementServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, crypto_key_version]):
+        has_flattened_params = any([parent, crypto_key_version])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -1491,7 +1545,8 @@ class KeyManagementServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([parent, import_job_id, import_job]):
+        has_flattened_params = any([parent, import_job_id, import_job])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -1591,7 +1646,8 @@ class KeyManagementServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([crypto_key, update_mask]):
+        has_flattened_params = any([crypto_key, update_mask])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -1711,7 +1767,8 @@ class KeyManagementServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([crypto_key_version, update_mask]):
+        has_flattened_params = any([crypto_key_version, update_mask])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -1824,7 +1881,8 @@ class KeyManagementServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name, plaintext]):
+        has_flattened_params = any([name, plaintext])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -1921,7 +1979,8 @@ class KeyManagementServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name, ciphertext]):
+        has_flattened_params = any([name, ciphertext])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -2020,7 +2079,8 @@ class KeyManagementServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name, digest]):
+        has_flattened_params = any([name, digest])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -2119,7 +2179,8 @@ class KeyManagementServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name, ciphertext]):
+        has_flattened_params = any([name, ciphertext])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -2222,7 +2283,8 @@ class KeyManagementServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name, crypto_key_version_id]):
+        has_flattened_params = any([name, crypto_key_version_id])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -2340,7 +2402,8 @@ class KeyManagementServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
@@ -2447,7 +2510,8 @@ class KeyManagementServiceAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([name]):
+        has_flattened_params = any([name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."

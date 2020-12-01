@@ -19,10 +19,10 @@ from collections import OrderedDict
 from distutils import util
 import os
 import re
-from typing import Callable, Dict, Sequence, Tuple, Type, Union
+from typing import Callable, Dict, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions  # type: ignore
+from google.api_core import client_options as client_options_lib  # type: ignore
 from google.api_core import exceptions  # type: ignore
 from google.api_core import gapic_v1  # type: ignore
 from google.api_core import retry as retries  # type: ignore
@@ -154,6 +154,15 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     from_service_account_json = from_service_account_file
 
+    @property
+    def transport(self) -> KeyManagementServiceTransport:
+        """Return the transport used by the client instance.
+
+        Returns:
+            KeyManagementServiceTransport: The transport used by the client instance.
+        """
+        return self._transport
+
     @staticmethod
     def crypto_key_path(
         project: str, location: str, key_ring: str, crypto_key: str,
@@ -238,12 +247,97 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         )
         return m.groupdict() if m else {}
 
+    @staticmethod
+    def public_key_path(
+        project: str,
+        location: str,
+        key_ring: str,
+        crypto_key: str,
+        crypto_key_version: str,
+    ) -> str:
+        """Return a fully-qualified public_key string."""
+        return "projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}/publicKey".format(
+            project=project,
+            location=location,
+            key_ring=key_ring,
+            crypto_key=crypto_key,
+            crypto_key_version=crypto_key_version,
+        )
+
+    @staticmethod
+    def parse_public_key_path(path: str) -> Dict[str, str]:
+        """Parse a public_key path into its component segments."""
+        m = re.match(
+            r"^projects/(?P<project>.+?)/locations/(?P<location>.+?)/keyRings/(?P<key_ring>.+?)/cryptoKeys/(?P<crypto_key>.+?)/cryptoKeyVersions/(?P<crypto_key_version>.+?)/publicKey$",
+            path,
+        )
+        return m.groupdict() if m else {}
+
+    @staticmethod
+    def common_billing_account_path(billing_account: str,) -> str:
+        """Return a fully-qualified billing_account string."""
+        return "billingAccounts/{billing_account}".format(
+            billing_account=billing_account,
+        )
+
+    @staticmethod
+    def parse_common_billing_account_path(path: str) -> Dict[str, str]:
+        """Parse a billing_account path into its component segments."""
+        m = re.match(r"^billingAccounts/(?P<billing_account>.+?)$", path)
+        return m.groupdict() if m else {}
+
+    @staticmethod
+    def common_folder_path(folder: str,) -> str:
+        """Return a fully-qualified folder string."""
+        return "folders/{folder}".format(folder=folder,)
+
+    @staticmethod
+    def parse_common_folder_path(path: str) -> Dict[str, str]:
+        """Parse a folder path into its component segments."""
+        m = re.match(r"^folders/(?P<folder>.+?)$", path)
+        return m.groupdict() if m else {}
+
+    @staticmethod
+    def common_organization_path(organization: str,) -> str:
+        """Return a fully-qualified organization string."""
+        return "organizations/{organization}".format(organization=organization,)
+
+    @staticmethod
+    def parse_common_organization_path(path: str) -> Dict[str, str]:
+        """Parse a organization path into its component segments."""
+        m = re.match(r"^organizations/(?P<organization>.+?)$", path)
+        return m.groupdict() if m else {}
+
+    @staticmethod
+    def common_project_path(project: str,) -> str:
+        """Return a fully-qualified project string."""
+        return "projects/{project}".format(project=project,)
+
+    @staticmethod
+    def parse_common_project_path(path: str) -> Dict[str, str]:
+        """Parse a project path into its component segments."""
+        m = re.match(r"^projects/(?P<project>.+?)$", path)
+        return m.groupdict() if m else {}
+
+    @staticmethod
+    def common_location_path(project: str, location: str,) -> str:
+        """Return a fully-qualified location string."""
+        return "projects/{project}/locations/{location}".format(
+            project=project, location=location,
+        )
+
+    @staticmethod
+    def parse_common_location_path(path: str) -> Dict[str, str]:
+        """Parse a location path into its component segments."""
+        m = re.match(r"^projects/(?P<project>.+?)/locations/(?P<location>.+?)$", path)
+        return m.groupdict() if m else {}
+
     def __init__(
         self,
         *,
-        credentials: credentials.Credentials = None,
-        transport: Union[str, KeyManagementServiceTransport] = None,
-        client_options: ClientOptions = None,
+        credentials: Optional[credentials.Credentials] = None,
+        transport: Union[str, KeyManagementServiceTransport, None] = None,
+        client_options: Optional[client_options_lib.ClientOptions] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
         """Instantiate the key management service client.
@@ -258,8 +352,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
             transport (Union[str, ~.KeyManagementServiceTransport]): The
                 transport to use. If set to None, a transport is chosen
                 automatically.
-            client_options (ClientOptions): Custom options for the client. It
-                won't take effect if a ``transport`` instance is provided.
+            client_options (client_options_lib.ClientOptions): Custom options for the
+                client. It won't take effect if a ``transport`` instance is provided.
                 (1) The ``api_endpoint`` property can be used to override the
                 default endpoint provided by the client. GOOGLE_API_USE_MTLS_ENDPOINT
                 environment variable can also be used to override the endpoint:
@@ -274,10 +368,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 not provided, the default SSL client certificate will be used if
                 present. If GOOGLE_API_USE_CLIENT_CERTIFICATE is "false" or not
                 set, no client certificate will be used.
-            client_info (google.api_core.gapic_v1.client_info.ClientInfo):	
-                The client info used to send a user-agent string along with	
-                API requests. If ``None``, then default info will be used.	
-                Generally, you only need to set this if you're developing	
+            client_info (google.api_core.gapic_v1.client_info.ClientInfo):
+                The client info used to send a user-agent string along with
+                API requests. If ``None``, then default info will be used.
+                Generally, you only need to set this if you're developing
                 your own client library.
 
         Raises:
@@ -285,9 +379,9 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 creation failed for any reason.
         """
         if isinstance(client_options, dict):
-            client_options = ClientOptions.from_dict(client_options)
+            client_options = client_options_lib.from_dict(client_options)
         if client_options is None:
-            client_options = ClientOptions.ClientOptions()
+            client_options = client_options_lib.ClientOptions()
 
         # Create SSL credentials for mutual TLS if needed.
         use_client_cert = bool(
