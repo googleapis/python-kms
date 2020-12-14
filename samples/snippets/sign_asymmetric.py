@@ -27,7 +27,6 @@ def sign_asymmetric(project_id, location_id, key_ring_id, key_id, version_id, me
 
     Returns:
         AsymmetricSignResponse: Signature.
-
     """
 
     # Import the client library.
