@@ -3,30 +3,30 @@
     {
       "git": {
         "name": ".",
-        "remote": "https://github.com/googleapis/python-kms.git",
-        "sha": "1d566b4cf646a8e0f453ff1476083b27a636190f"
+        "remote": "git@github.com:googleapis/python-kms",
+        "sha": "5723df440ca439d93a11deaae8d25ed945113803"
       }
     },
     {
       "git": {
         "name": "googleapis",
         "remote": "https://github.com/googleapis/googleapis.git",
-        "sha": "14adde91e90011702483e943edf1044549252bd9",
-        "internalRef": "344906237"
+        "sha": "915925089600094e72e4bfa8cf586c170e6b7109",
+        "internalRef": "366152684"
       }
     },
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "dba48bb9bc6959c232bec9150ac6313b608fe7bd"
+        "sha": "6d76df2138f8f841e5a5b9ac427f81def520c15f"
       }
     },
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "dba48bb9bc6959c232bec9150ac6313b608fe7bd"
+        "sha": "6d76df2138f8f841e5a5b9ac427f81def520c15f"
       }
     }
   ],
@@ -40,97 +40,5 @@
         "generator": "bazel"
       }
     }
-  ],
-  "generatedFiles": [
-    ".flake8",
-    ".github/CONTRIBUTING.md",
-    ".github/ISSUE_TEMPLATE/bug_report.md",
-    ".github/ISSUE_TEMPLATE/feature_request.md",
-    ".github/ISSUE_TEMPLATE/support_request.md",
-    ".github/PULL_REQUEST_TEMPLATE.md",
-    ".github/release-please.yml",
-    ".github/snippet-bot.yml",
-    ".gitignore",
-    ".kokoro/build.sh",
-    ".kokoro/continuous/common.cfg",
-    ".kokoro/continuous/continuous.cfg",
-    ".kokoro/docker/docs/Dockerfile",
-    ".kokoro/docker/docs/fetch_gpg_keys.sh",
-    ".kokoro/docs/common.cfg",
-    ".kokoro/docs/docs-presubmit.cfg",
-    ".kokoro/docs/docs.cfg",
-    ".kokoro/populate-secrets.sh",
-    ".kokoro/presubmit/common.cfg",
-    ".kokoro/presubmit/presubmit.cfg",
-    ".kokoro/publish-docs.sh",
-    ".kokoro/release.sh",
-    ".kokoro/release/common.cfg",
-    ".kokoro/release/release.cfg",
-    ".kokoro/samples/lint/common.cfg",
-    ".kokoro/samples/lint/continuous.cfg",
-    ".kokoro/samples/lint/periodic.cfg",
-    ".kokoro/samples/lint/presubmit.cfg",
-    ".kokoro/samples/python3.6/common.cfg",
-    ".kokoro/samples/python3.6/continuous.cfg",
-    ".kokoro/samples/python3.6/periodic.cfg",
-    ".kokoro/samples/python3.6/presubmit.cfg",
-    ".kokoro/samples/python3.7/common.cfg",
-    ".kokoro/samples/python3.7/continuous.cfg",
-    ".kokoro/samples/python3.7/periodic.cfg",
-    ".kokoro/samples/python3.7/presubmit.cfg",
-    ".kokoro/samples/python3.8/common.cfg",
-    ".kokoro/samples/python3.8/continuous.cfg",
-    ".kokoro/samples/python3.8/periodic.cfg",
-    ".kokoro/samples/python3.8/presubmit.cfg",
-    ".kokoro/test-samples.sh",
-    ".kokoro/trampoline.sh",
-    ".kokoro/trampoline_v2.sh",
-    ".trampolinerc",
-    "CODE_OF_CONDUCT.md",
-    "CONTRIBUTING.rst",
-    "LICENSE",
-    "MANIFEST.in",
-    "docs/_static/custom.css",
-    "docs/_templates/layout.html",
-    "docs/conf.py",
-    "docs/kms_v1/services.rst",
-    "docs/kms_v1/types.rst",
-    "docs/multiprocessing.rst",
-    "google/cloud/kms/__init__.py",
-    "google/cloud/kms/py.typed",
-    "google/cloud/kms_v1/__init__.py",
-    "google/cloud/kms_v1/proto/resources.proto",
-    "google/cloud/kms_v1/proto/service.proto",
-    "google/cloud/kms_v1/py.typed",
-    "google/cloud/kms_v1/services/__init__.py",
-    "google/cloud/kms_v1/services/key_management_service/__init__.py",
-    "google/cloud/kms_v1/services/key_management_service/async_client.py",
-    "google/cloud/kms_v1/services/key_management_service/client.py",
-    "google/cloud/kms_v1/services/key_management_service/pagers.py",
-    "google/cloud/kms_v1/services/key_management_service/transports/__init__.py",
-    "google/cloud/kms_v1/services/key_management_service/transports/base.py",
-    "google/cloud/kms_v1/services/key_management_service/transports/grpc.py",
-    "google/cloud/kms_v1/services/key_management_service/transports/grpc_asyncio.py",
-    "google/cloud/kms_v1/types/__init__.py",
-    "google/cloud/kms_v1/types/resources.py",
-    "google/cloud/kms_v1/types/service.py",
-    "mypy.ini",
-    "noxfile.py",
-    "renovate.json",
-    "samples/AUTHORING_GUIDE.md",
-    "samples/CONTRIBUTING.md",
-    "samples/snippets/README.md",
-    "scripts/decrypt-secrets.sh",
-    "scripts/fixup_kms_v1_keywords.py",
-    "scripts/readme-gen/readme_gen.py",
-    "scripts/readme-gen/templates/README.tmpl.rst",
-    "scripts/readme-gen/templates/auth.tmpl.rst",
-    "scripts/readme-gen/templates/auth_api_key.tmpl.rst",
-    "scripts/readme-gen/templates/install_deps.tmpl.rst",
-    "scripts/readme-gen/templates/install_portaudio.tmpl.rst",
-    "setup.cfg",
-    "testing/.gitignore",
-    "tests/unit/gapic/kms_v1/__init__.py",
-    "tests/unit/gapic/kms_v1/test_key_management_service.py"
   ]
 }
