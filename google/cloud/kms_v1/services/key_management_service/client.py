@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 from collections import OrderedDict
 from distutils import util
 import os
@@ -23,10 +21,10 @@ from typing import Callable, Dict, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib  # type: ignore
-from google.api_core import exceptions  # type: ignore
+from google.api_core import exceptions as core_exceptions  # type: ignore
 from google.api_core import gapic_v1  # type: ignore
 from google.api_core import retry as retries  # type: ignore
-from google.auth import credentials  # type: ignore
+from google.auth import credentials as ga_credentials  # type: ignore
 from google.auth.transport import mtls  # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 from google.auth.exceptions import MutualTLSChannelError  # type: ignore
@@ -35,13 +33,12 @@ from google.oauth2 import service_account  # type: ignore
 from google.cloud.kms_v1.services.key_management_service import pagers
 from google.cloud.kms_v1.types import resources
 from google.cloud.kms_v1.types import service
-from google.iam.v1 import iam_policy_pb2 as iam_policy  # type: ignore
-from google.iam.v1 import policy_pb2 as policy  # type: ignore
-from google.protobuf import duration_pb2 as duration  # type: ignore
-from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
-from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
-from google.protobuf import wrappers_pb2 as wrappers  # type: ignore
-
+from google.iam.v1 import iam_policy_pb2  # type: ignore
+from google.iam.v1 import policy_pb2  # type: ignore
+from google.protobuf import duration_pb2  # type: ignore
+from google.protobuf import field_mask_pb2  # type: ignore
+from google.protobuf import timestamp_pb2  # type: ignore
+from google.protobuf import wrappers_pb2  # type: ignore
 from .transports.base import KeyManagementServiceTransport, DEFAULT_CLIENT_INFO
 from .transports.grpc import KeyManagementServiceGrpcTransport
 from .transports.grpc_asyncio import KeyManagementServiceGrpcAsyncIOTransport
@@ -352,7 +349,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
     def __init__(
         self,
         *,
-        credentials: Optional[credentials.Credentials] = None,
+        credentials: Optional[ga_credentials.Credentials] = None,
         transport: Union[str, KeyManagementServiceTransport, None] = None,
         client_options: Optional[client_options_lib.ClientOptions] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
@@ -487,7 +484,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -519,10 +515,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.ListKeyRingsRequest):
             request = service.ListKeyRingsRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if parent is not None:
                 request.parent = parent
 
@@ -572,7 +566,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -604,10 +597,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.ListCryptoKeysRequest):
             request = service.ListCryptoKeysRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if parent is not None:
                 request.parent = parent
 
@@ -658,7 +649,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -690,10 +680,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.ListCryptoKeyVersionsRequest):
             request = service.ListCryptoKeyVersionsRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if parent is not None:
                 request.parent = parent
 
@@ -743,7 +731,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -775,10 +762,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.ListImportJobsRequest):
             request = service.ListImportJobsRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if parent is not None:
                 request.parent = parent
 
@@ -828,7 +813,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -858,10 +842,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.GetKeyRingRequest):
             request = service.GetKeyRingRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
 
@@ -908,7 +890,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -943,10 +924,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.GetCryptoKeyRequest):
             request = service.GetCryptoKeyRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
 
@@ -992,7 +971,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1032,10 +1010,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.GetCryptoKeyVersionRequest):
             request = service.GetCryptoKeyVersionRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
 
@@ -1086,7 +1062,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1115,10 +1090,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.GetPublicKeyRequest):
             request = service.GetPublicKeyRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
 
@@ -1163,7 +1136,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1235,10 +1207,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.GetImportJobRequest):
             request = service.GetImportJobRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
 
@@ -1299,7 +1269,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``key_ring`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1329,10 +1298,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.CreateKeyRingRequest):
             request = service.CreateKeyRingRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if parent is not None:
                 request.parent = parent
             if key_ring_id is not None:
@@ -1401,7 +1368,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``crypto_key`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1436,10 +1402,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.CreateCryptoKeyRequest):
             request = service.CreateCryptoKeyRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if parent is not None:
                 request.parent = parent
             if crypto_key_id is not None:
@@ -1504,7 +1468,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``crypto_key_version`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1544,10 +1507,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.CreateCryptoKeyVersionRequest):
             request = service.CreateCryptoKeyVersionRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if parent is not None:
                 request.parent = parent
             if crypto_key_version is not None:
@@ -1592,7 +1553,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
             request (google.cloud.kms_v1.types.ImportCryptoKeyVersionRequest):
                 The request object. Request message for
                 [KeyManagementService.ImportCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion].
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1617,7 +1577,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         """
         # Create or coerce a protobuf request object.
-
         # Minor optimization to avoid making a copy if the user passes
         # in a service.ImportCryptoKeyVersionRequest.
         # There's no risk of modifying the input as we've already verified
@@ -1687,7 +1646,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``import_job`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1759,10 +1717,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.CreateImportJobRequest):
             request = service.CreateImportJobRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if parent is not None:
                 request.parent = parent
             if import_job_id is not None:
@@ -1791,7 +1747,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         request: service.UpdateCryptoKeyRequest = None,
         *,
         crypto_key: resources.CryptoKey = None,
-        update_mask: field_mask.FieldMask = None,
+        update_mask: field_mask_pb2.FieldMask = None,
         retry: retries.Retry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
@@ -1817,7 +1773,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1852,10 +1807,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.UpdateCryptoKeyRequest):
             request = service.UpdateCryptoKeyRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if crypto_key is not None:
                 request.crypto_key = crypto_key
             if update_mask is not None:
@@ -1884,7 +1837,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         request: service.UpdateCryptoKeyVersionRequest = None,
         *,
         crypto_key_version: resources.CryptoKeyVersion = None,
-        update_mask: field_mask.FieldMask = None,
+        update_mask: field_mask_pb2.FieldMask = None,
         retry: retries.Retry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
@@ -1924,7 +1877,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1964,10 +1916,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.UpdateCryptoKeyVersionRequest):
             request = service.UpdateCryptoKeyVersionRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if crypto_key_version is not None:
                 request.crypto_key_version = crypto_key_version
             if update_mask is not None:
@@ -2044,7 +1994,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``plaintext`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -2073,10 +2022,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.EncryptRequest):
             request = service.EncryptRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
             if plaintext is not None:
@@ -2135,7 +2082,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``ciphertext`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -2164,10 +2110,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.DecryptRequest):
             request = service.DecryptRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
             if ciphertext is not None:
@@ -2228,7 +2172,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``digest`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -2257,10 +2200,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.AsymmetricSignRequest):
             request = service.AsymmetricSignRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
             if digest is not None:
@@ -2321,7 +2262,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``ciphertext`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -2350,10 +2290,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.AsymmetricDecryptRequest):
             request = service.AsymmetricDecryptRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
             if ciphertext is not None:
@@ -2411,7 +2349,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``crypto_key_version_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -2446,10 +2383,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.UpdateCryptoKeyPrimaryVersionRequest):
             request = service.UpdateCryptoKeyPrimaryVersionRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
             if crypto_key_version_id is not None:
@@ -2517,7 +2452,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -2557,10 +2491,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.DestroyCryptoKeyVersionRequest):
             request = service.DestroyCryptoKeyVersionRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
 
@@ -2617,7 +2549,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -2657,10 +2588,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.RestoreCryptoKeyVersionRequest):
             request = service.RestoreCryptoKeyVersionRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
 
@@ -2684,17 +2613,17 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def set_iam_policy(
         self,
-        request: iam_policy.SetIamPolicyRequest = None,
+        request: iam_policy_pb2.SetIamPolicyRequest = None,
         *,
         retry: retries.Retry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
-    ) -> policy.Policy:
+    ) -> policy_pb2.Policy:
         r"""Sets the IAM access control policy on the specified
         function. Replaces any existing policy.
 
         Args:
-            request (:class:`~.iam_policy.SetIamPolicyRequest`):
+            request (:class:`~.iam_policy_pb2.SetIamPolicyRequest`):
                 The request object. Request message for `SetIamPolicy`
                 method.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -2703,7 +2632,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
             metadata (Sequence[Tuple[str, str]]): Strings which should be
                 sent along with the request as metadata.
         Returns:
-            ~.policy.Policy:
+            ~.policy_pb2.Policy:
                 Defines an Identity and Access Management (IAM) policy.
                 It is used to specify access control policies for Cloud
                 Platform resources.
@@ -2770,7 +2699,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # The request isn't a proto-plus wrapped type,
         # so it must be constructed via keyword expansion.
         if isinstance(request, dict):
-            request = iam_policy.SetIamPolicyRequest(**request)
+            request = iam_policy_pb2.SetIamPolicyRequest(**request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -2794,18 +2723,18 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def get_iam_policy(
         self,
-        request: iam_policy.GetIamPolicyRequest = None,
+        request: iam_policy_pb2.GetIamPolicyRequest = None,
         *,
         retry: retries.Retry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
-    ) -> policy.Policy:
+    ) -> policy_pb2.Policy:
         r"""Gets the IAM access control policy for a function.
         Returns an empty policy if the function exists and does
         not have a policy set.
 
         Args:
-            request (:class:`~.iam_policy.GetIamPolicyRequest`):
+            request (:class:`~.iam_policy_pb2.GetIamPolicyRequest`):
                 The request object. Request message for `GetIamPolicy`
                 method.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -2814,7 +2743,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
             metadata (Sequence[Tuple[str, str]]): Strings which should be
                 sent along with the request as metadata.
         Returns:
-            ~.policy.Policy:
+            ~.policy_pb2.Policy:
                 Defines an Identity and Access Management (IAM) policy.
                 It is used to specify access control policies for Cloud
                 Platform resources.
@@ -2881,7 +2810,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # The request isn't a proto-plus wrapped type,
         # so it must be constructed via keyword expansion.
         if isinstance(request, dict):
-            request = iam_policy.GetIamPolicyRequest(**request)
+            request = iam_policy_pb2.GetIamPolicyRequest(**request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -2905,18 +2834,18 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def test_iam_permissions(
         self,
-        request: iam_policy.TestIamPermissionsRequest = None,
+        request: iam_policy_pb2.TestIamPermissionsRequest = None,
         *,
         retry: retries.Retry = gapic_v1.method.DEFAULT,
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
-    ) -> iam_policy.TestIamPermissionsResponse:
+    ) -> iam_policy_pb2.TestIamPermissionsResponse:
         r"""Tests the specified permissions against the IAM access control
         policy for a function. If the function does not exist, this will
         return an empty set of permissions, not a NOT_FOUND error.
 
         Args:
-            request (:class:`~.iam_policy.TestIamPermissionsRequest`):
+            request (:class:`~.iam_policy_pb2.TestIamPermissionsRequest`):
                 The request object. Request message for
                 `TestIamPermissions` method.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -2925,7 +2854,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
             metadata (Sequence[Tuple[str, str]]): Strings which should be
                 sent along with the request as metadata.
         Returns:
-            ~.iam_policy.TestIamPermissionsResponse:
+            ~.iam_policy_pb2.TestIamPermissionsResponse:
                 Response message for ``TestIamPermissions`` method.
         """
         # Create or coerce a protobuf request object.
@@ -2933,7 +2862,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # The request isn't a proto-plus wrapped type,
         # so it must be constructed via keyword expansion.
         if isinstance(request, dict):
-            request = iam_policy.TestIamPermissionsRequest(**request)
+            request = iam_policy_pb2.TestIamPermissionsRequest(**request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
