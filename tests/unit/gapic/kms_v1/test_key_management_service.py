@@ -6609,7 +6609,7 @@ def test_key_management_service_transport_create_channel(transport_class, grpc_h
         transport_class(quota_project_id="octopus", scopes=["1", "2"])
 
         create_channel.assert_called_with(
-            "cloudkms.googleapis.com:443",
+            "cloudkms.googleapis.com",
             credentials=creds,
             credentials_file=None,
             quota_project_id="octopus",

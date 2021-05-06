@@ -178,7 +178,7 @@ class CryptoKey(proto.Message):
     version_template = proto.Field(
         proto.MESSAGE, number=11, message="CryptoKeyVersionTemplate",
     )
-    labels = proto.MapField(proto.STRING, proto.STRING, number=10,)
+    labels = proto.MapField(proto.STRING, proto.STRING, number=10)
 
 
 class CryptoKeyVersionTemplate(proto.Message):

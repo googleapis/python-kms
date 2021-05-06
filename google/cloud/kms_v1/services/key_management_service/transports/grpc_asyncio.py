@@ -245,7 +245,9 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
     ) -> Callable[
         [service.ListKeyRingsRequest], Awaitable[service.ListKeyRingsResponse]
     ]:
-        r"""Return a callable for the list key rings method over gRPC.
+        r"""Return a callable for the
+        list key rings
+          method over gRPC.
 
         Lists [KeyRings][google.cloud.kms.v1.KeyRing].
 
@@ -273,7 +275,9 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
     ) -> Callable[
         [service.ListCryptoKeysRequest], Awaitable[service.ListCryptoKeysResponse]
     ]:
-        r"""Return a callable for the list crypto keys method over gRPC.
+        r"""Return a callable for the
+        list crypto keys
+          method over gRPC.
 
         Lists [CryptoKeys][google.cloud.kms.v1.CryptoKey].
 
@@ -302,7 +306,9 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
         [service.ListCryptoKeyVersionsRequest],
         Awaitable[service.ListCryptoKeyVersionsResponse],
     ]:
-        r"""Return a callable for the list crypto key versions method over gRPC.
+        r"""Return a callable for the
+        list crypto key versions
+          method over gRPC.
 
         Lists [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
 
@@ -330,7 +336,9 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
     ) -> Callable[
         [service.ListImportJobsRequest], Awaitable[service.ListImportJobsResponse]
     ]:
-        r"""Return a callable for the list import jobs method over gRPC.
+        r"""Return a callable for the
+        list import jobs
+          method over gRPC.
 
         Lists [ImportJobs][google.cloud.kms.v1.ImportJob].
 
@@ -356,7 +364,9 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
     def get_key_ring(
         self,
     ) -> Callable[[service.GetKeyRingRequest], Awaitable[resources.KeyRing]]:
-        r"""Return a callable for the get key ring method over gRPC.
+        r"""Return a callable for the
+        get key ring
+          method over gRPC.
 
         Returns metadata for a given
         [KeyRing][google.cloud.kms.v1.KeyRing].
@@ -383,7 +393,9 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
     def get_crypto_key(
         self,
     ) -> Callable[[service.GetCryptoKeyRequest], Awaitable[resources.CryptoKey]]:
-        r"""Return a callable for the get crypto key method over gRPC.
+        r"""Return a callable for the
+        get crypto key
+          method over gRPC.
 
         Returns metadata for a given
         [CryptoKey][google.cloud.kms.v1.CryptoKey], as well as its
@@ -414,7 +426,9 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
     ) -> Callable[
         [service.GetCryptoKeyVersionRequest], Awaitable[resources.CryptoKeyVersion]
     ]:
-        r"""Return a callable for the get crypto key version method over gRPC.
+        r"""Return a callable for the
+        get crypto key version
+          method over gRPC.
 
         Returns metadata for a given
         [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
@@ -441,7 +455,9 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
     def get_public_key(
         self,
     ) -> Callable[[service.GetPublicKeyRequest], Awaitable[resources.PublicKey]]:
-        r"""Return a callable for the get public key method over gRPC.
+        r"""Return a callable for the
+        get public key
+          method over gRPC.
 
         Returns the public key for the given
         [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. The
@@ -473,7 +489,9 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
     def get_import_job(
         self,
     ) -> Callable[[service.GetImportJobRequest], Awaitable[resources.ImportJob]]:
-        r"""Return a callable for the get import job method over gRPC.
+        r"""Return a callable for the
+        get import job
+          method over gRPC.
 
         Returns metadata for a given
         [ImportJob][google.cloud.kms.v1.ImportJob].
@@ -500,7 +518,9 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
     def create_key_ring(
         self,
     ) -> Callable[[service.CreateKeyRingRequest], Awaitable[resources.KeyRing]]:
-        r"""Return a callable for the create key ring method over gRPC.
+        r"""Return a callable for the
+        create key ring
+          method over gRPC.
 
         Create a new [KeyRing][google.cloud.kms.v1.KeyRing] in a given
         Project and Location.
@@ -527,7 +547,9 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
     def create_crypto_key(
         self,
     ) -> Callable[[service.CreateCryptoKeyRequest], Awaitable[resources.CryptoKey]]:
-        r"""Return a callable for the create crypto key method over gRPC.
+        r"""Return a callable for the
+        create crypto key
+          method over gRPC.
 
         Create a new [CryptoKey][google.cloud.kms.v1.CryptoKey] within a
         [KeyRing][google.cloud.kms.v1.KeyRing].
@@ -560,7 +582,9 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
     ) -> Callable[
         [service.CreateCryptoKeyVersionRequest], Awaitable[resources.CryptoKeyVersion]
     ]:
-        r"""Return a callable for the create crypto key version method over gRPC.
+        r"""Return a callable for the
+        create crypto key version
+          method over gRPC.
 
         Create a new
         [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in a
@@ -595,7 +619,9 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
     ) -> Callable[
         [service.ImportCryptoKeyVersionRequest], Awaitable[resources.CryptoKeyVersion]
     ]:
-        r"""Return a callable for the import crypto key version method over gRPC.
+        r"""Return a callable for the
+        import crypto key version
+          method over gRPC.
 
         Imports a new
         [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] into an
@@ -627,7 +653,9 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
     def create_import_job(
         self,
     ) -> Callable[[service.CreateImportJobRequest], Awaitable[resources.ImportJob]]:
-        r"""Return a callable for the create import job method over gRPC.
+        r"""Return a callable for the
+        create import job
+          method over gRPC.
 
         Create a new [ImportJob][google.cloud.kms.v1.ImportJob] within a
         [KeyRing][google.cloud.kms.v1.KeyRing].
@@ -657,7 +685,9 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
     def update_crypto_key(
         self,
     ) -> Callable[[service.UpdateCryptoKeyRequest], Awaitable[resources.CryptoKey]]:
-        r"""Return a callable for the update crypto key method over gRPC.
+        r"""Return a callable for the
+        update crypto key
+          method over gRPC.
 
         Update a [CryptoKey][google.cloud.kms.v1.CryptoKey].
 
@@ -685,7 +715,9 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
     ) -> Callable[
         [service.UpdateCryptoKeyVersionRequest], Awaitable[resources.CryptoKeyVersion]
     ]:
-        r"""Return a callable for the update crypto key version method over gRPC.
+        r"""Return a callable for the
+        update crypto key version
+          method over gRPC.
 
         Update a
         [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]'s
@@ -724,7 +756,9 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
     def encrypt(
         self,
     ) -> Callable[[service.EncryptRequest], Awaitable[service.EncryptResponse]]:
-        r"""Return a callable for the encrypt method over gRPC.
+        r"""Return a callable for the
+        encrypt
+          method over gRPC.
 
         Encrypts data, so that it can only be recovered by a call to
         [Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt]. The
@@ -754,7 +788,9 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
     def decrypt(
         self,
     ) -> Callable[[service.DecryptRequest], Awaitable[service.DecryptResponse]]:
-        r"""Return a callable for the decrypt method over gRPC.
+        r"""Return a callable for the
+        decrypt
+          method over gRPC.
 
         Decrypts data that was protected by
         [Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt]. The
@@ -786,7 +822,9 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
     ) -> Callable[
         [service.AsymmetricSignRequest], Awaitable[service.AsymmetricSignResponse]
     ]:
-        r"""Return a callable for the asymmetric sign method over gRPC.
+        r"""Return a callable for the
+        asymmetric sign
+          method over gRPC.
 
         Signs data using a
         [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] with
@@ -819,7 +857,9 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
     ) -> Callable[
         [service.AsymmetricDecryptRequest], Awaitable[service.AsymmetricDecryptResponse]
     ]:
-        r"""Return a callable for the asymmetric decrypt method over gRPC.
+        r"""Return a callable for the
+        asymmetric decrypt
+          method over gRPC.
 
         Decrypts data that was encrypted with a public key retrieved
         from
@@ -853,8 +893,10 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
     ) -> Callable[
         [service.UpdateCryptoKeyPrimaryVersionRequest], Awaitable[resources.CryptoKey]
     ]:
-        r"""Return a callable for the update crypto key primary
-        version method over gRPC.
+        r"""Return a callable for the
+        update crypto key primary
+        version
+          method over gRPC.
 
         Update the version of a
         [CryptoKey][google.cloud.kms.v1.CryptoKey] that will be used in
@@ -888,7 +930,9 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
     ) -> Callable[
         [service.DestroyCryptoKeyVersionRequest], Awaitable[resources.CryptoKeyVersion]
     ]:
-        r"""Return a callable for the destroy crypto key version method over gRPC.
+        r"""Return a callable for the
+        destroy crypto key version
+          method over gRPC.
 
         Schedule a
         [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] for
@@ -936,7 +980,9 @@ class KeyManagementServiceGrpcAsyncIOTransport(KeyManagementServiceTransport):
     ) -> Callable[
         [service.RestoreCryptoKeyVersionRequest], Awaitable[resources.CryptoKeyVersion]
     ]:
-        r"""Return a callable for the restore crypto key version method over gRPC.
+        r"""Return a callable for the
+        restore crypto key version
+          method over gRPC.
 
         Restore a
         [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] in the
