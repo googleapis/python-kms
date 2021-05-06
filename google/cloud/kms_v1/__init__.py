@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +15,7 @@
 #
 
 from .services.key_management_service import KeyManagementServiceClient
+
 from .types.resources import CryptoKey
 from .types.resources import CryptoKeyVersion
 from .types.resources import CryptoKeyVersionTemplate
@@ -58,7 +58,6 @@ from .types.service import RestoreCryptoKeyVersionRequest
 from .types.service import UpdateCryptoKeyPrimaryVersionRequest
 from .types.service import UpdateCryptoKeyRequest
 from .types.service import UpdateCryptoKeyVersionRequest
-
 
 __all__ = (
     "AsymmetricDecryptRequest",

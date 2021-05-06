@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 from collections import OrderedDict
 from distutils import util
 import os
@@ -41,7 +39,6 @@ from google.protobuf import duration_pb2 as duration  # type: ignore
 from google.protobuf import field_mask_pb2 as field_mask  # type: ignore
 from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
 from google.protobuf import wrappers_pb2 as wrappers  # type: ignore
-
 from .transports.base import KeyManagementServiceTransport, DEFAULT_CLIENT_INFO
 from .transports.grpc import KeyManagementServiceGrpcTransport
 from .transports.grpc_asyncio import KeyManagementServiceGrpcAsyncIOTransport
@@ -477,7 +474,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Args:
             request (google.cloud.kms_v1.types.ListKeyRingsRequest):
-                The request object. Request message for
+                The request object.
+                Request message for
                 [KeyManagementService.ListKeyRings][google.cloud.kms.v1.KeyManagementService.ListKeyRings].
             parent (str):
                 Required. The resource name of the location associated
@@ -487,7 +485,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -519,10 +516,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.ListKeyRingsRequest):
             request = service.ListKeyRingsRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if parent is not None:
                 request.parent = parent
 
@@ -562,7 +557,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Args:
             request (google.cloud.kms_v1.types.ListCryptoKeysRequest):
-                The request object. Request message for
+                The request object.
+                Request message for
                 [KeyManagementService.ListCryptoKeys][google.cloud.kms.v1.KeyManagementService.ListCryptoKeys].
             parent (str):
                 Required. The resource name of the
@@ -572,7 +568,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -604,10 +599,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.ListCryptoKeysRequest):
             request = service.ListCryptoKeysRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if parent is not None:
                 request.parent = parent
 
@@ -647,7 +640,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Args:
             request (google.cloud.kms_v1.types.ListCryptoKeyVersionsRequest):
-                The request object. Request message for
+                The request object.
+                Request message for
                 [KeyManagementService.ListCryptoKeyVersions][google.cloud.kms.v1.KeyManagementService.ListCryptoKeyVersions].
             parent (str):
                 Required. The resource name of the
@@ -658,7 +652,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -690,10 +683,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.ListCryptoKeyVersionsRequest):
             request = service.ListCryptoKeyVersionsRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if parent is not None:
                 request.parent = parent
 
@@ -733,7 +724,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Args:
             request (google.cloud.kms_v1.types.ListImportJobsRequest):
-                The request object. Request message for
+                The request object.
+                Request message for
                 [KeyManagementService.ListImportJobs][google.cloud.kms.v1.KeyManagementService.ListImportJobs].
             parent (str):
                 Required. The resource name of the
@@ -743,7 +735,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -775,10 +766,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.ListImportJobsRequest):
             request = service.ListImportJobsRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if parent is not None:
                 request.parent = parent
 
@@ -819,7 +808,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Args:
             request (google.cloud.kms_v1.types.GetKeyRingRequest):
-                The request object. Request message for
+                The request object.
+                Request message for
                 [KeyManagementService.GetKeyRing][google.cloud.kms.v1.KeyManagementService.GetKeyRing].
             name (str):
                 Required. The [name][google.cloud.kms.v1.KeyRing.name]
@@ -828,7 +818,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -858,10 +847,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.GetKeyRingRequest):
             request = service.GetKeyRingRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
 
@@ -898,7 +885,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Args:
             request (google.cloud.kms_v1.types.GetCryptoKeyRequest):
-                The request object. Request message for
+                The request object.
+                Request message for
                 [KeyManagementService.GetCryptoKey][google.cloud.kms.v1.KeyManagementService.GetCryptoKey].
             name (str):
                 Required. The [name][google.cloud.kms.v1.CryptoKey.name]
@@ -908,7 +896,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -943,10 +930,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.GetCryptoKeyRequest):
             request = service.GetCryptoKeyRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
 
@@ -981,7 +966,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Args:
             request (google.cloud.kms_v1.types.GetCryptoKeyVersionRequest):
-                The request object. Request message for
+                The request object.
+                Request message for
                 [KeyManagementService.GetCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.GetCryptoKeyVersion].
             name (str):
                 Required. The
@@ -992,7 +978,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1032,10 +1017,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.GetCryptoKeyVersionRequest):
             request = service.GetCryptoKeyVersionRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
 
@@ -1075,7 +1058,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Args:
             request (google.cloud.kms_v1.types.GetPublicKeyRequest):
-                The request object. Request message for
+                The request object.
+                Request message for
                 [KeyManagementService.GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
             name (str):
                 Required. The
@@ -1086,7 +1070,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1115,10 +1098,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.GetPublicKeyRequest):
             request = service.GetPublicKeyRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
 
@@ -1153,7 +1134,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Args:
             request (google.cloud.kms_v1.types.GetImportJobRequest):
-                The request object. Request message for
+                The request object.
+                Request message for
                 [KeyManagementService.GetImportJob][google.cloud.kms.v1.KeyManagementService.GetImportJob].
             name (str):
                 Required. The [name][google.cloud.kms.v1.ImportJob.name]
@@ -1163,7 +1145,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1235,10 +1216,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.GetImportJobRequest):
             request = service.GetImportJobRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
 
@@ -1275,7 +1254,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Args:
             request (google.cloud.kms_v1.types.CreateKeyRingRequest):
-                The request object. Request message for
+                The request object.
+                Request message for
                 [KeyManagementService.CreateKeyRing][google.cloud.kms.v1.KeyManagementService.CreateKeyRing].
             parent (str):
                 Required. The resource name of the location associated
@@ -1299,7 +1279,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``key_ring`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1329,10 +1308,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.CreateKeyRingRequest):
             request = service.CreateKeyRingRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if parent is not None:
                 request.parent = parent
             if key_ring_id is not None:
@@ -1377,7 +1354,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Args:
             request (google.cloud.kms_v1.types.CreateCryptoKeyRequest):
-                The request object. Request message for
+                The request object.
+                Request message for
                 [KeyManagementService.CreateCryptoKey][google.cloud.kms.v1.KeyManagementService.CreateCryptoKey].
             parent (str):
                 Required. The [name][google.cloud.kms.v1.KeyRing.name]
@@ -1401,7 +1379,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``crypto_key`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1436,10 +1413,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.CreateCryptoKeyRequest):
             request = service.CreateCryptoKeyRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if parent is not None:
                 request.parent = parent
             if crypto_key_id is not None:
@@ -1485,7 +1460,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Args:
             request (google.cloud.kms_v1.types.CreateCryptoKeyVersionRequest):
-                The request object. Request message for
+                The request object.
+                Request message for
                 [KeyManagementService.CreateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.CreateCryptoKeyVersion].
             parent (str):
                 Required. The [name][google.cloud.kms.v1.CryptoKey.name]
@@ -1504,7 +1480,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``crypto_key_version`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1544,10 +1519,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.CreateCryptoKeyVersionRequest):
             request = service.CreateCryptoKeyVersionRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if parent is not None:
                 request.parent = parent
             if crypto_key_version is not None:
@@ -1590,9 +1563,9 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Args:
             request (google.cloud.kms_v1.types.ImportCryptoKeyVersionRequest):
-                The request object. Request message for
+                The request object.
+                Request message for
                 [KeyManagementService.ImportCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion].
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1617,7 +1590,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         """
         # Create or coerce a protobuf request object.
-
         # Minor optimization to avoid making a copy if the user passes
         # in a service.ImportCryptoKeyVersionRequest.
         # There's no risk of modifying the input as we've already verified
@@ -1663,7 +1635,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Args:
             request (google.cloud.kms_v1.types.CreateImportJobRequest):
-                The request object. Request message for
+                The request object.
+                Request message for
                 [KeyManagementService.CreateImportJob][google.cloud.kms.v1.KeyManagementService.CreateImportJob].
             parent (str):
                 Required. The [name][google.cloud.kms.v1.KeyRing.name]
@@ -1687,7 +1660,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``import_job`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1759,10 +1731,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.CreateImportJobRequest):
             request = service.CreateImportJobRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if parent is not None:
                 request.parent = parent
             if import_job_id is not None:
@@ -1801,7 +1771,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Args:
             request (google.cloud.kms_v1.types.UpdateCryptoKeyRequest):
-                The request object. Request message for
+                The request object.
+                Request message for
                 [KeyManagementService.UpdateCryptoKey][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKey].
             crypto_key (google.cloud.kms_v1.types.CryptoKey):
                 Required. [CryptoKey][google.cloud.kms.v1.CryptoKey]
@@ -1817,7 +1788,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1852,10 +1822,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.UpdateCryptoKeyRequest):
             request = service.UpdateCryptoKeyRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if crypto_key is not None:
                 request.crypto_key = crypto_key
             if update_mask is not None:
@@ -1907,7 +1875,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Args:
             request (google.cloud.kms_v1.types.UpdateCryptoKeyVersionRequest):
-                The request object. Request message for
+                The request object.
+                Request message for
                 [KeyManagementService.UpdateCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyVersion].
             crypto_key_version (google.cloud.kms_v1.types.CryptoKeyVersion):
                 Required.
@@ -1924,7 +1893,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``update_mask`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -1964,10 +1932,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.UpdateCryptoKeyVersionRequest):
             request = service.UpdateCryptoKeyVersionRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if crypto_key_version is not None:
                 request.crypto_key_version = crypto_key_version
             if update_mask is not None:
@@ -2012,7 +1978,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Args:
             request (google.cloud.kms_v1.types.EncryptRequest):
-                The request object. Request message for
+                The request object.
+                Request message for
                 [KeyManagementService.Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt].
             name (str):
                 Required. The resource name of the
@@ -2044,7 +2011,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``plaintext`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -2073,10 +2039,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.EncryptRequest):
             request = service.EncryptRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
             if plaintext is not None:
@@ -2117,7 +2081,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Args:
             request (google.cloud.kms_v1.types.DecryptRequest):
-                The request object. Request message for
+                The request object.
+                Request message for
                 [KeyManagementService.Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt].
             name (str):
                 Required. The resource name of the
@@ -2135,7 +2100,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``ciphertext`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -2164,10 +2128,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.DecryptRequest):
             request = service.DecryptRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
             if ciphertext is not None:
@@ -2209,7 +2171,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Args:
             request (google.cloud.kms_v1.types.AsymmetricSignRequest):
-                The request object. Request message for
+                The request object.
+                Request message for
                 [KeyManagementService.AsymmetricSign][google.cloud.kms.v1.KeyManagementService.AsymmetricSign].
             name (str):
                 Required. The resource name of the
@@ -2228,7 +2191,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``digest`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -2257,10 +2219,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.AsymmetricSignRequest):
             request = service.AsymmetricSignRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
             if digest is not None:
@@ -2303,7 +2263,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Args:
             request (google.cloud.kms_v1.types.AsymmetricDecryptRequest):
-                The request object. Request message for
+                The request object.
+                Request message for
                 [KeyManagementService.AsymmetricDecrypt][google.cloud.kms.v1.KeyManagementService.AsymmetricDecrypt].
             name (str):
                 Required. The resource name of the
@@ -2321,7 +2282,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``ciphertext`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -2350,10 +2310,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.AsymmetricDecryptRequest):
             request = service.AsymmetricDecryptRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
             if ciphertext is not None:
@@ -2394,7 +2352,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Args:
             request (google.cloud.kms_v1.types.UpdateCryptoKeyPrimaryVersionRequest):
-                The request object. Request message for
+                The request object.
+                Request message for
                 [KeyManagementService.UpdateCryptoKeyPrimaryVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyPrimaryVersion].
             name (str):
                 Required. The resource name of the
@@ -2411,7 +2370,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``crypto_key_version_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -2446,10 +2404,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.UpdateCryptoKeyPrimaryVersionRequest):
             request = service.UpdateCryptoKeyPrimaryVersionRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
             if crypto_key_version_id is not None:
@@ -2507,7 +2463,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Args:
             request (google.cloud.kms_v1.types.DestroyCryptoKeyVersionRequest):
-                The request object. Request message for
+                The request object.
+                Request message for
                 [KeyManagementService.DestroyCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.DestroyCryptoKeyVersion].
             name (str):
                 Required. The resource name of the
@@ -2517,7 +2474,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -2557,10 +2513,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.DestroyCryptoKeyVersionRequest):
             request = service.DestroyCryptoKeyVersionRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
 
@@ -2607,7 +2561,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Args:
             request (google.cloud.kms_v1.types.RestoreCryptoKeyVersionRequest):
-                The request object. Request message for
+                The request object.
+                Request message for
                 [KeyManagementService.RestoreCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion].
             name (str):
                 Required. The resource name of the
@@ -2617,7 +2572,6 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
@@ -2657,10 +2611,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         # there are no flattened fields.
         if not isinstance(request, service.RestoreCryptoKeyVersionRequest):
             request = service.RestoreCryptoKeyVersionRequest(request)
-
             # If we have keyword arguments corresponding to fields on the
             # request, apply these.
-
             if name is not None:
                 request.name = name
 

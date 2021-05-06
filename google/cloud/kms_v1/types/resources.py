@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 # Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,9 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
 import proto  # type: ignore
-
 
 from google.protobuf import duration_pb2 as duration  # type: ignore
 from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
@@ -65,8 +62,7 @@ class KeyRing(proto.Message):
             [KeyRing][google.cloud.kms.v1.KeyRing] was created.
     """
 
-    name = proto.Field(proto.STRING, number=1)
-
+    name = proto.Field(proto.STRING, number=1,)
     create_time = proto.Field(proto.MESSAGE, number=2, message=timestamp.Timestamp,)
 
 
@@ -169,26 +165,19 @@ class CryptoKey(proto.Message):
         ASYMMETRIC_SIGN = 5
         ASYMMETRIC_DECRYPT = 6
 
-    name = proto.Field(proto.STRING, number=1)
-
+    name = proto.Field(proto.STRING, number=1,)
     primary = proto.Field(proto.MESSAGE, number=2, message="CryptoKeyVersion",)
-
     purpose = proto.Field(proto.ENUM, number=3, enum=CryptoKeyPurpose,)
-
     create_time = proto.Field(proto.MESSAGE, number=5, message=timestamp.Timestamp,)
-
     next_rotation_time = proto.Field(
         proto.MESSAGE, number=7, message=timestamp.Timestamp,
     )
-
     rotation_period = proto.Field(
         proto.MESSAGE, number=8, oneof="rotation_schedule", message=duration.Duration,
     )
-
     version_template = proto.Field(
         proto.MESSAGE, number=11, message="CryptoKeyVersionTemplate",
     )
-
     labels = proto.MapField(proto.STRING, proto.STRING, number=10)
 
 
@@ -223,7 +212,6 @@ class CryptoKeyVersionTemplate(proto.Message):
     """
 
     protection_level = proto.Field(proto.ENUM, number=1, enum="ProtectionLevel",)
-
     algorithm = proto.Field(
         proto.ENUM, number=3, enum="CryptoKeyVersion.CryptoKeyVersionAlgorithm",
     )
@@ -250,8 +238,7 @@ class KeyOperationAttestation(proto.Message):
         CAVIUM_V2_COMPRESSED = 4
 
     format = proto.Field(proto.ENUM, number=4, enum=AttestationFormat,)
-
-    content = proto.Field(proto.BYTES, number=5)
+    content = proto.Field(proto.BYTES, number=5,)
 
 
 class CryptoKeyVersion(proto.Message):
@@ -425,34 +412,22 @@ class CryptoKeyVersion(proto.Message):
         CRYPTO_KEY_VERSION_VIEW_UNSPECIFIED = 0
         FULL = 1
 
-    name = proto.Field(proto.STRING, number=1)
-
+    name = proto.Field(proto.STRING, number=1,)
     state = proto.Field(proto.ENUM, number=3, enum=CryptoKeyVersionState,)
-
     protection_level = proto.Field(proto.ENUM, number=7, enum="ProtectionLevel",)
-
     algorithm = proto.Field(proto.ENUM, number=10, enum=CryptoKeyVersionAlgorithm,)
-
     attestation = proto.Field(
         proto.MESSAGE, number=8, message="KeyOperationAttestation",
     )
-
     create_time = proto.Field(proto.MESSAGE, number=4, message=timestamp.Timestamp,)
-
     generate_time = proto.Field(proto.MESSAGE, number=11, message=timestamp.Timestamp,)
-
     destroy_time = proto.Field(proto.MESSAGE, number=5, message=timestamp.Timestamp,)
-
     destroy_event_time = proto.Field(
         proto.MESSAGE, number=6, message=timestamp.Timestamp,
     )
-
-    import_job = proto.Field(proto.STRING, number=14)
-
+    import_job = proto.Field(proto.STRING, number=14,)
     import_time = proto.Field(proto.MESSAGE, number=15, message=timestamp.Timestamp,)
-
-    import_failure_reason = proto.Field(proto.STRING, number=16)
-
+    import_failure_reason = proto.Field(proto.STRING, number=16,)
     external_protection_level_options = proto.Field(
         proto.MESSAGE, number=17, message="ExternalProtectionLevelOptions",
     )
@@ -502,15 +477,12 @@ class PublicKey(proto.Message):
             NOTE: This field is in Beta.
     """
 
-    pem = proto.Field(proto.STRING, number=1)
-
+    pem = proto.Field(proto.STRING, number=1,)
     algorithm = proto.Field(
         proto.ENUM, number=2, enum="CryptoKeyVersion.CryptoKeyVersionAlgorithm",
     )
-
     pem_crc32c = proto.Field(proto.MESSAGE, number=3, message=wrappers.Int64Value,)
-
-    name = proto.Field(proto.STRING, number=4)
+    name = proto.Field(proto.STRING, number=4,)
 
 
 class ImportJob(proto.Message):
@@ -635,28 +607,19 @@ class ImportJob(proto.Message):
                 (https://tools.ietf.org/html/rfc7468#section-13).
         """
 
-        pem = proto.Field(proto.STRING, number=1)
+        pem = proto.Field(proto.STRING, number=1,)
 
-    name = proto.Field(proto.STRING, number=1)
-
+    name = proto.Field(proto.STRING, number=1,)
     import_method = proto.Field(proto.ENUM, number=2, enum=ImportMethod,)
-
     protection_level = proto.Field(proto.ENUM, number=9, enum="ProtectionLevel",)
-
     create_time = proto.Field(proto.MESSAGE, number=3, message=timestamp.Timestamp,)
-
     generate_time = proto.Field(proto.MESSAGE, number=4, message=timestamp.Timestamp,)
-
     expire_time = proto.Field(proto.MESSAGE, number=5, message=timestamp.Timestamp,)
-
     expire_event_time = proto.Field(
         proto.MESSAGE, number=10, message=timestamp.Timestamp,
     )
-
     state = proto.Field(proto.ENUM, number=6, enum=ImportJobState,)
-
     public_key = proto.Field(proto.MESSAGE, number=7, message=WrappingPublicKey,)
-
     attestation = proto.Field(
         proto.MESSAGE, number=8, message="KeyOperationAttestation",
     )
@@ -677,7 +640,7 @@ class ExternalProtectionLevelOptions(proto.Message):
             represents.
     """
 
-    external_key_uri = proto.Field(proto.STRING, number=1)
+    external_key_uri = proto.Field(proto.STRING, number=1,)
 
 
 __all__ = tuple(sorted(__protobuf__.manifest))
