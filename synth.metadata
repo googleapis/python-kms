@@ -4,7 +4,7 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/python-kms.git",
-        "sha": "6d115ce1902e4306ba3e1d80de64a2424e47ef52"
+        "sha": "b50d22c64a3a76a1157a73d81bee6b61ecb18354"
       }
     },
     {
@@ -13,20 +13,6 @@
         "remote": "https://github.com/googleapis/googleapis.git",
         "sha": "915925089600094e72e4bfa8cf586c170e6b7109",
         "internalRef": "366152684"
-      }
-    },
-    {
-      "git": {
-        "name": "synthtool",
-        "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "6d76df2138f8f841e5a5b9ac427f81def520c15f"
-      }
-    },
-    {
-      "git": {
-        "name": "synthtool",
-        "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "6d76df2138f8f841e5a5b9ac427f81def520c15f"
       }
     }
   ],
