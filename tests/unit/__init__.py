@@ -13,10 +13,3 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from .client import KeyManagementServiceClient
-from .async_client import KeyManagementServiceAsyncClient
-
-__all__ = (
-    'KeyManagementServiceClient',
-    'KeyManagementServiceAsyncClient',
-)
