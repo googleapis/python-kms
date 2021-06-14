@@ -129,6 +129,17 @@ def test__get_default_mtls_endpoint():
 @pytest.mark.parametrize(
     "client_class", [KeyManagementServiceClient, KeyManagementServiceAsyncClient,]
 )
+def test_key_management_service_client_service_account_always_use_jwt(client_class):
+    creds = service_account.Credentials(None, None, None)
+    if hasattr(service_account.Credentials, "with_always_use_jwt_access"):
+        assert not creds._always_use_jwt_access
+        client = client_class(credentials=creds)
+        assert client.transport._credentials._always_use_jwt_access
+
+
+@pytest.mark.parametrize(
+    "client_class", [KeyManagementServiceClient, KeyManagementServiceAsyncClient,]
+)
 def test_key_management_service_client_from_service_account_info(client_class):
     creds = ga_credentials.AnonymousCredentials()
     with mock.patch.object(
