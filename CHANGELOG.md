@@ -4,6 +4,13 @@
 
 [1]: https://pypi.org/project/google-cloud-kms/#history
 
+### [2.3.1](https://www.github.com/googleapis/python-kms/compare/v2.3.0...v2.3.1) (2021-06-19)
+
+
+### Documentation
+
+* omit mention of Python 2.7 in 'CONTRIBUTING.rst' ([#1127](https://www.github.com/googleapis/python-kms/issues/1127)) ([#124](https://www.github.com/googleapis/python-kms/issues/124)) ([5c3e273](https://www.github.com/googleapis/python-kms/commit/5c3e27391c4771b4a03c87e21a5260ed8d61b9c4)), closes [#1126](https://www.github.com/googleapis/python-kms/issues/1126)
+
 ## [2.3.0](https://www.github.com/googleapis/python-kms/compare/v2.2.0...v2.3.0) (2021-06-14)
 
 
