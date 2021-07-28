@@ -7,14 +7,14 @@
 ### [2.4.2](https://www.github.com/googleapis/python-kms/compare/v2.4.1...v2.4.2) (2021-07-28)
 
 
-### Features
-
-* add Samples section to CONTRIBUTING.rst ([#144](https://www.github.com/googleapis/python-kms/issues/144)) ([88fee3a](https://www.github.com/googleapis/python-kms/commit/88fee3ab24acca72d2bade56e471d60cc893d97f))
-
-
 ### Bug Fixes
 
 * enable self signed jwt for grpc ([#149](https://www.github.com/googleapis/python-kms/issues/149)) ([211fe79](https://www.github.com/googleapis/python-kms/commit/211fe797d8847675390af67691d7296bbf150a02))
+
+
+### Documentation
+
+* add Samples section to CONTRIBUTING.rst ([#144](https://www.github.com/googleapis/python-kms/issues/144)) ([88fee3a](https://www.github.com/googleapis/python-kms/commit/88fee3ab24acca72d2bade56e471d60cc893d97f))
 
 
 ### Miscellaneous Chores
