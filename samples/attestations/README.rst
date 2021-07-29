@@ -4,7 +4,7 @@ Google Cloud Key Management Service Python Samples
 ===============================================================================
 
 .. image:: https://gstatic.com/cloudssh/images/open-btn.png
-   :target: https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/GoogleCloudPlatform/python-docs-samples&page=editor&open_in_editor=samples/attestations/README.rst
+   :target: https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/python-kms&page=editor&open_in_editor=samples/attestations/README.rst
 
 
 This directory contains samples for Google Cloud Key Management Service. The `Cloud Key Management Service`_ allows you to create, import, and manage cryptographic keys and perform cryptographic operations in a single centralized cloud service.
