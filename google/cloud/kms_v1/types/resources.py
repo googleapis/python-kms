@@ -384,11 +384,11 @@ class CryptoKeyVersion(proto.Message):
         The fields in the name after "EC_SIGN\_" correspond to the following
         parameters: elliptic curve, digest algorithm.
 
-        Algorithms beginning with "HMAC_" are usable with
+        Algorithms beginning with "HMAC\_" are usable with
         [CryptoKey.purpose][google.cloud.kms.v1.CryptoKey.purpose]
         [MAC][google.cloud.kms.v1.CryptoKey.CryptoKeyPurpose.MAC].
 
-        The suffix following "HMAC_" corresponds to the hash algorithm being
+        The suffix following "HMAC\_" corresponds to the hash algorithm being
         used (eg. SHA256).
 
         For more information, see [Key purposes and algorithms]
