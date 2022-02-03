@@ -53,7 +53,11 @@ def client_cert_source_callback():
 # This method modifies the default endpoint so the client can produce a different
 # mtls endpoint for endpoint testing purposes.
 def modify_default_endpoint(client):
-    return "foo.googleapis.com" if ("localhost" in client.DEFAULT_ENDPOINT) else client.DEFAULT_ENDPOINT
+    return (
+        "foo.googleapis.com"
+        if ("localhost" in client.DEFAULT_ENDPOINT)
+        else client.DEFAULT_ENDPOINT
+    )
 
 
 def test__get_default_mtls_endpoint():
@@ -64,52 +68,70 @@ def test__get_default_mtls_endpoint():
     non_googleapi = "api.example.com"
 
     assert EkmServiceClient._get_default_mtls_endpoint(None) is None
-    assert EkmServiceClient._get_default_mtls_endpoint(api_endpoint) == api_mtls_endpoint
-    assert EkmServiceClient._get_default_mtls_endpoint(api_mtls_endpoint) == api_mtls_endpoint
-    assert EkmServiceClient._get_default_mtls_endpoint(sandbox_endpoint) == sandbox_mtls_endpoint
-    assert EkmServiceClient._get_default_mtls_endpoint(sandbox_mtls_endpoint) == sandbox_mtls_endpoint
+    assert (
+        EkmServiceClient._get_default_mtls_endpoint(api_endpoint) == api_mtls_endpoint
+    )
+    assert (
+        EkmServiceClient._get_default_mtls_endpoint(api_mtls_endpoint)
+        == api_mtls_endpoint
+    )
+    assert (
+        EkmServiceClient._get_default_mtls_endpoint(sandbox_endpoint)
+        == sandbox_mtls_endpoint
+    )
+    assert (
+        EkmServiceClient._get_default_mtls_endpoint(sandbox_mtls_endpoint)
+        == sandbox_mtls_endpoint
+    )
     assert EkmServiceClient._get_default_mtls_endpoint(non_googleapi) == non_googleapi
 
 
-@pytest.mark.parametrize("client_class", [
-    EkmServiceClient,
-    EkmServiceAsyncClient,
-])
+@pytest.mark.parametrize("client_class", [EkmServiceClient, EkmServiceAsyncClient,])
 def test_ekm_service_client_from_service_account_info(client_class):
     creds = ga_credentials.AnonymousCredentials()
-    with mock.patch.object(service_account.Credentials, 'from_service_account_info') as factory:
+    with mock.patch.object(
+        service_account.Credentials, "from_service_account_info"
+    ) as factory:
         factory.return_value = creds
         info = {"valid": True}
         client = client_class.from_service_account_info(info)
         assert client.transport._credentials == creds
         assert isinstance(client, client_class)
 
-        assert client.transport._host == 'cloudkms.googleapis.com:443'
+        assert client.transport._host == "cloudkms.googleapis.com:443"
 
 
-@pytest.mark.parametrize("transport_class,transport_name", [
-    (transports.EkmServiceGrpcTransport, "grpc"),
-    (transports.EkmServiceGrpcAsyncIOTransport, "grpc_asyncio"),
-])
-def test_ekm_service_client_service_account_always_use_jwt(transport_class, transport_name):
-    with mock.patch.object(service_account.Credentials, 'with_always_use_jwt_access', create=True) as use_jwt:
+@pytest.mark.parametrize(
+    "transport_class,transport_name",
+    [
+        (transports.EkmServiceGrpcTransport, "grpc"),
+        (transports.EkmServiceGrpcAsyncIOTransport, "grpc_asyncio"),
+    ],
+)
+def test_ekm_service_client_service_account_always_use_jwt(
+    transport_class, transport_name
+):
+    with mock.patch.object(
+        service_account.Credentials, "with_always_use_jwt_access", create=True
+    ) as use_jwt:
         creds = service_account.Credentials(None, None, None)
         transport = transport_class(credentials=creds, always_use_jwt_access=True)
         use_jwt.assert_called_once_with(True)
 
-    with mock.patch.object(service_account.Credentials, 'with_always_use_jwt_access', create=True) as use_jwt:
+    with mock.patch.object(
+        service_account.Credentials, "with_always_use_jwt_access", create=True
+    ) as use_jwt:
         creds = service_account.Credentials(None, None, None)
         transport = transport_class(credentials=creds, always_use_jwt_access=False)
         use_jwt.assert_not_called()
 
 
-@pytest.mark.parametrize("client_class", [
-    EkmServiceClient,
-    EkmServiceAsyncClient,
-])
+@pytest.mark.parametrize("client_class", [EkmServiceClient, EkmServiceAsyncClient,])
 def test_ekm_service_client_from_service_account_file(client_class):
     creds = ga_credentials.AnonymousCredentials()
-    with mock.patch.object(service_account.Credentials, 'from_service_account_file') as factory:
+    with mock.patch.object(
+        service_account.Credentials, "from_service_account_file"
+    ) as factory:
         factory.return_value = creds
         client = client_class.from_service_account_file("dummy/file/path.json")
         assert client.transport._credentials == creds
@@ -119,7 +141,7 @@ def test_ekm_service_client_from_service_account_file(client_class):
         assert client.transport._credentials == creds
         assert isinstance(client, client_class)
 
-        assert client.transport._host == 'cloudkms.googleapis.com:443'
+        assert client.transport._host == "cloudkms.googleapis.com:443"
 
 
 def test_ekm_service_client_get_transport_class():
@@ -133,29 +155,42 @@ def test_ekm_service_client_get_transport_class():
     assert transport == transports.EkmServiceGrpcTransport
 
 
-@pytest.mark.parametrize("client_class,transport_class,transport_name", [
-    (EkmServiceClient, transports.EkmServiceGrpcTransport, "grpc"),
-    (EkmServiceAsyncClient, transports.EkmServiceGrpcAsyncIOTransport, "grpc_asyncio"),
-])
-@mock.patch.object(EkmServiceClient, "DEFAULT_ENDPOINT", modify_default_endpoint(EkmServiceClient))
-@mock.patch.object(EkmServiceAsyncClient, "DEFAULT_ENDPOINT", modify_default_endpoint(EkmServiceAsyncClient))
-def test_ekm_service_client_client_options(client_class, transport_class, transport_name):
+@pytest.mark.parametrize(
+    "client_class,transport_class,transport_name",
+    [
+        (EkmServiceClient, transports.EkmServiceGrpcTransport, "grpc"),
+        (
+            EkmServiceAsyncClient,
+            transports.EkmServiceGrpcAsyncIOTransport,
+            "grpc_asyncio",
+        ),
+    ],
+)
+@mock.patch.object(
+    EkmServiceClient, "DEFAULT_ENDPOINT", modify_default_endpoint(EkmServiceClient)
+)
+@mock.patch.object(
+    EkmServiceAsyncClient,
+    "DEFAULT_ENDPOINT",
+    modify_default_endpoint(EkmServiceAsyncClient),
+)
+def test_ekm_service_client_client_options(
+    client_class, transport_class, transport_name
+):
     # Check that if channel is provided we won't create a new one.
-    with mock.patch.object(EkmServiceClient, 'get_transport_class') as gtc:
-        transport = transport_class(
-            credentials=ga_credentials.AnonymousCredentials()
-        )
+    with mock.patch.object(EkmServiceClient, "get_transport_class") as gtc:
+        transport = transport_class(credentials=ga_credentials.AnonymousCredentials())
         client = client_class(transport=transport)
         gtc.assert_not_called()
 
     # Check that if channel is provided via str we will create a new one.
-    with mock.patch.object(EkmServiceClient, 'get_transport_class') as gtc:
+    with mock.patch.object(EkmServiceClient, "get_transport_class") as gtc:
         client = client_class(transport=transport_name)
         gtc.assert_called()
 
     # Check the case api_endpoint is provided.
     options = client_options.ClientOptions(api_endpoint="squid.clam.whelk")
-    with mock.patch.object(transport_class, '__init__') as patched:
+    with mock.patch.object(transport_class, "__init__") as patched:
         patched.return_value = None
         client = client_class(transport=transport_name, client_options=options)
         patched.assert_called_once_with(
@@ -172,7 +207,7 @@ def test_ekm_service_client_client_options(client_class, transport_class, transp
     # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS_ENDPOINT is
     # "never".
     with mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS_ENDPOINT": "never"}):
-        with mock.patch.object(transport_class, '__init__') as patched:
+        with mock.patch.object(transport_class, "__init__") as patched:
             patched.return_value = None
             client = client_class(transport=transport_name)
             patched.assert_called_once_with(
@@ -189,7 +224,7 @@ def test_ekm_service_client_client_options(client_class, transport_class, transp
     # Check the case api_endpoint is not provided and GOOGLE_API_USE_MTLS_ENDPOINT is
     # "always".
     with mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS_ENDPOINT": "always"}):
-        with mock.patch.object(transport_class, '__init__') as patched:
+        with mock.patch.object(transport_class, "__init__") as patched:
             patched.return_value = None
             client = client_class(transport=transport_name)
             patched.assert_called_once_with(
@@ -210,13 +245,15 @@ def test_ekm_service_client_client_options(client_class, transport_class, transp
             client = client_class(transport=transport_name)
 
     # Check the case GOOGLE_API_USE_CLIENT_CERTIFICATE has unsupported value.
-    with mock.patch.dict(os.environ, {"GOOGLE_API_USE_CLIENT_CERTIFICATE": "Unsupported"}):
+    with mock.patch.dict(
+        os.environ, {"GOOGLE_API_USE_CLIENT_CERTIFICATE": "Unsupported"}
+    ):
         with pytest.raises(ValueError):
             client = client_class(transport=transport_name)
 
     # Check the case quota_project_id is provided
     options = client_options.ClientOptions(quota_project_id="octopus")
-    with mock.patch.object(transport_class, '__init__') as patched:
+    with mock.patch.object(transport_class, "__init__") as patched:
         patched.return_value = None
         client = client_class(client_options=options, transport=transport_name)
         patched.assert_called_once_with(
@@ -230,24 +267,50 @@ def test_ekm_service_client_client_options(client_class, transport_class, transp
             always_use_jwt_access=True,
         )
 
-@pytest.mark.parametrize("client_class,transport_class,transport_name,use_client_cert_env", [
-    (EkmServiceClient, transports.EkmServiceGrpcTransport, "grpc", "true"),
-    (EkmServiceAsyncClient, transports.EkmServiceGrpcAsyncIOTransport, "grpc_asyncio", "true"),
-    (EkmServiceClient, transports.EkmServiceGrpcTransport, "grpc", "false"),
-    (EkmServiceAsyncClient, transports.EkmServiceGrpcAsyncIOTransport, "grpc_asyncio", "false"),
-])
-@mock.patch.object(EkmServiceClient, "DEFAULT_ENDPOINT", modify_default_endpoint(EkmServiceClient))
-@mock.patch.object(EkmServiceAsyncClient, "DEFAULT_ENDPOINT", modify_default_endpoint(EkmServiceAsyncClient))
+
+@pytest.mark.parametrize(
+    "client_class,transport_class,transport_name,use_client_cert_env",
+    [
+        (EkmServiceClient, transports.EkmServiceGrpcTransport, "grpc", "true"),
+        (
+            EkmServiceAsyncClient,
+            transports.EkmServiceGrpcAsyncIOTransport,
+            "grpc_asyncio",
+            "true",
+        ),
+        (EkmServiceClient, transports.EkmServiceGrpcTransport, "grpc", "false"),
+        (
+            EkmServiceAsyncClient,
+            transports.EkmServiceGrpcAsyncIOTransport,
+            "grpc_asyncio",
+            "false",
+        ),
+    ],
+)
+@mock.patch.object(
+    EkmServiceClient, "DEFAULT_ENDPOINT", modify_default_endpoint(EkmServiceClient)
+)
+@mock.patch.object(
+    EkmServiceAsyncClient,
+    "DEFAULT_ENDPOINT",
+    modify_default_endpoint(EkmServiceAsyncClient),
+)
 @mock.patch.dict(os.environ, {"GOOGLE_API_USE_MTLS_ENDPOINT": "auto"})
-def test_ekm_service_client_mtls_env_auto(client_class, transport_class, transport_name, use_client_cert_env):
+def test_ekm_service_client_mtls_env_auto(
+    client_class, transport_class, transport_name, use_client_cert_env
+):
     # This tests the endpoint autoswitch behavior. Endpoint is autoswitched to the default
     # mtls endpoint, if GOOGLE_API_USE_CLIENT_CERTIFICATE is "true" and client cert exists.
 
     # Check the case client_cert_source is provided. Whether client cert is used depends on
     # GOOGLE_API_USE_CLIENT_CERTIFICATE value.
-    with mock.patch.dict(os.environ, {"GOOGLE_API_USE_CLIENT_CERTIFICATE": use_client_cert_env}):
-        options = client_options.ClientOptions(client_cert_source=client_cert_source_callback)
-        with mock.patch.object(transport_class, '__init__') as patched:
+    with mock.patch.dict(
+        os.environ, {"GOOGLE_API_USE_CLIENT_CERTIFICATE": use_client_cert_env}
+    ):
+        options = client_options.ClientOptions(
+            client_cert_source=client_cert_source_callback
+        )
+        with mock.patch.object(transport_class, "__init__") as patched:
             patched.return_value = None
             client = client_class(client_options=options, transport=transport_name)
 
@@ -271,10 +334,18 @@ def test_ekm_service_client_mtls_env_auto(client_class, transport_class, transpo
 
     # Check the case ADC client cert is provided. Whether client cert is used depends on
     # GOOGLE_API_USE_CLIENT_CERTIFICATE value.
-    with mock.patch.dict(os.environ, {"GOOGLE_API_USE_CLIENT_CERTIFICATE": use_client_cert_env}):
-        with mock.patch.object(transport_class, '__init__') as patched:
-            with mock.patch('google.auth.transport.mtls.has_default_client_cert_source', return_value=True):
-                with mock.patch('google.auth.transport.mtls.default_client_cert_source', return_value=client_cert_source_callback):
+    with mock.patch.dict(
+        os.environ, {"GOOGLE_API_USE_CLIENT_CERTIFICATE": use_client_cert_env}
+    ):
+        with mock.patch.object(transport_class, "__init__") as patched:
+            with mock.patch(
+                "google.auth.transport.mtls.has_default_client_cert_source",
+                return_value=True,
+            ):
+                with mock.patch(
+                    "google.auth.transport.mtls.default_client_cert_source",
+                    return_value=client_cert_source_callback,
+                ):
                     if use_client_cert_env == "false":
                         expected_host = client.DEFAULT_ENDPOINT
                         expected_client_cert_source = None
@@ -296,9 +367,14 @@ def test_ekm_service_client_mtls_env_auto(client_class, transport_class, transpo
                     )
 
     # Check the case client_cert_source and ADC client cert are not provided.
-    with mock.patch.dict(os.environ, {"GOOGLE_API_USE_CLIENT_CERTIFICATE": use_client_cert_env}):
-        with mock.patch.object(transport_class, '__init__') as patched:
-            with mock.patch("google.auth.transport.mtls.has_default_client_cert_source", return_value=False):
+    with mock.patch.dict(
+        os.environ, {"GOOGLE_API_USE_CLIENT_CERTIFICATE": use_client_cert_env}
+    ):
+        with mock.patch.object(transport_class, "__init__") as patched:
+            with mock.patch(
+                "google.auth.transport.mtls.has_default_client_cert_source",
+                return_value=False,
+            ):
                 patched.return_value = None
                 client = client_class(transport=transport_name)
                 patched.assert_called_once_with(
@@ -313,19 +389,27 @@ def test_ekm_service_client_mtls_env_auto(client_class, transport_class, transpo
                 )
 
 
-@pytest.mark.parametrize("client_class", [
-    EkmServiceClient, EkmServiceAsyncClient
-])
-@mock.patch.object(EkmServiceClient, "DEFAULT_ENDPOINT", modify_default_endpoint(EkmServiceClient))
-@mock.patch.object(EkmServiceAsyncClient, "DEFAULT_ENDPOINT", modify_default_endpoint(EkmServiceAsyncClient))
+@pytest.mark.parametrize("client_class", [EkmServiceClient, EkmServiceAsyncClient])
+@mock.patch.object(
+    EkmServiceClient, "DEFAULT_ENDPOINT", modify_default_endpoint(EkmServiceClient)
+)
+@mock.patch.object(
+    EkmServiceAsyncClient,
+    "DEFAULT_ENDPOINT",
+    modify_default_endpoint(EkmServiceAsyncClient),
+)
 def test_ekm_service_client_get_mtls_endpoint_and_cert_source(client_class):
     mock_client_cert_source = mock.Mock()
 
     # Test the case GOOGLE_API_USE_CLIENT_CERTIFICATE is "true".
     with mock.patch.dict(os.environ, {"GOOGLE_API_USE_CLIENT_CERTIFICATE": "true"}):
         mock_api_endpoint = "foo"
-        options = client_options.ClientOptions(client_cert_source=mock_client_cert_source, api_endpoint=mock_api_endpoint)
-        api_endpoint, cert_source = client_class.get_mtls_endpoint_and_cert_source(options)
+        options = client_options.ClientOptions(
+            client_cert_source=mock_client_cert_source, api_endpoint=mock_api_endpoint
+        )
+        api_endpoint, cert_source = client_class.get_mtls_endpoint_and_cert_source(
+            options
+        )
         assert api_endpoint == mock_api_endpoint
         assert cert_source == mock_client_cert_source
 
@@ -333,8 +417,12 @@ def test_ekm_service_client_get_mtls_endpoint_and_cert_source(client_class):
     with mock.patch.dict(os.environ, {"GOOGLE_API_USE_CLIENT_CERTIFICATE": "false"}):
         mock_client_cert_source = mock.Mock()
         mock_api_endpoint = "foo"
-        options = client_options.ClientOptions(client_cert_source=mock_client_cert_source, api_endpoint=mock_api_endpoint)
-        api_endpoint, cert_source = client_class.get_mtls_endpoint_and_cert_source(options)
+        options = client_options.ClientOptions(
+            client_cert_source=mock_client_cert_source, api_endpoint=mock_api_endpoint
+        )
+        api_endpoint, cert_source = client_class.get_mtls_endpoint_and_cert_source(
+            options
+        )
         assert api_endpoint == mock_api_endpoint
         assert cert_source is None
 
@@ -352,30 +440,49 @@ def test_ekm_service_client_get_mtls_endpoint_and_cert_source(client_class):
 
     # Test the case GOOGLE_API_USE_MTLS_ENDPOINT is "auto" and default cert doesn't exist.
     with mock.patch.dict(os.environ, {"GOOGLE_API_USE_CLIENT_CERTIFICATE": "true"}):
-        with mock.patch('google.auth.transport.mtls.has_default_client_cert_source', return_value=False):
+        with mock.patch(
+            "google.auth.transport.mtls.has_default_client_cert_source",
+            return_value=False,
+        ):
             api_endpoint, cert_source = client_class.get_mtls_endpoint_and_cert_source()
             assert api_endpoint == client_class.DEFAULT_ENDPOINT
             assert cert_source is None
 
     # Test the case GOOGLE_API_USE_MTLS_ENDPOINT is "auto" and default cert exists.
     with mock.patch.dict(os.environ, {"GOOGLE_API_USE_CLIENT_CERTIFICATE": "true"}):
-        with mock.patch('google.auth.transport.mtls.has_default_client_cert_source', return_value=True):
-            with mock.patch('google.auth.transport.mtls.default_client_cert_source', return_value=mock_client_cert_source):
-                api_endpoint, cert_source = client_class.get_mtls_endpoint_and_cert_source()
+        with mock.patch(
+            "google.auth.transport.mtls.has_default_client_cert_source",
+            return_value=True,
+        ):
+            with mock.patch(
+                "google.auth.transport.mtls.default_client_cert_source",
+                return_value=mock_client_cert_source,
+            ):
+                (
+                    api_endpoint,
+                    cert_source,
+                ) = client_class.get_mtls_endpoint_and_cert_source()
                 assert api_endpoint == client_class.DEFAULT_MTLS_ENDPOINT
                 assert cert_source == mock_client_cert_source
 
 
-@pytest.mark.parametrize("client_class,transport_class,transport_name", [
-    (EkmServiceClient, transports.EkmServiceGrpcTransport, "grpc"),
-    (EkmServiceAsyncClient, transports.EkmServiceGrpcAsyncIOTransport, "grpc_asyncio"),
-])
-def test_ekm_service_client_client_options_scopes(client_class, transport_class, transport_name):
+@pytest.mark.parametrize(
+    "client_class,transport_class,transport_name",
+    [
+        (EkmServiceClient, transports.EkmServiceGrpcTransport, "grpc"),
+        (
+            EkmServiceAsyncClient,
+            transports.EkmServiceGrpcAsyncIOTransport,
+            "grpc_asyncio",
+        ),
+    ],
+)
+def test_ekm_service_client_client_options_scopes(
+    client_class, transport_class, transport_name
+):
     # Check the case scopes are provided.
-    options = client_options.ClientOptions(
-        scopes=["1", "2"],
-    )
-    with mock.patch.object(transport_class, '__init__') as patched:
+    options = client_options.ClientOptions(scopes=["1", "2"],)
+    with mock.patch.object(transport_class, "__init__") as patched:
         patched.return_value = None
         client = client_class(client_options=options, transport=transport_name)
         patched.assert_called_once_with(
@@ -389,17 +496,26 @@ def test_ekm_service_client_client_options_scopes(client_class, transport_class,
             always_use_jwt_access=True,
         )
 
-@pytest.mark.parametrize("client_class,transport_class,transport_name,grpc_helpers", [
-    (EkmServiceClient, transports.EkmServiceGrpcTransport, "grpc", grpc_helpers),
-    (EkmServiceAsyncClient, transports.EkmServiceGrpcAsyncIOTransport, "grpc_asyncio", grpc_helpers_async),
-])
-def test_ekm_service_client_client_options_credentials_file(client_class, transport_class, transport_name, grpc_helpers):
-    # Check the case credentials file is provided.
-    options = client_options.ClientOptions(
-        credentials_file="credentials.json"
-    )
 
-    with mock.patch.object(transport_class, '__init__') as patched:
+@pytest.mark.parametrize(
+    "client_class,transport_class,transport_name,grpc_helpers",
+    [
+        (EkmServiceClient, transports.EkmServiceGrpcTransport, "grpc", grpc_helpers),
+        (
+            EkmServiceAsyncClient,
+            transports.EkmServiceGrpcAsyncIOTransport,
+            "grpc_asyncio",
+            grpc_helpers_async,
+        ),
+    ],
+)
+def test_ekm_service_client_client_options_credentials_file(
+    client_class, transport_class, transport_name, grpc_helpers
+):
+    # Check the case credentials file is provided.
+    options = client_options.ClientOptions(credentials_file="credentials.json")
+
+    with mock.patch.object(transport_class, "__init__") as patched:
         patched.return_value = None
         client = client_class(client_options=options, transport=transport_name)
         patched.assert_called_once_with(
@@ -413,12 +529,13 @@ def test_ekm_service_client_client_options_credentials_file(client_class, transp
             always_use_jwt_access=True,
         )
 
+
 def test_ekm_service_client_client_options_from_dict():
-    with mock.patch('google.cloud.kms_v1.services.ekm_service.transports.EkmServiceGrpcTransport.__init__') as grpc_transport:
+    with mock.patch(
+        "google.cloud.kms_v1.services.ekm_service.transports.EkmServiceGrpcTransport.__init__"
+    ) as grpc_transport:
         grpc_transport.return_value = None
-        client = EkmServiceClient(
-            client_options={'api_endpoint': 'squid.clam.whelk'}
-        )
+        client = EkmServiceClient(client_options={"api_endpoint": "squid.clam.whelk"})
         grpc_transport.assert_called_once_with(
             credentials=None,
             credentials_file=None,
@@ -431,17 +548,25 @@ def test_ekm_service_client_client_options_from_dict():
         )
 
 
-@pytest.mark.parametrize("client_class,transport_class,transport_name,grpc_helpers", [
-    (EkmServiceClient, transports.EkmServiceGrpcTransport, "grpc", grpc_helpers),
-    (EkmServiceAsyncClient, transports.EkmServiceGrpcAsyncIOTransport, "grpc_asyncio", grpc_helpers_async),
-])
-def test_ekm_service_client_create_channel_credentials_file(client_class, transport_class, transport_name, grpc_helpers):
+@pytest.mark.parametrize(
+    "client_class,transport_class,transport_name,grpc_helpers",
+    [
+        (EkmServiceClient, transports.EkmServiceGrpcTransport, "grpc", grpc_helpers),
+        (
+            EkmServiceAsyncClient,
+            transports.EkmServiceGrpcAsyncIOTransport,
+            "grpc_asyncio",
+            grpc_helpers_async,
+        ),
+    ],
+)
+def test_ekm_service_client_create_channel_credentials_file(
+    client_class, transport_class, transport_name, grpc_helpers
+):
     # Check the case credentials file is provided.
-    options = client_options.ClientOptions(
-        credentials_file="credentials.json"
-    )
+    options = client_options.ClientOptions(credentials_file="credentials.json")
 
-    with mock.patch.object(transport_class, '__init__') as patched:
+    with mock.patch.object(transport_class, "__init__") as patched:
         patched.return_value = None
         client = client_class(client_options=options, transport=transport_name)
         patched.assert_called_once_with(
@@ -474,9 +599,9 @@ def test_ekm_service_client_create_channel_credentials_file(client_class, transp
             credentials_file=None,
             quota_project_id=None,
             default_scopes=(
-                'https://www.googleapis.com/auth/cloud-platform',
-                'https://www.googleapis.com/auth/cloudkms',
-),
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloudkms",
+            ),
             scopes=None,
             default_host="cloudkms.googleapis.com",
             ssl_credentials=None,
@@ -487,14 +612,10 @@ def test_ekm_service_client_create_channel_credentials_file(client_class, transp
         )
 
 
-@pytest.mark.parametrize("request_type", [
-  ekm_service.ListEkmConnectionsRequest,
-  dict,
-])
-def test_list_ekm_connections(request_type, transport: str = 'grpc'):
+@pytest.mark.parametrize("request_type", [ekm_service.ListEkmConnectionsRequest, dict,])
+def test_list_ekm_connections(request_type, transport: str = "grpc"):
     client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-        transport=transport,
+        credentials=ga_credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -503,12 +624,11 @@ def test_list_ekm_connections(request_type, transport: str = 'grpc'):
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.list_ekm_connections),
-            '__call__') as call:
+        type(client.transport.list_ekm_connections), "__call__"
+    ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = ekm_service.ListEkmConnectionsResponse(
-            next_page_token='next_page_token_value',
-            total_size=1086,
+            next_page_token="next_page_token_value", total_size=1086,
         )
         response = client.list_ekm_connections(request)
 
@@ -519,7 +639,7 @@ def test_list_ekm_connections(request_type, transport: str = 'grpc'):
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, pagers.ListEkmConnectionsPager)
-    assert response.next_page_token == 'next_page_token_value'
+    assert response.next_page_token == "next_page_token_value"
     assert response.total_size == 1086
 
 
@@ -527,14 +647,13 @@ def test_list_ekm_connections_empty_call():
     # This test is a coverage failsafe to make sure that totally empty calls,
     # i.e. request == None and no flattened fields passed, work.
     client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-        transport='grpc',
+        credentials=ga_credentials.AnonymousCredentials(), transport="grpc",
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.list_ekm_connections),
-            '__call__') as call:
+        type(client.transport.list_ekm_connections), "__call__"
+    ) as call:
         client.list_ekm_connections()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
@@ -542,10 +661,11 @@ def test_list_ekm_connections_empty_call():
 
 
 @pytest.mark.asyncio
-async def test_list_ekm_connections_async(transport: str = 'grpc_asyncio', request_type=ekm_service.ListEkmConnectionsRequest):
+async def test_list_ekm_connections_async(
+    transport: str = "grpc_asyncio", request_type=ekm_service.ListEkmConnectionsRequest
+):
     client = EkmServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-        transport=transport,
+        credentials=ga_credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -554,13 +674,14 @@ async def test_list_ekm_connections_async(transport: str = 'grpc_asyncio', reque
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.list_ekm_connections),
-            '__call__') as call:
+        type(client.transport.list_ekm_connections), "__call__"
+    ) as call:
         # Designate an appropriate return value for the call.
-        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(ekm_service.ListEkmConnectionsResponse(
-            next_page_token='next_page_token_value',
-            total_size=1086,
-        ))
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            ekm_service.ListEkmConnectionsResponse(
+                next_page_token="next_page_token_value", total_size=1086,
+            )
+        )
         response = await client.list_ekm_connections(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -570,7 +691,7 @@ async def test_list_ekm_connections_async(transport: str = 'grpc_asyncio', reque
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, pagers.ListEkmConnectionsAsyncPager)
-    assert response.next_page_token == 'next_page_token_value'
+    assert response.next_page_token == "next_page_token_value"
     assert response.total_size == 1086
 
 
@@ -580,20 +701,18 @@ async def test_list_ekm_connections_async_from_dict():
 
 
 def test_list_ekm_connections_field_headers():
-    client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = ekm_service.ListEkmConnectionsRequest()
 
-    request.parent = 'parent/value'
+    request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.list_ekm_connections),
-            '__call__') as call:
+        type(client.transport.list_ekm_connections), "__call__"
+    ) as call:
         call.return_value = ekm_service.ListEkmConnectionsResponse()
         client.list_ekm_connections(request)
 
@@ -604,29 +723,26 @@ def test_list_ekm_connections_field_headers():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert (
-        'x-goog-request-params',
-        'parent=parent/value',
-    ) in kw['metadata']
+    assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
 
 
 @pytest.mark.asyncio
 async def test_list_ekm_connections_field_headers_async():
-    client = EkmServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = ekm_service.ListEkmConnectionsRequest()
 
-    request.parent = 'parent/value'
+    request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.list_ekm_connections),
-            '__call__') as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(ekm_service.ListEkmConnectionsResponse())
+        type(client.transport.list_ekm_connections), "__call__"
+    ) as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            ekm_service.ListEkmConnectionsResponse()
+        )
         await client.list_ekm_connections(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -636,106 +752,90 @@ async def test_list_ekm_connections_field_headers_async():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert (
-        'x-goog-request-params',
-        'parent=parent/value',
-    ) in kw['metadata']
+    assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
 
 
 def test_list_ekm_connections_flattened():
-    client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.list_ekm_connections),
-            '__call__') as call:
+        type(client.transport.list_ekm_connections), "__call__"
+    ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = ekm_service.ListEkmConnectionsResponse()
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
-        client.list_ekm_connections(
-            parent='parent_value',
-        )
+        client.list_ekm_connections(parent="parent_value",)
 
         # Establish that the underlying call was made with the expected
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
         arg = args[0].parent
-        mock_val = 'parent_value'
+        mock_val = "parent_value"
         assert arg == mock_val
 
 
 def test_list_ekm_connections_flattened_error():
-    client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
         client.list_ekm_connections(
-            ekm_service.ListEkmConnectionsRequest(),
-            parent='parent_value',
+            ekm_service.ListEkmConnectionsRequest(), parent="parent_value",
         )
 
 
 @pytest.mark.asyncio
 async def test_list_ekm_connections_flattened_async():
-    client = EkmServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.list_ekm_connections),
-            '__call__') as call:
+        type(client.transport.list_ekm_connections), "__call__"
+    ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = ekm_service.ListEkmConnectionsResponse()
 
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(ekm_service.ListEkmConnectionsResponse())
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            ekm_service.ListEkmConnectionsResponse()
+        )
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
-        response = await client.list_ekm_connections(
-            parent='parent_value',
-        )
+        response = await client.list_ekm_connections(parent="parent_value",)
 
         # Establish that the underlying call was made with the expected
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
         arg = args[0].parent
-        mock_val = 'parent_value'
+        mock_val = "parent_value"
         assert arg == mock_val
 
 
 @pytest.mark.asyncio
 async def test_list_ekm_connections_flattened_error_async():
-    client = EkmServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
         await client.list_ekm_connections(
-            ekm_service.ListEkmConnectionsRequest(),
-            parent='parent_value',
+            ekm_service.ListEkmConnectionsRequest(), parent="parent_value",
         )
 
 
 def test_list_ekm_connections_pager(transport_name: str = "grpc"):
     client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials,
-        transport=transport_name,
+        credentials=ga_credentials.AnonymousCredentials, transport=transport_name,
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.list_ekm_connections),
-            '__call__') as call:
+        type(client.transport.list_ekm_connections), "__call__"
+    ) as call:
         # Set the response to a series of pages.
         call.side_effect = (
             ekm_service.ListEkmConnectionsResponse(
@@ -744,17 +844,13 @@ def test_list_ekm_connections_pager(transport_name: str = "grpc"):
                     ekm_service.EkmConnection(),
                     ekm_service.EkmConnection(),
                 ],
-                next_page_token='abc',
+                next_page_token="abc",
             ),
             ekm_service.ListEkmConnectionsResponse(
-                ekm_connections=[],
-                next_page_token='def',
+                ekm_connections=[], next_page_token="def",
             ),
             ekm_service.ListEkmConnectionsResponse(
-                ekm_connections=[
-                    ekm_service.EkmConnection(),
-                ],
-                next_page_token='ghi',
+                ekm_connections=[ekm_service.EkmConnection(),], next_page_token="ghi",
             ),
             ekm_service.ListEkmConnectionsResponse(
                 ekm_connections=[
@@ -767,9 +863,7 @@ def test_list_ekm_connections_pager(transport_name: str = "grpc"):
 
         metadata = ()
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ('parent', ''),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", ""),)),
         )
         pager = client.list_ekm_connections(request={})
 
@@ -777,18 +871,18 @@ def test_list_ekm_connections_pager(transport_name: str = "grpc"):
 
         results = [i for i in pager]
         assert len(results) == 6
-        assert all(isinstance(i, ekm_service.EkmConnection)
-                   for i in results)
+        assert all(isinstance(i, ekm_service.EkmConnection) for i in results)
+
+
 def test_list_ekm_connections_pages(transport_name: str = "grpc"):
     client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials,
-        transport=transport_name,
+        credentials=ga_credentials.AnonymousCredentials, transport=transport_name,
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.list_ekm_connections),
-            '__call__') as call:
+        type(client.transport.list_ekm_connections), "__call__"
+    ) as call:
         # Set the response to a series of pages.
         call.side_effect = (
             ekm_service.ListEkmConnectionsResponse(
@@ -797,17 +891,13 @@ def test_list_ekm_connections_pages(transport_name: str = "grpc"):
                     ekm_service.EkmConnection(),
                     ekm_service.EkmConnection(),
                 ],
-                next_page_token='abc',
+                next_page_token="abc",
             ),
             ekm_service.ListEkmConnectionsResponse(
-                ekm_connections=[],
-                next_page_token='def',
+                ekm_connections=[], next_page_token="def",
             ),
             ekm_service.ListEkmConnectionsResponse(
-                ekm_connections=[
-                    ekm_service.EkmConnection(),
-                ],
-                next_page_token='ghi',
+                ekm_connections=[ekm_service.EkmConnection(),], next_page_token="ghi",
             ),
             ekm_service.ListEkmConnectionsResponse(
                 ekm_connections=[
@@ -818,19 +908,20 @@ def test_list_ekm_connections_pages(transport_name: str = "grpc"):
             RuntimeError,
         )
         pages = list(client.list_ekm_connections(request={}).pages)
-        for page_, token in zip(pages, ['abc','def','ghi', '']):
+        for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
             assert page_.raw_page.next_page_token == token
+
 
 @pytest.mark.asyncio
 async def test_list_ekm_connections_async_pager():
-    client = EkmServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials,
-    )
+    client = EkmServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials,)
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.list_ekm_connections),
-            '__call__', new_callable=mock.AsyncMock) as call:
+        type(client.transport.list_ekm_connections),
+        "__call__",
+        new_callable=mock.AsyncMock,
+    ) as call:
         # Set the response to a series of pages.
         call.side_effect = (
             ekm_service.ListEkmConnectionsResponse(
@@ -839,17 +930,13 @@ async def test_list_ekm_connections_async_pager():
                     ekm_service.EkmConnection(),
                     ekm_service.EkmConnection(),
                 ],
-                next_page_token='abc',
+                next_page_token="abc",
             ),
             ekm_service.ListEkmConnectionsResponse(
-                ekm_connections=[],
-                next_page_token='def',
+                ekm_connections=[], next_page_token="def",
             ),
             ekm_service.ListEkmConnectionsResponse(
-                ekm_connections=[
-                    ekm_service.EkmConnection(),
-                ],
-                next_page_token='ghi',
+                ekm_connections=[ekm_service.EkmConnection(),], next_page_token="ghi",
             ),
             ekm_service.ListEkmConnectionsResponse(
                 ekm_connections=[
@@ -860,26 +947,25 @@ async def test_list_ekm_connections_async_pager():
             RuntimeError,
         )
         async_pager = await client.list_ekm_connections(request={},)
-        assert async_pager.next_page_token == 'abc'
+        assert async_pager.next_page_token == "abc"
         responses = []
         async for response in async_pager:
             responses.append(response)
 
         assert len(responses) == 6
-        assert all(isinstance(i, ekm_service.EkmConnection)
-                for i in responses)
+        assert all(isinstance(i, ekm_service.EkmConnection) for i in responses)
 
 
 @pytest.mark.asyncio
 async def test_list_ekm_connections_async_pages():
-    client = EkmServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials,
-    )
+    client = EkmServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials,)
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.list_ekm_connections),
-            '__call__', new_callable=mock.AsyncMock) as call:
+        type(client.transport.list_ekm_connections),
+        "__call__",
+        new_callable=mock.AsyncMock,
+    ) as call:
         # Set the response to a series of pages.
         call.side_effect = (
             ekm_service.ListEkmConnectionsResponse(
@@ -888,17 +974,13 @@ async def test_list_ekm_connections_async_pages():
                     ekm_service.EkmConnection(),
                     ekm_service.EkmConnection(),
                 ],
-                next_page_token='abc',
+                next_page_token="abc",
             ),
             ekm_service.ListEkmConnectionsResponse(
-                ekm_connections=[],
-                next_page_token='def',
+                ekm_connections=[], next_page_token="def",
             ),
             ekm_service.ListEkmConnectionsResponse(
-                ekm_connections=[
-                    ekm_service.EkmConnection(),
-                ],
-                next_page_token='ghi',
+                ekm_connections=[ekm_service.EkmConnection(),], next_page_token="ghi",
             ),
             ekm_service.ListEkmConnectionsResponse(
                 ekm_connections=[
@@ -911,17 +993,14 @@ async def test_list_ekm_connections_async_pages():
         pages = []
         async for page_ in (await client.list_ekm_connections(request={})).pages:
             pages.append(page_)
-        for page_, token in zip(pages, ['abc','def','ghi', '']):
+        for page_, token in zip(pages, ["abc", "def", "ghi", ""]):
             assert page_.raw_page.next_page_token == token
 
-@pytest.mark.parametrize("request_type", [
-  ekm_service.GetEkmConnectionRequest,
-  dict,
-])
-def test_get_ekm_connection(request_type, transport: str = 'grpc'):
+
+@pytest.mark.parametrize("request_type", [ekm_service.GetEkmConnectionRequest, dict,])
+def test_get_ekm_connection(request_type, transport: str = "grpc"):
     client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-        transport=transport,
+        credentials=ga_credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -930,12 +1009,11 @@ def test_get_ekm_connection(request_type, transport: str = 'grpc'):
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.get_ekm_connection),
-            '__call__') as call:
+        type(client.transport.get_ekm_connection), "__call__"
+    ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = ekm_service.EkmConnection(
-            name='name_value',
-            etag='etag_value',
+            name="name_value", etag="etag_value",
         )
         response = client.get_ekm_connection(request)
 
@@ -946,22 +1024,21 @@ def test_get_ekm_connection(request_type, transport: str = 'grpc'):
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, ekm_service.EkmConnection)
-    assert response.name == 'name_value'
-    assert response.etag == 'etag_value'
+    assert response.name == "name_value"
+    assert response.etag == "etag_value"
 
 
 def test_get_ekm_connection_empty_call():
     # This test is a coverage failsafe to make sure that totally empty calls,
     # i.e. request == None and no flattened fields passed, work.
     client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-        transport='grpc',
+        credentials=ga_credentials.AnonymousCredentials(), transport="grpc",
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.get_ekm_connection),
-            '__call__') as call:
+        type(client.transport.get_ekm_connection), "__call__"
+    ) as call:
         client.get_ekm_connection()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
@@ -969,10 +1046,11 @@ def test_get_ekm_connection_empty_call():
 
 
 @pytest.mark.asyncio
-async def test_get_ekm_connection_async(transport: str = 'grpc_asyncio', request_type=ekm_service.GetEkmConnectionRequest):
+async def test_get_ekm_connection_async(
+    transport: str = "grpc_asyncio", request_type=ekm_service.GetEkmConnectionRequest
+):
     client = EkmServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-        transport=transport,
+        credentials=ga_credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -981,13 +1059,12 @@ async def test_get_ekm_connection_async(transport: str = 'grpc_asyncio', request
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.get_ekm_connection),
-            '__call__') as call:
+        type(client.transport.get_ekm_connection), "__call__"
+    ) as call:
         # Designate an appropriate return value for the call.
-        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(ekm_service.EkmConnection(
-            name='name_value',
-            etag='etag_value',
-        ))
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            ekm_service.EkmConnection(name="name_value", etag="etag_value",)
+        )
         response = await client.get_ekm_connection(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -997,8 +1074,8 @@ async def test_get_ekm_connection_async(transport: str = 'grpc_asyncio', request
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, ekm_service.EkmConnection)
-    assert response.name == 'name_value'
-    assert response.etag == 'etag_value'
+    assert response.name == "name_value"
+    assert response.etag == "etag_value"
 
 
 @pytest.mark.asyncio
@@ -1007,20 +1084,18 @@ async def test_get_ekm_connection_async_from_dict():
 
 
 def test_get_ekm_connection_field_headers():
-    client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = ekm_service.GetEkmConnectionRequest()
 
-    request.name = 'name/value'
+    request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.get_ekm_connection),
-            '__call__') as call:
+        type(client.transport.get_ekm_connection), "__call__"
+    ) as call:
         call.return_value = ekm_service.EkmConnection()
         client.get_ekm_connection(request)
 
@@ -1031,29 +1106,26 @@ def test_get_ekm_connection_field_headers():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert (
-        'x-goog-request-params',
-        'name=name/value',
-    ) in kw['metadata']
+    assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
 
 
 @pytest.mark.asyncio
 async def test_get_ekm_connection_field_headers_async():
-    client = EkmServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = ekm_service.GetEkmConnectionRequest()
 
-    request.name = 'name/value'
+    request.name = "name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.get_ekm_connection),
-            '__call__') as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(ekm_service.EkmConnection())
+        type(client.transport.get_ekm_connection), "__call__"
+    ) as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            ekm_service.EkmConnection()
+        )
         await client.get_ekm_connection(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1063,104 +1135,87 @@ async def test_get_ekm_connection_field_headers_async():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert (
-        'x-goog-request-params',
-        'name=name/value',
-    ) in kw['metadata']
+    assert ("x-goog-request-params", "name=name/value",) in kw["metadata"]
 
 
 def test_get_ekm_connection_flattened():
-    client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.get_ekm_connection),
-            '__call__') as call:
+        type(client.transport.get_ekm_connection), "__call__"
+    ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = ekm_service.EkmConnection()
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
-        client.get_ekm_connection(
-            name='name_value',
-        )
+        client.get_ekm_connection(name="name_value",)
 
         # Establish that the underlying call was made with the expected
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
         arg = args[0].name
-        mock_val = 'name_value'
+        mock_val = "name_value"
         assert arg == mock_val
 
 
 def test_get_ekm_connection_flattened_error():
-    client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
         client.get_ekm_connection(
-            ekm_service.GetEkmConnectionRequest(),
-            name='name_value',
+            ekm_service.GetEkmConnectionRequest(), name="name_value",
         )
 
 
 @pytest.mark.asyncio
 async def test_get_ekm_connection_flattened_async():
-    client = EkmServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.get_ekm_connection),
-            '__call__') as call:
+        type(client.transport.get_ekm_connection), "__call__"
+    ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = ekm_service.EkmConnection()
 
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(ekm_service.EkmConnection())
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            ekm_service.EkmConnection()
+        )
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
-        response = await client.get_ekm_connection(
-            name='name_value',
-        )
+        response = await client.get_ekm_connection(name="name_value",)
 
         # Establish that the underlying call was made with the expected
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
         arg = args[0].name
-        mock_val = 'name_value'
+        mock_val = "name_value"
         assert arg == mock_val
 
 
 @pytest.mark.asyncio
 async def test_get_ekm_connection_flattened_error_async():
-    client = EkmServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
         await client.get_ekm_connection(
-            ekm_service.GetEkmConnectionRequest(),
-            name='name_value',
+            ekm_service.GetEkmConnectionRequest(), name="name_value",
         )
 
 
-@pytest.mark.parametrize("request_type", [
-  ekm_service.CreateEkmConnectionRequest,
-  dict,
-])
-def test_create_ekm_connection(request_type, transport: str = 'grpc'):
+@pytest.mark.parametrize(
+    "request_type", [ekm_service.CreateEkmConnectionRequest, dict,]
+)
+def test_create_ekm_connection(request_type, transport: str = "grpc"):
     client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-        transport=transport,
+        credentials=ga_credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -1169,12 +1224,11 @@ def test_create_ekm_connection(request_type, transport: str = 'grpc'):
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.create_ekm_connection),
-            '__call__') as call:
+        type(client.transport.create_ekm_connection), "__call__"
+    ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = ekm_service.EkmConnection(
-            name='name_value',
-            etag='etag_value',
+            name="name_value", etag="etag_value",
         )
         response = client.create_ekm_connection(request)
 
@@ -1185,22 +1239,21 @@ def test_create_ekm_connection(request_type, transport: str = 'grpc'):
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, ekm_service.EkmConnection)
-    assert response.name == 'name_value'
-    assert response.etag == 'etag_value'
+    assert response.name == "name_value"
+    assert response.etag == "etag_value"
 
 
 def test_create_ekm_connection_empty_call():
     # This test is a coverage failsafe to make sure that totally empty calls,
     # i.e. request == None and no flattened fields passed, work.
     client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-        transport='grpc',
+        credentials=ga_credentials.AnonymousCredentials(), transport="grpc",
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.create_ekm_connection),
-            '__call__') as call:
+        type(client.transport.create_ekm_connection), "__call__"
+    ) as call:
         client.create_ekm_connection()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
@@ -1208,10 +1261,11 @@ def test_create_ekm_connection_empty_call():
 
 
 @pytest.mark.asyncio
-async def test_create_ekm_connection_async(transport: str = 'grpc_asyncio', request_type=ekm_service.CreateEkmConnectionRequest):
+async def test_create_ekm_connection_async(
+    transport: str = "grpc_asyncio", request_type=ekm_service.CreateEkmConnectionRequest
+):
     client = EkmServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-        transport=transport,
+        credentials=ga_credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -1220,13 +1274,12 @@ async def test_create_ekm_connection_async(transport: str = 'grpc_asyncio', requ
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.create_ekm_connection),
-            '__call__') as call:
+        type(client.transport.create_ekm_connection), "__call__"
+    ) as call:
         # Designate an appropriate return value for the call.
-        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(ekm_service.EkmConnection(
-            name='name_value',
-            etag='etag_value',
-        ))
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            ekm_service.EkmConnection(name="name_value", etag="etag_value",)
+        )
         response = await client.create_ekm_connection(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1236,8 +1289,8 @@ async def test_create_ekm_connection_async(transport: str = 'grpc_asyncio', requ
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, ekm_service.EkmConnection)
-    assert response.name == 'name_value'
-    assert response.etag == 'etag_value'
+    assert response.name == "name_value"
+    assert response.etag == "etag_value"
 
 
 @pytest.mark.asyncio
@@ -1246,20 +1299,18 @@ async def test_create_ekm_connection_async_from_dict():
 
 
 def test_create_ekm_connection_field_headers():
-    client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = ekm_service.CreateEkmConnectionRequest()
 
-    request.parent = 'parent/value'
+    request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.create_ekm_connection),
-            '__call__') as call:
+        type(client.transport.create_ekm_connection), "__call__"
+    ) as call:
         call.return_value = ekm_service.EkmConnection()
         client.create_ekm_connection(request)
 
@@ -1270,29 +1321,26 @@ def test_create_ekm_connection_field_headers():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert (
-        'x-goog-request-params',
-        'parent=parent/value',
-    ) in kw['metadata']
+    assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
 
 
 @pytest.mark.asyncio
 async def test_create_ekm_connection_field_headers_async():
-    client = EkmServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = ekm_service.CreateEkmConnectionRequest()
 
-    request.parent = 'parent/value'
+    request.parent = "parent/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.create_ekm_connection),
-            '__call__') as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(ekm_service.EkmConnection())
+        type(client.transport.create_ekm_connection), "__call__"
+    ) as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            ekm_service.EkmConnection()
+        )
         await client.create_ekm_connection(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1302,29 +1350,24 @@ async def test_create_ekm_connection_field_headers_async():
 
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
-    assert (
-        'x-goog-request-params',
-        'parent=parent/value',
-    ) in kw['metadata']
+    assert ("x-goog-request-params", "parent=parent/value",) in kw["metadata"]
 
 
 def test_create_ekm_connection_flattened():
-    client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.create_ekm_connection),
-            '__call__') as call:
+        type(client.transport.create_ekm_connection), "__call__"
+    ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = ekm_service.EkmConnection()
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.create_ekm_connection(
-            parent='parent_value',
-            ekm_connection_id='ekm_connection_id_value',
-            ekm_connection=ekm_service.EkmConnection(name='name_value'),
+            parent="parent_value",
+            ekm_connection_id="ekm_connection_id_value",
+            ekm_connection=ekm_service.EkmConnection(name="name_value"),
         )
 
         # Establish that the underlying call was made with the expected
@@ -1332,52 +1375,50 @@ def test_create_ekm_connection_flattened():
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
         arg = args[0].parent
-        mock_val = 'parent_value'
+        mock_val = "parent_value"
         assert arg == mock_val
         arg = args[0].ekm_connection_id
-        mock_val = 'ekm_connection_id_value'
+        mock_val = "ekm_connection_id_value"
         assert arg == mock_val
         arg = args[0].ekm_connection
-        mock_val = ekm_service.EkmConnection(name='name_value')
+        mock_val = ekm_service.EkmConnection(name="name_value")
         assert arg == mock_val
 
 
 def test_create_ekm_connection_flattened_error():
-    client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
         client.create_ekm_connection(
             ekm_service.CreateEkmConnectionRequest(),
-            parent='parent_value',
-            ekm_connection_id='ekm_connection_id_value',
-            ekm_connection=ekm_service.EkmConnection(name='name_value'),
+            parent="parent_value",
+            ekm_connection_id="ekm_connection_id_value",
+            ekm_connection=ekm_service.EkmConnection(name="name_value"),
         )
 
 
 @pytest.mark.asyncio
 async def test_create_ekm_connection_flattened_async():
-    client = EkmServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.create_ekm_connection),
-            '__call__') as call:
+        type(client.transport.create_ekm_connection), "__call__"
+    ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = ekm_service.EkmConnection()
 
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(ekm_service.EkmConnection())
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            ekm_service.EkmConnection()
+        )
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         response = await client.create_ekm_connection(
-            parent='parent_value',
-            ekm_connection_id='ekm_connection_id_value',
-            ekm_connection=ekm_service.EkmConnection(name='name_value'),
+            parent="parent_value",
+            ekm_connection_id="ekm_connection_id_value",
+            ekm_connection=ekm_service.EkmConnection(name="name_value"),
         )
 
         # Establish that the underlying call was made with the expected
@@ -1385,41 +1426,37 @@ async def test_create_ekm_connection_flattened_async():
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
         arg = args[0].parent
-        mock_val = 'parent_value'
+        mock_val = "parent_value"
         assert arg == mock_val
         arg = args[0].ekm_connection_id
-        mock_val = 'ekm_connection_id_value'
+        mock_val = "ekm_connection_id_value"
         assert arg == mock_val
         arg = args[0].ekm_connection
-        mock_val = ekm_service.EkmConnection(name='name_value')
+        mock_val = ekm_service.EkmConnection(name="name_value")
         assert arg == mock_val
 
 
 @pytest.mark.asyncio
 async def test_create_ekm_connection_flattened_error_async():
-    client = EkmServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
         await client.create_ekm_connection(
             ekm_service.CreateEkmConnectionRequest(),
-            parent='parent_value',
-            ekm_connection_id='ekm_connection_id_value',
-            ekm_connection=ekm_service.EkmConnection(name='name_value'),
+            parent="parent_value",
+            ekm_connection_id="ekm_connection_id_value",
+            ekm_connection=ekm_service.EkmConnection(name="name_value"),
         )
 
 
-@pytest.mark.parametrize("request_type", [
-  ekm_service.UpdateEkmConnectionRequest,
-  dict,
-])
-def test_update_ekm_connection(request_type, transport: str = 'grpc'):
+@pytest.mark.parametrize(
+    "request_type", [ekm_service.UpdateEkmConnectionRequest, dict,]
+)
+def test_update_ekm_connection(request_type, transport: str = "grpc"):
     client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-        transport=transport,
+        credentials=ga_credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -1428,12 +1465,11 @@ def test_update_ekm_connection(request_type, transport: str = 'grpc'):
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.update_ekm_connection),
-            '__call__') as call:
+        type(client.transport.update_ekm_connection), "__call__"
+    ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = ekm_service.EkmConnection(
-            name='name_value',
-            etag='etag_value',
+            name="name_value", etag="etag_value",
         )
         response = client.update_ekm_connection(request)
 
@@ -1444,22 +1480,21 @@ def test_update_ekm_connection(request_type, transport: str = 'grpc'):
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, ekm_service.EkmConnection)
-    assert response.name == 'name_value'
-    assert response.etag == 'etag_value'
+    assert response.name == "name_value"
+    assert response.etag == "etag_value"
 
 
 def test_update_ekm_connection_empty_call():
     # This test is a coverage failsafe to make sure that totally empty calls,
     # i.e. request == None and no flattened fields passed, work.
     client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-        transport='grpc',
+        credentials=ga_credentials.AnonymousCredentials(), transport="grpc",
     )
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.update_ekm_connection),
-            '__call__') as call:
+        type(client.transport.update_ekm_connection), "__call__"
+    ) as call:
         client.update_ekm_connection()
         call.assert_called()
         _, args, _ = call.mock_calls[0]
@@ -1467,10 +1502,11 @@ def test_update_ekm_connection_empty_call():
 
 
 @pytest.mark.asyncio
-async def test_update_ekm_connection_async(transport: str = 'grpc_asyncio', request_type=ekm_service.UpdateEkmConnectionRequest):
+async def test_update_ekm_connection_async(
+    transport: str = "grpc_asyncio", request_type=ekm_service.UpdateEkmConnectionRequest
+):
     client = EkmServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-        transport=transport,
+        credentials=ga_credentials.AnonymousCredentials(), transport=transport,
     )
 
     # Everything is optional in proto3 as far as the runtime is concerned,
@@ -1479,13 +1515,12 @@ async def test_update_ekm_connection_async(transport: str = 'grpc_asyncio', requ
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.update_ekm_connection),
-            '__call__') as call:
+        type(client.transport.update_ekm_connection), "__call__"
+    ) as call:
         # Designate an appropriate return value for the call.
-        call.return_value =grpc_helpers_async.FakeUnaryUnaryCall(ekm_service.EkmConnection(
-            name='name_value',
-            etag='etag_value',
-        ))
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            ekm_service.EkmConnection(name="name_value", etag="etag_value",)
+        )
         response = await client.update_ekm_connection(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1495,8 +1530,8 @@ async def test_update_ekm_connection_async(transport: str = 'grpc_asyncio', requ
 
     # Establish that the response is the type that we expect.
     assert isinstance(response, ekm_service.EkmConnection)
-    assert response.name == 'name_value'
-    assert response.etag == 'etag_value'
+    assert response.name == "name_value"
+    assert response.etag == "etag_value"
 
 
 @pytest.mark.asyncio
@@ -1505,20 +1540,18 @@ async def test_update_ekm_connection_async_from_dict():
 
 
 def test_update_ekm_connection_field_headers():
-    client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = ekm_service.UpdateEkmConnectionRequest()
 
-    request.ekm_connection.name = 'ekm_connection.name/value'
+    request.ekm_connection.name = "ekm_connection.name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.update_ekm_connection),
-            '__call__') as call:
+        type(client.transport.update_ekm_connection), "__call__"
+    ) as call:
         call.return_value = ekm_service.EkmConnection()
         client.update_ekm_connection(request)
 
@@ -1530,28 +1563,28 @@ def test_update_ekm_connection_field_headers():
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
     assert (
-        'x-goog-request-params',
-        'ekm_connection.name=ekm_connection.name/value',
-    ) in kw['metadata']
+        "x-goog-request-params",
+        "ekm_connection.name=ekm_connection.name/value",
+    ) in kw["metadata"]
 
 
 @pytest.mark.asyncio
 async def test_update_ekm_connection_field_headers_async():
-    client = EkmServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
     request = ekm_service.UpdateEkmConnectionRequest()
 
-    request.ekm_connection.name = 'ekm_connection.name/value'
+    request.ekm_connection.name = "ekm_connection.name/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.update_ekm_connection),
-            '__call__') as call:
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(ekm_service.EkmConnection())
+        type(client.transport.update_ekm_connection), "__call__"
+    ) as call:
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            ekm_service.EkmConnection()
+        )
         await client.update_ekm_connection(request)
 
         # Establish that the underlying gRPC stub method was called.
@@ -1562,27 +1595,25 @@ async def test_update_ekm_connection_field_headers_async():
     # Establish that the field header was sent.
     _, _, kw = call.mock_calls[0]
     assert (
-        'x-goog-request-params',
-        'ekm_connection.name=ekm_connection.name/value',
-    ) in kw['metadata']
+        "x-goog-request-params",
+        "ekm_connection.name=ekm_connection.name/value",
+    ) in kw["metadata"]
 
 
 def test_update_ekm_connection_flattened():
-    client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.update_ekm_connection),
-            '__call__') as call:
+        type(client.transport.update_ekm_connection), "__call__"
+    ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = ekm_service.EkmConnection()
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         client.update_ekm_connection(
-            ekm_connection=ekm_service.EkmConnection(name='name_value'),
-            update_mask=field_mask_pb2.FieldMask(paths=['paths_value']),
+            ekm_connection=ekm_service.EkmConnection(name="name_value"),
+            update_mask=field_mask_pb2.FieldMask(paths=["paths_value"]),
         )
 
         # Establish that the underlying call was made with the expected
@@ -1590,47 +1621,45 @@ def test_update_ekm_connection_flattened():
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
         arg = args[0].ekm_connection
-        mock_val = ekm_service.EkmConnection(name='name_value')
+        mock_val = ekm_service.EkmConnection(name="name_value")
         assert arg == mock_val
         arg = args[0].update_mask
-        mock_val = field_mask_pb2.FieldMask(paths=['paths_value'])
+        mock_val = field_mask_pb2.FieldMask(paths=["paths_value"])
         assert arg == mock_val
 
 
 def test_update_ekm_connection_flattened_error():
-    client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
         client.update_ekm_connection(
             ekm_service.UpdateEkmConnectionRequest(),
-            ekm_connection=ekm_service.EkmConnection(name='name_value'),
-            update_mask=field_mask_pb2.FieldMask(paths=['paths_value']),
+            ekm_connection=ekm_service.EkmConnection(name="name_value"),
+            update_mask=field_mask_pb2.FieldMask(paths=["paths_value"]),
         )
 
 
 @pytest.mark.asyncio
 async def test_update_ekm_connection_flattened_async():
-    client = EkmServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
-            type(client.transport.update_ekm_connection),
-            '__call__') as call:
+        type(client.transport.update_ekm_connection), "__call__"
+    ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = ekm_service.EkmConnection()
 
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(ekm_service.EkmConnection())
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
+            ekm_service.EkmConnection()
+        )
         # Call the method with a truthy value for each flattened field,
         # using the keyword arguments to the method.
         response = await client.update_ekm_connection(
-            ekm_connection=ekm_service.EkmConnection(name='name_value'),
-            update_mask=field_mask_pb2.FieldMask(paths=['paths_value']),
+            ekm_connection=ekm_service.EkmConnection(name="name_value"),
+            update_mask=field_mask_pb2.FieldMask(paths=["paths_value"]),
         )
 
         # Establish that the underlying call was made with the expected
@@ -1638,26 +1667,24 @@ async def test_update_ekm_connection_flattened_async():
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
         arg = args[0].ekm_connection
-        mock_val = ekm_service.EkmConnection(name='name_value')
+        mock_val = ekm_service.EkmConnection(name="name_value")
         assert arg == mock_val
         arg = args[0].update_mask
-        mock_val = field_mask_pb2.FieldMask(paths=['paths_value'])
+        mock_val = field_mask_pb2.FieldMask(paths=["paths_value"])
         assert arg == mock_val
 
 
 @pytest.mark.asyncio
 async def test_update_ekm_connection_flattened_error_async():
-    client = EkmServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Attempting to call a method with both a request object and flattened
     # fields is an error.
     with pytest.raises(ValueError):
         await client.update_ekm_connection(
             ekm_service.UpdateEkmConnectionRequest(),
-            ekm_connection=ekm_service.EkmConnection(name='name_value'),
-            update_mask=field_mask_pb2.FieldMask(paths=['paths_value']),
+            ekm_connection=ekm_service.EkmConnection(name="name_value"),
+            update_mask=field_mask_pb2.FieldMask(paths=["paths_value"]),
         )
 
 
@@ -1668,8 +1695,7 @@ def test_credentials_transport_error():
     )
     with pytest.raises(ValueError):
         client = EkmServiceClient(
-            credentials=ga_credentials.AnonymousCredentials(),
-            transport=transport,
+            credentials=ga_credentials.AnonymousCredentials(), transport=transport,
         )
 
     # It is an error to provide a credentials file and a transport instance.
@@ -1689,18 +1715,14 @@ def test_credentials_transport_error():
     options = client_options.ClientOptions()
     options.api_key = "api_key"
     with pytest.raises(ValueError):
-        client = EkmServiceClient(
-            client_options=options,
-            transport=transport,
-        )
+        client = EkmServiceClient(client_options=options, transport=transport,)
 
     # It is an error to provide an api_key and a credential.
     options = mock.Mock()
     options.api_key = "api_key"
     with pytest.raises(ValueError):
         client = EkmServiceClient(
-            client_options=options,
-            credentials=ga_credentials.AnonymousCredentials()
+            client_options=options, credentials=ga_credentials.AnonymousCredentials()
         )
 
     # It is an error to provide scopes and a transport instance.
@@ -1709,8 +1731,7 @@ def test_credentials_transport_error():
     )
     with pytest.raises(ValueError):
         client = EkmServiceClient(
-            client_options={"scopes": ["1", "2"]},
-            transport=transport,
+            client_options={"scopes": ["1", "2"]}, transport=transport,
         )
 
 
@@ -1721,6 +1742,7 @@ def test_transport_instance():
     )
     client = EkmServiceClient(transport=transport)
     assert client.transport is transport
+
 
 def test_transport_get_channel():
     # A client may be instantiated with a custom transport instance.
@@ -1736,39 +1758,39 @@ def test_transport_get_channel():
     channel = transport.grpc_channel
     assert channel
 
-@pytest.mark.parametrize("transport_class", [
-    transports.EkmServiceGrpcTransport,
-    transports.EkmServiceGrpcAsyncIOTransport,
-])
+
+@pytest.mark.parametrize(
+    "transport_class",
+    [transports.EkmServiceGrpcTransport, transports.EkmServiceGrpcAsyncIOTransport,],
+)
 def test_transport_adc(transport_class):
     # Test default credentials are used if not provided.
-    with mock.patch.object(google.auth, 'default') as adc:
+    with mock.patch.object(google.auth, "default") as adc:
         adc.return_value = (ga_credentials.AnonymousCredentials(), None)
         transport_class()
         adc.assert_called_once()
 
+
 def test_transport_grpc_default():
     # A client should use the gRPC transport by default.
-    client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
-    assert isinstance(
-        client.transport,
-        transports.EkmServiceGrpcTransport,
-    )
+    client = EkmServiceClient(credentials=ga_credentials.AnonymousCredentials(),)
+    assert isinstance(client.transport, transports.EkmServiceGrpcTransport,)
+
 
 def test_ekm_service_base_transport_error():
     # Passing both a credentials object and credentials_file should raise an error
     with pytest.raises(core_exceptions.DuplicateCredentialArgs):
         transport = transports.EkmServiceTransport(
             credentials=ga_credentials.AnonymousCredentials(),
-            credentials_file="credentials.json"
+            credentials_file="credentials.json",
         )
 
 
 def test_ekm_service_base_transport():
     # Instantiate the base transport.
-    with mock.patch('google.cloud.kms_v1.services.ekm_service.transports.EkmServiceTransport.__init__') as Transport:
+    with mock.patch(
+        "google.cloud.kms_v1.services.ekm_service.transports.EkmServiceTransport.__init__"
+    ) as Transport:
         Transport.return_value = None
         transport = transports.EkmServiceTransport(
             credentials=ga_credentials.AnonymousCredentials(),
@@ -1777,13 +1799,13 @@ def test_ekm_service_base_transport():
     # Every method on the transport should just blindly
     # raise NotImplementedError.
     methods = (
-        'list_ekm_connections',
-        'get_ekm_connection',
-        'create_ekm_connection',
-        'update_ekm_connection',
-        'set_iam_policy',
-        'get_iam_policy',
-        'test_iam_permissions',
+        "list_ekm_connections",
+        "get_ekm_connection",
+        "create_ekm_connection",
+        "update_ekm_connection",
+        "set_iam_policy",
+        "get_iam_policy",
+        "test_iam_permissions",
     )
     for method in methods:
         with pytest.raises(NotImplementedError):
@@ -1795,26 +1817,32 @@ def test_ekm_service_base_transport():
 
 def test_ekm_service_base_transport_with_credentials_file():
     # Instantiate the base transport with a credentials file
-    with mock.patch.object(google.auth, 'load_credentials_from_file', autospec=True) as load_creds, mock.patch('google.cloud.kms_v1.services.ekm_service.transports.EkmServiceTransport._prep_wrapped_messages') as Transport:
+    with mock.patch.object(
+        google.auth, "load_credentials_from_file", autospec=True
+    ) as load_creds, mock.patch(
+        "google.cloud.kms_v1.services.ekm_service.transports.EkmServiceTransport._prep_wrapped_messages"
+    ) as Transport:
         Transport.return_value = None
         load_creds.return_value = (ga_credentials.AnonymousCredentials(), None)
         transport = transports.EkmServiceTransport(
-            credentials_file="credentials.json",
-            quota_project_id="octopus",
+            credentials_file="credentials.json", quota_project_id="octopus",
         )
-        load_creds.assert_called_once_with("credentials.json",
+        load_creds.assert_called_once_with(
+            "credentials.json",
             scopes=None,
             default_scopes=(
-            'https://www.googleapis.com/auth/cloud-platform',
-            'https://www.googleapis.com/auth/cloudkms',
-),
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloudkms",
+            ),
             quota_project_id="octopus",
         )
 
 
 def test_ekm_service_base_transport_with_adc():
     # Test the default credentials are used if credentials and credentials_file are None.
-    with mock.patch.object(google.auth, 'default', autospec=True) as adc, mock.patch('google.cloud.kms_v1.services.ekm_service.transports.EkmServiceTransport._prep_wrapped_messages') as Transport:
+    with mock.patch.object(google.auth, "default", autospec=True) as adc, mock.patch(
+        "google.cloud.kms_v1.services.ekm_service.transports.EkmServiceTransport._prep_wrapped_messages"
+    ) as Transport:
         Transport.return_value = None
         adc.return_value = (ga_credentials.AnonymousCredentials(), None)
         transport = transports.EkmServiceTransport()
@@ -1823,35 +1851,35 @@ def test_ekm_service_base_transport_with_adc():
 
 def test_ekm_service_auth_adc():
     # If no credentials are provided, we should use ADC credentials.
-    with mock.patch.object(google.auth, 'default', autospec=True) as adc:
+    with mock.patch.object(google.auth, "default", autospec=True) as adc:
         adc.return_value = (ga_credentials.AnonymousCredentials(), None)
         EkmServiceClient()
         adc.assert_called_once_with(
             scopes=None,
             default_scopes=(
-            'https://www.googleapis.com/auth/cloud-platform',
-            'https://www.googleapis.com/auth/cloudkms',
-),
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloudkms",
+            ),
             quota_project_id=None,
         )
 
 
 @pytest.mark.parametrize(
     "transport_class",
-    [
-        transports.EkmServiceGrpcTransport,
-        transports.EkmServiceGrpcAsyncIOTransport,
-    ],
+    [transports.EkmServiceGrpcTransport, transports.EkmServiceGrpcAsyncIOTransport,],
 )
 def test_ekm_service_transport_auth_adc(transport_class):
     # If credentials and host are not provided, the transport class should use
     # ADC credentials.
-    with mock.patch.object(google.auth, 'default', autospec=True) as adc:
+    with mock.patch.object(google.auth, "default", autospec=True) as adc:
         adc.return_value = (ga_credentials.AnonymousCredentials(), None)
         transport_class(quota_project_id="octopus", scopes=["1", "2"])
         adc.assert_called_once_with(
             scopes=["1", "2"],
-            default_scopes=(                'https://www.googleapis.com/auth/cloud-platform',                'https://www.googleapis.com/auth/cloudkms',),
+            default_scopes=(
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloudkms",
+            ),
             quota_project_id="octopus",
         )
 
@@ -1860,21 +1888,20 @@ def test_ekm_service_transport_auth_adc(transport_class):
     "transport_class,grpc_helpers",
     [
         (transports.EkmServiceGrpcTransport, grpc_helpers),
-        (transports.EkmServiceGrpcAsyncIOTransport, grpc_helpers_async)
+        (transports.EkmServiceGrpcAsyncIOTransport, grpc_helpers_async),
     ],
 )
 def test_ekm_service_transport_create_channel(transport_class, grpc_helpers):
     # If credentials and host are not provided, the transport class should use
     # ADC credentials.
-    with mock.patch.object(google.auth, "default", autospec=True) as adc, mock.patch.object(
+    with mock.patch.object(
+        google.auth, "default", autospec=True
+    ) as adc, mock.patch.object(
         grpc_helpers, "create_channel", autospec=True
     ) as create_channel:
         creds = ga_credentials.AnonymousCredentials()
         adc.return_value = (creds, None)
-        transport_class(
-            quota_project_id="octopus",
-            scopes=["1", "2"]
-        )
+        transport_class(quota_project_id="octopus", scopes=["1", "2"])
 
         create_channel.assert_called_with(
             "cloudkms.googleapis.com:443",
@@ -1882,9 +1909,9 @@ def test_ekm_service_transport_create_channel(transport_class, grpc_helpers):
             credentials_file=None,
             quota_project_id="octopus",
             default_scopes=(
-                'https://www.googleapis.com/auth/cloud-platform',
-                'https://www.googleapis.com/auth/cloudkms',
-),
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloudkms",
+            ),
             scopes=["1", "2"],
             default_host="cloudkms.googleapis.com",
             ssl_credentials=None,
@@ -1895,10 +1922,11 @@ def test_ekm_service_transport_create_channel(transport_class, grpc_helpers):
         )
 
 
-@pytest.mark.parametrize("transport_class", [transports.EkmServiceGrpcTransport, transports.EkmServiceGrpcAsyncIOTransport])
-def test_ekm_service_grpc_transport_client_cert_source_for_mtls(
-    transport_class
-):
+@pytest.mark.parametrize(
+    "transport_class",
+    [transports.EkmServiceGrpcTransport, transports.EkmServiceGrpcAsyncIOTransport],
+)
+def test_ekm_service_grpc_transport_client_cert_source_for_mtls(transport_class):
     cred = ga_credentials.AnonymousCredentials()
 
     # Check ssl_channel_credentials is used if provided.
@@ -1907,7 +1935,7 @@ def test_ekm_service_grpc_transport_client_cert_source_for_mtls(
         transport_class(
             host="squid.clam.whelk",
             credentials=cred,
-            ssl_channel_credentials=mock_ssl_channel_creds
+            ssl_channel_credentials=mock_ssl_channel_creds,
         )
         mock_create_channel.assert_called_once_with(
             "squid.clam.whelk:443",
@@ -1928,37 +1956,40 @@ def test_ekm_service_grpc_transport_client_cert_source_for_mtls(
         with mock.patch("grpc.ssl_channel_credentials") as mock_ssl_cred:
             transport_class(
                 credentials=cred,
-                client_cert_source_for_mtls=client_cert_source_callback
+                client_cert_source_for_mtls=client_cert_source_callback,
             )
             expected_cert, expected_key = client_cert_source_callback()
             mock_ssl_cred.assert_called_once_with(
-                certificate_chain=expected_cert,
-                private_key=expected_key
+                certificate_chain=expected_cert, private_key=expected_key
             )
 
 
 def test_ekm_service_host_no_port():
     client = EkmServiceClient(
         credentials=ga_credentials.AnonymousCredentials(),
-        client_options=client_options.ClientOptions(api_endpoint='cloudkms.googleapis.com'),
+        client_options=client_options.ClientOptions(
+            api_endpoint="cloudkms.googleapis.com"
+        ),
     )
-    assert client.transport._host == 'cloudkms.googleapis.com:443'
+    assert client.transport._host == "cloudkms.googleapis.com:443"
 
 
 def test_ekm_service_host_with_port():
     client = EkmServiceClient(
         credentials=ga_credentials.AnonymousCredentials(),
-        client_options=client_options.ClientOptions(api_endpoint='cloudkms.googleapis.com:8000'),
+        client_options=client_options.ClientOptions(
+            api_endpoint="cloudkms.googleapis.com:8000"
+        ),
     )
-    assert client.transport._host == 'cloudkms.googleapis.com:8000'
+    assert client.transport._host == "cloudkms.googleapis.com:8000"
+
 
 def test_ekm_service_grpc_transport_channel():
-    channel = grpc.secure_channel('http://localhost/', grpc.local_channel_credentials())
+    channel = grpc.secure_channel("http://localhost/", grpc.local_channel_credentials())
 
     # Check that channel is used if provided.
     transport = transports.EkmServiceGrpcTransport(
-        host="squid.clam.whelk",
-        channel=channel,
+        host="squid.clam.whelk", channel=channel,
     )
     assert transport.grpc_channel == channel
     assert transport._host == "squid.clam.whelk:443"
@@ -1966,12 +1997,11 @@ def test_ekm_service_grpc_transport_channel():
 
 
 def test_ekm_service_grpc_asyncio_transport_channel():
-    channel = aio.secure_channel('http://localhost/', grpc.local_channel_credentials())
+    channel = aio.secure_channel("http://localhost/", grpc.local_channel_credentials())
 
     # Check that channel is used if provided.
     transport = transports.EkmServiceGrpcAsyncIOTransport(
-        host="squid.clam.whelk",
-        channel=channel,
+        host="squid.clam.whelk", channel=channel,
     )
     assert transport.grpc_channel == channel
     assert transport._host == "squid.clam.whelk:443"
@@ -1980,12 +2010,17 @@ def test_ekm_service_grpc_asyncio_transport_channel():
 
 # Remove this test when deprecated arguments (api_mtls_endpoint, client_cert_source) are
 # removed from grpc/grpc_asyncio transport constructor.
-@pytest.mark.parametrize("transport_class", [transports.EkmServiceGrpcTransport, transports.EkmServiceGrpcAsyncIOTransport])
-def test_ekm_service_transport_channel_mtls_with_client_cert_source(
-    transport_class
-):
-    with mock.patch("grpc.ssl_channel_credentials", autospec=True) as grpc_ssl_channel_cred:
-        with mock.patch.object(transport_class, "create_channel") as grpc_create_channel:
+@pytest.mark.parametrize(
+    "transport_class",
+    [transports.EkmServiceGrpcTransport, transports.EkmServiceGrpcAsyncIOTransport],
+)
+def test_ekm_service_transport_channel_mtls_with_client_cert_source(transport_class):
+    with mock.patch(
+        "grpc.ssl_channel_credentials", autospec=True
+    ) as grpc_ssl_channel_cred:
+        with mock.patch.object(
+            transport_class, "create_channel"
+        ) as grpc_create_channel:
             mock_ssl_cred = mock.Mock()
             grpc_ssl_channel_cred.return_value = mock_ssl_cred
 
@@ -1994,7 +2029,7 @@ def test_ekm_service_transport_channel_mtls_with_client_cert_source(
 
             cred = ga_credentials.AnonymousCredentials()
             with pytest.warns(DeprecationWarning):
-                with mock.patch.object(google.auth, 'default') as adc:
+                with mock.patch.object(google.auth, "default") as adc:
                     adc.return_value = (cred, None)
                     transport = transport_class(
                         host="squid.clam.whelk",
@@ -2024,17 +2059,20 @@ def test_ekm_service_transport_channel_mtls_with_client_cert_source(
 
 # Remove this test when deprecated arguments (api_mtls_endpoint, client_cert_source) are
 # removed from grpc/grpc_asyncio transport constructor.
-@pytest.mark.parametrize("transport_class", [transports.EkmServiceGrpcTransport, transports.EkmServiceGrpcAsyncIOTransport])
-def test_ekm_service_transport_channel_mtls_with_adc(
-    transport_class
-):
+@pytest.mark.parametrize(
+    "transport_class",
+    [transports.EkmServiceGrpcTransport, transports.EkmServiceGrpcAsyncIOTransport],
+)
+def test_ekm_service_transport_channel_mtls_with_adc(transport_class):
     mock_ssl_cred = mock.Mock()
     with mock.patch.multiple(
         "google.auth.transport.grpc.SslCredentials",
         __init__=mock.Mock(return_value=None),
         ssl_credentials=mock.PropertyMock(return_value=mock_ssl_cred),
     ):
-        with mock.patch.object(transport_class, "create_channel") as grpc_create_channel:
+        with mock.patch.object(
+            transport_class, "create_channel"
+        ) as grpc_create_channel:
             mock_grpc_channel = mock.Mock()
             grpc_create_channel.return_value = mock_grpc_channel
             mock_cred = mock.Mock()
@@ -2066,7 +2104,9 @@ def test_ekm_connection_path():
     project = "squid"
     location = "clam"
     ekm_connection = "whelk"
-    expected = "projects/{project}/locations/{location}/ekmConnections/{ekm_connection}".format(project=project, location=location, ekm_connection=ekm_connection, )
+    expected = "projects/{project}/locations/{location}/ekmConnections/{ekm_connection}".format(
+        project=project, location=location, ekm_connection=ekm_connection,
+    )
     actual = EkmServiceClient.ekm_connection_path(project, location, ekm_connection)
     assert expected == actual
 
@@ -2083,12 +2123,15 @@ def test_parse_ekm_connection_path():
     actual = EkmServiceClient.parse_ekm_connection_path(path)
     assert expected == actual
 
+
 def test_service_path():
     project = "cuttlefish"
     location = "mussel"
     namespace = "winkle"
     service = "nautilus"
-    expected = "projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}".format(project=project, location=location, namespace=namespace, service=service, )
+    expected = "projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}".format(
+        project=project, location=location, namespace=namespace, service=service,
+    )
     actual = EkmServiceClient.service_path(project, location, namespace, service)
     assert expected == actual
 
@@ -2106,9 +2149,12 @@ def test_parse_service_path():
     actual = EkmServiceClient.parse_service_path(path)
     assert expected == actual
 
+
 def test_common_billing_account_path():
     billing_account = "whelk"
-    expected = "billingAccounts/{billing_account}".format(billing_account=billing_account, )
+    expected = "billingAccounts/{billing_account}".format(
+        billing_account=billing_account,
+    )
     actual = EkmServiceClient.common_billing_account_path(billing_account)
     assert expected == actual
 
@@ -2123,9 +2169,10 @@ def test_parse_common_billing_account_path():
     actual = EkmServiceClient.parse_common_billing_account_path(path)
     assert expected == actual
 
+
 def test_common_folder_path():
     folder = "oyster"
-    expected = "folders/{folder}".format(folder=folder, )
+    expected = "folders/{folder}".format(folder=folder,)
     actual = EkmServiceClient.common_folder_path(folder)
     assert expected == actual
 
@@ -2140,9 +2187,10 @@ def test_parse_common_folder_path():
     actual = EkmServiceClient.parse_common_folder_path(path)
     assert expected == actual
 
+
 def test_common_organization_path():
     organization = "cuttlefish"
-    expected = "organizations/{organization}".format(organization=organization, )
+    expected = "organizations/{organization}".format(organization=organization,)
     actual = EkmServiceClient.common_organization_path(organization)
     assert expected == actual
 
@@ -2157,9 +2205,10 @@ def test_parse_common_organization_path():
     actual = EkmServiceClient.parse_common_organization_path(path)
     assert expected == actual
 
+
 def test_common_project_path():
     project = "winkle"
-    expected = "projects/{project}".format(project=project, )
+    expected = "projects/{project}".format(project=project,)
     actual = EkmServiceClient.common_project_path(project)
     assert expected == actual
 
@@ -2174,10 +2223,13 @@ def test_parse_common_project_path():
     actual = EkmServiceClient.parse_common_project_path(path)
     assert expected == actual
 
+
 def test_common_location_path():
     project = "scallop"
     location = "abalone"
-    expected = "projects/{project}/locations/{location}".format(project=project, location=location, )
+    expected = "projects/{project}/locations/{location}".format(
+        project=project, location=location,
+    )
     actual = EkmServiceClient.common_location_path(project, location)
     assert expected == actual
 
@@ -2197,18 +2249,20 @@ def test_parse_common_location_path():
 def test_client_with_default_client_info():
     client_info = gapic_v1.client_info.ClientInfo()
 
-    with mock.patch.object(transports.EkmServiceTransport, '_prep_wrapped_messages') as prep:
+    with mock.patch.object(
+        transports.EkmServiceTransport, "_prep_wrapped_messages"
+    ) as prep:
         client = EkmServiceClient(
-            credentials=ga_credentials.AnonymousCredentials(),
-            client_info=client_info,
+            credentials=ga_credentials.AnonymousCredentials(), client_info=client_info,
         )
         prep.assert_called_once_with(client_info)
 
-    with mock.patch.object(transports.EkmServiceTransport, '_prep_wrapped_messages') as prep:
+    with mock.patch.object(
+        transports.EkmServiceTransport, "_prep_wrapped_messages"
+    ) as prep:
         transport_class = EkmServiceClient.get_transport_class()
         transport = transport_class(
-            credentials=ga_credentials.AnonymousCredentials(),
-            client_info=client_info,
+            credentials=ga_credentials.AnonymousCredentials(), client_info=client_info,
         )
         prep.assert_called_once_with(client_info)
 
@@ -2254,9 +2308,7 @@ async def test_set_iam_policy_async(transport: str = "grpc_asyncio"):
     request = iam_policy_pb2.SetIamPolicyRequest()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.set_iam_policy), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.set_iam_policy), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             policy_pb2.Policy(version=774, etag=b"etag_blob",)
@@ -2279,9 +2331,7 @@ async def test_set_iam_policy_async(transport: str = "grpc_asyncio"):
 
 
 def test_set_iam_policy_field_headers():
-    client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
@@ -2306,9 +2356,7 @@ def test_set_iam_policy_field_headers():
 
 @pytest.mark.asyncio
 async def test_set_iam_policy_field_headers_async():
-    client = EkmServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
@@ -2316,9 +2364,7 @@ async def test_set_iam_policy_field_headers_async():
     request.resource = "resource/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.set_iam_policy), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.set_iam_policy), "__call__") as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(policy_pb2.Policy())
 
         await client.set_iam_policy(request)
@@ -2334,9 +2380,7 @@ async def test_set_iam_policy_field_headers_async():
 
 
 def test_set_iam_policy_from_dict():
-    client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceClient(credentials=ga_credentials.AnonymousCredentials(),)
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client.transport.set_iam_policy), "__call__") as call:
         # Designate an appropriate return value for the call.
@@ -2353,15 +2397,11 @@ def test_set_iam_policy_from_dict():
 
 @pytest.mark.asyncio
 async def test_set_iam_policy_from_dict_async():
-    client = EkmServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(),)
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client.transport.set_iam_policy), "__call__") as call:
         # Designate an appropriate return value for the call.
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            policy_pb2.Policy()
-        )
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(policy_pb2.Policy())
 
         response = await client.set_iam_policy(
             request={
@@ -2413,9 +2453,7 @@ async def test_get_iam_policy_async(transport: str = "grpc_asyncio"):
     request = iam_policy_pb2.GetIamPolicyRequest()
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.get_iam_policy), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.get_iam_policy), "__call__") as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
             policy_pb2.Policy(version=774, etag=b"etag_blob",)
@@ -2438,9 +2476,7 @@ async def test_get_iam_policy_async(transport: str = "grpc_asyncio"):
 
 
 def test_get_iam_policy_field_headers():
-    client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
@@ -2465,9 +2501,7 @@ def test_get_iam_policy_field_headers():
 
 @pytest.mark.asyncio
 async def test_get_iam_policy_field_headers_async():
-    client = EkmServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
@@ -2475,9 +2509,7 @@ async def test_get_iam_policy_field_headers_async():
     request.resource = "resource/value"
 
     # Mock the actual call within the gRPC stub, and fake the request.
-    with mock.patch.object(
-        type(client.transport.get_iam_policy), "__call__"
-    ) as call:
+    with mock.patch.object(type(client.transport.get_iam_policy), "__call__") as call:
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(policy_pb2.Policy())
 
         await client.get_iam_policy(request)
@@ -2493,9 +2525,7 @@ async def test_get_iam_policy_field_headers_async():
 
 
 def test_get_iam_policy_from_dict():
-    client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceClient(credentials=ga_credentials.AnonymousCredentials(),)
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client.transport.get_iam_policy), "__call__") as call:
         # Designate an appropriate return value for the call.
@@ -2509,17 +2539,14 @@ def test_get_iam_policy_from_dict():
         )
         call.assert_called()
 
+
 @pytest.mark.asyncio
 async def test_get_iam_policy_from_dict_async():
-    client = EkmServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(),)
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(type(client.transport.get_iam_policy), "__call__") as call:
         # Designate an appropriate return value for the call.
-        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            policy_pb2.Policy()
-        )
+        call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(policy_pb2.Policy())
 
         response = await client.get_iam_policy(
             request={
@@ -2578,7 +2605,9 @@ async def test_test_iam_permissions_async(transport: str = "grpc_asyncio"):
     ) as call:
         # Designate an appropriate return value for the call.
         call.return_value = grpc_helpers_async.FakeUnaryUnaryCall(
-            iam_policy_pb2.TestIamPermissionsResponse(permissions=["permissions_value"],)
+            iam_policy_pb2.TestIamPermissionsResponse(
+                permissions=["permissions_value"],
+            )
         )
 
         response = await client.test_iam_permissions(request)
@@ -2596,9 +2625,7 @@ async def test_test_iam_permissions_async(transport: str = "grpc_asyncio"):
 
 
 def test_test_iam_permissions_field_headers():
-    client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
@@ -2625,9 +2652,7 @@ def test_test_iam_permissions_field_headers():
 
 @pytest.mark.asyncio
 async def test_test_iam_permissions_field_headers_async():
-    client = EkmServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(),)
 
     # Any value that is part of the HTTP/1.1 URI should be sent as
     # a field header. Set these to a non-empty value.
@@ -2655,9 +2680,7 @@ async def test_test_iam_permissions_field_headers_async():
 
 
 def test_test_iam_permissions_from_dict():
-    client = EkmServiceClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceClient(credentials=ga_credentials.AnonymousCredentials(),)
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
         type(client.transport.test_iam_permissions), "__call__"
@@ -2673,11 +2696,10 @@ def test_test_iam_permissions_from_dict():
         )
         call.assert_called()
 
+
 @pytest.mark.asyncio
 async def test_test_iam_permissions_from_dict_async():
-    client = EkmServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-    )
+    client = EkmServiceAsyncClient(credentials=ga_credentials.AnonymousCredentials(),)
     # Mock the actual call within the gRPC stub, and fake the request.
     with mock.patch.object(
         type(client.transport.test_iam_permissions), "__call__"
@@ -2699,13 +2721,15 @@ async def test_test_iam_permissions_from_dict_async():
 @pytest.mark.asyncio
 async def test_transport_close_async():
     client = EkmServiceAsyncClient(
-        credentials=ga_credentials.AnonymousCredentials(),
-        transport="grpc_asyncio",
+        credentials=ga_credentials.AnonymousCredentials(), transport="grpc_asyncio",
     )
-    with mock.patch.object(type(getattr(client.transport, "grpc_channel")), "close") as close:
+    with mock.patch.object(
+        type(getattr(client.transport, "grpc_channel")), "close"
+    ) as close:
         async with client:
             close.assert_not_called()
         close.assert_called_once()
+
 
 def test_transport_close():
     transports = {
@@ -2714,22 +2738,23 @@ def test_transport_close():
 
     for transport, close_name in transports.items():
         client = EkmServiceClient(
-            credentials=ga_credentials.AnonymousCredentials(),
-            transport=transport
+            credentials=ga_credentials.AnonymousCredentials(), transport=transport
         )
-        with mock.patch.object(type(getattr(client.transport, close_name)), "close") as close:
+        with mock.patch.object(
+            type(getattr(client.transport, close_name)), "close"
+        ) as close:
             with client:
                 close.assert_not_called()
             close.assert_called_once()
 
+
 def test_client_ctx():
     transports = [
-        'grpc',
+        "grpc",
     ]
     for transport in transports:
         client = EkmServiceClient(
-            credentials=ga_credentials.AnonymousCredentials(),
-            transport=transport
+            credentials=ga_credentials.AnonymousCredentials(), transport=transport
         )
         # Test client calls underlying transport.
         with mock.patch.object(type(client.transport), "close") as close:
@@ -2738,10 +2763,14 @@ def test_client_ctx():
                 pass
             close.assert_called()
 
-@pytest.mark.parametrize("client_class,transport_class", [
-    (EkmServiceClient, transports.EkmServiceGrpcTransport),
-    (EkmServiceAsyncClient, transports.EkmServiceGrpcAsyncIOTransport),
-])
+
+@pytest.mark.parametrize(
+    "client_class,transport_class",
+    [
+        (EkmServiceClient, transports.EkmServiceGrpcTransport),
+        (EkmServiceAsyncClient, transports.EkmServiceGrpcAsyncIOTransport),
+    ],
+)
 def test_api_key_credentials(client_class, transport_class):
     with mock.patch.object(
         google.auth._default, "get_api_key_credentials", create=True

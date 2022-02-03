@@ -16,18 +16,18 @@
 from collections import OrderedDict
 from typing import Dict, Type
 
-from .base import KeyManagementServiceTransport
-from .grpc import KeyManagementServiceGrpcTransport
-from .grpc_asyncio import KeyManagementServiceGrpcAsyncIOTransport
+from .base import EkmServiceTransport
+from .grpc import EkmServiceGrpcTransport
+from .grpc_asyncio import EkmServiceGrpcAsyncIOTransport
 
 
 # Compile a registry of transports.
-_transport_registry = OrderedDict()  # type: Dict[str, Type[KeyManagementServiceTransport]]
-_transport_registry['grpc'] = KeyManagementServiceGrpcTransport
-_transport_registry['grpc_asyncio'] = KeyManagementServiceGrpcAsyncIOTransport
+_transport_registry = OrderedDict()  # type: Dict[str, Type[EkmServiceTransport]]
+_transport_registry["grpc"] = EkmServiceGrpcTransport
+_transport_registry["grpc_asyncio"] = EkmServiceGrpcAsyncIOTransport
 
 __all__ = (
-    'KeyManagementServiceTransport',
-    'KeyManagementServiceGrpcTransport',
-    'KeyManagementServiceGrpcAsyncIOTransport',
+    "EkmServiceTransport",
+    "EkmServiceGrpcTransport",
+    "EkmServiceGrpcAsyncIOTransport",
 )

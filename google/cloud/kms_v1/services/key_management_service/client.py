@@ -553,14 +553,14 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         Returns:
             google.cloud.kms_v1.services.key_management_service.pagers.ListKeyRingsPager:
                 Response message for
-                [KeyManagementService.ListKeyRings][google.cloud.kms.v1.KeyManagementService.ListKeyRings].
+                   [KeyManagementService.ListKeyRings][google.cloud.kms.v1.KeyManagementService.ListKeyRings].
 
                 Iterating over this object will yield results and
                 resolve additional pages automatically.
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
@@ -635,14 +635,14 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         Returns:
             google.cloud.kms_v1.services.key_management_service.pagers.ListCryptoKeysPager:
                 Response message for
-                [KeyManagementService.ListCryptoKeys][google.cloud.kms.v1.KeyManagementService.ListCryptoKeys].
+                   [KeyManagementService.ListCryptoKeys][google.cloud.kms.v1.KeyManagementService.ListCryptoKeys].
 
                 Iterating over this object will yield results and
                 resolve additional pages automatically.
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
@@ -718,14 +718,14 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         Returns:
             google.cloud.kms_v1.services.key_management_service.pagers.ListCryptoKeyVersionsPager:
                 Response message for
-                [KeyManagementService.ListCryptoKeyVersions][google.cloud.kms.v1.KeyManagementService.ListCryptoKeyVersions].
+                   [KeyManagementService.ListCryptoKeyVersions][google.cloud.kms.v1.KeyManagementService.ListCryptoKeyVersions].
 
                 Iterating over this object will yield results and
                 resolve additional pages automatically.
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
@@ -800,14 +800,14 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         Returns:
             google.cloud.kms_v1.services.key_management_service.pagers.ListImportJobsPager:
                 Response message for
-                [KeyManagementService.ListImportJobs][google.cloud.kms.v1.KeyManagementService.ListImportJobs].
+                   [KeyManagementService.ListImportJobs][google.cloud.kms.v1.KeyManagementService.ListImportJobs].
 
                 Iterating over this object will yield results and
                 resolve additional pages automatically.
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
@@ -881,13 +881,12 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Returns:
             google.cloud.kms_v1.types.KeyRing:
-                A [KeyRing][google.cloud.kms.v1.KeyRing] is a toplevel
-                logical grouping of
-                [CryptoKeys][google.cloud.kms.v1.CryptoKey].
+                A [KeyRing][google.cloud.kms.v1.KeyRing] is a toplevel logical grouping of
+                   [CryptoKeys][google.cloud.kms.v1.CryptoKey].
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
@@ -958,8 +957,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Returns:
             google.cloud.kms_v1.types.CryptoKey:
-                A [CryptoKey][google.cloud.kms.v1.CryptoKey] represents a logical key that can be used for cryptographic
-                   operations.
+                A [CryptoKey][google.cloud.kms.v1.CryptoKey] represents a logical key that
+                   can be used for cryptographic operations.
 
                    A [CryptoKey][google.cloud.kms.v1.CryptoKey] is made
                    up of zero or more
@@ -969,7 +968,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
@@ -1039,8 +1038,9 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Returns:
             google.cloud.kms_v1.types.CryptoKeyVersion:
-                A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] represents an individual cryptographic key, and the
-                   associated key material.
+                A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] represents an
+                   individual cryptographic key, and the associated key
+                   material.
 
                    An
                    [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED]
@@ -1055,7 +1055,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
@@ -1130,12 +1130,14 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Returns:
             google.cloud.kms_v1.types.PublicKey:
-                The public key for a given [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. Obtained via
+                The public key for a given
+                   [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
+                   Obtained via
                    [GetPublicKey][google.cloud.kms.v1.KeyManagementService.GetPublicKey].
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
@@ -1204,7 +1206,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Returns:
             google.cloud.kms_v1.types.ImportJob:
-                An [ImportJob][google.cloud.kms.v1.ImportJob] can be used to create [CryptoKeys][google.cloud.kms.v1.CryptoKey] and
+                An [ImportJob][google.cloud.kms.v1.ImportJob] can be used to create
+                   [CryptoKeys][google.cloud.kms.v1.CryptoKey] and
                    [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]
                    using pre-existing key material, generated outside of
                    Cloud KMS.
@@ -1252,7 +1255,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
@@ -1337,13 +1340,12 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Returns:
             google.cloud.kms_v1.types.KeyRing:
-                A [KeyRing][google.cloud.kms.v1.KeyRing] is a toplevel
-                logical grouping of
-                [CryptoKeys][google.cloud.kms.v1.CryptoKey].
+                A [KeyRing][google.cloud.kms.v1.KeyRing] is a toplevel logical grouping of
+                   [CryptoKeys][google.cloud.kms.v1.CryptoKey].
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, key_ring_id, key_ring])
         if request is not None and has_flattened_params:
@@ -1436,8 +1438,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Returns:
             google.cloud.kms_v1.types.CryptoKey:
-                A [CryptoKey][google.cloud.kms.v1.CryptoKey] represents a logical key that can be used for cryptographic
-                   operations.
+                A [CryptoKey][google.cloud.kms.v1.CryptoKey] represents a logical key that
+                   can be used for cryptographic operations.
 
                    A [CryptoKey][google.cloud.kms.v1.CryptoKey] is made
                    up of zero or more
@@ -1447,7 +1449,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, crypto_key_id, crypto_key])
         if request is not None and has_flattened_params:
@@ -1536,8 +1538,9 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Returns:
             google.cloud.kms_v1.types.CryptoKeyVersion:
-                A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] represents an individual cryptographic key, and the
-                   associated key material.
+                A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] represents an
+                   individual cryptographic key, and the associated key
+                   material.
 
                    An
                    [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED]
@@ -1552,7 +1555,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, crypto_key_version])
         if request is not None and has_flattened_params:
@@ -1624,8 +1627,9 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Returns:
             google.cloud.kms_v1.types.CryptoKeyVersion:
-                A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] represents an individual cryptographic key, and the
-                   associated key material.
+                A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] represents an
+                   individual cryptographic key, and the associated key
+                   material.
 
                    An
                    [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED]
@@ -1717,7 +1721,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Returns:
             google.cloud.kms_v1.types.ImportJob:
-                An [ImportJob][google.cloud.kms.v1.ImportJob] can be used to create [CryptoKeys][google.cloud.kms.v1.CryptoKey] and
+                An [ImportJob][google.cloud.kms.v1.ImportJob] can be used to create
+                   [CryptoKeys][google.cloud.kms.v1.CryptoKey] and
                    [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion]
                    using pre-existing key material, generated outside of
                    Cloud KMS.
@@ -1765,7 +1770,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, import_job_id, import_job])
         if request is not None and has_flattened_params:
@@ -1844,8 +1849,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Returns:
             google.cloud.kms_v1.types.CryptoKey:
-                A [CryptoKey][google.cloud.kms.v1.CryptoKey] represents a logical key that can be used for cryptographic
-                   operations.
+                A [CryptoKey][google.cloud.kms.v1.CryptoKey] represents a logical key that
+                   can be used for cryptographic operations.
 
                    A [CryptoKey][google.cloud.kms.v1.CryptoKey] is made
                    up of zero or more
@@ -1855,7 +1860,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([crypto_key, update_mask])
         if request is not None and has_flattened_params:
@@ -1948,8 +1953,9 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Returns:
             google.cloud.kms_v1.types.CryptoKeyVersion:
-                A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] represents an individual cryptographic key, and the
-                   associated key material.
+                A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] represents an
+                   individual cryptographic key, and the associated key
+                   material.
 
                    An
                    [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED]
@@ -1964,7 +1970,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([crypto_key_version, update_mask])
         if request is not None and has_flattened_params:
@@ -2051,8 +2057,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Returns:
             google.cloud.kms_v1.types.CryptoKey:
-                A [CryptoKey][google.cloud.kms.v1.CryptoKey] represents a logical key that can be used for cryptographic
-                   operations.
+                A [CryptoKey][google.cloud.kms.v1.CryptoKey] represents a logical key that
+                   can be used for cryptographic operations.
 
                    A [CryptoKey][google.cloud.kms.v1.CryptoKey] is made
                    up of zero or more
@@ -2062,7 +2068,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name, crypto_key_version_id])
         if request is not None and has_flattened_params:
@@ -2156,8 +2162,9 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Returns:
             google.cloud.kms_v1.types.CryptoKeyVersion:
-                A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] represents an individual cryptographic key, and the
-                   associated key material.
+                A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] represents an
+                   individual cryptographic key, and the associated key
+                   material.
 
                    An
                    [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED]
@@ -2172,7 +2179,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
@@ -2253,8 +2260,9 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         Returns:
             google.cloud.kms_v1.types.CryptoKeyVersion:
-                A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] represents an individual cryptographic key, and the
-                   associated key material.
+                A [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] represents an
+                   individual cryptographic key, and the associated key
+                   material.
 
                    An
                    [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED]
@@ -2269,7 +2277,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
@@ -2367,11 +2375,11 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         Returns:
             google.cloud.kms_v1.types.EncryptResponse:
                 Response message for
-                [KeyManagementService.Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt].
+                   [KeyManagementService.Encrypt][google.cloud.kms.v1.KeyManagementService.Encrypt].
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name, plaintext])
         if request is not None and has_flattened_params:
@@ -2455,11 +2463,11 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         Returns:
             google.cloud.kms_v1.types.DecryptResponse:
                 Response message for
-                [KeyManagementService.Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt].
+                   [KeyManagementService.Decrypt][google.cloud.kms.v1.KeyManagementService.Decrypt].
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name, ciphertext])
         if request is not None and has_flattened_params:
@@ -2533,6 +2541,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 specified by the key version's
                 [algorithm][google.cloud.kms.v1.CryptoKeyVersion.algorithm].
 
+                This field may not be supplied if
+                [AsymmetricSignRequest.data][google.cloud.kms.v1.AsymmetricSignRequest.data]
+                is supplied.
+
                 This corresponds to the ``digest`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2545,11 +2557,11 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         Returns:
             google.cloud.kms_v1.types.AsymmetricSignResponse:
                 Response message for
-                [KeyManagementService.AsymmetricSign][google.cloud.kms.v1.KeyManagementService.AsymmetricSign].
+                   [KeyManagementService.AsymmetricSign][google.cloud.kms.v1.KeyManagementService.AsymmetricSign].
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name, digest])
         if request is not None and has_flattened_params:
@@ -2635,11 +2647,11 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         Returns:
             google.cloud.kms_v1.types.AsymmetricDecryptResponse:
                 Response message for
-                [KeyManagementService.AsymmetricDecrypt][google.cloud.kms.v1.KeyManagementService.AsymmetricDecrypt].
+                   [KeyManagementService.AsymmetricDecrypt][google.cloud.kms.v1.KeyManagementService.AsymmetricDecrypt].
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name, ciphertext])
         if request is not None and has_flattened_params:
@@ -2723,11 +2735,11 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         Returns:
             google.cloud.kms_v1.types.MacSignResponse:
                 Response message for
-                [KeyManagementService.MacSign][google.cloud.kms.v1.KeyManagementService.MacSign].
+                   [KeyManagementService.MacSign][google.cloud.kms.v1.KeyManagementService.MacSign].
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name, data])
         if request is not None and has_flattened_params:
@@ -2817,11 +2829,11 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         Returns:
             google.cloud.kms_v1.types.MacVerifyResponse:
                 Response message for
-                [KeyManagementService.MacVerify][google.cloud.kms.v1.KeyManagementService.MacVerify].
+                   [KeyManagementService.MacVerify][google.cloud.kms.v1.KeyManagementService.MacVerify].
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name, data, mac])
         if request is not None and has_flattened_params:
@@ -2883,8 +2895,8 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
             location (str):
                 The project-specific location in
                 which to generate random bytes. For
-                example, "projects/my-
-                project/locations/us-central1".
+                example,
+                "projects/my-project/locations/us-central1".
 
                 This corresponds to the ``location`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -2900,8 +2912,9 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
             protection_level (google.cloud.kms_v1.types.ProtectionLevel):
                 The
                 [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel]
-                to use when generating the random data. Defaults to
-                [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE].
+                to use when generating the random data. Currently, only
+                [HSM][google.cloud.kms.v1.ProtectionLevel.HSM]
+                protection level is supported.
 
                 This corresponds to the ``protection_level`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -2915,11 +2928,11 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         Returns:
             google.cloud.kms_v1.types.GenerateRandomBytesResponse:
                 Response message for
-                [KeyManagementService.GenerateRandomBytes][google.cloud.kms.v1.KeyManagementService.GenerateRandomBytes].
+                   [KeyManagementService.GenerateRandomBytes][google.cloud.kms.v1.KeyManagementService.GenerateRandomBytes].
 
         """
         # Create or coerce a protobuf request object.
-        # Sanity check: If we got a request object, we should *not* have
+        # Quick check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([location, length_bytes, protection_level])
         if request is not None and has_flattened_params:

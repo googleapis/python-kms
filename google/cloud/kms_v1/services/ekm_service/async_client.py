@@ -14,20 +14,17 @@
 # limitations under the License.
 #
 from collections import OrderedDict
-import os
+import functools
 import re
 from typing import Dict, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
-from google.api_core import client_options as client_options_lib
+from google.api_core.client_options import ClientOptions
 from google.api_core import exceptions as core_exceptions
 from google.api_core import gapic_v1
 from google.api_core import retry as retries
-from google.auth import credentials as ga_credentials             # type: ignore
-from google.auth.transport import mtls                            # type: ignore
-from google.auth.transport.grpc import SslCredentials             # type: ignore
-from google.auth.exceptions import MutualTLSChannelError          # type: ignore
-from google.oauth2 import service_account                         # type: ignore
+from google.auth import credentials as ga_credentials  # type: ignore
+from google.oauth2 import service_account  # type: ignore
 
 try:
     OptionalRetry = Union[retries.Retry, gapic_v1.method._MethodDefault]
@@ -41,43 +38,11 @@ from google.iam.v1 import policy_pb2  # type: ignore
 from google.protobuf import field_mask_pb2  # type: ignore
 from google.protobuf import timestamp_pb2  # type: ignore
 from .transports.base import EkmServiceTransport, DEFAULT_CLIENT_INFO
-from .transports.grpc import EkmServiceGrpcTransport
 from .transports.grpc_asyncio import EkmServiceGrpcAsyncIOTransport
+from .client import EkmServiceClient
 
 
-class EkmServiceClientMeta(type):
-    """Metaclass for the EkmService client.
-
-    This provides class-level methods for building and retrieving
-    support objects (e.g. transport) without polluting the client instance
-    objects.
-    """
-    _transport_registry = OrderedDict()  # type: Dict[str, Type[EkmServiceTransport]]
-    _transport_registry["grpc"] = EkmServiceGrpcTransport
-    _transport_registry["grpc_asyncio"] = EkmServiceGrpcAsyncIOTransport
-
-    def get_transport_class(cls,
-            label: str = None,
-        ) -> Type[EkmServiceTransport]:
-        """Returns an appropriate transport class.
-
-        Args:
-            label: The name of the desired transport. If none is
-                provided, then the first transport in the registry is used.
-
-        Returns:
-            The transport class to use.
-        """
-        # If a specific transport is requested, return that one.
-        if label:
-            return cls._transport_registry[label]
-
-        # No transport is requested; return the default (that is, the first one
-        # in the dictionary).
-        return next(iter(cls._transport_registry.values()))
-
-
-class EkmServiceClient(metaclass=EkmServiceClientMeta):
+class EkmServiceAsyncClient:
     """Google Cloud Key Management EKM Service
 
     Manages external cryptographic keys and operations using those keys.
@@ -86,39 +51,32 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
     -  [EkmConnection][google.cloud.kms.v1.EkmConnection]
     """
 
-    @staticmethod
-    def _get_default_mtls_endpoint(api_endpoint):
-        """Converts api endpoint to mTLS endpoint.
+    _client: EkmServiceClient
 
-        Convert "*.sandbox.googleapis.com" and "*.googleapis.com" to
-        "*.mtls.sandbox.googleapis.com" and "*.mtls.googleapis.com" respectively.
-        Args:
-            api_endpoint (Optional[str]): the api endpoint to convert.
-        Returns:
-            str: converted mTLS api endpoint.
-        """
-        if not api_endpoint:
-            return api_endpoint
+    DEFAULT_ENDPOINT = EkmServiceClient.DEFAULT_ENDPOINT
+    DEFAULT_MTLS_ENDPOINT = EkmServiceClient.DEFAULT_MTLS_ENDPOINT
 
-        mtls_endpoint_re = re.compile(
-            r"(?P<name>[^.]+)(?P<mtls>\.mtls)?(?P<sandbox>\.sandbox)?(?P<googledomain>\.googleapis\.com)?"
-        )
-
-        m = mtls_endpoint_re.match(api_endpoint)
-        name, mtls, sandbox, googledomain = m.groups()
-        if mtls or not googledomain:
-            return api_endpoint
-
-        if sandbox:
-            return api_endpoint.replace(
-                "sandbox.googleapis.com", "mtls.sandbox.googleapis.com"
-            )
-
-        return api_endpoint.replace(".googleapis.com", ".mtls.googleapis.com")
-
-    DEFAULT_ENDPOINT = "cloudkms.googleapis.com"
-    DEFAULT_MTLS_ENDPOINT = _get_default_mtls_endpoint.__func__(  # type: ignore
-        DEFAULT_ENDPOINT
+    ekm_connection_path = staticmethod(EkmServiceClient.ekm_connection_path)
+    parse_ekm_connection_path = staticmethod(EkmServiceClient.parse_ekm_connection_path)
+    service_path = staticmethod(EkmServiceClient.service_path)
+    parse_service_path = staticmethod(EkmServiceClient.parse_service_path)
+    common_billing_account_path = staticmethod(
+        EkmServiceClient.common_billing_account_path
+    )
+    parse_common_billing_account_path = staticmethod(
+        EkmServiceClient.parse_common_billing_account_path
+    )
+    common_folder_path = staticmethod(EkmServiceClient.common_folder_path)
+    parse_common_folder_path = staticmethod(EkmServiceClient.parse_common_folder_path)
+    common_organization_path = staticmethod(EkmServiceClient.common_organization_path)
+    parse_common_organization_path = staticmethod(
+        EkmServiceClient.parse_common_organization_path
+    )
+    common_project_path = staticmethod(EkmServiceClient.common_project_path)
+    parse_common_project_path = staticmethod(EkmServiceClient.parse_common_project_path)
+    common_location_path = staticmethod(EkmServiceClient.common_location_path)
+    parse_common_location_path = staticmethod(
+        EkmServiceClient.parse_common_location_path
     )
 
     @classmethod
@@ -126,22 +84,22 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
         """Creates an instance of this client using the provided credentials
             info.
 
+
         Args:
             info (dict): The service account private key info.
             args: Additional arguments to pass to the constructor.
             kwargs: Additional arguments to pass to the constructor.
 
         Returns:
-            EkmServiceClient: The constructed client.
+            EkmServiceAsyncClient: The constructed client.
         """
-        credentials = service_account.Credentials.from_service_account_info(info)
-        kwargs["credentials"] = credentials
-        return cls(*args, **kwargs)
+        return EkmServiceClient.from_service_account_info.__func__(EkmServiceAsyncClient, info, *args, **kwargs)  # type: ignore
 
     @classmethod
     def from_service_account_file(cls, filename: str, *args, **kwargs):
         """Creates an instance of this client using the provided credentials
             file.
+
 
         Args:
             filename (str): The path to the service account private key json
@@ -150,104 +108,16 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
             kwargs: Additional arguments to pass to the constructor.
 
         Returns:
-            EkmServiceClient: The constructed client.
+            EkmServiceAsyncClient: The constructed client.
         """
-        credentials = service_account.Credentials.from_service_account_file(
-            filename)
-        kwargs["credentials"] = credentials
-        return cls(*args, **kwargs)
+        return EkmServiceClient.from_service_account_file.__func__(EkmServiceAsyncClient, filename, *args, **kwargs)  # type: ignore
 
     from_service_account_json = from_service_account_file
 
-    @property
-    def transport(self) -> EkmServiceTransport:
-        """Returns the transport used by the client instance.
-
-        Returns:
-            EkmServiceTransport: The transport used by the client
-                instance.
-        """
-        return self._transport
-
-    @staticmethod
-    def ekm_connection_path(project: str,location: str,ekm_connection: str,) -> str:
-        """Returns a fully-qualified ekm_connection string."""
-        return "projects/{project}/locations/{location}/ekmConnections/{ekm_connection}".format(project=project, location=location, ekm_connection=ekm_connection, )
-
-    @staticmethod
-    def parse_ekm_connection_path(path: str) -> Dict[str,str]:
-        """Parses a ekm_connection path into its component segments."""
-        m = re.match(r"^projects/(?P<project>.+?)/locations/(?P<location>.+?)/ekmConnections/(?P<ekm_connection>.+?)$", path)
-        return m.groupdict() if m else {}
-
-    @staticmethod
-    def service_path(project: str,location: str,namespace: str,service: str,) -> str:
-        """Returns a fully-qualified service string."""
-        return "projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}".format(project=project, location=location, namespace=namespace, service=service, )
-
-    @staticmethod
-    def parse_service_path(path: str) -> Dict[str,str]:
-        """Parses a service path into its component segments."""
-        m = re.match(r"^projects/(?P<project>.+?)/locations/(?P<location>.+?)/namespaces/(?P<namespace>.+?)/services/(?P<service>.+?)$", path)
-        return m.groupdict() if m else {}
-
-    @staticmethod
-    def common_billing_account_path(billing_account: str, ) -> str:
-        """Returns a fully-qualified billing_account string."""
-        return "billingAccounts/{billing_account}".format(billing_account=billing_account, )
-
-    @staticmethod
-    def parse_common_billing_account_path(path: str) -> Dict[str,str]:
-        """Parse a billing_account path into its component segments."""
-        m = re.match(r"^billingAccounts/(?P<billing_account>.+?)$", path)
-        return m.groupdict() if m else {}
-
-    @staticmethod
-    def common_folder_path(folder: str, ) -> str:
-        """Returns a fully-qualified folder string."""
-        return "folders/{folder}".format(folder=folder, )
-
-    @staticmethod
-    def parse_common_folder_path(path: str) -> Dict[str,str]:
-        """Parse a folder path into its component segments."""
-        m = re.match(r"^folders/(?P<folder>.+?)$", path)
-        return m.groupdict() if m else {}
-
-    @staticmethod
-    def common_organization_path(organization: str, ) -> str:
-        """Returns a fully-qualified organization string."""
-        return "organizations/{organization}".format(organization=organization, )
-
-    @staticmethod
-    def parse_common_organization_path(path: str) -> Dict[str,str]:
-        """Parse a organization path into its component segments."""
-        m = re.match(r"^organizations/(?P<organization>.+?)$", path)
-        return m.groupdict() if m else {}
-
-    @staticmethod
-    def common_project_path(project: str, ) -> str:
-        """Returns a fully-qualified project string."""
-        return "projects/{project}".format(project=project, )
-
-    @staticmethod
-    def parse_common_project_path(path: str) -> Dict[str,str]:
-        """Parse a project path into its component segments."""
-        m = re.match(r"^projects/(?P<project>.+?)$", path)
-        return m.groupdict() if m else {}
-
-    @staticmethod
-    def common_location_path(project: str, location: str, ) -> str:
-        """Returns a fully-qualified location string."""
-        return "projects/{project}/locations/{location}".format(project=project, location=location, )
-
-    @staticmethod
-    def parse_common_location_path(path: str) -> Dict[str,str]:
-        """Parse a location path into its component segments."""
-        m = re.match(r"^projects/(?P<project>.+?)/locations/(?P<location>.+?)$", path)
-        return m.groupdict() if m else {}
-
     @classmethod
-    def get_mtls_endpoint_and_cert_source(cls, client_options: Optional[client_options_lib.ClientOptions] = None):
+    def get_mtls_endpoint_and_cert_source(
+        cls, client_options: Optional[ClientOptions] = None
+    ):
         """Return the API endpoint and client cert source for mutual TLS.
 
         The client cert source is determined in the following order:
@@ -266,6 +136,7 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
 
         More details can be found at https://google.aip.dev/auth/4114.
 
+
         Args:
             client_options (google.api_core.client_options.ClientOptions): Custom options for the
                 client. Only the `api_endpoint` and `client_cert_source` properties may be used
@@ -278,40 +149,31 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
         Raises:
             google.auth.exceptions.MutualTLSChannelError: If any errors happen.
         """
-        if client_options is None:
-            client_options = client_options_lib.ClientOptions()
-        use_client_cert = os.getenv("GOOGLE_API_USE_CLIENT_CERTIFICATE", "false")
-        use_mtls_endpoint = os.getenv("GOOGLE_API_USE_MTLS_ENDPOINT", "auto")
-        if use_client_cert not in ("true", "false"):
-            raise ValueError("Environment variable `GOOGLE_API_USE_CLIENT_CERTIFICATE` must be either `true` or `false`")
-        if use_mtls_endpoint not in ("auto", "never", "always"):
-            raise MutualTLSChannelError("Environment variable `GOOGLE_API_USE_MTLS_ENDPOINT` must be `never`, `auto` or `always`")
+        return EkmServiceClient.get_mtls_endpoint_and_cert_source(client_options)  # type: ignore
 
-        # Figure out the client cert source to use.
-        client_cert_source = None
-        if use_client_cert == "true":
-            if client_options.client_cert_source:
-                client_cert_source = client_options.client_cert_source
-            elif mtls.has_default_client_cert_source():
-                client_cert_source = mtls.default_client_cert_source()
+    @property
+    def transport(self) -> EkmServiceTransport:
+        """Returns the transport used by the client instance.
 
-        # Figure out which api endpoint to use.
-        if client_options.api_endpoint is not None:
-            api_endpoint = client_options.api_endpoint
-        elif use_mtls_endpoint == "always" or (use_mtls_endpoint == "auto" and client_cert_source):
-            api_endpoint = cls.DEFAULT_MTLS_ENDPOINT
-        else:
-            api_endpoint = cls.DEFAULT_ENDPOINT
+        Returns:
+            EkmServiceTransport: The transport used by the client instance.
+        """
+        return self._client.transport
 
-        return api_endpoint, client_cert_source
+    get_transport_class = functools.partial(
+        type(EkmServiceClient).get_transport_class, type(EkmServiceClient)
+    )
 
-    def __init__(self, *,
-            credentials: Optional[ga_credentials.Credentials] = None,
-            transport: Union[str, EkmServiceTransport, None] = None,
-            client_options: Optional[client_options_lib.ClientOptions] = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        credentials: ga_credentials.Credentials = None,
+        transport: Union[str, EkmServiceTransport] = "grpc_asyncio",
+        client_options: ClientOptions = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+    ) -> None:
         """Instantiates the ekm service client.
+
 
         Args:
             credentials (Optional[google.auth.credentials.Credentials]): The
@@ -319,11 +181,11 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
                 credentials identify the application to the service; if none
                 are specified, the client will attempt to ascertain the
                 credentials from the environment.
-            transport (Union[str, EkmServiceTransport]): The
+            transport (Union[str, ~.EkmServiceTransport]): The
                 transport to use. If set to None, a transport is chosen
                 automatically.
-            client_options (google.api_core.client_options.ClientOptions): Custom options for the
-                client. It won't take effect if a ``transport`` instance is provided.
+            client_options (ClientOptions): Custom options for the client. It
+                won't take effect if a ``transport`` instance is provided.
                 (1) The ``api_endpoint`` property can be used to override the
                 default endpoint provided by the client. GOOGLE_API_USE_MTLS_ENDPOINT
                 environment variable can also be used to override the endpoint:
@@ -338,74 +200,35 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
                 not provided, the default SSL client certificate will be used if
                 present. If GOOGLE_API_USE_CLIENT_CERTIFICATE is "false" or not
                 set, no client certificate will be used.
-            client_info (google.api_core.gapic_v1.client_info.ClientInfo):
-                The client info used to send a user-agent string along with
-                API requests. If ``None``, then default info will be used.
-                Generally, you only need to set this if you're developing
-                your own client library.
 
         Raises:
-            google.auth.exceptions.MutualTLSChannelError: If mutual TLS transport
+            google.auth.exceptions.MutualTlsChannelError: If mutual TLS transport
                 creation failed for any reason.
         """
-        if isinstance(client_options, dict):
-            client_options = client_options_lib.from_dict(client_options)
-        if client_options is None:
-            client_options = client_options_lib.ClientOptions()
+        self._client = EkmServiceClient(
+            credentials=credentials,
+            transport=transport,
+            client_options=client_options,
+            client_info=client_info,
+        )
 
-        api_endpoint, client_cert_source_func = self.get_mtls_endpoint_and_cert_source(client_options)
-
-        api_key_value = getattr(client_options, "api_key", None)
-        if api_key_value and credentials:
-            raise ValueError("client_options.api_key and credentials are mutually exclusive")
-
-        # Save or instantiate the transport.
-        # Ordinarily, we provide the transport, but allowing a custom transport
-        # instance provides an extensibility point for unusual situations.
-        if isinstance(transport, EkmServiceTransport):
-            # transport is a EkmServiceTransport instance.
-            if credentials or client_options.credentials_file or api_key_value:
-                raise ValueError("When providing a transport instance, "
-                                 "provide its credentials directly.")
-            if client_options.scopes:
-                raise ValueError(
-                    "When providing a transport instance, provide its scopes "
-                    "directly."
-                )
-            self._transport = transport
-        else:
-            import google.auth._default  # type: ignore
-
-            if api_key_value and hasattr(google.auth._default, "get_api_key_credentials"):
-                credentials = google.auth._default.get_api_key_credentials(api_key_value)
-
-            Transport = type(self).get_transport_class(transport)
-            self._transport = Transport(
-                credentials=credentials,
-                credentials_file=client_options.credentials_file,
-                host=api_endpoint,
-                scopes=client_options.scopes,
-                client_cert_source_for_mtls=client_cert_source_func,
-                quota_project_id=client_options.quota_project_id,
-                client_info=client_info,
-                always_use_jwt_access=True,
-            )
-
-    def list_ekm_connections(self,
-            request: Union[ekm_service.ListEkmConnectionsRequest, dict] = None,
-            *,
-            parent: str = None,
-            retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> pagers.ListEkmConnectionsPager:
+    async def list_ekm_connections(
+        self,
+        request: Union[ekm_service.ListEkmConnectionsRequest, dict] = None,
+        *,
+        parent: str = None,
+        retry: OptionalRetry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> pagers.ListEkmConnectionsAsyncPager:
         r"""Lists [EkmConnections][google.cloud.kms.v1.EkmConnection].
+
 
         Args:
             request (Union[google.cloud.kms_v1.types.ListEkmConnectionsRequest, dict]):
                 The request object. Request message for
                 [KeyManagementService.ListEkmConnections][].
-            parent (str):
+            parent (:class:`str`):
                 Required. The resource name of the location associated
                 with the
                 [EkmConnections][google.cloud.kms.v1.EkmConnection] to
@@ -421,7 +244,7 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
                 sent along with the request as metadata.
 
         Returns:
-            google.cloud.kms_v1.services.ekm_service.pagers.ListEkmConnectionsPager:
+            google.cloud.kms_v1.services.ekm_service.pagers.ListEkmConnectionsAsyncPager:
                 Response message for
                 [KeyManagementService.ListEkmConnections][].
 
@@ -434,68 +257,72 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
-        # Minor optimization to avoid making a copy if the user passes
-        # in a ekm_service.ListEkmConnectionsRequest.
-        # There's no risk of modifying the input as we've already verified
-        # there are no flattened fields.
-        if not isinstance(request, ekm_service.ListEkmConnectionsRequest):
-            request = ekm_service.ListEkmConnectionsRequest(request)
-            # If we have keyword arguments corresponding to fields on the
-            # request, apply these.
-            if parent is not None:
-                request.parent = parent
+        request = ekm_service.ListEkmConnectionsRequest(request)
+
+        # If we have keyword arguments corresponding to fields on the
+        # request, apply these.
+        if parent is not None:
+            request.parent = parent
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.list_ekm_connections]
+        rpc = gapic_v1.method_async.wrap_method(
+            self._client._transport.list_ekm_connections,
+            default_retry=retries.Retry(
+                initial=0.1,
+                maximum=60.0,
+                multiplier=1.3,
+                predicate=retries.if_exception_type(
+                    core_exceptions.DeadlineExceeded,
+                    core_exceptions.ServiceUnavailable,
+                ),
+                deadline=60.0,
+            ),
+            default_timeout=60.0,
+            client_info=DEFAULT_CLIENT_INFO,
+        )
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ("parent", request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # This method is paged; wrap the response in a pager, which provides
-        # an `__iter__` convenience method.
-        response = pagers.ListEkmConnectionsPager(
-            method=rpc,
-            request=request,
-            response=response,
-            metadata=metadata,
+        # an `__aiter__` convenience method.
+        response = pagers.ListEkmConnectionsAsyncPager(
+            method=rpc, request=request, response=response, metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def get_ekm_connection(self,
-            request: Union[ekm_service.GetEkmConnectionRequest, dict] = None,
-            *,
-            name: str = None,
-            retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> ekm_service.EkmConnection:
+    async def get_ekm_connection(
+        self,
+        request: Union[ekm_service.GetEkmConnectionRequest, dict] = None,
+        *,
+        name: str = None,
+        retry: OptionalRetry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> ekm_service.EkmConnection:
         r"""Returns metadata for a given
         [EkmConnection][google.cloud.kms.v1.EkmConnection].
+
 
         Args:
             request (Union[google.cloud.kms_v1.types.GetEkmConnectionRequest, dict]):
                 The request object. Request message for
                 [KeyManagementService.GetEkmConnection][].
-            name (str):
+            name (:class:`str`):
                 Required. The
                 [name][google.cloud.kms.v1.EkmConnection.name] of the
                 [EkmConnection][google.cloud.kms.v1.EkmConnection] to
@@ -531,61 +358,68 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([name])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
-        # Minor optimization to avoid making a copy if the user passes
-        # in a ekm_service.GetEkmConnectionRequest.
-        # There's no risk of modifying the input as we've already verified
-        # there are no flattened fields.
-        if not isinstance(request, ekm_service.GetEkmConnectionRequest):
-            request = ekm_service.GetEkmConnectionRequest(request)
-            # If we have keyword arguments corresponding to fields on the
-            # request, apply these.
-            if name is not None:
-                request.name = name
+        request = ekm_service.GetEkmConnectionRequest(request)
+
+        # If we have keyword arguments corresponding to fields on the
+        # request, apply these.
+        if name is not None:
+            request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.get_ekm_connection]
+        rpc = gapic_v1.method_async.wrap_method(
+            self._client._transport.get_ekm_connection,
+            default_retry=retries.Retry(
+                initial=0.1,
+                maximum=60.0,
+                multiplier=1.3,
+                predicate=retries.if_exception_type(
+                    core_exceptions.DeadlineExceeded,
+                    core_exceptions.ServiceUnavailable,
+                ),
+                deadline=60.0,
+            ),
+            default_timeout=60.0,
+            client_info=DEFAULT_CLIENT_INFO,
+        )
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ("name", request.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def create_ekm_connection(self,
-            request: Union[ekm_service.CreateEkmConnectionRequest, dict] = None,
-            *,
-            parent: str = None,
-            ekm_connection_id: str = None,
-            ekm_connection: ekm_service.EkmConnection = None,
-            retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> ekm_service.EkmConnection:
+    async def create_ekm_connection(
+        self,
+        request: Union[ekm_service.CreateEkmConnectionRequest, dict] = None,
+        *,
+        parent: str = None,
+        ekm_connection_id: str = None,
+        ekm_connection: ekm_service.EkmConnection = None,
+        retry: OptionalRetry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> ekm_service.EkmConnection:
         r"""Creates a new [EkmConnection][google.cloud.kms.v1.EkmConnection]
         in a given Project and Location.
+
 
         Args:
             request (Union[google.cloud.kms_v1.types.CreateEkmConnectionRequest, dict]):
                 The request object. Request message for
                 [KeyManagementService.CreateEkmConnection][].
-            parent (str):
+            parent (:class:`str`):
                 Required. The resource name of the location associated
                 with the
                 [EkmConnection][google.cloud.kms.v1.EkmConnection], in
@@ -594,14 +428,14 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            ekm_connection_id (str):
+            ekm_connection_id (:class:`str`):
                 Required. It must be unique within a location and match
                 the regular expression ``[a-zA-Z0-9_-]{1,63}``.
 
                 This corresponds to the ``ekm_connection_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            ekm_connection (google.cloud.kms_v1.types.EkmConnection):
+            ekm_connection (:class:`google.cloud.kms_v1.types.EkmConnection`):
                 Required. An
                 [EkmConnection][google.cloud.kms.v1.EkmConnection] with
                 initial field values.
@@ -636,64 +470,71 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent, ekm_connection_id, ekm_connection])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
-        # Minor optimization to avoid making a copy if the user passes
-        # in a ekm_service.CreateEkmConnectionRequest.
-        # There's no risk of modifying the input as we've already verified
-        # there are no flattened fields.
-        if not isinstance(request, ekm_service.CreateEkmConnectionRequest):
-            request = ekm_service.CreateEkmConnectionRequest(request)
-            # If we have keyword arguments corresponding to fields on the
-            # request, apply these.
-            if parent is not None:
-                request.parent = parent
-            if ekm_connection_id is not None:
-                request.ekm_connection_id = ekm_connection_id
-            if ekm_connection is not None:
-                request.ekm_connection = ekm_connection
+        request = ekm_service.CreateEkmConnectionRequest(request)
+
+        # If we have keyword arguments corresponding to fields on the
+        # request, apply these.
+        if parent is not None:
+            request.parent = parent
+        if ekm_connection_id is not None:
+            request.ekm_connection_id = ekm_connection_id
+        if ekm_connection is not None:
+            request.ekm_connection = ekm_connection
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.create_ekm_connection]
+        rpc = gapic_v1.method_async.wrap_method(
+            self._client._transport.create_ekm_connection,
+            default_retry=retries.Retry(
+                initial=0.1,
+                maximum=60.0,
+                multiplier=1.3,
+                predicate=retries.if_exception_type(
+                    core_exceptions.DeadlineExceeded,
+                    core_exceptions.ServiceUnavailable,
+                ),
+                deadline=60.0,
+            ),
+            default_timeout=60.0,
+            client_info=DEFAULT_CLIENT_INFO,
+        )
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ("parent", request.parent),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def update_ekm_connection(self,
-            request: Union[ekm_service.UpdateEkmConnectionRequest, dict] = None,
-            *,
-            ekm_connection: ekm_service.EkmConnection = None,
-            update_mask: field_mask_pb2.FieldMask = None,
-            retry: OptionalRetry = gapic_v1.method.DEFAULT,
-            timeout: float = None,
-            metadata: Sequence[Tuple[str, str]] = (),
-            ) -> ekm_service.EkmConnection:
+    async def update_ekm_connection(
+        self,
+        request: Union[ekm_service.UpdateEkmConnectionRequest, dict] = None,
+        *,
+        ekm_connection: ekm_service.EkmConnection = None,
+        update_mask: field_mask_pb2.FieldMask = None,
+        retry: OptionalRetry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> ekm_service.EkmConnection:
         r"""Updates an [EkmConnection][google.cloud.kms.v1.EkmConnection]'s
         metadata.
+
 
         Args:
             request (Union[google.cloud.kms_v1.types.UpdateEkmConnectionRequest, dict]):
                 The request object. Request message for
                 [KeyManagementService.UpdateEkmConnection][].
-            ekm_connection (google.cloud.kms_v1.types.EkmConnection):
+            ekm_connection (:class:`google.cloud.kms_v1.types.EkmConnection`):
                 Required.
                 [EkmConnection][google.cloud.kms.v1.EkmConnection] with
                 updated values.
@@ -701,7 +542,7 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
                 This corresponds to the ``ekm_connection`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            update_mask (google.protobuf.field_mask_pb2.FieldMask):
+            update_mask (:class:`google.protobuf.field_mask_pb2.FieldMask`):
                 Required. List of fields to be
                 updated in this request.
 
@@ -735,59 +576,53 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([ekm_connection, update_mask])
         if request is not None and has_flattened_params:
-            raise ValueError('If the `request` argument is set, then none of '
-                             'the individual field arguments should be set.')
+            raise ValueError(
+                "If the `request` argument is set, then none of "
+                "the individual field arguments should be set."
+            )
 
-        # Minor optimization to avoid making a copy if the user passes
-        # in a ekm_service.UpdateEkmConnectionRequest.
-        # There's no risk of modifying the input as we've already verified
-        # there are no flattened fields.
-        if not isinstance(request, ekm_service.UpdateEkmConnectionRequest):
-            request = ekm_service.UpdateEkmConnectionRequest(request)
-            # If we have keyword arguments corresponding to fields on the
-            # request, apply these.
-            if ekm_connection is not None:
-                request.ekm_connection = ekm_connection
-            if update_mask is not None:
-                request.update_mask = update_mask
+        request = ekm_service.UpdateEkmConnectionRequest(request)
+
+        # If we have keyword arguments corresponding to fields on the
+        # request, apply these.
+        if ekm_connection is not None:
+            request.ekm_connection = ekm_connection
+        if update_mask is not None:
+            request.update_mask = update_mask
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[self._transport.update_ekm_connection]
+        rpc = gapic_v1.method_async.wrap_method(
+            self._client._transport.update_ekm_connection,
+            default_retry=retries.Retry(
+                initial=0.1,
+                maximum=60.0,
+                multiplier=1.3,
+                predicate=retries.if_exception_type(
+                    core_exceptions.DeadlineExceeded,
+                    core_exceptions.ServiceUnavailable,
+                ),
+                deadline=60.0,
+            ),
+            default_timeout=60.0,
+            client_info=DEFAULT_CLIENT_INFO,
+        )
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((
-                ("ekm_connection.name", request.ekm_connection.name),
-            )),
+            gapic_v1.routing_header.to_grpc_metadata(
+                (("ekm_connection.name", request.ekm_connection.name),)
+            ),
         )
 
         # Send the request.
-        response = rpc(
-            request,
-            retry=retry,
-            timeout=timeout,
-            metadata=metadata,
-        )
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def __enter__(self):
-        return self
-
-    def __exit__(self, type, value, traceback):
-        """Releases underlying transport's resources.
-
-        .. warning::
-            ONLY use as a context manager if the transport is NOT shared
-            with other clients! Exiting the with block will CLOSE the transport
-            and may cause errors in other clients!
-        """
-        self.transport.close()
-
-    def set_iam_policy(
+    async def set_iam_policy(
         self,
         request: iam_policy_pb2.SetIamPolicyRequest = None,
         *,
@@ -799,8 +634,9 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
 
         Replaces any existing policy.
 
+
         Args:
-            request (:class:`~.iam_policy_pb2.SetIamPolicyRequest`):
+            request (:class:`~.policy_pb2.SetIamPolicyRequest`):
                 The request object. Request message for `SetIamPolicy`
                 method.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
@@ -823,8 +659,9 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
                 expression that further constrains the role binding
                 based on attributes about the request and/or target
                 resource.
-                **JSON Example**
-                ::
+
+                **JSON Example**::
+
                     {
                       "bindings": [
                         {
@@ -848,8 +685,9 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
                         }
                       ]
                     }
-                **YAML Example**
-                ::
+
+                **YAML Example**::
+
                     bindings:
                     - members:
                       - user:mike@example.com
@@ -864,6 +702,7 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
                         title: expirable access
                         description: Does not grant access after Sep 2020
                         expression: request.time < timestamp('2020-10-01T00:00:00.000Z')
+
                 For a description of IAM and its features, see the `IAM
                 developer's
                 guide <https://cloud.google.com/iam/docs>`__.
@@ -877,8 +716,8 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.set_iam_policy,
+        rpc = gapic_v1.method_async.wrap_method(
+            self._client._transport.set_iam_policy,
             default_timeout=None,
             client_info=DEFAULT_CLIENT_INFO,
         )
@@ -886,18 +725,16 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata(
-                (("resource", request.resource),)),
+            gapic_v1.routing_header.to_grpc_metadata((("resource", request.resource),)),
         )
 
         # Send the request.
-        response = rpc(
-            request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def get_iam_policy(
+    async def get_iam_policy(
         self,
         request: iam_policy_pb2.GetIamPolicyRequest = None,
         *,
@@ -907,15 +744,16 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
     ) -> policy_pb2.Policy:
         r"""Gets the IAM access control policy for a function.
 
-        Returns an empty policy if the function exists and does not have a
-        policy set.
+        Returns an empty policy if the function exists and does
+        not have a policy set.
+
 
         Args:
             request (:class:`~.iam_policy_pb2.GetIamPolicyRequest`):
                 The request object. Request message for `GetIamPolicy`
                 method.
-            retry (google.api_core.retry.Retry): Designation of what errors, if
-                any, should be retried.
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
             timeout (float): The timeout for this request.
             metadata (Sequence[Tuple[str, str]]): Strings which should be
                 sent along with the request as metadata.
@@ -934,8 +772,9 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
                 expression that further constrains the role binding
                 based on attributes about the request and/or target
                 resource.
-                **JSON Example**
-                ::
+
+                **JSON Example**::
+
                     {
                       "bindings": [
                         {
@@ -959,8 +798,9 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
                         }
                       ]
                     }
-                **YAML Example**
-                ::
+
+                **YAML Example**::
+
                     bindings:
                     - members:
                       - user:mike@example.com
@@ -975,6 +815,7 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
                         title: expirable access
                         description: Does not grant access after Sep 2020
                         expression: request.time < timestamp('2020-10-01T00:00:00.000Z')
+
                 For a description of IAM and its features, see the `IAM
                 developer's
                 guide <https://cloud.google.com/iam/docs>`__.
@@ -988,8 +829,8 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_iam_policy,
+        rpc = gapic_v1.method_async.wrap_method(
+            self._client._transport.get_iam_policy,
             default_timeout=None,
             client_info=DEFAULT_CLIENT_INFO,
         )
@@ -997,18 +838,16 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata(
-                (("resource", request.resource),)),
+            gapic_v1.routing_header.to_grpc_metadata((("resource", request.resource),)),
         )
 
         # Send the request.
-        response = rpc(
-            request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
-    def test_iam_permissions(
+    async def test_iam_permissions(
         self,
         request: iam_policy_pb2.TestIamPermissionsRequest = None,
         *,
@@ -1016,23 +855,24 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> iam_policy_pb2.TestIamPermissionsResponse:
-        r"""Tests the specified IAM permissions against the IAM access control
+        r"""Tests the specified permissions against the IAM access control
             policy for a function.
 
-        If the function does not exist, this will return an empty set
-        of permissions, not a NOT_FOUND error.
+        If the function does not exist, this will
+        return an empty set of permissions, not a NOT_FOUND error.
+
 
         Args:
             request (:class:`~.iam_policy_pb2.TestIamPermissionsRequest`):
                 The request object. Request message for
                 `TestIamPermissions` method.
-            retry (google.api_core.retry.Retry): Designation of what errors,
-                 if any, should be retried.
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
             timeout (float): The timeout for this request.
             metadata (Sequence[Tuple[str, str]]): Strings which should be
                 sent along with the request as metadata.
         Returns:
-            ~.iam_policy_pb2.TestIamPermissionsResponse:
+            ~iam_policy_pb2.PolicyTestIamPermissionsResponse:
                 Response message for ``TestIamPermissions`` method.
         """
         # Create or coerce a protobuf request object.
@@ -1044,8 +884,8 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.test_iam_permissions,
+        rpc = gapic_v1.method_async.wrap_method(
+            self._client._transport.test_iam_permissions,
             default_timeout=None,
             client_info=DEFAULT_CLIENT_INFO,
         )
@@ -1053,28 +893,28 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata(
-                (("resource", request.resource),)),
+            gapic_v1.routing_header.to_grpc_metadata((("resource", request.resource),)),
         )
 
         # Send the request.
-        response = rpc(
-            request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
 
         # Done; return the response.
         return response
 
+    async def __aenter__(self):
+        return self
+
+    async def __aexit__(self, exc_type, exc, tb):
+        await self.transport.close()
+
 
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution(
-            "google-cloud-kms",
-        ).version,
+        gapic_version=pkg_resources.get_distribution("google-cloud-kms",).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = (
-    "EkmServiceClient",
-)
+__all__ = ("EkmServiceAsyncClient",)

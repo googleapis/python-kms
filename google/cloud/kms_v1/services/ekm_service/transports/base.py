@@ -23,7 +23,7 @@ from google.api_core import exceptions as core_exceptions
 from google.api_core import gapic_v1
 from google.api_core import retry as retries
 from google.auth import credentials as ga_credentials  # type: ignore
-from google.oauth2 import service_account # type: ignore
+from google.oauth2 import service_account  # type: ignore
 
 from google.cloud.kms_v1.types import ekm_service
 from google.iam.v1 import iam_policy_pb2  # type: ignore
@@ -31,9 +31,7 @@ from google.iam.v1 import policy_pb2  # type: ignore
 
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution(
-            'google-cloud-kms',
-        ).version,
+        gapic_version=pkg_resources.get_distribution("google-cloud-kms",).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
@@ -43,22 +41,24 @@ class EkmServiceTransport(abc.ABC):
     """Abstract transport class for EkmService."""
 
     AUTH_SCOPES = (
-        'https://www.googleapis.com/auth/cloud-platform',
-        'https://www.googleapis.com/auth/cloudkms',
+        "https://www.googleapis.com/auth/cloud-platform",
+        "https://www.googleapis.com/auth/cloudkms",
     )
 
-    DEFAULT_HOST: str = 'cloudkms.googleapis.com'
+    DEFAULT_HOST: str = "cloudkms.googleapis.com"
+
     def __init__(
-            self, *,
-            host: str = DEFAULT_HOST,
-            credentials: ga_credentials.Credentials = None,
-            credentials_file: Optional[str] = None,
-            scopes: Optional[Sequence[str]] = None,
-            quota_project_id: Optional[str] = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            always_use_jwt_access: Optional[bool] = False,
-            **kwargs,
-            ) -> None:
+        self,
+        *,
+        host: str = DEFAULT_HOST,
+        credentials: ga_credentials.Credentials = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        quota_project_id: Optional[str] = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+        always_use_jwt_access: Optional[bool] = False,
+        **kwargs,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -84,8 +84,8 @@ class EkmServiceTransport(abc.ABC):
                 be used for service account credentials.
         """
         # Save the hostname. Default to port 443 (HTTPS) if none is specified.
-        if ':' not in host:
-            host += ':443'
+        if ":" not in host:
+            host += ":443"
         self._host = host
 
         scopes_kwargs = {"scopes": scopes, "default_scopes": self.AUTH_SCOPES}
@@ -96,19 +96,25 @@ class EkmServiceTransport(abc.ABC):
         # If no credentials are provided, then determine the appropriate
         # defaults.
         if credentials and credentials_file:
-            raise core_exceptions.DuplicateCredentialArgs("'credentials_file' and 'credentials' are mutually exclusive")
+            raise core_exceptions.DuplicateCredentialArgs(
+                "'credentials_file' and 'credentials' are mutually exclusive"
+            )
 
         if credentials_file is not None:
             credentials, _ = google.auth.load_credentials_from_file(
-                                credentials_file,
-                                **scopes_kwargs,
-                                quota_project_id=quota_project_id
-                            )
+                credentials_file, **scopes_kwargs, quota_project_id=quota_project_id
+            )
         elif credentials is None:
-            credentials, _ = google.auth.default(**scopes_kwargs, quota_project_id=quota_project_id)
+            credentials, _ = google.auth.default(
+                **scopes_kwargs, quota_project_id=quota_project_id
+            )
 
         # If the credentials are service account credentials, then always try to use self signed JWT.
-        if always_use_jwt_access and isinstance(credentials, service_account.Credentials) and hasattr(service_account.Credentials, "with_always_use_jwt_access"):
+        if (
+            always_use_jwt_access
+            and isinstance(credentials, service_account.Credentials)
+            and hasattr(service_account.Credentials, "with_always_use_jwt_access")
+        ):
             credentials = credentials.with_always_use_jwt_access(True)
 
         # Save the credentials.
@@ -120,7 +126,10 @@ class EkmServiceTransport(abc.ABC):
             self.list_ekm_connections: gapic_v1.method.wrap_method(
                 self.list_ekm_connections,
                 default_retry=retries.Retry(
-initial=0.1,maximum=60.0,multiplier=1.3,                    predicate=retries.if_exception_type(
+                    initial=0.1,
+                    maximum=60.0,
+                    multiplier=1.3,
+                    predicate=retries.if_exception_type(
                         core_exceptions.DeadlineExceeded,
                         core_exceptions.ServiceUnavailable,
                     ),
@@ -132,7 +141,10 @@ initial=0.1,maximum=60.0,multiplier=1.3,                    predicate=retries.if
             self.get_ekm_connection: gapic_v1.method.wrap_method(
                 self.get_ekm_connection,
                 default_retry=retries.Retry(
-initial=0.1,maximum=60.0,multiplier=1.3,                    predicate=retries.if_exception_type(
+                    initial=0.1,
+                    maximum=60.0,
+                    multiplier=1.3,
+                    predicate=retries.if_exception_type(
                         core_exceptions.DeadlineExceeded,
                         core_exceptions.ServiceUnavailable,
                     ),
@@ -144,7 +156,10 @@ initial=0.1,maximum=60.0,multiplier=1.3,                    predicate=retries.if
             self.create_ekm_connection: gapic_v1.method.wrap_method(
                 self.create_ekm_connection,
                 default_retry=retries.Retry(
-initial=0.1,maximum=60.0,multiplier=1.3,                    predicate=retries.if_exception_type(
+                    initial=0.1,
+                    maximum=60.0,
+                    multiplier=1.3,
+                    predicate=retries.if_exception_type(
                         core_exceptions.DeadlineExceeded,
                         core_exceptions.ServiceUnavailable,
                     ),
@@ -156,7 +171,10 @@ initial=0.1,maximum=60.0,multiplier=1.3,                    predicate=retries.if
             self.update_ekm_connection: gapic_v1.method.wrap_method(
                 self.update_ekm_connection,
                 default_retry=retries.Retry(
-initial=0.1,maximum=60.0,multiplier=1.3,                    predicate=retries.if_exception_type(
+                    initial=0.1,
+                    maximum=60.0,
+                    multiplier=1.3,
+                    predicate=retries.if_exception_type(
                         core_exceptions.DeadlineExceeded,
                         core_exceptions.ServiceUnavailable,
                     ),
@@ -165,7 +183,7 @@ initial=0.1,maximum=60.0,multiplier=1.3,                    predicate=retries.if
                 default_timeout=60.0,
                 client_info=client_info,
             ),
-         }
+        }
 
     def close(self):
         """Closes resources associated with the transport.
@@ -177,39 +195,42 @@ initial=0.1,maximum=60.0,multiplier=1.3,                    predicate=retries.if
         raise NotImplementedError()
 
     @property
-    def list_ekm_connections(self) -> Callable[
-            [ekm_service.ListEkmConnectionsRequest],
-            Union[
-                ekm_service.ListEkmConnectionsResponse,
-                Awaitable[ekm_service.ListEkmConnectionsResponse]
-            ]]:
+    def list_ekm_connections(
+        self,
+    ) -> Callable[
+        [ekm_service.ListEkmConnectionsRequest],
+        Union[
+            ekm_service.ListEkmConnectionsResponse,
+            Awaitable[ekm_service.ListEkmConnectionsResponse],
+        ],
+    ]:
         raise NotImplementedError()
 
     @property
-    def get_ekm_connection(self) -> Callable[
-            [ekm_service.GetEkmConnectionRequest],
-            Union[
-                ekm_service.EkmConnection,
-                Awaitable[ekm_service.EkmConnection]
-            ]]:
+    def get_ekm_connection(
+        self,
+    ) -> Callable[
+        [ekm_service.GetEkmConnectionRequest],
+        Union[ekm_service.EkmConnection, Awaitable[ekm_service.EkmConnection]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def create_ekm_connection(self) -> Callable[
-            [ekm_service.CreateEkmConnectionRequest],
-            Union[
-                ekm_service.EkmConnection,
-                Awaitable[ekm_service.EkmConnection]
-            ]]:
+    def create_ekm_connection(
+        self,
+    ) -> Callable[
+        [ekm_service.CreateEkmConnectionRequest],
+        Union[ekm_service.EkmConnection, Awaitable[ekm_service.EkmConnection]],
+    ]:
         raise NotImplementedError()
 
     @property
-    def update_ekm_connection(self) -> Callable[
-            [ekm_service.UpdateEkmConnectionRequest],
-            Union[
-                ekm_service.EkmConnection,
-                Awaitable[ekm_service.EkmConnection]
-            ]]:
+    def update_ekm_connection(
+        self,
+    ) -> Callable[
+        [ekm_service.UpdateEkmConnectionRequest],
+        Union[ekm_service.EkmConnection, Awaitable[ekm_service.EkmConnection]],
+    ]:
         raise NotImplementedError()
 
     @property
@@ -242,6 +263,5 @@ initial=0.1,maximum=60.0,multiplier=1.3,                    predicate=retries.if
     ]:
         raise NotImplementedError()
 
-__all__ = (
-    'EkmServiceTransport',
-)
+
+__all__ = ("EkmServiceTransport",)
