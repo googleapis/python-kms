@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -564,7 +564,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import kms_v1
+                    from google.cloud import kms_v1
 
             def sample_list_key_rings():
                 # Create a client
@@ -674,7 +674,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import kms_v1
+                    from google.cloud import kms_v1
 
             def sample_list_crypto_keys():
                 # Create a client
@@ -784,7 +784,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import kms_v1
+                    from google.cloud import kms_v1
 
             def sample_list_crypto_key_versions():
                 # Create a client
@@ -895,7 +895,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import kms_v1
+                    from google.cloud import kms_v1
 
             def sample_list_import_jobs():
                 # Create a client
@@ -1007,7 +1007,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import kms_v1
+                    from google.cloud import kms_v1
 
             def sample_get_key_ring():
                 # Create a client
@@ -1107,7 +1107,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import kms_v1
+                    from google.cloud import kms_v1
 
             def sample_get_crypto_key():
                 # Create a client
@@ -1212,7 +1212,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import kms_v1
+                    from google.cloud import kms_v1
 
             def sample_get_crypto_key_version():
                 # Create a client
@@ -1329,7 +1329,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import kms_v1
+                    from google.cloud import kms_v1
 
             def sample_get_public_key():
                 # Create a client
@@ -1431,7 +1431,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import kms_v1
+                    from google.cloud import kms_v1
 
             def sample_get_import_job():
                 # Create a client
@@ -1576,7 +1576,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import kms_v1
+                    from google.cloud import kms_v1
 
             def sample_create_key_ring():
                 # Create a client
@@ -1700,7 +1700,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import kms_v1
+                    from google.cloud import kms_v1
 
             def sample_create_crypto_key():
                 # Create a client
@@ -1831,7 +1831,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import kms_v1
+                    from google.cloud import kms_v1
 
             def sample_create_crypto_key_version():
                 # Create a client
@@ -1962,7 +1962,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import kms_v1
+                    from google.cloud import kms_v1
 
             def sample_import_crypto_key_version():
                 # Create a client
@@ -2062,7 +2062,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import kms_v1
+                    from google.cloud import kms_v1
 
             def sample_create_import_job():
                 # Create a client
@@ -2228,7 +2228,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import kms_v1
+                    from google.cloud import kms_v1
 
             def sample_update_crypto_key():
                 # Create a client
@@ -2355,7 +2355,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import kms_v1
+                    from google.cloud import kms_v1
 
             def sample_update_crypto_key_version():
                 # Create a client
@@ -2483,7 +2483,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import kms_v1
+                    from google.cloud import kms_v1
 
             def sample_update_crypto_key_primary_version():
                 # Create a client
@@ -2621,7 +2621,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import kms_v1
+                    from google.cloud import kms_v1
 
             def sample_destroy_crypto_key_version():
                 # Create a client
@@ -2744,7 +2744,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import kms_v1
+                    from google.cloud import kms_v1
 
             def sample_restore_crypto_key_version():
                 # Create a client
@@ -2861,7 +2861,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import kms_v1
+                    from google.cloud import kms_v1
 
             def sample_encrypt():
                 # Create a client
@@ -2989,7 +2989,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import kms_v1
+                    from google.cloud import kms_v1
 
             def sample_decrypt():
                 # Create a client
@@ -3104,7 +3104,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import kms_v1
+                    from google.cloud import kms_v1
 
             def sample_asymmetric_sign():
                 # Create a client
@@ -3224,7 +3224,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import kms_v1
+                    from google.cloud import kms_v1
 
             def sample_asymmetric_decrypt():
                 # Create a client
@@ -3338,7 +3338,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import kms_v1
+                    from google.cloud import kms_v1
 
             def sample_mac_sign():
                 # Create a client
@@ -3453,7 +3453,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import kms_v1
+                    from google.cloud import kms_v1
 
             def sample_mac_verify():
                 # Create a client
@@ -3573,7 +3573,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import kms_v1
+                    from google.cloud import kms_v1
 
             def sample_generate_random_bytes():
                 # Create a client
