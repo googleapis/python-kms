@@ -4,6 +4,13 @@
 
 [1]: https://pypi.org/project/google-cloud-kms/#history
 
+## [1.4.2](https://github.com/googleapis/python-kms/compare/v1.4.1...v1.4.2) (2022-06-08)
+
+
+### Bug Fixes
+
+* **deps:** require protobuf<4.0.0 on v1 branch ([#305](https://github.com/googleapis/python-kms/issues/305)) ([2c389e3](https://github.com/googleapis/python-kms/commit/2c389e359b88d182d0b5ff441a0954f6cfa00147))
+
 ### [1.4.1](https://github.com/googleapis/python-kms/compare/v1.4.0...v1.4.1) (2022-04-01)
 
 
