@@ -27,6 +27,7 @@ dependencies = [
     'google-api-core[grpc] >= 1.6.0, < 2.0.0dev',
     'grpc-google-iam-v1 >= 0.11.4, < 0.12dev',
     'enum34; python_version < "3.4"',
+    "protobuf<4.0.0dev",
 ]
 
 package_root = os.path.abspath(os.path.dirname(__file__))
