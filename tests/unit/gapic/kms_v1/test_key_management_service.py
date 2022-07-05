@@ -8440,7 +8440,6 @@ def test_key_management_service_transport_auth_adc(transport_class):
     [
         transports.KeyManagementServiceGrpcTransport,
         transports.KeyManagementServiceGrpcAsyncIOTransport,
-        transports.KeyManagementServiceRestTransport,
     ],
 )
 def test_key_management_service_transport_auth_gdch_credentials(transport_class):

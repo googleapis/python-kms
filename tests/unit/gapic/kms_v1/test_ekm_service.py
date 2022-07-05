@@ -2130,7 +2130,6 @@ def test_ekm_service_transport_auth_adc(transport_class):
     [
         transports.EkmServiceGrpcTransport,
         transports.EkmServiceGrpcAsyncIOTransport,
-        transports.EkmServiceRestTransport,
     ],
 )
 def test_ekm_service_transport_auth_gdch_credentials(transport_class):
