@@ -975,9 +975,9 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
                 based on attributes about the request and/or target
                 resource.
 
-                **JSON Example**
 
-                ::
+                **JSON Example**::
+
 
                     {
                       "bindings": [
@@ -1096,9 +1096,9 @@ class EkmServiceClient(metaclass=EkmServiceClientMeta):
                 based on attributes about the request and/or target
                 resource.
 
-                **JSON Example**
 
-                ::
+                **JSON Example**::
+
 
                     {
                       "bindings": [
