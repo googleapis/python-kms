@@ -16,7 +16,18 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union, cast
+from typing import (
+    Dict,
+    Mapping,
+    MutableMapping,
+    MutableSequence,
+    Optional,
+    Sequence,
+    Tuple,
+    Type,
+    Union,
+    cast,
+)
 import pkg_resources
 
 from google.api_core import client_options as client_options_lib
@@ -64,7 +75,7 @@ class KeyManagementServiceClientMeta(type):
 
     def get_transport_class(
         cls,
-        label: str = None,
+        label: Optional[str] = None,
     ) -> Type[KeyManagementServiceTransport]:
         """Returns an appropriate transport class.
 
@@ -451,7 +462,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
         self,
         *,
         credentials: Optional[ga_credentials.Credentials] = None,
-        transport: Union[str, KeyManagementServiceTransport, None] = None,
+        transport: Optional[Union[str, KeyManagementServiceTransport]] = None,
         client_options: Optional[Union[client_options_lib.ClientOptions, dict]] = None,
         client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
     ) -> None:
@@ -549,11 +560,11 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def list_key_rings(
         self,
-        request: Union[service.ListKeyRingsRequest, dict] = None,
+        request: Optional[Union[service.ListKeyRingsRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListKeyRingsPager:
         r"""Lists [KeyRings][google.cloud.kms.v1.KeyRing].
@@ -665,11 +676,11 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def list_crypto_keys(
         self,
-        request: Union[service.ListCryptoKeysRequest, dict] = None,
+        request: Optional[Union[service.ListCryptoKeysRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListCryptoKeysPager:
         r"""Lists [CryptoKeys][google.cloud.kms.v1.CryptoKey].
@@ -781,11 +792,11 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def list_crypto_key_versions(
         self,
-        request: Union[service.ListCryptoKeyVersionsRequest, dict] = None,
+        request: Optional[Union[service.ListCryptoKeyVersionsRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListCryptoKeyVersionsPager:
         r"""Lists [CryptoKeyVersions][google.cloud.kms.v1.CryptoKeyVersion].
@@ -898,11 +909,11 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def list_import_jobs(
         self,
-        request: Union[service.ListImportJobsRequest, dict] = None,
+        request: Optional[Union[service.ListImportJobsRequest, dict]] = None,
         *,
-        parent: str = None,
+        parent: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> pagers.ListImportJobsPager:
         r"""Lists [ImportJobs][google.cloud.kms.v1.ImportJob].
@@ -1014,11 +1025,11 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def get_key_ring(
         self,
-        request: Union[service.GetKeyRingRequest, dict] = None,
+        request: Optional[Union[service.GetKeyRingRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.KeyRing:
         r"""Returns metadata for a given
@@ -1117,11 +1128,11 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def get_crypto_key(
         self,
-        request: Union[service.GetCryptoKeyRequest, dict] = None,
+        request: Optional[Union[service.GetCryptoKeyRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.CryptoKey:
         r"""Returns metadata for a given
@@ -1229,11 +1240,11 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def get_crypto_key_version(
         self,
-        request: Union[service.GetCryptoKeyVersionRequest, dict] = None,
+        request: Optional[Union[service.GetCryptoKeyVersionRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.CryptoKeyVersion:
         r"""Returns metadata for a given
@@ -1346,11 +1357,11 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def get_public_key(
         self,
-        request: Union[service.GetPublicKeyRequest, dict] = None,
+        request: Optional[Union[service.GetPublicKeyRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.PublicKey:
         r"""Returns the public key for the given
@@ -1458,11 +1469,11 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def get_import_job(
         self,
-        request: Union[service.GetImportJobRequest, dict] = None,
+        request: Optional[Union[service.GetImportJobRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.ImportJob:
         r"""Returns metadata for a given
@@ -1606,13 +1617,13 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def create_key_ring(
         self,
-        request: Union[service.CreateKeyRingRequest, dict] = None,
+        request: Optional[Union[service.CreateKeyRingRequest, dict]] = None,
         *,
-        parent: str = None,
-        key_ring_id: str = None,
-        key_ring: resources.KeyRing = None,
+        parent: Optional[str] = None,
+        key_ring_id: Optional[str] = None,
+        key_ring: Optional[resources.KeyRing] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.KeyRing:
         r"""Create a new [KeyRing][google.cloud.kms.v1.KeyRing] in a given
@@ -1731,13 +1742,13 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def create_crypto_key(
         self,
-        request: Union[service.CreateCryptoKeyRequest, dict] = None,
+        request: Optional[Union[service.CreateCryptoKeyRequest, dict]] = None,
         *,
-        parent: str = None,
-        crypto_key_id: str = None,
-        crypto_key: resources.CryptoKey = None,
+        parent: Optional[str] = None,
+        crypto_key_id: Optional[str] = None,
+        crypto_key: Optional[resources.CryptoKey] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.CryptoKey:
         r"""Create a new [CryptoKey][google.cloud.kms.v1.CryptoKey] within a
@@ -1866,12 +1877,12 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def create_crypto_key_version(
         self,
-        request: Union[service.CreateCryptoKeyVersionRequest, dict] = None,
+        request: Optional[Union[service.CreateCryptoKeyVersionRequest, dict]] = None,
         *,
-        parent: str = None,
-        crypto_key_version: resources.CryptoKeyVersion = None,
+        parent: Optional[str] = None,
+        crypto_key_version: Optional[resources.CryptoKeyVersion] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.CryptoKeyVersion:
         r"""Create a new
@@ -2002,10 +2013,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def import_crypto_key_version(
         self,
-        request: Union[service.ImportCryptoKeyVersionRequest, dict] = None,
+        request: Optional[Union[service.ImportCryptoKeyVersionRequest, dict]] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.CryptoKeyVersion:
         r"""Import wrapped key material into a
@@ -2109,13 +2120,13 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def create_import_job(
         self,
-        request: Union[service.CreateImportJobRequest, dict] = None,
+        request: Optional[Union[service.CreateImportJobRequest, dict]] = None,
         *,
-        parent: str = None,
-        import_job_id: str = None,
-        import_job: resources.ImportJob = None,
+        parent: Optional[str] = None,
+        import_job_id: Optional[str] = None,
+        import_job: Optional[resources.ImportJob] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.ImportJob:
         r"""Create a new [ImportJob][google.cloud.kms.v1.ImportJob] within a
@@ -2286,12 +2297,12 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def update_crypto_key(
         self,
-        request: Union[service.UpdateCryptoKeyRequest, dict] = None,
+        request: Optional[Union[service.UpdateCryptoKeyRequest, dict]] = None,
         *,
-        crypto_key: resources.CryptoKey = None,
-        update_mask: field_mask_pb2.FieldMask = None,
+        crypto_key: Optional[resources.CryptoKey] = None,
+        update_mask: Optional[field_mask_pb2.FieldMask] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.CryptoKey:
         r"""Update a [CryptoKey][google.cloud.kms.v1.CryptoKey].
@@ -2405,12 +2416,12 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def update_crypto_key_version(
         self,
-        request: Union[service.UpdateCryptoKeyVersionRequest, dict] = None,
+        request: Optional[Union[service.UpdateCryptoKeyVersionRequest, dict]] = None,
         *,
-        crypto_key_version: resources.CryptoKeyVersion = None,
-        update_mask: field_mask_pb2.FieldMask = None,
+        crypto_key_version: Optional[resources.CryptoKeyVersion] = None,
+        update_mask: Optional[field_mask_pb2.FieldMask] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.CryptoKeyVersion:
         r"""Update a
@@ -2546,12 +2557,14 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def update_crypto_key_primary_version(
         self,
-        request: Union[service.UpdateCryptoKeyPrimaryVersionRequest, dict] = None,
+        request: Optional[
+            Union[service.UpdateCryptoKeyPrimaryVersionRequest, dict]
+        ] = None,
         *,
-        name: str = None,
-        crypto_key_version_id: str = None,
+        name: Optional[str] = None,
+        crypto_key_version_id: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.CryptoKey:
         r"""Update the version of a
@@ -2673,11 +2686,11 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def destroy_crypto_key_version(
         self,
-        request: Union[service.DestroyCryptoKeyVersionRequest, dict] = None,
+        request: Optional[Union[service.DestroyCryptoKeyVersionRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.CryptoKeyVersion:
         r"""Schedule a
@@ -2812,11 +2825,11 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def restore_crypto_key_version(
         self,
-        request: Union[service.RestoreCryptoKeyVersionRequest, dict] = None,
+        request: Optional[Union[service.RestoreCryptoKeyVersionRequest, dict]] = None,
         *,
-        name: str = None,
+        name: Optional[str] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> resources.CryptoKeyVersion:
         r"""Restore a
@@ -2940,12 +2953,12 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def encrypt(
         self,
-        request: Union[service.EncryptRequest, dict] = None,
+        request: Optional[Union[service.EncryptRequest, dict]] = None,
         *,
-        name: str = None,
-        plaintext: bytes = None,
+        name: Optional[str] = None,
+        plaintext: Optional[bytes] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> service.EncryptResponse:
         r"""Encrypts data, so that it can only be recovered by a call to
@@ -3073,12 +3086,12 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def decrypt(
         self,
-        request: Union[service.DecryptRequest, dict] = None,
+        request: Optional[Union[service.DecryptRequest, dict]] = None,
         *,
-        name: str = None,
-        ciphertext: bytes = None,
+        name: Optional[str] = None,
+        ciphertext: Optional[bytes] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> service.DecryptResponse:
         r"""Decrypts data that was protected by
@@ -3192,12 +3205,12 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def asymmetric_sign(
         self,
-        request: Union[service.AsymmetricSignRequest, dict] = None,
+        request: Optional[Union[service.AsymmetricSignRequest, dict]] = None,
         *,
-        name: str = None,
-        digest: service.Digest = None,
+        name: Optional[str] = None,
+        digest: Optional[service.Digest] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> service.AsymmetricSignResponse:
         r"""Signs data using a
@@ -3316,12 +3329,12 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def asymmetric_decrypt(
         self,
-        request: Union[service.AsymmetricDecryptRequest, dict] = None,
+        request: Optional[Union[service.AsymmetricDecryptRequest, dict]] = None,
         *,
-        name: str = None,
-        ciphertext: bytes = None,
+        name: Optional[str] = None,
+        ciphertext: Optional[bytes] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> service.AsymmetricDecryptResponse:
         r"""Decrypts data that was encrypted with a public key retrieved
@@ -3437,12 +3450,12 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def mac_sign(
         self,
-        request: Union[service.MacSignRequest, dict] = None,
+        request: Optional[Union[service.MacSignRequest, dict]] = None,
         *,
-        name: str = None,
-        data: bytes = None,
+        name: Optional[str] = None,
+        data: Optional[bytes] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> service.MacSignResponse:
         r"""Signs data using a
@@ -3556,13 +3569,13 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def mac_verify(
         self,
-        request: Union[service.MacVerifyRequest, dict] = None,
+        request: Optional[Union[service.MacVerifyRequest, dict]] = None,
         *,
-        name: str = None,
-        data: bytes = None,
-        mac: bytes = None,
+        name: Optional[str] = None,
+        data: Optional[bytes] = None,
+        mac: Optional[bytes] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> service.MacVerifyResponse:
         r"""Verifies MAC tag using a
@@ -3684,13 +3697,13 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def generate_random_bytes(
         self,
-        request: Union[service.GenerateRandomBytesRequest, dict] = None,
+        request: Optional[Union[service.GenerateRandomBytesRequest, dict]] = None,
         *,
-        location: str = None,
-        length_bytes: int = None,
-        protection_level: resources.ProtectionLevel = None,
+        location: Optional[str] = None,
+        length_bytes: Optional[int] = None,
+        protection_level: Optional[resources.ProtectionLevel] = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> service.GenerateRandomBytesResponse:
         r"""Generate random bytes using the Cloud KMS randomness
@@ -3825,10 +3838,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def set_iam_policy(
         self,
-        request: iam_policy_pb2.SetIamPolicyRequest = None,
+        request: Optional[iam_policy_pb2.SetIamPolicyRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> policy_pb2.Policy:
         r"""Sets the IAM access control policy on the specified function.
@@ -3945,10 +3958,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def get_iam_policy(
         self,
-        request: iam_policy_pb2.GetIamPolicyRequest = None,
+        request: Optional[iam_policy_pb2.GetIamPolicyRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> policy_pb2.Policy:
         r"""Gets the IAM access control policy for a function.
@@ -4066,10 +4079,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
     def test_iam_permissions(
         self,
-        request: iam_policy_pb2.TestIamPermissionsRequest = None,
+        request: Optional[iam_policy_pb2.TestIamPermissionsRequest] = None,
         *,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
+        timeout: Optional[float] = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> iam_policy_pb2.TestIamPermissionsResponse:
         r"""Tests the specified IAM permissions against the IAM access control
