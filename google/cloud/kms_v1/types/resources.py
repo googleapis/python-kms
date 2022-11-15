@@ -539,6 +539,10 @@ class CryptoKeyVersion(proto.Message):
         EC_SIGN_P384_SHA384 = 13
         EC_SIGN_SECP256K1_SHA256 = 31
         HMAC_SHA256 = 32
+        HMAC_SHA1 = 33
+        HMAC_SHA384 = 34
+        HMAC_SHA512 = 35
+        HMAC_SHA224 = 36
         EXTERNAL_SYMMETRIC_ENCRYPTION = 18
 
     class CryptoKeyVersionState(proto.Enum):
