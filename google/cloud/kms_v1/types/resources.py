@@ -810,6 +810,10 @@ class ImportJob(proto.Message):
         IMPORT_METHOD_UNSPECIFIED = 0
         RSA_OAEP_3072_SHA1_AES_256 = 1
         RSA_OAEP_4096_SHA1_AES_256 = 2
+        RSA_OAEP_3072_SHA256_AES_256 = 3
+        RSA_OAEP_4096_SHA256_AES_256 = 4
+        RSA_OAEP_3072_SHA256 = 5
+        RSA_OAEP_4096_SHA256 = 6
 
     class ImportJobState(proto.Enum):
         r"""The state of the [ImportJob][google.cloud.kms.v1.ImportJob],

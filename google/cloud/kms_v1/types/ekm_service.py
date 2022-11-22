@@ -36,7 +36,8 @@ __protobuf__ = proto.module(
 
 
 class ListEkmConnectionsRequest(proto.Message):
-    r"""Request message for [KeyManagementService.ListEkmConnections][].
+    r"""Request message for
+    [EkmService.ListEkmConnections][google.cloud.kms.v1.EkmService.ListEkmConnections].
 
     Attributes:
         parent (str):
@@ -90,7 +91,8 @@ class ListEkmConnectionsRequest(proto.Message):
 
 
 class ListEkmConnectionsResponse(proto.Message):
-    r"""Response message for [KeyManagementService.ListEkmConnections][].
+    r"""Response message for
+    [EkmService.ListEkmConnections][google.cloud.kms.v1.EkmService.ListEkmConnections].
 
     Attributes:
         ekm_connections (MutableSequence[google.cloud.kms_v1.types.EkmConnection]):
@@ -126,7 +128,8 @@ class ListEkmConnectionsResponse(proto.Message):
 
 
 class GetEkmConnectionRequest(proto.Message):
-    r"""Request message for [KeyManagementService.GetEkmConnection][].
+    r"""Request message for
+    [EkmService.GetEkmConnection][google.cloud.kms.v1.EkmService.GetEkmConnection].
 
     Attributes:
         name (str):
@@ -142,7 +145,8 @@ class GetEkmConnectionRequest(proto.Message):
 
 
 class CreateEkmConnectionRequest(proto.Message):
-    r"""Request message for [KeyManagementService.CreateEkmConnection][].
+    r"""Request message for
+    [EkmService.CreateEkmConnection][google.cloud.kms.v1.EkmService.CreateEkmConnection].
 
     Attributes:
         parent (str):
@@ -174,7 +178,8 @@ class CreateEkmConnectionRequest(proto.Message):
 
 
 class UpdateEkmConnectionRequest(proto.Message):
-    r"""Request message for [KeyManagementService.UpdateEkmConnection][].
+    r"""Request message for
+    [EkmService.UpdateEkmConnection][google.cloud.kms.v1.EkmService.UpdateEkmConnection].
 
     Attributes:
         ekm_connection (google.cloud.kms_v1.types.EkmConnection):
@@ -304,10 +309,8 @@ class EkmConnection(proto.Message):
             [ServiceResolver][google.cloud.kms.v1.EkmConnection.ServiceResolver]
             is supported.
         etag (str):
-            This checksum is computed by the server based
-            on the value of other fields, and may be sent on
-            update requests to ensure the client has an
-            up-to-date value before proceeding.
+            Optional. Etag of the currently stored
+            [EkmConnection][google.cloud.kms.v1.EkmConnection].
     """
 
     class ServiceResolver(proto.Message):
@@ -333,9 +336,10 @@ class EkmConnection(proto.Message):
                 Required. The hostname of the EKM replica
                 used at TLS and HTTP layers.
             server_certificates (MutableSequence[google.cloud.kms_v1.types.Certificate]):
-                Required. A list of leaf server certificates
-                used to authenticate HTTPS connections to the
-                EKM replica.
+                Required. A list of leaf server certificates used to
+                authenticate HTTPS connections to the EKM replica.
+                Currently, a maximum of 10
+                [Certificate][google.cloud.kms.v1.Certificate] is supported.
         """
 
         service_directory_service: str = proto.Field(

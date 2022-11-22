@@ -2152,7 +2152,7 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
 
                 # Initialize request argument(s)
                 import_job = kms_v1.ImportJob()
-                import_job.import_method = "RSA_OAEP_4096_SHA1_AES_256"
+                import_job.import_method = "RSA_OAEP_4096_SHA256"
                 import_job.protection_level = "EXTERNAL_VPC"
 
                 request = kms_v1.CreateImportJobRequest(
@@ -3018,7 +3018,10 @@ class KeyManagementServiceClient(metaclass=KeyManagementServiceClientMeta):
                 The maximum size depends on the key version's
                 [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level].
                 For
-                [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE]
+                [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE],
+                [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL],
+                and
+                [EXTERNAL_VPC][google.cloud.kms.v1.ProtectionLevel.EXTERNAL_VPC]
                 keys, the plaintext must be no larger than 64KiB. For
                 [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the
                 combined length of the plaintext and

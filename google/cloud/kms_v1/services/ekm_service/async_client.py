@@ -259,7 +259,7 @@ class EkmServiceAsyncClient:
         Args:
             request (Optional[Union[google.cloud.kms_v1.types.ListEkmConnectionsRequest, dict]]):
                 The request object. Request message for
-                [KeyManagementService.ListEkmConnections][].
+                [EkmService.ListEkmConnections][google.cloud.kms.v1.EkmService.ListEkmConnections].
             parent (:class:`str`):
                 Required. The resource name of the location associated
                 with the
@@ -278,7 +278,7 @@ class EkmServiceAsyncClient:
         Returns:
             google.cloud.kms_v1.services.ekm_service.pagers.ListEkmConnectionsAsyncPager:
                 Response message for
-                [KeyManagementService.ListEkmConnections][].
+                   [EkmService.ListEkmConnections][google.cloud.kms.v1.EkmService.ListEkmConnections].
 
                 Iterating over this object will yield results and
                 resolve additional pages automatically.
@@ -386,7 +386,7 @@ class EkmServiceAsyncClient:
         Args:
             request (Optional[Union[google.cloud.kms_v1.types.GetEkmConnectionRequest, dict]]):
                 The request object. Request message for
-                [KeyManagementService.GetEkmConnection][].
+                [EkmService.GetEkmConnection][google.cloud.kms.v1.EkmService.GetEkmConnection].
             name (:class:`str`):
                 Required. The
                 [name][google.cloud.kms.v1.EkmConnection.name] of the
@@ -514,7 +514,7 @@ class EkmServiceAsyncClient:
         Args:
             request (Optional[Union[google.cloud.kms_v1.types.CreateEkmConnectionRequest, dict]]):
                 The request object. Request message for
-                [KeyManagementService.CreateEkmConnection][].
+                [EkmService.CreateEkmConnection][google.cloud.kms.v1.EkmService.CreateEkmConnection].
             parent (:class:`str`):
                 Required. The resource name of the location associated
                 with the
@@ -658,7 +658,7 @@ class EkmServiceAsyncClient:
         Args:
             request (Optional[Union[google.cloud.kms_v1.types.UpdateEkmConnectionRequest, dict]]):
                 The request object. Request message for
-                [KeyManagementService.UpdateEkmConnection][].
+                [EkmService.UpdateEkmConnection][google.cloud.kms.v1.EkmService.UpdateEkmConnection].
             ekm_connection (:class:`google.cloud.kms_v1.types.EkmConnection`):
                 Required.
                 [EkmConnection][google.cloud.kms.v1.EkmConnection] with
