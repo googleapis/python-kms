@@ -20,7 +20,6 @@ from .base import EkmServiceTransport
 from .grpc import EkmServiceGrpcTransport
 from .grpc_asyncio import EkmServiceGrpcAsyncIOTransport
 
-
 # Compile a registry of transports.
 _transport_registry = OrderedDict()  # type: Dict[str, Type[EkmServiceTransport]]
 _transport_registry["grpc"] = EkmServiceGrpcTransport
