@@ -59,6 +59,7 @@ from google.cloud.kms_v1.types import resources, service
 from .transports.base import DEFAULT_CLIENT_INFO, KeyManagementServiceTransport
 from .transports.grpc import KeyManagementServiceGrpcTransport
 from .transports.grpc_asyncio import KeyManagementServiceGrpcAsyncIOTransport
+from .transports.rest import KeyManagementServiceRestTransport
 
 
 class KeyManagementServiceClientMeta(type):
@@ -74,6 +75,7 @@ class KeyManagementServiceClientMeta(type):
     )  # type: Dict[str, Type[KeyManagementServiceTransport]]
     _transport_registry["grpc"] = KeyManagementServiceGrpcTransport
     _transport_registry["grpc_asyncio"] = KeyManagementServiceGrpcAsyncIOTransport
+    _transport_registry["rest"] = KeyManagementServiceRestTransport
 
     def get_transport_class(
         cls,

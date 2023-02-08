@@ -14,26 +14,23 @@
 # limitations under the License.
 #
 
-from google.auth.transport.requests import AuthorizedSession  # type: ignore
-import json  # type: ignore
-import grpc  # type: ignore
-from google.auth.transport.grpc import SslCredentials  # type: ignore
-from google.auth import credentials as ga_credentials  # type: ignore
-from google.api_core import exceptions as core_exceptions
-from google.api_core import retry as retries
-from google.api_core import rest_helpers
-from google.api_core import rest_streaming
-from google.api_core import path_template
-from google.api_core import gapic_v1
-
-from google.protobuf import json_format
-from google.iam.v1 import iam_policy_pb2  # type: ignore
-from google.iam.v1 import policy_pb2  # type: ignore
-from requests import __version__ as requests_version
 import dataclasses
+import json  # type: ignore
 import re
 from typing import Callable, Dict, List, Optional, Sequence, Tuple, Union
 import warnings
+
+from google.api_core import gapic_v1, path_template, rest_helpers, rest_streaming
+from google.api_core import exceptions as core_exceptions
+from google.api_core import retry as retries
+from google.auth import credentials as ga_credentials  # type: ignore
+from google.auth.transport.grpc import SslCredentials  # type: ignore
+from google.auth.transport.requests import AuthorizedSession  # type: ignore
+from google.iam.v1 import iam_policy_pb2  # type: ignore
+from google.iam.v1 import policy_pb2  # type: ignore
+from google.protobuf import json_format
+import grpc  # type: ignore
+from requests import __version__ as requests_version
 
 try:
     OptionalRetry = Union[retries.Retry, gapic_v1.method._MethodDefault]
@@ -41,13 +38,13 @@ except AttributeError:  # pragma: NO COVER
     OptionalRetry = Union[retries.Retry, object]  # type: ignore
 
 
-from google.cloud.kms_v1.types import resources
-from google.cloud.kms_v1.types import service
 from google.iam.v1 import iam_policy_pb2  # type: ignore
 from google.iam.v1 import policy_pb2  # type: ignore
 
-from .base import KeyManagementServiceTransport, DEFAULT_CLIENT_INFO as BASE_DEFAULT_CLIENT_INFO
+from google.cloud.kms_v1.types import resources, service
 
+from .base import DEFAULT_CLIENT_INFO as BASE_DEFAULT_CLIENT_INFO
+from .base import KeyManagementServiceTransport
 
 DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
     gapic_version=BASE_DEFAULT_CLIENT_INFO.gapic_version,
@@ -284,7 +281,12 @@ class KeyManagementServiceRestInterceptor:
 
 
     """
-    def pre_asymmetric_decrypt(self, request: service.AsymmetricDecryptRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.AsymmetricDecryptRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_asymmetric_decrypt(
+        self,
+        request: service.AsymmetricDecryptRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.AsymmetricDecryptRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for asymmetric_decrypt
 
         Override in a subclass to manipulate the request or metadata
@@ -292,7 +294,9 @@ class KeyManagementServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_asymmetric_decrypt(self, response: service.AsymmetricDecryptResponse) -> service.AsymmetricDecryptResponse:
+    def post_asymmetric_decrypt(
+        self, response: service.AsymmetricDecryptResponse
+    ) -> service.AsymmetricDecryptResponse:
         """Post-rpc interceptor for asymmetric_decrypt
 
         Override in a subclass to manipulate the response
@@ -300,7 +304,12 @@ class KeyManagementServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_asymmetric_sign(self, request: service.AsymmetricSignRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.AsymmetricSignRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_asymmetric_sign(
+        self,
+        request: service.AsymmetricSignRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.AsymmetricSignRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for asymmetric_sign
 
         Override in a subclass to manipulate the request or metadata
@@ -308,7 +317,9 @@ class KeyManagementServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_asymmetric_sign(self, response: service.AsymmetricSignResponse) -> service.AsymmetricSignResponse:
+    def post_asymmetric_sign(
+        self, response: service.AsymmetricSignResponse
+    ) -> service.AsymmetricSignResponse:
         """Post-rpc interceptor for asymmetric_sign
 
         Override in a subclass to manipulate the response
@@ -316,7 +327,12 @@ class KeyManagementServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_crypto_key(self, request: service.CreateCryptoKeyRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.CreateCryptoKeyRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_crypto_key(
+        self,
+        request: service.CreateCryptoKeyRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.CreateCryptoKeyRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_crypto_key
 
         Override in a subclass to manipulate the request or metadata
@@ -324,7 +340,9 @@ class KeyManagementServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_create_crypto_key(self, response: resources.CryptoKey) -> resources.CryptoKey:
+    def post_create_crypto_key(
+        self, response: resources.CryptoKey
+    ) -> resources.CryptoKey:
         """Post-rpc interceptor for create_crypto_key
 
         Override in a subclass to manipulate the response
@@ -332,7 +350,12 @@ class KeyManagementServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_crypto_key_version(self, request: service.CreateCryptoKeyVersionRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.CreateCryptoKeyVersionRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_crypto_key_version(
+        self,
+        request: service.CreateCryptoKeyVersionRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.CreateCryptoKeyVersionRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_crypto_key_version
 
         Override in a subclass to manipulate the request or metadata
@@ -340,7 +363,9 @@ class KeyManagementServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_create_crypto_key_version(self, response: resources.CryptoKeyVersion) -> resources.CryptoKeyVersion:
+    def post_create_crypto_key_version(
+        self, response: resources.CryptoKeyVersion
+    ) -> resources.CryptoKeyVersion:
         """Post-rpc interceptor for create_crypto_key_version
 
         Override in a subclass to manipulate the response
@@ -348,7 +373,12 @@ class KeyManagementServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_import_job(self, request: service.CreateImportJobRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.CreateImportJobRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_import_job(
+        self,
+        request: service.CreateImportJobRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.CreateImportJobRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_import_job
 
         Override in a subclass to manipulate the request or metadata
@@ -356,7 +386,9 @@ class KeyManagementServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_create_import_job(self, response: resources.ImportJob) -> resources.ImportJob:
+    def post_create_import_job(
+        self, response: resources.ImportJob
+    ) -> resources.ImportJob:
         """Post-rpc interceptor for create_import_job
 
         Override in a subclass to manipulate the response
@@ -364,7 +396,10 @@ class KeyManagementServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_create_key_ring(self, request: service.CreateKeyRingRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.CreateKeyRingRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_create_key_ring(
+        self, request: service.CreateKeyRingRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.CreateKeyRingRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for create_key_ring
 
         Override in a subclass to manipulate the request or metadata
@@ -380,7 +415,10 @@ class KeyManagementServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_decrypt(self, request: service.DecryptRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.DecryptRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_decrypt(
+        self, request: service.DecryptRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.DecryptRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for decrypt
 
         Override in a subclass to manipulate the request or metadata
@@ -388,7 +426,9 @@ class KeyManagementServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_decrypt(self, response: service.DecryptResponse) -> service.DecryptResponse:
+    def post_decrypt(
+        self, response: service.DecryptResponse
+    ) -> service.DecryptResponse:
         """Post-rpc interceptor for decrypt
 
         Override in a subclass to manipulate the response
@@ -396,7 +436,12 @@ class KeyManagementServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_destroy_crypto_key_version(self, request: service.DestroyCryptoKeyVersionRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.DestroyCryptoKeyVersionRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_destroy_crypto_key_version(
+        self,
+        request: service.DestroyCryptoKeyVersionRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.DestroyCryptoKeyVersionRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for destroy_crypto_key_version
 
         Override in a subclass to manipulate the request or metadata
@@ -404,7 +449,9 @@ class KeyManagementServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_destroy_crypto_key_version(self, response: resources.CryptoKeyVersion) -> resources.CryptoKeyVersion:
+    def post_destroy_crypto_key_version(
+        self, response: resources.CryptoKeyVersion
+    ) -> resources.CryptoKeyVersion:
         """Post-rpc interceptor for destroy_crypto_key_version
 
         Override in a subclass to manipulate the response
@@ -412,7 +459,10 @@ class KeyManagementServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_encrypt(self, request: service.EncryptRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.EncryptRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_encrypt(
+        self, request: service.EncryptRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.EncryptRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for encrypt
 
         Override in a subclass to manipulate the request or metadata
@@ -420,7 +470,9 @@ class KeyManagementServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_encrypt(self, response: service.EncryptResponse) -> service.EncryptResponse:
+    def post_encrypt(
+        self, response: service.EncryptResponse
+    ) -> service.EncryptResponse:
         """Post-rpc interceptor for encrypt
 
         Override in a subclass to manipulate the response
@@ -428,7 +480,12 @@ class KeyManagementServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_generate_random_bytes(self, request: service.GenerateRandomBytesRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.GenerateRandomBytesRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_generate_random_bytes(
+        self,
+        request: service.GenerateRandomBytesRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.GenerateRandomBytesRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for generate_random_bytes
 
         Override in a subclass to manipulate the request or metadata
@@ -436,7 +493,9 @@ class KeyManagementServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_generate_random_bytes(self, response: service.GenerateRandomBytesResponse) -> service.GenerateRandomBytesResponse:
+    def post_generate_random_bytes(
+        self, response: service.GenerateRandomBytesResponse
+    ) -> service.GenerateRandomBytesResponse:
         """Post-rpc interceptor for generate_random_bytes
 
         Override in a subclass to manipulate the response
@@ -444,7 +503,10 @@ class KeyManagementServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_crypto_key(self, request: service.GetCryptoKeyRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.GetCryptoKeyRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_crypto_key(
+        self, request: service.GetCryptoKeyRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.GetCryptoKeyRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_crypto_key
 
         Override in a subclass to manipulate the request or metadata
@@ -460,7 +522,12 @@ class KeyManagementServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_crypto_key_version(self, request: service.GetCryptoKeyVersionRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.GetCryptoKeyVersionRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_crypto_key_version(
+        self,
+        request: service.GetCryptoKeyVersionRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.GetCryptoKeyVersionRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_crypto_key_version
 
         Override in a subclass to manipulate the request or metadata
@@ -468,7 +535,9 @@ class KeyManagementServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_get_crypto_key_version(self, response: resources.CryptoKeyVersion) -> resources.CryptoKeyVersion:
+    def post_get_crypto_key_version(
+        self, response: resources.CryptoKeyVersion
+    ) -> resources.CryptoKeyVersion:
         """Post-rpc interceptor for get_crypto_key_version
 
         Override in a subclass to manipulate the response
@@ -476,7 +545,10 @@ class KeyManagementServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_import_job(self, request: service.GetImportJobRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.GetImportJobRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_import_job(
+        self, request: service.GetImportJobRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.GetImportJobRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_import_job
 
         Override in a subclass to manipulate the request or metadata
@@ -492,7 +564,10 @@ class KeyManagementServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_key_ring(self, request: service.GetKeyRingRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.GetKeyRingRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_key_ring(
+        self, request: service.GetKeyRingRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.GetKeyRingRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_key_ring
 
         Override in a subclass to manipulate the request or metadata
@@ -508,7 +583,10 @@ class KeyManagementServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_get_public_key(self, request: service.GetPublicKeyRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.GetPublicKeyRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_get_public_key(
+        self, request: service.GetPublicKeyRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.GetPublicKeyRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for get_public_key
 
         Override in a subclass to manipulate the request or metadata
@@ -524,7 +602,12 @@ class KeyManagementServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_import_crypto_key_version(self, request: service.ImportCryptoKeyVersionRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.ImportCryptoKeyVersionRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_import_crypto_key_version(
+        self,
+        request: service.ImportCryptoKeyVersionRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.ImportCryptoKeyVersionRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for import_crypto_key_version
 
         Override in a subclass to manipulate the request or metadata
@@ -532,7 +615,9 @@ class KeyManagementServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_import_crypto_key_version(self, response: resources.CryptoKeyVersion) -> resources.CryptoKeyVersion:
+    def post_import_crypto_key_version(
+        self, response: resources.CryptoKeyVersion
+    ) -> resources.CryptoKeyVersion:
         """Post-rpc interceptor for import_crypto_key_version
 
         Override in a subclass to manipulate the response
@@ -540,7 +625,12 @@ class KeyManagementServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_crypto_keys(self, request: service.ListCryptoKeysRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.ListCryptoKeysRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_crypto_keys(
+        self,
+        request: service.ListCryptoKeysRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.ListCryptoKeysRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_crypto_keys
 
         Override in a subclass to manipulate the request or metadata
@@ -548,7 +638,9 @@ class KeyManagementServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_list_crypto_keys(self, response: service.ListCryptoKeysResponse) -> service.ListCryptoKeysResponse:
+    def post_list_crypto_keys(
+        self, response: service.ListCryptoKeysResponse
+    ) -> service.ListCryptoKeysResponse:
         """Post-rpc interceptor for list_crypto_keys
 
         Override in a subclass to manipulate the response
@@ -556,7 +648,12 @@ class KeyManagementServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_crypto_key_versions(self, request: service.ListCryptoKeyVersionsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.ListCryptoKeyVersionsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_crypto_key_versions(
+        self,
+        request: service.ListCryptoKeyVersionsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.ListCryptoKeyVersionsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_crypto_key_versions
 
         Override in a subclass to manipulate the request or metadata
@@ -564,7 +661,9 @@ class KeyManagementServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_list_crypto_key_versions(self, response: service.ListCryptoKeyVersionsResponse) -> service.ListCryptoKeyVersionsResponse:
+    def post_list_crypto_key_versions(
+        self, response: service.ListCryptoKeyVersionsResponse
+    ) -> service.ListCryptoKeyVersionsResponse:
         """Post-rpc interceptor for list_crypto_key_versions
 
         Override in a subclass to manipulate the response
@@ -572,7 +671,12 @@ class KeyManagementServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_import_jobs(self, request: service.ListImportJobsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.ListImportJobsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_import_jobs(
+        self,
+        request: service.ListImportJobsRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.ListImportJobsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_import_jobs
 
         Override in a subclass to manipulate the request or metadata
@@ -580,7 +684,9 @@ class KeyManagementServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_list_import_jobs(self, response: service.ListImportJobsResponse) -> service.ListImportJobsResponse:
+    def post_list_import_jobs(
+        self, response: service.ListImportJobsResponse
+    ) -> service.ListImportJobsResponse:
         """Post-rpc interceptor for list_import_jobs
 
         Override in a subclass to manipulate the response
@@ -588,7 +694,10 @@ class KeyManagementServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_list_key_rings(self, request: service.ListKeyRingsRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.ListKeyRingsRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_list_key_rings(
+        self, request: service.ListKeyRingsRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.ListKeyRingsRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for list_key_rings
 
         Override in a subclass to manipulate the request or metadata
@@ -596,7 +705,9 @@ class KeyManagementServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_list_key_rings(self, response: service.ListKeyRingsResponse) -> service.ListKeyRingsResponse:
+    def post_list_key_rings(
+        self, response: service.ListKeyRingsResponse
+    ) -> service.ListKeyRingsResponse:
         """Post-rpc interceptor for list_key_rings
 
         Override in a subclass to manipulate the response
@@ -604,7 +715,10 @@ class KeyManagementServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_mac_sign(self, request: service.MacSignRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.MacSignRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_mac_sign(
+        self, request: service.MacSignRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.MacSignRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for mac_sign
 
         Override in a subclass to manipulate the request or metadata
@@ -612,7 +726,9 @@ class KeyManagementServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_mac_sign(self, response: service.MacSignResponse) -> service.MacSignResponse:
+    def post_mac_sign(
+        self, response: service.MacSignResponse
+    ) -> service.MacSignResponse:
         """Post-rpc interceptor for mac_sign
 
         Override in a subclass to manipulate the response
@@ -620,7 +736,10 @@ class KeyManagementServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_mac_verify(self, request: service.MacVerifyRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.MacVerifyRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_mac_verify(
+        self, request: service.MacVerifyRequest, metadata: Sequence[Tuple[str, str]]
+    ) -> Tuple[service.MacVerifyRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for mac_verify
 
         Override in a subclass to manipulate the request or metadata
@@ -628,7 +747,9 @@ class KeyManagementServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_mac_verify(self, response: service.MacVerifyResponse) -> service.MacVerifyResponse:
+    def post_mac_verify(
+        self, response: service.MacVerifyResponse
+    ) -> service.MacVerifyResponse:
         """Post-rpc interceptor for mac_verify
 
         Override in a subclass to manipulate the response
@@ -636,7 +757,12 @@ class KeyManagementServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_restore_crypto_key_version(self, request: service.RestoreCryptoKeyVersionRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.RestoreCryptoKeyVersionRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_restore_crypto_key_version(
+        self,
+        request: service.RestoreCryptoKeyVersionRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.RestoreCryptoKeyVersionRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for restore_crypto_key_version
 
         Override in a subclass to manipulate the request or metadata
@@ -644,7 +770,9 @@ class KeyManagementServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_restore_crypto_key_version(self, response: resources.CryptoKeyVersion) -> resources.CryptoKeyVersion:
+    def post_restore_crypto_key_version(
+        self, response: resources.CryptoKeyVersion
+    ) -> resources.CryptoKeyVersion:
         """Post-rpc interceptor for restore_crypto_key_version
 
         Override in a subclass to manipulate the response
@@ -652,7 +780,12 @@ class KeyManagementServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_crypto_key(self, request: service.UpdateCryptoKeyRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.UpdateCryptoKeyRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_crypto_key(
+        self,
+        request: service.UpdateCryptoKeyRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.UpdateCryptoKeyRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for update_crypto_key
 
         Override in a subclass to manipulate the request or metadata
@@ -660,7 +793,9 @@ class KeyManagementServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_update_crypto_key(self, response: resources.CryptoKey) -> resources.CryptoKey:
+    def post_update_crypto_key(
+        self, response: resources.CryptoKey
+    ) -> resources.CryptoKey:
         """Post-rpc interceptor for update_crypto_key
 
         Override in a subclass to manipulate the response
@@ -668,7 +803,12 @@ class KeyManagementServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_crypto_key_primary_version(self, request: service.UpdateCryptoKeyPrimaryVersionRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.UpdateCryptoKeyPrimaryVersionRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_crypto_key_primary_version(
+        self,
+        request: service.UpdateCryptoKeyPrimaryVersionRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.UpdateCryptoKeyPrimaryVersionRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for update_crypto_key_primary_version
 
         Override in a subclass to manipulate the request or metadata
@@ -676,7 +816,9 @@ class KeyManagementServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_update_crypto_key_primary_version(self, response: resources.CryptoKey) -> resources.CryptoKey:
+    def post_update_crypto_key_primary_version(
+        self, response: resources.CryptoKey
+    ) -> resources.CryptoKey:
         """Post-rpc interceptor for update_crypto_key_primary_version
 
         Override in a subclass to manipulate the response
@@ -684,7 +826,12 @@ class KeyManagementServiceRestInterceptor:
         it is returned to user code.
         """
         return response
-    def pre_update_crypto_key_version(self, request: service.UpdateCryptoKeyVersionRequest, metadata: Sequence[Tuple[str, str]]) -> Tuple[service.UpdateCryptoKeyVersionRequest, Sequence[Tuple[str, str]]]:
+
+    def pre_update_crypto_key_version(
+        self,
+        request: service.UpdateCryptoKeyVersionRequest,
+        metadata: Sequence[Tuple[str, str]],
+    ) -> Tuple[service.UpdateCryptoKeyVersionRequest, Sequence[Tuple[str, str]]]:
         """Pre-rpc interceptor for update_crypto_key_version
 
         Override in a subclass to manipulate the request or metadata
@@ -692,7 +839,9 @@ class KeyManagementServiceRestInterceptor:
         """
         return request, metadata
 
-    def post_update_crypto_key_version(self, response: resources.CryptoKeyVersion) -> resources.CryptoKeyVersion:
+    def post_update_crypto_key_version(
+        self, response: resources.CryptoKeyVersion
+    ) -> resources.CryptoKeyVersion:
         """Post-rpc interceptor for update_crypto_key_version
 
         Override in a subclass to manipulate the response
@@ -733,20 +882,21 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
 
     """
 
-    def __init__(self, *,
-            host: str = 'cloudkms.googleapis.com',
-            credentials: Optional[ga_credentials.Credentials] = None,
-            credentials_file: Optional[str] = None,
-            scopes: Optional[Sequence[str]] = None,
-            client_cert_source_for_mtls: Optional[Callable[[
-                ], Tuple[bytes, bytes]]] = None,
-            quota_project_id: Optional[str] = None,
-            client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
-            always_use_jwt_access: Optional[bool] = False,
-            url_scheme: str = 'https',
-            interceptor: Optional[KeyManagementServiceRestInterceptor] = None,
-            api_audience: Optional[str] = None,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        host: str = "cloudkms.googleapis.com",
+        credentials: Optional[ga_credentials.Credentials] = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        client_cert_source_for_mtls: Optional[Callable[[], Tuple[bytes, bytes]]] = None,
+        quota_project_id: Optional[str] = None,
+        client_info: gapic_v1.client_info.ClientInfo = DEFAULT_CLIENT_INFO,
+        always_use_jwt_access: Optional[bool] = False,
+        url_scheme: str = "https",
+        interceptor: Optional[KeyManagementServiceRestInterceptor] = None,
+        api_audience: Optional[str] = None,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -785,7 +935,9 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         # credentials object
         maybe_url_match = re.match("^(?P<scheme>http(?:s)?://)?(?P<host>.*)$", host)
         if maybe_url_match is None:
-            raise ValueError(f"Unexpected hostname structure: {host}")  # pragma: NO COVER
+            raise ValueError(
+                f"Unexpected hostname structure: {host}"
+            )  # pragma: NO COVER
 
         url_match_items = maybe_url_match.groupdict()
 
@@ -796,10 +948,11 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
             credentials=credentials,
             client_info=client_info,
             always_use_jwt_access=always_use_jwt_access,
-            api_audience=api_audience
+            api_audience=api_audience,
         )
         self._session = AuthorizedSession(
-            self._credentials, default_host=self.DEFAULT_HOST)
+            self._credentials, default_host=self.DEFAULT_HOST
+        )
         if client_cert_source_for_mtls:
             self._session.configure_mtls_channel(client_cert_source_for_mtls)
         self._interceptor = interceptor or KeyManagementServiceRestInterceptor()
@@ -809,19 +962,24 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         def __hash__(self):
             return hash("AsymmetricDecrypt")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.AsymmetricDecryptRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> service.AsymmetricDecryptResponse:
+        def __call__(
+            self,
+            request: service.AsymmetricDecryptRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> service.AsymmetricDecryptResponse:
             r"""Call the asymmetric decrypt method over HTTP.
 
             Args:
@@ -842,46 +1000,51 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:asymmetricDecrypt',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:asymmetricDecrypt",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_asymmetric_decrypt(request, metadata)
+            request, metadata = self._interceptor.pre_asymmetric_decrypt(
+                request, metadata
+            )
             pb_request = service.AsymmetricDecryptRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -900,19 +1063,24 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         def __hash__(self):
             return hash("AsymmetricSign")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.AsymmetricSignRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> service.AsymmetricSignResponse:
+        def __call__(
+            self,
+            request: service.AsymmetricSignRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> service.AsymmetricSignResponse:
             r"""Call the asymmetric sign method over HTTP.
 
             Args:
@@ -933,11 +1101,12 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:asymmetricSign',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:asymmetricSign",
+                    "body": "*",
+                },
             ]
             request, metadata = self._interceptor.pre_asymmetric_sign(request, metadata)
             pb_request = service.AsymmetricSignRequest.pb(request)
@@ -946,33 +1115,35 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -991,19 +1162,26 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         def __hash__(self):
             return hash("CreateCryptoKey")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "cryptoKeyId" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "cryptoKeyId": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.CreateCryptoKeyRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.CryptoKey:
+        def __call__(
+            self,
+            request: service.CreateCryptoKeyRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.CryptoKey:
             r"""Call the create crypto key method over HTTP.
 
             Args:
@@ -1031,46 +1209,51 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*/keyRings/*}/cryptoKeys',
-                'body': 'crypto_key',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*/keyRings/*}/cryptoKeys",
+                    "body": "crypto_key",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_crypto_key(request, metadata)
+            request, metadata = self._interceptor.pre_create_crypto_key(
+                request, metadata
+            )
             pb_request = service.CreateCryptoKeyRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1089,19 +1272,24 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         def __hash__(self):
             return hash("CreateCryptoKeyVersion")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.CreateCryptoKeyVersionRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.CryptoKeyVersion:
+        def __call__(
+            self,
+            request: service.CreateCryptoKeyVersionRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.CryptoKeyVersion:
             r"""Call the create crypto key version method over HTTP.
 
             Args:
@@ -1135,46 +1323,51 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*/keyRings/*/cryptoKeys/*}/cryptoKeyVersions',
-                'body': 'crypto_key_version',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*/keyRings/*/cryptoKeys/*}/cryptoKeyVersions",
+                    "body": "crypto_key_version",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_crypto_key_version(request, metadata)
+            request, metadata = self._interceptor.pre_create_crypto_key_version(
+                request, metadata
+            )
             pb_request = service.CreateCryptoKeyVersionRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1193,19 +1386,26 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         def __hash__(self):
             return hash("CreateImportJob")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "importJobId" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "importJobId": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.CreateImportJobRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.ImportJob:
+        def __call__(
+            self,
+            request: service.CreateImportJobRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.ImportJob:
             r"""Call the create import job method over HTTP.
 
             Args:
@@ -1269,46 +1469,51 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*/keyRings/*}/importJobs',
-                'body': 'import_job',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*/keyRings/*}/importJobs",
+                    "body": "import_job",
+                },
             ]
-            request, metadata = self._interceptor.pre_create_import_job(request, metadata)
+            request, metadata = self._interceptor.pre_create_import_job(
+                request, metadata
+            )
             pb_request = service.CreateImportJobRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1327,19 +1532,26 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         def __hash__(self):
             return hash("CreateKeyRing")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "keyRingId" : "",        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "keyRingId": "",
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.CreateKeyRingRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.KeyRing:
+        def __call__(
+            self,
+            request: service.CreateKeyRingRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.KeyRing:
             r"""Call the create key ring method over HTTP.
 
             Args:
@@ -1361,11 +1573,12 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*}/keyRings',
-                'body': 'key_ring',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*}/keyRings",
+                    "body": "key_ring",
+                },
             ]
             request, metadata = self._interceptor.pre_create_key_ring(request, metadata)
             pb_request = service.CreateKeyRingRequest.pb(request)
@@ -1374,33 +1587,35 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1419,19 +1634,24 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         def __hash__(self):
             return hash("Decrypt")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.DecryptRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> service.DecryptResponse:
+        def __call__(
+            self,
+            request: service.DecryptRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> service.DecryptResponse:
             r"""Call the decrypt method over HTTP.
 
             Args:
@@ -1452,11 +1672,12 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*}:decrypt',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*}:decrypt",
+                    "body": "*",
+                },
             ]
             request, metadata = self._interceptor.pre_decrypt(request, metadata)
             pb_request = service.DecryptRequest.pb(request)
@@ -1465,33 +1686,35 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1510,93 +1733,103 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         def __hash__(self):
             return hash("DestroyCryptoKeyVersion")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.DestroyCryptoKeyVersionRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.CryptoKeyVersion:
+        def __call__(
+            self,
+            request: service.DestroyCryptoKeyVersionRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.CryptoKeyVersion:
             r"""Call the destroy crypto key
-        version method over HTTP.
+            version method over HTTP.
 
-            Args:
-                request (~.service.DestroyCryptoKeyVersionRequest):
-                    The request object. Request message for
-                [KeyManagementService.DestroyCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.DestroyCryptoKeyVersion].
+                Args:
+                    request (~.service.DestroyCryptoKeyVersionRequest):
+                        The request object. Request message for
+                    [KeyManagementService.DestroyCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.DestroyCryptoKeyVersion].
 
-                retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                    should be retried.
-                timeout (float): The timeout for this request.
-                metadata (Sequence[Tuple[str, str]]): Strings which should be
-                    sent along with the request as metadata.
+                    retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                        should be retried.
+                    timeout (float): The timeout for this request.
+                    metadata (Sequence[Tuple[str, str]]): Strings which should be
+                        sent along with the request as metadata.
 
-            Returns:
-                ~.resources.CryptoKeyVersion:
-                    A
-                [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
-                represents an individual cryptographic key, and the
-                associated key material.
+                Returns:
+                    ~.resources.CryptoKeyVersion:
+                        A
+                    [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
+                    represents an individual cryptographic key, and the
+                    associated key material.
 
-                An
-                [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED]
-                version can be used for cryptographic operations.
+                    An
+                    [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED]
+                    version can be used for cryptographic operations.
 
-                For security reasons, the raw cryptographic key material
-                represented by a
-                [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
-                can never be viewed or exported. It can only be used to
-                encrypt, decrypt, or sign data when an authorized user
-                or application invokes Cloud KMS.
+                    For security reasons, the raw cryptographic key material
+                    represented by a
+                    [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
+                    can never be viewed or exported. It can only be used to
+                    encrypt, decrypt, or sign data when an authorized user
+                    or application invokes Cloud KMS.
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:destroy',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:destroy",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_destroy_crypto_key_version(request, metadata)
+            request, metadata = self._interceptor.pre_destroy_crypto_key_version(
+                request, metadata
+            )
             pb_request = service.DestroyCryptoKeyVersionRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1615,19 +1848,24 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         def __hash__(self):
             return hash("Encrypt")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.EncryptRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> service.EncryptResponse:
+        def __call__(
+            self,
+            request: service.EncryptRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> service.EncryptResponse:
             r"""Call the encrypt method over HTTP.
 
             Args:
@@ -1648,11 +1886,12 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/**}:encrypt',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/**}:encrypt",
+                    "body": "*",
+                },
             ]
             request, metadata = self._interceptor.pre_encrypt(request, metadata)
             pb_request = service.EncryptRequest.pb(request)
@@ -1661,33 +1900,35 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1706,12 +1947,14 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         def __hash__(self):
             return hash("GenerateRandomBytes")
 
-        def __call__(self,
-                request: service.GenerateRandomBytesRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> service.GenerateRandomBytesResponse:
+        def __call__(
+            self,
+            request: service.GenerateRandomBytesRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> service.GenerateRandomBytesResponse:
             r"""Call the generate random bytes method over HTTP.
 
             Args:
@@ -1732,45 +1975,50 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{location=projects/*/locations/*}:generateRandomBytes',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{location=projects/*/locations/*}:generateRandomBytes",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_generate_random_bytes(request, metadata)
+            request, metadata = self._interceptor.pre_generate_random_bytes(
+                request, metadata
+            )
             pb_request = service.GenerateRandomBytesRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1789,19 +2037,24 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         def __hash__(self):
             return hash("GetCryptoKey")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.GetCryptoKeyRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.CryptoKey:
+        def __call__(
+            self,
+            request: service.GetCryptoKeyRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.CryptoKey:
             r"""Call the get crypto key method over HTTP.
 
             Args:
@@ -1829,37 +2082,40 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_crypto_key(request, metadata)
             pb_request = service.GetCryptoKeyRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1878,19 +2134,24 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         def __hash__(self):
             return hash("GetCryptoKeyVersion")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.GetCryptoKeyVersionRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.CryptoKeyVersion:
+        def __call__(
+            self,
+            request: service.GetCryptoKeyVersionRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.CryptoKeyVersion:
             r"""Call the get crypto key version method over HTTP.
 
             Args:
@@ -1924,37 +2185,42 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}",
+                },
             ]
-            request, metadata = self._interceptor.pre_get_crypto_key_version(request, metadata)
+            request, metadata = self._interceptor.pre_get_crypto_key_version(
+                request, metadata
+            )
             pb_request = service.GetCryptoKeyVersionRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -1973,19 +2239,24 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         def __hash__(self):
             return hash("GetImportJob")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.GetImportJobRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.ImportJob:
+        def __call__(
+            self,
+            request: service.GetImportJobRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.ImportJob:
             r"""Call the get import job method over HTTP.
 
             Args:
@@ -2049,37 +2320,40 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/keyRings/*/importJobs/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/keyRings/*/importJobs/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_import_job(request, metadata)
             pb_request = service.GetImportJobRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2098,19 +2372,24 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         def __hash__(self):
             return hash("GetKeyRing")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.GetKeyRingRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.KeyRing:
+        def __call__(
+            self,
+            request: service.GetKeyRingRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.KeyRing:
             r"""Call the get key ring method over HTTP.
 
             Args:
@@ -2132,37 +2411,40 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/keyRings/*}',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/keyRings/*}",
+                },
             ]
             request, metadata = self._interceptor.pre_get_key_ring(request, metadata)
             pb_request = service.GetKeyRingRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2181,19 +2463,24 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         def __hash__(self):
             return hash("GetPublicKey")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.GetPublicKeyRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.PublicKey:
+        def __call__(
+            self,
+            request: service.GetPublicKeyRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.PublicKey:
             r"""Call the get public key method over HTTP.
 
             Args:
@@ -2216,37 +2503,40 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}/publicKey',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}/publicKey",
+                },
             ]
             request, metadata = self._interceptor.pre_get_public_key(request, metadata)
             pb_request = service.GetPublicKeyRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2265,19 +2555,24 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         def __hash__(self):
             return hash("ImportCryptoKeyVersion")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.ImportCryptoKeyVersionRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.CryptoKeyVersion:
+        def __call__(
+            self,
+            request: service.ImportCryptoKeyVersionRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.CryptoKeyVersion:
             r"""Call the import crypto key version method over HTTP.
 
             Args:
@@ -2311,46 +2606,51 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{parent=projects/*/locations/*/keyRings/*/cryptoKeys/*}/cryptoKeyVersions:import',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{parent=projects/*/locations/*/keyRings/*/cryptoKeys/*}/cryptoKeyVersions:import",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_import_crypto_key_version(request, metadata)
+            request, metadata = self._interceptor.pre_import_crypto_key_version(
+                request, metadata
+            )
             pb_request = service.ImportCryptoKeyVersionRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2369,19 +2669,24 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         def __hash__(self):
             return hash("ListCryptoKeys")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.ListCryptoKeysRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> service.ListCryptoKeysResponse:
+        def __call__(
+            self,
+            request: service.ListCryptoKeysRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> service.ListCryptoKeysResponse:
             r"""Call the list crypto keys method over HTTP.
 
             Args:
@@ -2402,37 +2707,42 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*/keyRings/*}/cryptoKeys',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*/keyRings/*}/cryptoKeys",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_crypto_keys(request, metadata)
+            request, metadata = self._interceptor.pre_list_crypto_keys(
+                request, metadata
+            )
             pb_request = service.ListCryptoKeysRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2451,19 +2761,24 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         def __hash__(self):
             return hash("ListCryptoKeyVersions")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.ListCryptoKeyVersionsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> service.ListCryptoKeyVersionsResponse:
+        def __call__(
+            self,
+            request: service.ListCryptoKeyVersionsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> service.ListCryptoKeyVersionsResponse:
             r"""Call the list crypto key versions method over HTTP.
 
             Args:
@@ -2484,37 +2799,42 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*/keyRings/*/cryptoKeys/*}/cryptoKeyVersions',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*/keyRings/*/cryptoKeys/*}/cryptoKeyVersions",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_crypto_key_versions(request, metadata)
+            request, metadata = self._interceptor.pre_list_crypto_key_versions(
+                request, metadata
+            )
             pb_request = service.ListCryptoKeyVersionsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2533,19 +2853,24 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         def __hash__(self):
             return hash("ListImportJobs")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.ListImportJobsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> service.ListImportJobsResponse:
+        def __call__(
+            self,
+            request: service.ListImportJobsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> service.ListImportJobsResponse:
             r"""Call the list import jobs method over HTTP.
 
             Args:
@@ -2566,37 +2891,42 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*/keyRings/*}/importJobs',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*/keyRings/*}/importJobs",
+                },
             ]
-            request, metadata = self._interceptor.pre_list_import_jobs(request, metadata)
+            request, metadata = self._interceptor.pre_list_import_jobs(
+                request, metadata
+            )
             pb_request = service.ListImportJobsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2615,19 +2945,24 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         def __hash__(self):
             return hash("ListKeyRings")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.ListKeyRingsRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> service.ListKeyRingsResponse:
+        def __call__(
+            self,
+            request: service.ListKeyRingsRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> service.ListKeyRingsResponse:
             r"""Call the list key rings method over HTTP.
 
             Args:
@@ -2648,37 +2983,40 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'get',
-                'uri': '/v1/{parent=projects/*/locations/*}/keyRings',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "get",
+                    "uri": "/v1/{parent=projects/*/locations/*}/keyRings",
+                },
             ]
             request, metadata = self._interceptor.pre_list_key_rings(request, metadata)
             pb_request = service.ListKeyRingsRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
 
             # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True,
-            ))
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2697,19 +3035,24 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         def __hash__(self):
             return hash("MacSign")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.MacSignRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> service.MacSignResponse:
+        def __call__(
+            self,
+            request: service.MacSignRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> service.MacSignResponse:
             r"""Call the mac sign method over HTTP.
 
             Args:
@@ -2730,11 +3073,12 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:macSign',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:macSign",
+                    "body": "*",
+                },
             ]
             request, metadata = self._interceptor.pre_mac_sign(request, metadata)
             pb_request = service.MacSignRequest.pb(request)
@@ -2743,33 +3087,35 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2788,19 +3134,24 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         def __hash__(self):
             return hash("MacVerify")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.MacVerifyRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> service.MacVerifyResponse:
+        def __call__(
+            self,
+            request: service.MacVerifyRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> service.MacVerifyResponse:
             r"""Call the mac verify method over HTTP.
 
             Args:
@@ -2821,11 +3172,12 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:macVerify',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:macVerify",
+                    "body": "*",
+                },
             ]
             request, metadata = self._interceptor.pre_mac_verify(request, metadata)
             pb_request = service.MacVerifyRequest.pb(request)
@@ -2834,33 +3186,35 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2879,93 +3233,103 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         def __hash__(self):
             return hash("RestoreCryptoKeyVersion")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.RestoreCryptoKeyVersionRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.CryptoKeyVersion:
+        def __call__(
+            self,
+            request: service.RestoreCryptoKeyVersionRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.CryptoKeyVersion:
             r"""Call the restore crypto key
-        version method over HTTP.
+            version method over HTTP.
 
-            Args:
-                request (~.service.RestoreCryptoKeyVersionRequest):
-                    The request object. Request message for
-                [KeyManagementService.RestoreCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion].
+                Args:
+                    request (~.service.RestoreCryptoKeyVersionRequest):
+                        The request object. Request message for
+                    [KeyManagementService.RestoreCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.RestoreCryptoKeyVersion].
 
-                retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                    should be retried.
-                timeout (float): The timeout for this request.
-                metadata (Sequence[Tuple[str, str]]): Strings which should be
-                    sent along with the request as metadata.
+                    retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                        should be retried.
+                    timeout (float): The timeout for this request.
+                    metadata (Sequence[Tuple[str, str]]): Strings which should be
+                        sent along with the request as metadata.
 
-            Returns:
-                ~.resources.CryptoKeyVersion:
-                    A
-                [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
-                represents an individual cryptographic key, and the
-                associated key material.
+                Returns:
+                    ~.resources.CryptoKeyVersion:
+                        A
+                    [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
+                    represents an individual cryptographic key, and the
+                    associated key material.
 
-                An
-                [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED]
-                version can be used for cryptographic operations.
+                    An
+                    [ENABLED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.ENABLED]
+                    version can be used for cryptographic operations.
 
-                For security reasons, the raw cryptographic key material
-                represented by a
-                [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
-                can never be viewed or exported. It can only be used to
-                encrypt, decrypt, or sign data when an authorized user
-                or application invokes Cloud KMS.
+                    For security reasons, the raw cryptographic key material
+                    represented by a
+                    [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]
+                    can never be viewed or exported. It can only be used to
+                    encrypt, decrypt, or sign data when an authorized user
+                    or application invokes Cloud KMS.
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:restore',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}:restore",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_restore_crypto_key_version(request, metadata)
+            request, metadata = self._interceptor.pre_restore_crypto_key_version(
+                request, metadata
+            )
             pb_request = service.RestoreCryptoKeyVersionRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -2984,19 +3348,26 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         def __hash__(self):
             return hash("UpdateCryptoKey")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "updateMask" : {},        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "updateMask": {},
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.UpdateCryptoKeyRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.CryptoKey:
+        def __call__(
+            self,
+            request: service.UpdateCryptoKeyRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.CryptoKey:
             r"""Call the update crypto key method over HTTP.
 
             Args:
@@ -3024,46 +3395,51 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1/{crypto_key.name=projects/*/locations/*/keyRings/*/cryptoKeys/*}',
-                'body': 'crypto_key',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1/{crypto_key.name=projects/*/locations/*/keyRings/*/cryptoKeys/*}",
+                    "body": "crypto_key",
+                },
             ]
-            request, metadata = self._interceptor.pre_update_crypto_key(request, metadata)
+            request, metadata = self._interceptor.pre_update_crypto_key(
+                request, metadata
+            )
             pb_request = service.UpdateCryptoKeyRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3082,87 +3458,97 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         def __hash__(self):
             return hash("UpdateCryptoKeyPrimaryVersion")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {}
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.UpdateCryptoKeyPrimaryVersionRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.CryptoKey:
+        def __call__(
+            self,
+            request: service.UpdateCryptoKeyPrimaryVersionRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.CryptoKey:
             r"""Call the update crypto key primary
-        version method over HTTP.
+            version method over HTTP.
 
-            Args:
-                request (~.service.UpdateCryptoKeyPrimaryVersionRequest):
-                    The request object. Request message for
-                [KeyManagementService.UpdateCryptoKeyPrimaryVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyPrimaryVersion].
+                Args:
+                    request (~.service.UpdateCryptoKeyPrimaryVersionRequest):
+                        The request object. Request message for
+                    [KeyManagementService.UpdateCryptoKeyPrimaryVersion][google.cloud.kms.v1.KeyManagementService.UpdateCryptoKeyPrimaryVersion].
 
-                retry (google.api_core.retry.Retry): Designation of what errors, if any,
-                    should be retried.
-                timeout (float): The timeout for this request.
-                metadata (Sequence[Tuple[str, str]]): Strings which should be
-                    sent along with the request as metadata.
+                    retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                        should be retried.
+                    timeout (float): The timeout for this request.
+                    metadata (Sequence[Tuple[str, str]]): Strings which should be
+                        sent along with the request as metadata.
 
-            Returns:
-                ~.resources.CryptoKey:
-                    A [CryptoKey][google.cloud.kms.v1.CryptoKey] represents
-                a logical key that can be used for cryptographic
-                operations.
+                Returns:
+                    ~.resources.CryptoKey:
+                        A [CryptoKey][google.cloud.kms.v1.CryptoKey] represents
+                    a logical key that can be used for cryptographic
+                    operations.
 
-                A [CryptoKey][google.cloud.kms.v1.CryptoKey] is made up
-                of zero or more
-                [versions][google.cloud.kms.v1.CryptoKeyVersion], which
-                represent the actual key material used in cryptographic
-                operations.
+                    A [CryptoKey][google.cloud.kms.v1.CryptoKey] is made up
+                    of zero or more
+                    [versions][google.cloud.kms.v1.CryptoKeyVersion], which
+                    represent the actual key material used in cryptographic
+                    operations.
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'post',
-                'uri': '/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*}:updatePrimaryVersion',
-                'body': '*',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "post",
+                    "uri": "/v1/{name=projects/*/locations/*/keyRings/*/cryptoKeys/*}:updatePrimaryVersion",
+                    "body": "*",
+                },
             ]
-            request, metadata = self._interceptor.pre_update_crypto_key_primary_version(request, metadata)
+            request, metadata = self._interceptor.pre_update_crypto_key_primary_version(
+                request, metadata
+            )
             pb_request = service.UpdateCryptoKeyPrimaryVersionRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3181,19 +3567,26 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         def __hash__(self):
             return hash("UpdateCryptoKeyVersion")
 
-        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] =  {
-            "updateMask" : {},        }
+        __REQUIRED_FIELDS_DEFAULT_VALUES: Dict[str, str] = {
+            "updateMask": {},
+        }
 
         @classmethod
         def _get_unset_required_fields(cls, message_dict):
-            return {k: v for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items() if k not in message_dict}
+            return {
+                k: v
+                for k, v in cls.__REQUIRED_FIELDS_DEFAULT_VALUES.items()
+                if k not in message_dict
+            }
 
-        def __call__(self,
-                request: service.UpdateCryptoKeyVersionRequest, *,
-                retry: OptionalRetry=gapic_v1.method.DEFAULT,
-                timeout: Optional[float]=None,
-                metadata: Sequence[Tuple[str, str]]=(),
-                ) -> resources.CryptoKeyVersion:
+        def __call__(
+            self,
+            request: service.UpdateCryptoKeyVersionRequest,
+            *,
+            retry: OptionalRetry = gapic_v1.method.DEFAULT,
+            timeout: Optional[float] = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+        ) -> resources.CryptoKeyVersion:
             r"""Call the update crypto key version method over HTTP.
 
             Args:
@@ -3227,46 +3620,51 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
 
             """
 
-            http_options: List[Dict[str, str]] = [{
-                'method': 'patch',
-                'uri': '/v1/{crypto_key_version.name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}',
-                'body': 'crypto_key_version',
-            },
+            http_options: List[Dict[str, str]] = [
+                {
+                    "method": "patch",
+                    "uri": "/v1/{crypto_key_version.name=projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*}",
+                    "body": "crypto_key_version",
+                },
             ]
-            request, metadata = self._interceptor.pre_update_crypto_key_version(request, metadata)
+            request, metadata = self._interceptor.pre_update_crypto_key_version(
+                request, metadata
+            )
             pb_request = service.UpdateCryptoKeyVersionRequest.pb(request)
             transcoded_request = path_template.transcode(http_options, pb_request)
 
             # Jsonify the request body
 
             body = json_format.MessageToJson(
-                transcoded_request['body'],
-                including_default_value_fields=False,
-                use_integers_for_enums=True
-            )
-            uri = transcoded_request['uri']
-            method = transcoded_request['method']
-
-            # Jsonify the query params
-            query_params = json.loads(json_format.MessageToJson(
-                transcoded_request['query_params'],
+                transcoded_request["body"],
                 including_default_value_fields=False,
                 use_integers_for_enums=True,
-            ))
+            )
+            uri = transcoded_request["uri"]
+            method = transcoded_request["method"]
+
+            # Jsonify the query params
+            query_params = json.loads(
+                json_format.MessageToJson(
+                    transcoded_request["query_params"],
+                    including_default_value_fields=False,
+                    use_integers_for_enums=True,
+                )
+            )
             query_params.update(self._get_unset_required_fields(query_params))
 
             query_params["$alt"] = "json;enum-encoding=int"
 
             # Send the request
             headers = dict(metadata)
-            headers['Content-Type'] = 'application/json'
+            headers["Content-Type"] = "application/json"
             response = getattr(self._session, method)(
                 "{host}{uri}".format(host=self._host, uri=uri),
                 timeout=timeout,
                 headers=headers,
                 params=rest_helpers.flatten_query_params(query_params, strict=True),
                 data=body,
-                )
+            )
 
             # In case of error, raise the appropriate core_exceptions.GoogleAPICallError exception
             # subclass.
@@ -3282,212 +3680,210 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
             return resp
 
     @property
-    def asymmetric_decrypt(self) -> Callable[
-            [service.AsymmetricDecryptRequest],
-            service.AsymmetricDecryptResponse]:
+    def asymmetric_decrypt(
+        self,
+    ) -> Callable[
+        [service.AsymmetricDecryptRequest], service.AsymmetricDecryptResponse
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._AsymmetricDecrypt(self._session, self._host, self._interceptor) # type: ignore
+        return self._AsymmetricDecrypt(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def asymmetric_sign(self) -> Callable[
-            [service.AsymmetricSignRequest],
-            service.AsymmetricSignResponse]:
+    def asymmetric_sign(
+        self,
+    ) -> Callable[[service.AsymmetricSignRequest], service.AsymmetricSignResponse]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._AsymmetricSign(self._session, self._host, self._interceptor) # type: ignore
+        return self._AsymmetricSign(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_crypto_key(self) -> Callable[
-            [service.CreateCryptoKeyRequest],
-            resources.CryptoKey]:
+    def create_crypto_key(
+        self,
+    ) -> Callable[[service.CreateCryptoKeyRequest], resources.CryptoKey]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateCryptoKey(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateCryptoKey(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_crypto_key_version(self) -> Callable[
-            [service.CreateCryptoKeyVersionRequest],
-            resources.CryptoKeyVersion]:
+    def create_crypto_key_version(
+        self,
+    ) -> Callable[[service.CreateCryptoKeyVersionRequest], resources.CryptoKeyVersion]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateCryptoKeyVersion(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateCryptoKeyVersion(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_import_job(self) -> Callable[
-            [service.CreateImportJobRequest],
-            resources.ImportJob]:
+    def create_import_job(
+        self,
+    ) -> Callable[[service.CreateImportJobRequest], resources.ImportJob]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateImportJob(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateImportJob(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def create_key_ring(self) -> Callable[
-            [service.CreateKeyRingRequest],
-            resources.KeyRing]:
+    def create_key_ring(
+        self,
+    ) -> Callable[[service.CreateKeyRingRequest], resources.KeyRing]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._CreateKeyRing(self._session, self._host, self._interceptor) # type: ignore
+        return self._CreateKeyRing(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def decrypt(self) -> Callable[
-            [service.DecryptRequest],
-            service.DecryptResponse]:
+    def decrypt(self) -> Callable[[service.DecryptRequest], service.DecryptResponse]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._Decrypt(self._session, self._host, self._interceptor) # type: ignore
+        return self._Decrypt(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def destroy_crypto_key_version(self) -> Callable[
-            [service.DestroyCryptoKeyVersionRequest],
-            resources.CryptoKeyVersion]:
+    def destroy_crypto_key_version(
+        self,
+    ) -> Callable[[service.DestroyCryptoKeyVersionRequest], resources.CryptoKeyVersion]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._DestroyCryptoKeyVersion(self._session, self._host, self._interceptor) # type: ignore
+        return self._DestroyCryptoKeyVersion(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def encrypt(self) -> Callable[
-            [service.EncryptRequest],
-            service.EncryptResponse]:
+    def encrypt(self) -> Callable[[service.EncryptRequest], service.EncryptResponse]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._Encrypt(self._session, self._host, self._interceptor) # type: ignore
+        return self._Encrypt(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def generate_random_bytes(self) -> Callable[
-            [service.GenerateRandomBytesRequest],
-            service.GenerateRandomBytesResponse]:
+    def generate_random_bytes(
+        self,
+    ) -> Callable[
+        [service.GenerateRandomBytesRequest], service.GenerateRandomBytesResponse
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GenerateRandomBytes(self._session, self._host, self._interceptor) # type: ignore
+        return self._GenerateRandomBytes(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_crypto_key(self) -> Callable[
-            [service.GetCryptoKeyRequest],
-            resources.CryptoKey]:
+    def get_crypto_key(
+        self,
+    ) -> Callable[[service.GetCryptoKeyRequest], resources.CryptoKey]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetCryptoKey(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetCryptoKey(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_crypto_key_version(self) -> Callable[
-            [service.GetCryptoKeyVersionRequest],
-            resources.CryptoKeyVersion]:
+    def get_crypto_key_version(
+        self,
+    ) -> Callable[[service.GetCryptoKeyVersionRequest], resources.CryptoKeyVersion]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetCryptoKeyVersion(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetCryptoKeyVersion(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_import_job(self) -> Callable[
-            [service.GetImportJobRequest],
-            resources.ImportJob]:
+    def get_import_job(
+        self,
+    ) -> Callable[[service.GetImportJobRequest], resources.ImportJob]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetImportJob(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetImportJob(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_key_ring(self) -> Callable[
-            [service.GetKeyRingRequest],
-            resources.KeyRing]:
+    def get_key_ring(self) -> Callable[[service.GetKeyRingRequest], resources.KeyRing]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetKeyRing(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetKeyRing(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def get_public_key(self) -> Callable[
-            [service.GetPublicKeyRequest],
-            resources.PublicKey]:
+    def get_public_key(
+        self,
+    ) -> Callable[[service.GetPublicKeyRequest], resources.PublicKey]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._GetPublicKey(self._session, self._host, self._interceptor) # type: ignore
+        return self._GetPublicKey(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def import_crypto_key_version(self) -> Callable[
-            [service.ImportCryptoKeyVersionRequest],
-            resources.CryptoKeyVersion]:
+    def import_crypto_key_version(
+        self,
+    ) -> Callable[[service.ImportCryptoKeyVersionRequest], resources.CryptoKeyVersion]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ImportCryptoKeyVersion(self._session, self._host, self._interceptor) # type: ignore
+        return self._ImportCryptoKeyVersion(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_crypto_keys(self) -> Callable[
-            [service.ListCryptoKeysRequest],
-            service.ListCryptoKeysResponse]:
+    def list_crypto_keys(
+        self,
+    ) -> Callable[[service.ListCryptoKeysRequest], service.ListCryptoKeysResponse]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListCryptoKeys(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListCryptoKeys(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_crypto_key_versions(self) -> Callable[
-            [service.ListCryptoKeyVersionsRequest],
-            service.ListCryptoKeyVersionsResponse]:
+    def list_crypto_key_versions(
+        self,
+    ) -> Callable[
+        [service.ListCryptoKeyVersionsRequest], service.ListCryptoKeyVersionsResponse
+    ]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListCryptoKeyVersions(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListCryptoKeyVersions(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_import_jobs(self) -> Callable[
-            [service.ListImportJobsRequest],
-            service.ListImportJobsResponse]:
+    def list_import_jobs(
+        self,
+    ) -> Callable[[service.ListImportJobsRequest], service.ListImportJobsResponse]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListImportJobs(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListImportJobs(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def list_key_rings(self) -> Callable[
-            [service.ListKeyRingsRequest],
-            service.ListKeyRingsResponse]:
+    def list_key_rings(
+        self,
+    ) -> Callable[[service.ListKeyRingsRequest], service.ListKeyRingsResponse]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._ListKeyRings(self._session, self._host, self._interceptor) # type: ignore
+        return self._ListKeyRings(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def mac_sign(self) -> Callable[
-            [service.MacSignRequest],
-            service.MacSignResponse]:
+    def mac_sign(self) -> Callable[[service.MacSignRequest], service.MacSignResponse]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._MacSign(self._session, self._host, self._interceptor) # type: ignore
+        return self._MacSign(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def mac_verify(self) -> Callable[
-            [service.MacVerifyRequest],
-            service.MacVerifyResponse]:
+    def mac_verify(
+        self,
+    ) -> Callable[[service.MacVerifyRequest], service.MacVerifyResponse]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._MacVerify(self._session, self._host, self._interceptor) # type: ignore
+        return self._MacVerify(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def restore_crypto_key_version(self) -> Callable[
-            [service.RestoreCryptoKeyVersionRequest],
-            resources.CryptoKeyVersion]:
+    def restore_crypto_key_version(
+        self,
+    ) -> Callable[[service.RestoreCryptoKeyVersionRequest], resources.CryptoKeyVersion]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._RestoreCryptoKeyVersion(self._session, self._host, self._interceptor) # type: ignore
+        return self._RestoreCryptoKeyVersion(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_crypto_key(self) -> Callable[
-            [service.UpdateCryptoKeyRequest],
-            resources.CryptoKey]:
+    def update_crypto_key(
+        self,
+    ) -> Callable[[service.UpdateCryptoKeyRequest], resources.CryptoKey]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateCryptoKey(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateCryptoKey(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_crypto_key_primary_version(self) -> Callable[
-            [service.UpdateCryptoKeyPrimaryVersionRequest],
-            resources.CryptoKey]:
+    def update_crypto_key_primary_version(
+        self,
+    ) -> Callable[[service.UpdateCryptoKeyPrimaryVersionRequest], resources.CryptoKey]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateCryptoKeyPrimaryVersion(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateCryptoKeyPrimaryVersion(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
-    def update_crypto_key_version(self) -> Callable[
-            [service.UpdateCryptoKeyVersionRequest],
-            resources.CryptoKeyVersion]:
+    def update_crypto_key_version(
+        self,
+    ) -> Callable[[service.UpdateCryptoKeyVersionRequest], resources.CryptoKeyVersion]:
         # The return type is fine, but mypy isn't sophisticated enough to determine what's going on here.
         # In C++ this would require a dynamic_cast
-        return self._UpdateCryptoKeyVersion(self._session, self._host, self._interceptor) # type: ignore
+        return self._UpdateCryptoKeyVersion(self._session, self._host, self._interceptor)  # type: ignore
 
     @property
     def kind(self) -> str:
@@ -3497,6 +3893,4 @@ class KeyManagementServiceRestTransport(KeyManagementServiceTransport):
         self._session.close()
 
 
-__all__=(
-    'KeyManagementServiceRestTransport',
-)
+__all__ = ("KeyManagementServiceRestTransport",)

@@ -57,6 +57,7 @@ from google.cloud.kms_v1.types import ekm_service
 from .transports.base import DEFAULT_CLIENT_INFO, EkmServiceTransport
 from .transports.grpc import EkmServiceGrpcTransport
 from .transports.grpc_asyncio import EkmServiceGrpcAsyncIOTransport
+from .transports.rest import EkmServiceRestTransport
 
 
 class EkmServiceClientMeta(type):
@@ -70,6 +71,7 @@ class EkmServiceClientMeta(type):
     _transport_registry = OrderedDict()  # type: Dict[str, Type[EkmServiceTransport]]
     _transport_registry["grpc"] = EkmServiceGrpcTransport
     _transport_registry["grpc_asyncio"] = EkmServiceGrpcAsyncIOTransport
+    _transport_registry["rest"] = EkmServiceRestTransport
 
     def get_transport_class(
         cls,
