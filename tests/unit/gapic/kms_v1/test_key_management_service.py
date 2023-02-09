@@ -11313,7 +11313,7 @@ def test_create_crypto_key_rest(request_type):
             "protection_level": 1,
             "algorithm": 1,
             "attestation": {
-                "format_": 3,
+                "format": 3,
                 "content": b"content_blob",
                 "cert_chains": {
                     "cavium_certs": ["cavium_certs_value1", "cavium_certs_value2"],
@@ -11573,7 +11573,7 @@ def test_create_crypto_key_rest_bad_request(
             "protection_level": 1,
             "algorithm": 1,
             "attestation": {
-                "format_": 3,
+                "format": 3,
                 "content": b"content_blob",
                 "cert_chains": {
                     "cavium_certs": ["cavium_certs_value1", "cavium_certs_value2"],
@@ -11715,7 +11715,7 @@ def test_create_crypto_key_version_rest(request_type):
         "protection_level": 1,
         "algorithm": 1,
         "attestation": {
-            "format_": 3,
+            "format": 3,
             "content": b"content_blob",
             "cert_chains": {
                 "cavium_certs": ["cavium_certs_value1", "cavium_certs_value2"],
@@ -11954,7 +11954,7 @@ def test_create_crypto_key_version_rest_bad_request(
         "protection_level": 1,
         "algorithm": 1,
         "attestation": {
-            "format_": 3,
+            "format": 3,
             "content": b"content_blob",
             "cert_chains": {
                 "cavium_certs": ["cavium_certs_value1", "cavium_certs_value2"],
@@ -12335,7 +12335,7 @@ def test_create_import_job_rest(request_type):
         "state": 1,
         "public_key": {"pem": "pem_value"},
         "attestation": {
-            "format_": 3,
+            "format": 3,
             "content": b"content_blob",
             "cert_chains": {
                 "cavium_certs": ["cavium_certs_value1", "cavium_certs_value2"],
@@ -12568,7 +12568,7 @@ def test_create_import_job_rest_bad_request(
         "state": 1,
         "public_key": {"pem": "pem_value"},
         "attestation": {
-            "format_": 3,
+            "format": 3,
             "content": b"content_blob",
             "cert_chains": {
                 "cavium_certs": ["cavium_certs_value1", "cavium_certs_value2"],
@@ -12692,7 +12692,7 @@ def test_update_crypto_key_rest(request_type):
             "protection_level": 1,
             "algorithm": 1,
             "attestation": {
-                "format_": 3,
+                "format": 3,
                 "content": b"content_blob",
                 "cert_chains": {
                     "cavium_certs": ["cavium_certs_value1", "cavium_certs_value2"],
@@ -12927,7 +12927,7 @@ def test_update_crypto_key_rest_bad_request(
             "protection_level": 1,
             "algorithm": 1,
             "attestation": {
-                "format_": 3,
+                "format": 3,
                 "content": b"content_blob",
                 "cert_chains": {
                     "cavium_certs": ["cavium_certs_value1", "cavium_certs_value2"],
@@ -13071,7 +13071,7 @@ def test_update_crypto_key_version_rest(request_type):
         "protection_level": 1,
         "algorithm": 1,
         "attestation": {
-            "format_": 3,
+            "format": 3,
             "content": b"content_blob",
             "cert_chains": {
                 "cavium_certs": ["cavium_certs_value1", "cavium_certs_value2"],
@@ -13309,7 +13309,7 @@ def test_update_crypto_key_version_rest_bad_request(
         "protection_level": 1,
         "algorithm": 1,
         "attestation": {
-            "format_": 3,
+            "format": 3,
             "content": b"content_blob",
             "cert_chains": {
                 "cavium_certs": ["cavium_certs_value1", "cavium_certs_value2"],
